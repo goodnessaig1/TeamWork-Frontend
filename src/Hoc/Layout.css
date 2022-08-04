@@ -1,0 +1,10 @@
+.page_container {
+    min-height: 75vh;
+    padding-top: 80px;
+}
+
+@media screen and (max-width: 680px) {
+    .page_container {
+        padding-top:64px;
+    }
+}
