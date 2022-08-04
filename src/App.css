@@ -30,3 +30,18 @@
 }
 
 
+:root {
+   --color-bg: #3333e8;
+   --color-primary: #4db5ff;
+   --color-bg-variant: #2c2c6c;
+   --color-white: #fff;
+   --color-light: rgba(255, 255, 255, 0.6);
+   --color-primary-variant: rgba(77, 181, 255, 0.4);
+
+  --transition: all 400ms ease;
+
+   --container-width-lg: 75%;
+   --container-width-md: 86%;
+   --container-width-sm: 90%;
+}
+

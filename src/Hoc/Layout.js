@@ -10,7 +10,6 @@ const Layout = (props) =>{
           {props.children}
           Body
         </div>
-        
       </div>
     )
   }
