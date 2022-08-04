@@ -4,7 +4,7 @@ import Layout from './Hoc/Layout'
 import './App.css';
 
 
-const Routes = () => {
+const App = () => {
   return (
     
     <Layout>
@@ -17,4 +17,4 @@ const Routes = () => {
   )
 }
 
-export default Routes
+export default App
