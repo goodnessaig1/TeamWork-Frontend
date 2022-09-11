@@ -1,3 +1,6 @@
+VIEW LIVE APP ON NETLIFY @ 
+https://631e25f57538455b531e22ee--bright-hotteok-98a99b.netlify.app/
+
 Challenge 2 - Create Frontend Application
 Challenge Summary
 This challenge requires that you implement the front-end logic using React and standard
