@@ -2,6 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: 'Poppins', sans-serif;
   }
   
   .route{
@@ -29,4 +30,20 @@
   }
 }
 
+
+:root {
+   --header-bg: rgba(255, 255, 255, 1);
+   --color-primary: rgba(121, 144, 225, 1);
+;
+   --color-bg-variant: #2c2c6c;
+   --color-white: #fff;
+   --color-light: rgba(255, 255, 255, 0.6);
+   --color-primary-variant: rgba(77, 181, 255, 0.4);
+
+  --transition: all 400ms ease;
+
+   --container-width-lg: 75%;
+   --container-width-md: 86%;
+   --container-width-sm: 90%;
+}
 
