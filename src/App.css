@@ -2,6 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: 'Poppins', sans-serif;
   }
   
   .route{
@@ -31,8 +32,9 @@
 
 
 :root {
-   --color-bg: #3333e8;
-   --color-primary: #4db5ff;
+   --header-bg: rgba(255, 255, 255, 1);
+   --color-primary: rgba(121, 144, 225, 1);
+;
    --color-bg-variant: #2c2c6c;
    --color-white: #fff;
    --color-light: rgba(255, 255, 255, 0.6);

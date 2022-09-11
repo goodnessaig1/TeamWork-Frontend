@@ -1,14 +1,15 @@
 import React from 'react'
+import Header from '../Components/Header/Header'
 import './Layout.css'
 
 
 const Layout = (props) =>{
     return (
       <div>
-        Header
+        <Header/>
         <div className="page_container">
           {props.children}
-          Body
+          {/* Body */}
         </div>
       </div>
     )

@@ -1,6 +1,6 @@
 .page_container {
     min-height: 75vh;
-    padding-top: 80px;
+    padding-top: 65px;
 }
 
 @media screen and (max-width: 680px) {
