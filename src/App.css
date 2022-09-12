@@ -6,7 +6,8 @@
   }
   
   .route{
-    background: rgb(255, 255, 255)
+    background-color: rgba(252, 252, 254, 1);
+    min-height: 100vh;
   }
 
 .App-logo {

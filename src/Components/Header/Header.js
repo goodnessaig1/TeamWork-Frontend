@@ -13,34 +13,42 @@ const Header = () => {
                         <BubbleChart className='App-logo icon_logo' />
                     </div>
                     <div>
-                        <h2>TEAMWORK</h2>
+                        <h2>STAFFCONN</h2>
                     </div>
                 </div>
             </div>
             <div className='center'>
                 <div className='center_container'>
-                    <div className='center_components'>
-                        <Home className='center_icon active'/>
-                        <span>Home</span>
-                    </div>
-                    <div className='center_components'>
-                        <AddAPhoto className='center_icon'/>
-                        <span>Upload</span>
-                    </div>
-                    <div className='center_components'>
-                        <NotificationsNone className='center_icon'/>
-                        <span>Notification</span>
-                    </div>
-                    <div className='center_components'>
-                        <AccountCircle className='center_icon'/>
-                        <span>Profile</span>
-                    </div>
+                    <Link to='/' style={{ textDecoration: 'none' }}>
+                        <div className='nav_bar_container '>
+                            <Home className='center_icon active'/>
+                            <span>Home</span>
+                        </div>
+                    </Link>
+                    <Link to='/upload' style={{ textDecoration: 'none' }}>
+                        <div className='nav_bar_container'>
+                            <AddAPhoto className='center_icon'/>
+                            <span>Upload</span>
+                        </div>
+                    </Link>
+                    <Link to='/notifications' style={{ textDecoration: 'none' }}>
+                        <div className='nav_bar_container'>
+                            <NotificationsNone className='center_icon'/>
+                            <span>Notification</span>
+                        </div>
+                    </Link>
+                    <Link to='/profile' style={{ textDecoration: 'none' }}>
+                        <div className='nav_bar_container'>
+                            <AccountCircle className='center_icon'/>
+                            <span>Profile</span>
+                        </div>
+                    </Link>
                 </div>
             </div>
             <div className='right'>
                 <div className='right_container'>
                     <div className='link_button'>
-                        <Link className="register_link" to='/signin'>Register</Link>
+                        <Link className="register_link" to='/create_user'>Register</Link>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,5 @@
 .header__container {
-   background-color: var(--header-bg);
+    background-color: var(--header-bg);
     position: fixed;
     z-index: 1;
     width: 100%;
@@ -10,6 +10,7 @@
     margin-top: 8px;
     flex-direction: row;
     align-items: center;
+    gap: 2rem;
 }
 
 .left {
@@ -30,6 +31,10 @@
     color: var(--color-primary);
 }
 
+Link {
+    text-decoration: none;
+}
+
 h2 {
     color: var(--color-primary);
     font-weight: 700;
@@ -44,24 +49,23 @@ h2 {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-around;
-    color: rgba(69, 90, 100, 1);
+    justify-content:space-evenly;
     margin-left: 20px;
     cursor: pointer;
 }
+
+.nav_bar_container {
+    color: rgba(69, 90, 100, 1);
+}
+
 
 .center_icon {
     display: none !important;
 }
 
-.center_components {
-    font-size: 20px;
-    font-weight: 600;
-}
-
-.center_components > span:hover  {
+.nav_bar_container > span:hover  {
     color: rgb(128, 157, 170);
-    font-size: 23px;
+    font-size: 18px;
     transition-duration: 0.25s;
 }
 
@@ -90,8 +94,7 @@ h2 {
 }
 
 .register_link:hover {
-    color: var(--color-primary);
-    background-color: rgba(252, 252, 254, 1);
+    background-color: rgb(10, 10, 202);
     transition: ease-in-out 0.2s;
 }
 
@@ -118,7 +121,7 @@ h2 {
         flex: 1;
     }
 
-    .center_components > span {
+    .nav_bar_container > span {
         display: none;
     }
     .center_icon {
@@ -145,7 +148,7 @@ h2 {
         font-size: 35px;
     }
 
-    .center_icon:hover, .center_icon.active {
+    .center_icon:hover , .active{
         color: var(--color-primary);
     }
 
@@ -160,15 +163,31 @@ h2 {
     
   }
 
-    /*     ======== MEDIA QUERIES (SMALER DEVICES ======= */
+  /*     ======== MEDIA QUERIES (SMALER DEVICES ======= */
 
+  @media screen and (max-width: 700px) {
+    .nav_bar_container >span {
+        font-size: 12px;
+        margin: 4px;
+    }
+}
+
+    
+/*     ======== MEDIA QUERIES (SMALER DEVICES ======= */
+
+  @media screen and (max-width: 350px) {
+    h2 {
+        font-size: 22px;
+    }
+
+}
   @media screen and (max-width: 300px) {
     .center_container {
         gap: 3.2rem;
         margin-left: 0px;
     }
     h2 {
-        font-size: 22px;
+        font-size: 15px;
     }
 
 }
