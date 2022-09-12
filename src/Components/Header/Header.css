@@ -80,7 +80,7 @@ h2 {
 }
 
 .register_link {
-    padding: 10px 25px;
+    padding: 8px 25px;
     background-color: var(--color-primary);
     border-color: transparent;
     font-size: 16px;
@@ -98,7 +98,15 @@ h2 {
     transition: ease-in-out 0.2s;
 }
 
+/* MEDIA QUERRIES FOR MEDIUM DEVICES */
 
+@media screen and (max-width: 1024px) {
+
+    .register_link {
+        padding: 7px 13px;
+        font-size: 16px;
+    }
+}
 
 /*     ======== MEDIA QUERIES (SMALL DEVICES ======= */
 
@@ -169,6 +177,10 @@ h2 {
     .nav_bar_container >span {
         font-size: 12px;
         margin: 4px;
+    }
+    .register_link {
+        padding: 5px 9px;
+        font-size: 15px;       
     }
 }
 
