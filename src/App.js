@@ -8,15 +8,15 @@ import Home from './Components/Home/Home';
 const App = () => {
   return (
     <>
-        <div className='route'>
       <Layout>
+        <div className='route'>
           <Switch>
           {/* Home Routes         */}
             <Route path="/" exact component={Home}/>
             {/* Routes Would go here */}
           </Switch>
-      </Layout>
         </div>
+      </Layout>
     </>
   )
 }
