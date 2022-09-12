@@ -20,7 +20,7 @@ const Header = () => {
             <div className='center'>
                 <div className='center_container'>
                     <div className='center_components'>
-                        <Home className='center_icon'/>
+                        <Home className='center_icon active'/>
                         <span>Home</span>
                     </div>
                     <div className='center_components'>
