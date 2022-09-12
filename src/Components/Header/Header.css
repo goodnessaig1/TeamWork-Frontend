@@ -180,7 +180,8 @@ h2 {
     }
     .register_link {
         padding: 5px 9px;
-        font-size: 15px;       
+        font-size: 15px;
+        margin-right: 6px;       
     }
 }
 
@@ -191,6 +192,11 @@ h2 {
     h2 {
         font-size: 22px;
     }
+    .register_link {
+        padding: 3px 8px;
+        font-size: 12px;
+        margin-right: 6px;
+    }
 
 }
   @media screen and (max-width: 300px) {
@@ -200,6 +206,10 @@ h2 {
     }
     h2 {
         font-size: 15px;
+    }
+    .register_link {
+        font-size: 10px;
+        margin-right: 6px;
     }
 
 }
