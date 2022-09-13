@@ -1,14 +1,15 @@
 .header__container {
     background-color: var(--header-bg);
     position: fixed;
+    height: 100px;
     z-index: 1;
     width: 100%;
 }
 
 .content {
     display: flex;
-    margin-top: 8px;
     flex-direction: row;
+    height: 95px;
     align-items: center;
     gap: 2rem;
 }
