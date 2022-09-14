@@ -6,6 +6,7 @@
   }
   
   .route{
+    padding-top: 34px;
     background-color: rgba(252, 252, 254, 1);
     min-height: 100vh;
   }

@@ -1,10 +1,11 @@
 import { combineReducers } from "redux";
-
-
+import { sessionReducer } from "redux-react-session";
+import user from './userReducer';
 
 
 const RootReducer = combineReducers({
-    // ===== RootReducers ===== //
+    session: sessionReducer,
+    user,
 })
 
 export default RootReducer;

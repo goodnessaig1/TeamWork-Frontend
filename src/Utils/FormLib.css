@@ -1,0 +1,72 @@
+.contactes {
+    display: flex;
+    font-display: auto;
+}
+
+.input_icon_container {
+    display: flex;
+    flex-direction: row;
+    padding: 0px 10px;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 4px;
+    gap: 0.5rem;
+}
+
+.inputs {
+    text-decoration: none;
+    outline: 0;
+    font-size: 15px;
+    letter-spacing: 1px;
+    color: rgb(21, 28, 34);
+    border: 0;
+    transition: ease-in-out 0.3s;
+    padding: 1px 2px;
+    border-width: 2px;
+}
+
+.input_icon {
+    top: 0.4rem;
+    color: rgb(102, 99, 99);
+}
+
+.left {
+    margin-top: 4px;
+    margin-left: 4px;
+    transform: scale(0.7);
+}
+
+.right {
+    margin-top: 9px;
+    top: 1rem;
+    right: 8px;
+    transform: scale(0.8);
+}
+
+.error_message {
+    font-size: 11px;
+    color: red;
+    margin-top: 12px;
+    margin-bottom: 10px;
+    text-align: left;
+    margin-left: 15px;
+}
+
+/*     ======== MEDIA QUERIES (SMALER DEVICES ======= */
+
+  @media screen and (max-width: 600px) {
+    .inputs {
+        text-decoration: none;
+        font-size: 9px;
+        letter-spacing: 0px;
+    }
+}
+
+/*     ======== MEDIA QUERIES (SMALER DEVICES ======= */
+
+  @media screen and (max-width: 450px) {
+    .right {
+        margin-left: -10px;       
+    }
+
+}

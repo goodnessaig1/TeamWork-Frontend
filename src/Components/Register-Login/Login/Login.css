@@ -1,0 +1,154 @@
+.login_page_container {
+    background-color: rgba(255, 255, 255, 1);
+    height: 100vh;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.title > h2 {
+    color: rgba(121, 144, 225, 1);
+    padding-top: 120px;
+}
+
+.login_container {
+    background: #FFFFFF;
+    box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    width: 380px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 380px;
+}
+
+.input_container {
+    background: #FFFFFF;
+    border: 1px solid rgb(126, 126, 126);
+    border-radius: 30px;
+    width: 300px;
+    height: 44px;
+    box-shadow: 2px 2px 2px var(--color-primary);
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.button__group {
+    display: flex;
+    padding-top: 30px;
+    align-items: center;
+    justify-content: center;
+}
+.formButton {
+    width: 100px;
+    height: 40px;
+    background-color: var(--color-primary);
+    font-size: 16px;
+    border: 3px solid;
+    border-radius: 20px;
+    color: #fff;
+    outline: 0;
+    transition: ease-in-out 0.3s;
+}
+
+.formButton:hover {
+    background-color: rgb(58, 45, 173);
+    cursor: pointer;
+}
+
+
+.signup_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.more_text {
+    font-size: 14px;
+    text-align: center;
+    color: rgb(4, 98, 101);
+    margin-top: 18px;
+}
+
+.text_link {
+    text-decoration: none;
+    color: var(--color-primary);
+    transition: ease-in-out 0.3s;
+    left: 3px;
+}
+
+.text_link:hover {
+    text-decoration: underline;
+    letter-spacing: 2px;
+}
+
+.copyright {
+    padding: 5px;
+    margin: 20px;
+    text-align: center;
+    color: var(--color-primary);
+} 
+
+/*     ======== MEDIA QUERIES (SMALER DEVICES ======= */
+
+  @media screen and (max-width: 580px) {
+    .title > h2 {
+        padding-top: 5px;
+        font-size: 30px;
+    }
+
+    input {
+        font-size: 4px;
+    }
+    .login_container {
+        width: 250px;
+        height: 250px;
+        padding-top: 14px;
+    }
+    .input_container {
+        border: 1px solid rgb(126, 126, 126);
+        border-radius: 30px;
+        width: 200px;
+        height: 40px;
+    }
+
+    .button__group {
+        padding-top: 15px;
+    }
+
+    .formButton {
+        width: 80px;
+        height: 34px;
+        font-size: 12px;
+    }
+
+    .more_text {
+        font-size: 12px;
+        margin-top: 8px;
+    }
+
+    .text_link {
+        text-decoration: none;
+        color: var(--color-primary);
+        transition: ease-in-out 0.3s;
+        left: 3px;
+    }
+
+    .copyright {
+        padding: 0px;
+        margin: 20px;
+        font-size: 12px;
+    } 
+
+}

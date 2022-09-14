@@ -2,9 +2,12 @@ import React from 'react'
 import { BubbleChart, Home, AddAPhoto, NotificationsNone, AccountCircle } from '@material-ui/icons'
 import { Link } from 'react-router-dom'
 import "./Header.css"
+import { connect } from 'react-redux'
 
-const Header = () => {
-  return (
+
+const Header = ({user}) => {
+
+    return (
     <div className='header__container'>
         <div className='content'>
             <div className='left'>
@@ -48,7 +51,14 @@ const Header = () => {
             <div className='right'>
                 <div className='right_container'>
                     <div className='link_button'>
-                        <Link className="register_link" to='/create_user'>Register</Link>
+                        {
+                            user ? (
+                                    <Link className="register_link" to='/log_out'>LogOut</Link>
+                                ) :
+                                (
+                                    <Link className="register_link" to='/sign_in'>SignIn</Link>
+                                )
+                            }
                     </div>
                 </div>
             </div>
@@ -57,4 +67,10 @@ const Header = () => {
   )
 }
 
-export default Header
+const mapStateToProps = (state) => {
+    return {
+        user: state.session.user,
+    }
+}
+
+export default connect(mapStateToProps)(Header);
