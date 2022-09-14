@@ -70,7 +70,7 @@ const Login = ({LoginUser}) => {
                         {isSubmitting && (
                             <Audio
                                 type="ThreeDots"
-                                color="red"
+                                color="rgba(121, 144, 225, 1)"
                                 height={20}
                                 width={10}
                             />
