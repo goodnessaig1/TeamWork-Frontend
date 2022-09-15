@@ -43,7 +43,7 @@ const Login = ({LoginUser}) => {
             >
              {({isSubmitting}) => (
                     <Form >
-                        <div className='inputs'>
+                        <div className='form_inputs'>
                             <div className='input_container'>
                                 <TextInput
                                     name="email"

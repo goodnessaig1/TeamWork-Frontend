@@ -58,6 +58,7 @@ h5 {
     .home_container {
         display: flex;
         flex-direction: column;
+        width: 90%;
     }
     .home_left {
         flex: 1;
@@ -78,6 +79,27 @@ h5 {
         font-size: 25px;
         font-weight: 500;
     }
+
+  }
+
+/*     ======== MEDIA QUERIES (SMALLER DEVICES ======= */
+
+  @media screen and (max-width: 320px) {
+
+    .home_container {
+        display: flex;
+        flex-direction: column;
+        width: 95%;
+    }
+    .home_left {
+        flex: 1;
+        padding: 40px 0 0 30px; 
+    }
+
+    .home_right_container {
+        width:99%;
+        height: 97%;
+    }   
 
   }
 

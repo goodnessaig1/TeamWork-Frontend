@@ -5,12 +5,15 @@
     font-family: 'Poppins', sans-serif;
   }
   
-  .route{
-    padding-top: 34px;
-    background-color: rgba(252, 252, 254, 1);
-    min-height: 100vh;
-  }
+  /* body {
+   min-height: 100vh !important;
+ }  */
 
+.routes {
+  min-height: 100vh !important;
+  background-color: rgba(252, 252, 254, 1);
+  padding-top: 120px;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -49,3 +52,10 @@
    --container-width-sm: 90%;
 }
 
+/*     ======== MEDIA QUERIES (SMALER DEVICES ======= */
+
+  @media screen and (max-width: 680px) {
+    .routes {
+        padding-top: 45px;
+    }
+}

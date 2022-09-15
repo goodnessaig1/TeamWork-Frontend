@@ -1,15 +1,22 @@
 import axios from 'axios'
-import { sessionService } from 'redux-react-session';
-import { USER_SERVER } from '../../Utils/Proxy'
+import { SERVER } from '../../Utils/Proxy'
 import {
     LOGIN_USER
 } from './types';
 
 
+export const loginUserSuccess = request => {
+    return {
+        type: LOGIN_USER,
+        payload: request
+    }
+}
+
+
 export const LoginUser = (credentials, history, setFieldError, setSubmitting) => {
     // Make checks and get some 
-    return () => {
-    const request =  axios.post(`${USER_SERVER}/signin`,
+    return (dispatch) => {
+        axios.post(`${SERVER}auth/v1/signin`,
         credentials,
         {
             headers: {
@@ -33,21 +40,11 @@ export const LoginUser = (credentials, history, setFieldError, setSubmitting) =>
                 const token = userData.token
                 localStorage.setItem('token', token)
                 console.log(token)
-                sessionService.saveSession(token).then(()=> {
-                    sessionService.saveUser(userData).then(()=>{
-                        history.push("/home_page")
-                    })
-                    
-                    .catch(err => console.error(err));
-                }).catch(err => console.error(err));
+                history.push("/dashboard")
+                dispatch(loginUserSuccess(userData))
             }
-            // Complete submission
             setSubmitting(false);
         })
-        return {
-            type: LOGIN_USER,
-            payload: request
-        }
         .catch(err => console.error(err));
     }
 }

@@ -15,29 +15,19 @@ export const TextInput = ({icon, ...props}) =>{
                     {props.label}
                 </label>
                 <div className="input_icon_container">
-                    <span className="input_icon left">
+                    <span className="input_icon left_icon">
                         {icon}
                     </span>
-                    {props.type !== "password" && 
                     <input
                         className="inputs" 
                         {...field}
                         {...props}
+                    type={props.type !=="password"  || show ? "text"  : "password"}
                     />
-                    }
-                    {props.type === "password" && (
-                        <input
-                            className="inputs"
-                            {...field}
-                            {...props}
-                            type={show ? "text"  : "password"}
-                        />
-                    )}
                 </div>
-                
                 {
                     props.type === "password" && (
-                        <span onClick={()=> setShow(!show)} className="input_icon right">
+                        <span onClick={()=> setShow(!show)} className="input_icon right_icon">
                         {show && <Visibility/> }
                         {!show && <VisibilityOff/> }
                         </span>

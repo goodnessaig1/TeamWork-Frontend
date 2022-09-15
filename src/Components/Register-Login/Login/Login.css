@@ -1,6 +1,6 @@
 .login_page_container {
     background-color: rgba(255, 255, 255, 1);
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     position: relative;
     flex-direction: column;
@@ -35,7 +35,7 @@
     box-shadow: 2px 2px 2px var(--color-primary);
 }
 
-.inputs {
+.form_inputs {
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -72,6 +72,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: row;
+
 }
 
 .more_text {
@@ -103,9 +104,12 @@
 /*     ======== MEDIA QUERIES (SMALER DEVICES ======= */
 
   @media screen and (max-width: 580px) {
-    .title > h2 {
+    .title >h2 {
         padding-top: 5px;
         font-size: 30px;
+    }
+    .login_page_container {
+        width: 100%;
     }
 
     input {
@@ -151,4 +155,11 @@
         font-size: 12px;
     } 
 
+}
+
+@media (min-width: 320px) {
+    input {
+        font-size: 4px;
+        width: 70%;
+    }   
 }
