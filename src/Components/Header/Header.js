@@ -48,7 +48,7 @@ const Header = () => {
             <div className='right'>
                 <div className='right_container'>
                     <div className='link_button'>
-                        <Link className="register_link" to='/create_user'>Register</Link>
+                        <Link className="register_link" to='/sign_in'>Sign In</Link>
                     </div>
                 </div>
             </div>

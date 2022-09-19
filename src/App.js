@@ -3,20 +3,22 @@ import { Switch, Route } from 'react-router-dom'
 import Layout from './Hoc/Layout'
 import './App.css';
 import Home from './Components/Home/Home';
+import Login from './Components/Register-Login/Login/Login';
 
 
 const App = () => {
   return (
     <>
-      <Layout>
-        <div className='route'>
-          <Switch>
-          {/* Home Routes         */}
-            <Route path="/" exact component={Home}/>
+      <Switch>
+        <Route path="/sign_in" exact component={Login}/>
+          <Layout>
+            <div className='routes'>
+            {/* Home Routes         */}
+              <Route path="/" exact component={Home}/>
             {/* Routes Would go here */}
-          </Switch>
-        </div>
-      </Layout>
+          </div>
+        </Layout>
+      </Switch>
     </>
   )
 }

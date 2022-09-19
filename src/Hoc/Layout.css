@@ -1,6 +1,7 @@
 .page_container {
-    min-height: 75vh;
-    padding-top: 65px;
+    /* min-height: 100vh; */
+    /* padding-top: 65px; */
+    /* background-color: red; */
 }
 
 @media screen and (max-width: 680px) {
