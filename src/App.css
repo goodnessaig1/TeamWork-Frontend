@@ -5,12 +5,13 @@
     font-family: 'Poppins', sans-serif;
   }
   
-  /* body {
-   min-height: 100vh !important;
- }  */
+  body {
+   min-height: 100vh;
+   overflow: auto;
+ } 
 
 .routes {
-  min-height: 100vh !important;
+  /* min-height: 100vh !important; */
   background-color: rgba(252, 252, 254, 1);
   padding-top: 120px;
 }
@@ -47,6 +48,7 @@
 
   --transition: all 400ms ease;
 
+   --container-height: 100vh;
    --container-width-lg: 75%;
    --container-width-md: 86%;
    --container-width-sm: 90%;

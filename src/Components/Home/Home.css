@@ -1,6 +1,7 @@
 .home_container {
     display: flex;
     background-color: rgba(252, 252, 254, 1);
+    min-height: var(--container-height);
 }
 
 

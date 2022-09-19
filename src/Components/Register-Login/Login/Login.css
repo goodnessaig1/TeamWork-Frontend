@@ -1,6 +1,6 @@
 .login_page_container {
     background-color: rgba(255, 255, 255, 1);
-    min-height: 100vh;
+    min-height: var(--container-height);
     display: flex;
     position: relative;
     flex-direction: column;
@@ -157,9 +157,13 @@
 
 }
 
-@media (min-width: 320px) {
+@media (max-width: 320px) {
     input {
         font-size: 4px;
         width: 70%;
     }   
+
+    .form_inputs {
+        gap: 2.2rem;
+    }
 }
