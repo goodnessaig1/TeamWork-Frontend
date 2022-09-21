@@ -52,7 +52,7 @@ export const LoginUser = (credentials, history, setFieldError, setSubmitting) =>
 export const RegisterUser = (credentials, history, setFieldError, 
     setSubmitting)  => {
         
-        return (dispatch) => {
+        return () => {
         axios.post(`${SERVER}auth/v1/create-user`,
         credentials,
         {
@@ -72,15 +72,7 @@ export const RegisterUser = (credentials, history, setFieldError,
                 // complete submittiion
                 setSubmitting(false);
             } else if (data.status === "success") {
-                setTimeout(() => {
-                    console.log('hi')
-                    history.push("/registration_success")
-                 }, 1000);
-                setTimeout(() => {
-                         const { email, password } = credentials
-
-                dispatch(LoginUser({email, password }, history, setFieldError, setSubmitting ))
-            }, 8000);
+                history.push("/registration_success")
             }
         }).catch(err => console.error(err));
     }

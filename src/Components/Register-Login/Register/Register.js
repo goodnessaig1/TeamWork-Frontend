@@ -91,7 +91,6 @@ const Register = ({RegisterUser}) => {
                                     <Field name="gender" as="select" className='options'>
                                         <option value="male">Male</option>
                                         <option value="female">Female</option>
-                                        <option value="intersex">InterSex</option>
                                     </Field>
                                 </label>
                             </div>  

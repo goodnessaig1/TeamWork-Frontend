@@ -124,6 +124,9 @@
         padding-top: 14px;
     }
 
+    .input_container {
+        height: 34px;
+    }
     .gender {
         font-size: 10px;
         padding-left: 30px;
@@ -142,7 +145,7 @@
 }   
 @media (max-width: 320px) {
     .register_container {
-        height: 90%;
+        height: 550px;
         width: 90%;
     }  
 
@@ -153,6 +156,9 @@
 
     .register_form_inputs {
         gap: 1.5rem;
+    }
+    .input_container {
+        height: 29px;
     }
 
     .gender {
