@@ -99,6 +99,10 @@ h2 {
     transition: ease-in-out 0.2s;
 }
 
+.nav_bar_container:active, .nav_bar_container:hover {
+    text-decoration: underline rgba(0, 0, 0, 1);
+}
+
 /* MEDIA QUERRIES FOR MEDIUM DEVICES */
 
 @media screen and (max-width: 1024px) {

@@ -64,6 +64,13 @@
     .input_icon_container {
         width: 88%;
     }
+
+    .input_icon , .right_icon {
+        margin-bottom: -10px;
+    }
+    .right_icon {
+        margin-top: 5px;
+    }
 }
 
 /*     ======== MEDIA QUERIES (SMALER DEVICES ======= */
