@@ -95,7 +95,9 @@
   @media screen and (max-width: 1080px) {
     .gender {
         align-items: center;
-        padding-left: 60px;
+        /* padding-left: 60px; */
+        justify-content: center;
+
         font-size: 14px;
     }
 }
@@ -138,7 +140,7 @@
     }
     .gender {
         font-size: 10px;
-        padding-left: 25px;
+        /* padding-left: 25px; */
         padding-top: 0;
     }
     .options {
@@ -149,7 +151,7 @@
 @media (max-width: 450px) {
     
     .gender {
-        padding-left: 30px;
+        /* padding-left: 30px; */
     }
 }   
 @media (max-width: 320px) {
@@ -173,7 +175,7 @@
     .gender {
         font-size: 8px;
         padding-top: 0;
-        padding-left: 50px;
+        /* padding-left: 50px; */
     }
     .options {
         font-size: 8px;
