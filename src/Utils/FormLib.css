@@ -54,6 +54,14 @@
 
 /*     ======== MEDIA QUERIES (SMALER DEVICES ======= */
 
+  @media screen and (max-width: 980px) {
+
+    .input_icon_container {
+        width: 75%;
+    }
+}
+/*     ======== MEDIA QUERIES (SMALER DEVICES ======= */
+
   @media screen and (max-width: 600px) {
 
     .contactes {
