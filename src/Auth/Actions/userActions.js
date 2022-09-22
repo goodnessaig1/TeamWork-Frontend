@@ -49,3 +49,33 @@ export const LoginUser = (credentials, history, setFieldError, setSubmitting) =>
     }
 }
 
+export const RegisterUser = (credentials, history, setFieldError, 
+    setSubmitting)  => {
+        
+        return () => {
+        axios.post(`${SERVER}auth/v1/create-user`,
+        credentials,
+        {
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }
+        ).then((response)=>{
+            const { data } = response;
+
+            if (data.status === "Failed") {
+                const { message} = data;
+                if (message.includes("email")) {
+                    setFieldError("email", message)
+                }
+
+                // complete submittiion
+                setSubmitting(false);
+            } else if (data.status === "success") {
+                history.push("/registration_success")
+            }
+        }).catch(err => console.error(err));
+    }
+}
+
+
