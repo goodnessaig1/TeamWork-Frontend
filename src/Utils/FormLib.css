@@ -61,7 +61,8 @@
           justify-content: center;
       }
     .input_icon_container {
-        width: 50%;
+        width: 35%;
+        /* padding-left: 30px; */
     }
 }
 /*     ======== MEDIA QUERIES (SMALER DEVICES ======= */
