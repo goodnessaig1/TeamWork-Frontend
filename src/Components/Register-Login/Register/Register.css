@@ -129,7 +129,7 @@
     }
     .gender {
         font-size: 10px;
-        padding-left: 30px;
+        padding-left: 25px;
         padding-top: 0;
     }
     .options {
@@ -140,7 +140,7 @@
 @media (max-width: 450px) {
     
     .gender {
-        padding-left: 40px;
+        padding-left: 30px;
     }
 }   
 @media (max-width: 320px) {
