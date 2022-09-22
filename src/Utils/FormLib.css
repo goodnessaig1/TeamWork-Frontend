@@ -54,7 +54,7 @@
 
 /*     ======== MEDIA QUERIES (SMALER DEVICES ======= */
 
-  @media screen and (max-width: 980px) {
+  @media screen and (max-width: 1080px) {
 
       .contactes {
           align-items: center;

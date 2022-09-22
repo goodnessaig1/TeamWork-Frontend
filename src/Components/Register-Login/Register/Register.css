@@ -92,12 +92,10 @@
 
 /*     ======== MEDIA QUERIES (MEDIUM DEVICES ======= */
 
-  @media screen and (max-width: 960px) {
+  @media screen and (max-width: 1080px) {
     .gender {
         align-items: center;
-        justify-content: space-evenly;
-
-        /* padding-left: 85px; */
+        padding-left: 60px;
         font-size: 14px;
     }
 }
