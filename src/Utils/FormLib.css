@@ -88,8 +88,11 @@
 
 }
 @media screen and (max-width: 320px) {
+    .contactes {
+        max-width: 80%;
+    }
     .input_icon_container {
-        width: 52%;
+        width: 82%;
         /* height: 20%; */
     }
 }
