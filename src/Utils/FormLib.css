@@ -56,18 +56,18 @@
 
   @media screen and (max-width: 980px) {
 
+      .contactes {
+          align-items: center;
+          justify-content: center;
+      }
     .input_icon_container {
-        width: 75%;
+        width: 50%;
     }
 }
 /*     ======== MEDIA QUERIES (SMALER DEVICES ======= */
 
   @media screen and (max-width: 600px) {
 
-    .contactes {
-        align-items: center;
-        justify-content: center;
-    }
     .input_icon_container {
         width: 60%;
         align-items: center;

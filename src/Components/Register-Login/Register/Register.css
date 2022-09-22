@@ -90,11 +90,22 @@
     font-weight: 500;
 }
 
+/*     ======== MEDIA QUERIES (MEDIUM DEVICES ======= */
+
+  @media screen and (max-width: 960px) {
+    .gender {
+        align-items: center;
+        justify-content: space-evenly;
+
+        /* padding-left: 85px; */
+        font-size: 14px;
+    }
+}
 /*     ======== MEDIA QUERIES (SMALER DEVICES ======= */
 
   @media screen and (max-width: 600px) {
     .gender {
-        padding-left: 85px;
+        /* padding-left: 85px; */
         font-size: 14px;
     }
     .options {
