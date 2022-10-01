@@ -2,14 +2,12 @@ import React from 'react'
 import { BubbleChart, Home, AddAPhoto, NotificationsNone, AccountCircle } from '@material-ui/icons'
 import { Link, useHistory } from 'react-router-dom'
 import "./Header.css"
-
 import { connect } from 'react-redux'
 import { LogoutUser } from '../../Auth/Actions/userActions'
 
+import PropTypes from 'prop-types'
 
 const Header = ({LogoutUser, userStatus}) => {
-    console.log(userStatus)
-
   const history = useHistory()
   return (
     <div className='header__container'>
@@ -87,6 +85,11 @@ const mapStateToProps = () => {
     return {
         userStatus: localStorage.getItem('token'),
     }
+}
+
+Header.propTypes = {
+  userStatus: PropTypes.string,
+  LogoutUser: PropTypes.func
 }
 
 export default connect(mapStateToProps, {LogoutUser})(Header);

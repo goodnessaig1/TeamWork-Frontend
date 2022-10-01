@@ -6,6 +6,7 @@ import { TextInput } from '../../../Utils/FormLib'
 import * as Yup from 'yup'
 import { Link, useHistory, } from 'react-router-dom'
 import { Audio } from  'react-loader-spinner'
+import PropTypes from 'prop-types'
 
 
 //  Auth & Redux
@@ -93,6 +94,10 @@ const Login = ({LoginUser}) => {
             </div>
     </div>
   )
+}
+
+Login.propTypes = {
+  LoginUser: PropTypes.func
 }
 
 export default connect(null, {LoginUser})(Login);
