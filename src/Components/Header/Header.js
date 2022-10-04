@@ -8,8 +8,10 @@ import { LogoutUser } from '../../Auth/Actions/userActions'
 import PropTypes from 'prop-types'
 
 const Header = ({LogoutUser, userStatus}) => {
-  const history = useHistory()
-  return (
+    console.log(userStatus.user)
+    const history = useHistory()
+    
+    return (
     <div className='header__container'>
         <div className='content'>
             <div className='left'>
@@ -54,7 +56,7 @@ const Header = ({LogoutUser, userStatus}) => {
                 <div className='right_container'>
                     <div className='link_button'>
                         {
-                            userStatus ?  (
+                            userStatus.user ?  (
                                 <Link 
                                     className="register_link" 
                                     to='/sign_in'
@@ -81,14 +83,14 @@ const Header = ({LogoutUser, userStatus}) => {
   )
 }
 
-const mapStateToProps = () => {
+const mapStateToProps = (state) => {
     return {
-        userStatus: localStorage.getItem('token'),
+        userStatus: state.user
     }
 }
 
 Header.propTypes = {
-  userStatus: PropTypes.string,
+  userStatus: PropTypes.object,
   LogoutUser: PropTypes.func
 }
 

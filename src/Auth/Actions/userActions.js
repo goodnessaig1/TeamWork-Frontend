@@ -35,8 +35,7 @@ export const LoginUser = (credentials, history, setFieldError, setSubmitting) =>
                     setFieldError("password", message)
                 }
             } else if (data.status === "success") {
-                const userData = data.data
-
+                const userData = data
                 const token = userData.token
                 localStorage.setItem('token', token)
                 history.push("/dashboard")
