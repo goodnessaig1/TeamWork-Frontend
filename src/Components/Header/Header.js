@@ -8,7 +8,6 @@ import { LogoutUser } from '../../Auth/Actions/userActions'
 import PropTypes from 'prop-types'
 
 const Header = ({LogoutUser, userStatus}) => {
-    console.log(userStatus.user)
     const history = useHistory()
     
     return (
