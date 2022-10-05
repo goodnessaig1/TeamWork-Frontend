@@ -36,7 +36,7 @@ export const LoginUser = (credentials, history, setFieldError, setSubmitting) =>
                 }
             } else if (data.status === "success") {
                 const userData = data
-                const token = userData.token
+                const token = userData.data.token
                 localStorage.setItem('token', token)
                 history.push("/dashboard")
                 dispatch(loginUserSuccess(userData))
@@ -79,7 +79,7 @@ export const RegisterUser = (credentials, history, setFieldError,
 
 export const LogoutUser = (history) =>{
    return () => {
-    localStorage.clear();
+    localStorage.removeItem("token");
     
     history.push("/login");
   };

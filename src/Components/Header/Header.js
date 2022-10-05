@@ -55,7 +55,7 @@ const Header = ({LogoutUser, userStatus}) => {
                 <div className='right_container'>
                     <div className='link_button'>
                         {
-                            userStatus.user ?  (
+                            !!userStatus.user ?  (
                                 <Link 
                                     className="register_link" 
                                     to='/sign_in'
