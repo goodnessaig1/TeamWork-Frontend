@@ -1,10 +1,16 @@
 import React from 'react'
 import { BubbleChart, Home, AddAPhoto, NotificationsNone, AccountCircle } from '@material-ui/icons'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import "./Header.css"
+import { connect } from 'react-redux'
+import { LogoutUser } from '../../Auth/Actions/userActions'
 
-const Header = () => {
-  return (
+import PropTypes from 'prop-types'
+
+const Header = ({LogoutUser, userStatus}) => {
+    const history = useHistory()
+    
+    return (
     <div className='header__container'>
         <div className='content'>
             <div className='left'>
@@ -48,7 +54,26 @@ const Header = () => {
             <div className='right'>
                 <div className='right_container'>
                     <div className='link_button'>
-                        <Link className="register_link" to='/sign_in'>Sign In</Link>
+                        {
+                            !!userStatus.user ?  (
+                                <Link 
+                                    className="register_link" 
+                                    to='/sign_in'
+                                    onClick={()=> LogoutUser(history)}
+                                >
+                                    Sign out
+                                </Link>
+                                ) : (
+                                    
+                                <Link 
+                                    className="register_link" 
+                                    to='/sign_in'
+                                >
+                                    Sign In
+                                </Link>
+                            )
+                            
+                        }
                     </div>
                 </div>
             </div>
@@ -57,4 +82,15 @@ const Header = () => {
   )
 }
 
-export default Header
+const mapStateToProps = (state) => {
+    return {
+        userStatus: state.user
+    }
+}
+
+Header.propTypes = {
+  userStatus: PropTypes.object,
+  LogoutUser: PropTypes.func
+}
+
+export default connect(mapStateToProps, {LogoutUser})(Header);
