@@ -9,7 +9,7 @@ import PropTypes from 'prop-types'
 
 const Header = ({LogoutUser, userStatus}) => {
     const history = useHistory()
-    
+
     return (
     <div className='header__container'>
         <div className='content'>
@@ -55,7 +55,7 @@ const Header = ({LogoutUser, userStatus}) => {
                 <div className='right_container'>
                     <div className='link_button'>
                         {
-                            !!userStatus.user ?  (
+                            !!userStatus ?  (
                                 <Link 
                                     className="register_link" 
                                     to='/sign_in'
@@ -84,7 +84,7 @@ const Header = ({LogoutUser, userStatus}) => {
 
 const mapStateToProps = (state) => {
     return {
-        userStatus: state.user
+        userStatus: state.user.userData
     }
 }
 

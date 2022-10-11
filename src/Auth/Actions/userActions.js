@@ -1,7 +1,9 @@
 import axios from 'axios'
 import { SERVER } from '../../Utils/Proxy'
 import {
-    LOGIN_USER
+    LOGIN_USER,
+    GET_USER_DATA,
+    GET_USER_DETAILS_FAILURE,
 } from './types';
 
 
@@ -9,6 +11,41 @@ export const loginUserSuccess = request => {
     return {
         type: LOGIN_USER,
         payload: request
+    }
+}
+
+export const userDetails = request => {
+    return {
+        type: GET_USER_DATA,
+        payload: request
+    }
+}
+
+export const getUserDetailsFailure = error => {
+    return {
+        type: GET_USER_DETAILS_FAILURE,
+        payload: error
+    }
+}
+
+
+export const getUserDetails = () => {
+    return (dispatch) => {
+             axios.get(`${SERVER}auth/v1/auth`,
+        {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${(localStorage.getItem('token'))}`
+            }
+        }
+    ).then((response) => {
+        const userData = response.data
+        dispatch(userDetails(userData.data))
+    }).catch(error =>{
+        console.log(error)
+        const errorMsg = error
+        dispatch(getUserDetailsFailure(errorMsg))
+    })
     }
 }
 
@@ -81,6 +118,6 @@ export const LogoutUser = (history) =>{
    return () => {
     localStorage.removeItem("token");
     
-    history.push("/login");
+    history.push("/sign_in");
   };
 };
