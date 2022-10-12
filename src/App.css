@@ -10,6 +10,12 @@
    overflow: auto;
  } 
 
+.mainContainer {
+  padding-top: 50px;
+  display: flex;
+  flex-direction: row;
+}
+
 .routes {
   /* min-height: 100vh !important; */
   background-color: rgba(252, 252, 254, 1);

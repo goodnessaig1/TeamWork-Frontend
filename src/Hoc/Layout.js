@@ -3,12 +3,12 @@ import Header from '../Components/Header/Header'
 import './Layout.css'
 
 
-const Layout = (props) =>{
+const Layout = ({children}) =>{
     return (
       <div>
         <Header/>
         <div className="page_container">
-          {props.children}
+          {children}
           {/* Body */}
         </div>
       </div>
