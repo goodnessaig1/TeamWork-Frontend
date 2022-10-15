@@ -1,0 +1,29 @@
+.page_layout_container {
+    display: flex;
+    flex-direction: row;
+    min-height: var(--container-height);
+    padding-top: 26px;
+}
+
+.page_right {
+    flex: 1;
+}
+
+.page_center {
+    flex: 2;
+}
+
+.page_left {
+    flex: 1;
+}
+
+
+  @media screen and (max-width: 600px) {
+
+    .page_right {
+        display: none;
+    }
+    .page_left {
+        display: none;
+    }
+}

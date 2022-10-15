@@ -4,6 +4,10 @@
     /* background-color: red; */
 }
 
+.user_layout_container {
+    display: flex;
+}
+
 @media screen and (max-width: 680px) {
     .page_container {
         padding-top:64px;
