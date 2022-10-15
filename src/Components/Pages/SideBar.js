@@ -10,7 +10,7 @@ const SideBar = () => {
           <h3>Menu</h3>
       </div>
       <div className='items'>
-        <ul>
+        <ul className='menu_home'>
           <li>Home</li>
           <li>Uploads</li>
           <li>Notifications</li>
@@ -22,29 +22,17 @@ const SideBar = () => {
         <ul>
           <li>All Feeds</li>
           <li>Recent</li>
-          <li>Reports</li>
+          <li>Sign out</li>
         </ul>
       </div>
-      <div className='items'>
-        <h3>View</h3>
-        <p>Articles</p>
-        <ul>
-          <li>#Education</li>
-          <li>#Business</li>
-          <li>#Election</li>
-          <li>#Sports</li>
-        </ul>
-        <p>Gifs</p>
-        <ul>
-          <li>All Gifs</li>
-        </ul>
-      </div>
+      
       {/* Only Admins can access or see these routes */}
       <div className='items'>
         <h3>Admin</h3>
         <ul>
           <li>Add category</li>
           <li>Manage users</li>
+          <li>Create Admin</li>
         </ul>
       </div>
       </div>

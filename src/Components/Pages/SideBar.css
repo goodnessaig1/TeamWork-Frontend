@@ -32,8 +32,12 @@
     font-size: 25px;
 }
 
+.menu_home{
+    padding-top: 10px;
+}
+
 .items {
-    padding: 10px 0px 0px 0px;
+    padding: 15px 0px 0px 0px;
     color: rgba(137, 138, 141, 1);
 }
 
