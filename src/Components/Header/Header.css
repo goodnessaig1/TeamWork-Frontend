@@ -15,7 +15,7 @@
 }
 
 .left {
-    flex: 1;
+    flex: 0.8;
 }
 
 .left_cont {
@@ -39,7 +39,7 @@ Link {
 h2 {
     color: var(--color-primary);
     font-weight: 700;
-    font-size: 38px;
+    font-size: 35px;
 }
 
 .center {
@@ -57,6 +57,7 @@ h2 {
 
 .nav_bar_container {
     color: rgba(69, 90, 100, 1);
+    font-size: 14px;
 }
 
 
@@ -66,7 +67,7 @@ h2 {
 
 .nav_bar_container > span:hover  {
     color: rgb(128, 157, 170);
-    font-size: 18px;
+    font-size: 16px;
     transition-duration: 0.25s;
 }
 
@@ -80,7 +81,7 @@ h2 {
     display: flex;
 }
 
-.register_link {
+.link_btn {
     padding: 8px 25px;
     background-color: var(--color-primary);
     border-color: transparent;
@@ -89,12 +90,17 @@ h2 {
     color: rgba(255, 255, 255, 1);
     text-decoration: none;
     font-size: 20px;
+    white-space: nowrap;
     font-weight: 700;
     text-align: center;
     transition: ease-in-out 0.3s;
 }
 
-.register_link:hover {
+.middle {
+    flex: 0.1;
+}
+
+.link_btn:hover {
     background-color: rgb(10, 10, 202);
     transition: ease-in-out 0.2s;
 }
@@ -102,7 +108,11 @@ h2 {
 .nav_bar_container:active, .nav_bar_container:hover {
     text-decoration: underline rgba(0, 0, 0, 1);
 }
-
+.profile_pic {
+    width: 28px;
+    height: 30px;
+    border-radius: 40%;
+}
 /* MEDIA QUERRIES FOR MEDIUM DEVICES */
 
 @media screen and (max-width: 1024px) {
@@ -113,7 +123,7 @@ h2 {
     .content {
         height: 85px;
     }
-    .register_link {
+    .link_btn {
         padding: 7px 13px;
         font-size: 16px;
     }
@@ -123,10 +133,10 @@ h2 {
 
   @media screen and (max-width: 700px) {
     .nav_bar_container >span {
-        font-size: 12px;
+        font-size: 10px;
         margin: 4px;
     }
-    .register_link {
+    .link_btn {
         padding: 5px 9px;
         font-size: 15px;
         margin-right: 6px;
@@ -195,7 +205,7 @@ h2 {
         color: var(--color-primary);
     }
 
-    .register_link {
+    .link_btn {
         padding: 4px 10px;
         font-size: 10px;
         border-radius: 3px;
@@ -219,15 +229,18 @@ h2 {
     h2 {
         font-size: 22px;
     }
-    .register_link {
+    .link_btn {
         padding: 3px 8px;
         font-size: 12px;
         margin-right: 6px;
     }
-
+    .profile_pic {
+        width: 28px;
+        height: 30px;
+        border-radius: 40%;
+    }
 }
   @media screen and (max-width: 300px) {
-
     .header__container {
         height: 40px;
     }
@@ -241,7 +254,7 @@ h2 {
     h2 {
         font-size: 15px;
     }
-    .register_link {
+    .link_btn {
         font-size: 8px;
         margin-right: 6px;
     }

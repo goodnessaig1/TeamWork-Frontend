@@ -25,7 +25,7 @@ const Header = ({LogoutUser, userStatus}) => {
             </div>
             <div className='center'>
                 <div className='center_container'>
-                    <Link to='/' style={{ textDecoration: 'none' }}>
+                    <Link to='/dashboard' style={{ textDecoration: 'none' }}>
                         <div className='nav_bar_container '>
                             <Home className='center_icon active'/>
                             <span>Home</span>
@@ -51,13 +51,24 @@ const Header = ({LogoutUser, userStatus}) => {
                     </Link>
                 </div>
             </div>
+            <div className='middle'>
+                <div className='middle_container'>
+                    {
+                        userStatus && userStatus.profile !== null ? (
+                            <div className='profile_pix'>
+                               <img src={userStatus.profile} alt='' className='profile_pic'/>
+                            </div>
+                        ):null
+                    }
+                </div>
+            </div>
             <div className='right'>
                 <div className='right_container'>
                     <div className='link_button'>
                         {
                             !!userStatus ?  (
                                 <Link 
-                                    className="register_link" 
+                                    className="link_btn" 
                                     to='/sign_in'
                                     onClick={()=> LogoutUser(history)}
                                 >
@@ -66,7 +77,7 @@ const Header = ({LogoutUser, userStatus}) => {
                                 ) : (
                                     
                                 <Link 
-                                    className="register_link" 
+                                    className="link_btn" 
                                     to='/sign_in'
                                 >
                                     Sign In

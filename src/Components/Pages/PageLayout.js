@@ -1,5 +1,6 @@
 import React from 'react'
 import "./PageLayout.css"
+import Profile from './Profile'
 import SideBar from './SideBar'
 
 
@@ -13,7 +14,7 @@ const PageLayout = ({children}) => {
             {children}
         </div>
         <div className='page_left'>
-            UserProfile
+            <Profile/>
         </div>
     </div>
   )
