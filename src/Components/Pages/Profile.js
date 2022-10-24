@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { PhotoCamera, EmailOutlined, HouseOutlined, PhoneOutlined } from '@material-ui/icons'
 import './Profile.css'
 import Unavailiabe from "../../Utils/unavailiable1.png"
 import { Link } from 'react-router-dom'

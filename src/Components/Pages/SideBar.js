@@ -1,5 +1,4 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
 import './SideBar.css'
 
 
@@ -12,11 +11,7 @@ const SideBar = () => {
       </div>
       <div className='items'>
         <ul className='menu_items'>
-          {/* <NavLink > */}
-                    {/* <NavLink to='/dashboard' className='nav_bar' activeClassName='active_link' > */}
-
           <li>Home</li>
-          {/* </NavLink> */}
           <li>Uploads</li>
           <li>Notifications</li>
           <li>Profile</li>

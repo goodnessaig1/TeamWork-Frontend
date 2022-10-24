@@ -1,5 +1,5 @@
 import React from 'react'
-import { BubbleChart, Home, AddAPhoto, NotificationsNone, AccountCircle, SearchRounded } from '@material-ui/icons'
+import { Home, AddAPhoto, NotificationsNone, AccountCircle } from '@material-ui/icons'
 import { Link, NavLink, useHistory } from 'react-router-dom'
 import "./Header.css"
 import { connect } from 'react-redux'
