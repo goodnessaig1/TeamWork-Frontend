@@ -1,4 +1,4 @@
-import { Visibility, VisibilityOff } from "@material-ui/icons";
+import { VisibilityOffOutlined, VisibilityOutlined } from "@material-ui/icons";
 import { useField } from "formik";
 import { useState } from "react";
 import './FormLib.css'
@@ -11,27 +11,29 @@ export const TextInput = ({icon, ...props}) =>{
     return (
         <div style={{position: "relative"}}>
             <div className="contactes">
-                <label htmlFor={props.name}>
+                {/* <label htmlFor={props.name}>
                     {props.label}
-                </label>
+                </label> */}
                 <div className="input_icon_container">
                     <span className="input_icon left_icon">
                         {icon}
                     </span>
-                    <input
-                        className="inputs" 
-                        {...field}
-                        {...props}
-                    type={props.type !=="password"  || show ? "text"  : "password"}
-                    />
-                </div>
+                    <span>
+                        <input
+                            className="inputs" 
+                            {...field}
+                            {...props}
+                            type={props.type !=="password"  || show ? "text"  : "password"}
+                            />
+                    </span>
                 {
                     props.type === "password" && (
                         <span onClick={()=> setShow(!show)} className="input_icon right_icon">
-                        {show && <Visibility/> }
-                        {!show && <VisibilityOff/> }
+                        {show && <VisibilityOutlined/> }
+                        {!show && <VisibilityOffOutlined/> }
                         </span>
                 )}
+                </div>
                 </div>
                 {
                     meta.touched && meta.error ? (

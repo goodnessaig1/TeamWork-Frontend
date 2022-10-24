@@ -10,76 +10,44 @@ const Profile = ({userDetail}) => {
   return (
     <div className='profile_page'>
         <div className='profile_container'>
-           <div className='photos'>
+            <div className='cover_bg'></div>
             {
-                userDetail && userDetail.coverPhoto !== null ? (
-                    <div className='cover_bg'>
-                        <img src={userDetail.coverPhoto} alt='' className='cover_photo'/>
-                        <span className='cover_icons'><PhotoCamera className='cover_icon'/></span>
-                    </div>
-                    ):
-                    <div className='cover_bg'>
-                        <span className='cover_icons'><PhotoCamera className='cover_icon'/></span>
-                    </div>
-            }
-            </div>
-             {
                  userDetail && userDetail.profile !== null ? (
                      <div className='profile_bg'>
                         <img src={userDetail.profile} alt='' className='profile_photo'/>
-                        <span className='profile_icons'><PhotoCamera className='profile_icon'/></span>
                     </div>
                     ):
                     <div className='profile_bg'>
                         <img src={Unavailiabe} alt='' className='profile_photo unav'/>
-                        <span className='profile_icons'><PhotoCamera className='profile_icon'/></span>
                     </div>
             }
             {
                 userDetail && userDetail ? (
-                    <div className='user_name'>
-                        <span>{userDetail.firstName}</span>
-                        <span>{userDetail.lastName}</span>
-                        <hr/> 
+                    <div>
+                        <div className='user_name'>
+                            <h2>{userDetail.firstName}</h2>
+                            <h2>{userDetail.lastName}</h2>
+                        </div>
+                        <div className='profile_others'>
+                            <div>{userDetail.jobRole}</div>
+                            <div className='joined_at'>
+                                <span>Joined</span>
+                                <span>
+                                    {userDetail.createdAt.length > 4 ?
+                                        `${userDetail.createdAt.substring(0, 4)}` :userDetail.userData.createdAt
+                                    }    
+                                </span>
+                            </div>
+                        </div>
                     </div>
                 ):  null
             }
-            {
-                userDetail && userDetail  ? (
-                    <div className='profile_others'>
-                        <span>Joined</span>
-                        <span>
-                            {userDetail.createdAt.length > 4 ?
-                                `${userDetail.createdAt.substring(0, 4)}` :userDetail.userData.createdAt
-                            }    
-                        </span>
-                    </div>
-                ): null
-            }
-            {
-                userDetail && userDetail ? (
-                    <div className='profile_other'>
-                        <div className='profile_item'>
-                            <span><HouseOutlined className='profile_other_icon'/></span>
-                            <span className='details'>{userDetail.jobRole}</span>
-                        </div>
-                        <hr/>
-                        <div className='profile_item'>
-                            <span><EmailOutlined className='profile_other_icon'/></span>
-                            <span className='details'>{userDetail.email}</span>
-                        </div>
-                        <div className='profile_item'>
-                            <span><PhoneOutlined className='profile_other_icon phone' /></span>
-                            <span className='details'>{userDetail.number}</span>
-                        </div>
-                        <hr/>
-                    </div>
-                ): null
-            } 
-           <div className='link_button profile_bt'>
-                <Link className="link_btn profile_btn" to='/profile'>
+           <div className='profile_bt'>
+            <div className=' link_button'>
+                <Link className="profile_btn" to='/profile'>
                     View Profile
                 </Link>
+            </div>
            </div>
         </div>
     </div>

@@ -75,7 +75,7 @@ export const LoginUser = (credentials, history, setFieldError, setSubmitting) =>
                 const userData = data
                 const token = userData.data.token
                 localStorage.setItem('token', token)
-                history.push("/dashboard")
+                history.push("/login_success")
                 dispatch(loginUserSuccess(userData))
             }
             setSubmitting(false);

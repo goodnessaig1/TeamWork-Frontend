@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 import './SideBar.css'
 
 
@@ -10,8 +11,12 @@ const SideBar = () => {
           <h3>Menu</h3>
       </div>
       <div className='items'>
-        <ul className='menu_home'>
+        <ul className='menu_items'>
+          {/* <NavLink > */}
+                    {/* <NavLink to='/dashboard' className='nav_bar' activeClassName='active_link' > */}
+
           <li>Home</li>
+          {/* </NavLink> */}
           <li>Uploads</li>
           <li>Notifications</li>
           <li>Profile</li>
@@ -19,7 +24,7 @@ const SideBar = () => {
       </div>
       <div className='items'>
         <h3>Quick Menu</h3>
-        <ul>
+        <ul className='menu_items'>
           <li>All Feeds</li>
           <li>Recent</li>
           <li>Sign out</li>
@@ -29,7 +34,7 @@ const SideBar = () => {
       {/* Only Admins can access or see these routes */}
       <div className='items'>
         <h3>Admin</h3>
-        <ul>
+        <ul className='menu_items'>
           <li>Add category</li>
           <li>Manage users</li>
           <li>Create Admin</li>

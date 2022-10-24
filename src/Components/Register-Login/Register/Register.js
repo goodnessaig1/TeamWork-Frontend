@@ -87,13 +87,16 @@ const Register = ({RegisterUser}) => {
                                     placeholder='Password'
                                 />
                             </div> 
-                            <div className='input_container gender'>
+                            <div className='input_container'>
+                                <div className='gender'>
+
                                 <label>Gender
                                     <Field name="gender" as="select" className='options'>
                                         <option value="male">Male</option>
                                         <option value="female">Female</option>
                                     </Field>
                                 </label>
+                                </div>
                             </div>  
                             <div className='input_container'>
                                 <TextInput
@@ -136,14 +139,11 @@ const Register = ({RegisterUser}) => {
                 )}   
                 </Formik>
                 <div className='signup_container'>
-            <p className='more_text'>
-                    Already have an account ? 
-                <Link to='/sign_in' className='text_link'>
-                    Login
-                </Link>
-            </p>
-            </div>
-        </div>      
+                    <Link to='/sign_in' className='text_link_reg'>
+                        Already have an account ? Log in
+                    </Link>
+                </div>
+            </div>      
             <div className='copyright'>
                 All rights reserved &copy; 2022
             </div>

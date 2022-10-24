@@ -9,175 +9,106 @@
 .profile_container {
     display: flex;
     flex-direction: column;
-    width:100%;
+    width:96%;
     background-color: rgba(255, 255, 255, 1);
     border-radius: 10px 10px 10px 10px;
-    height: 500px;
-}
-
-.photos {
-    width: 100%;
-    border-radius: 10px 10px 0px 0px;
-    display: flex;
-    flex-direction: column;
-}
-
-.cover_photo {
-    width: 100%;
-    border-radius: 15%;
-    height: 120px;
-    border-radius: 18px;
-    opacity: 40%;
-    object-fit: cover;
+    height: 520px;
 }
 
 .cover_bg {
-    height: 120px;
-    border-radius: 18px;
-    background-blend-mode:hard-light;
+    height: 175px;
+    border-radius: 10px 10px 0 0;
     background-color: rgba(121, 144, 225, 1);
-}
-
-.cover_icons {
-    display: flex;
-    position: relative;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(217, 217, 217, 1);
-    padding: 6px 6px 6px 6px;
-    bottom: 3.4rem;
-    width: 15%;
-    left: 12.4rem;
-    border-radius: 100%;
-}
-
-.cover_icon {
-    align-items: center;
-    color: rgb(82, 75, 75);
 }
 
 .profile_bg {
     position: relative;
-    left: 1.5rem;
     display: flex;
-    bottom: 2rem;
+    align-items: center;
+    justify-content: center;
+    bottom: 3rem;
 }
 
 .profile_photo {
-    width: 40%;
+    width: 35.5%;
     object-fit: cover;
     height: 100px;
-    border-radius: 10%;
+    border-radius: 20%;
 }
 
 .unav {
     border-radius: 10%;
 }
 
-.profile_icons {
-    display: flex;
-    position: relative;
-    background-color: rgba(217, 217, 217, 1);
-    padding: 4px 4px 4px 4px;
-    top:3rem;
-    align-items: center;
-    justify-content: center;
-    right: 1.3rem;
-    width: 14%;
-    height: 34%;
-    border-radius: 100%;   
-}
-
-.profile_icon {
-    transform: scale(0.7);
-    color: rgb(82, 75, 75);
-}
-
 .user_name {
     display: flex;
     position: relative;
-    top: -1rem;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.user_name >span {
-    font-size: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 500;
-}
-
-hr {
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.profile_others  {
-    display: flex;
+    top: -0.3rem;
     flex-direction: row;
     gap: 0.4rem;
     align-items: center;
     justify-content: center;
 }
 
-.profile_other {
+.user_name >h2 {
+    font-size: 25px;
+    text-align: center;
     display: flex;
-    margin-top: 30px;
-    flex-direction: column;
-    gap: 0.2rem;
+    font-weight: 700;
+    color: rgba(151, 154, 150, 1);
+    align-items: center;
+    justify-content: center;
 }
-.profile_item {
+
+.profile_others  {
+    color: rgba(151, 154, 150, 1);
+    padding-top: 10px;
+    display: flex;
+    font-weight: 500;
+    flex-direction: column;
+    gap: 1.2rem;
+    font-size: 22px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.joined_at {
     display: flex;
     flex-direction: row;
-    gap: 0.7rem;
-}
-
-.details {
-    font-size: 14px;
-}
-
-.profile_other_icon {
-    color: rgb(142, 139, 139);
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 18px;
 }
 
 .profile_bt {
-    position: relative;
+    margin-top: 80px;
+    text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
     top: 5px;
+    text-decoration: none;
 }
-
 .profile_btn {
-    font-size: 12px;
-    white-space: nowrap;
+    font-size: 14px;
+    color: #fff;
+    padding-top: 6px;
+    text-decoration: none;
+    transition: ease-in-out 0.3s;
 }
 
   /*     ======== MEDIA QUERIES (SMALER DEVICES ======= */
 
-  @media screen and (max-width: 1000px) {
-    .cover_icons {
-        left: 9rem;
+  @media screen and (max-width: 750px) {
+    .profile_others {
+        font-size: 14px;
     }
-    .cover_icon {
-        transform: scale(0.7);
-        color: rgb(82, 75, 75);
-    }
-    .profile_item {
-        gap: 0rem;
-    }
-    .profile_other_icon {
-        transform: scale(0.7);
-
-    }
-    .details {
-        font-size: 11px;
-    }
-    hr {
-        top: 2px;
+    .joined_at {
+        font-size: 12px;
+        gap: 0.3rem;
     }
   }
+
+   

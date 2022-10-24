@@ -1,6 +1,3 @@
-.user_profile_container {
-}
-
 .user_container {
     display: flex;
     display: flex;
@@ -9,27 +6,27 @@
     padding-top: 26px;
 }
 
-.side_containe {
-    flex: 1;
+.side_container {
+    flex: 1.25;
+    display: flex;
+    justify-content: center;
 }
 
 .user_main_container {
-    flex: 2.6;
+    flex: 2.4;
 }
 
 .user_profile_board {
     background-color: rgba(255, 255, 255, 1);
-    width: 88%;
+    width: 85%;
     border-radius: 18px;
     padding-bottom: 50px;
+    position: relative;
 }
-
 .user_cover_bg {
-    height: 160px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border-radius: 18px;
+    height: 300px;
+    width: 100%;
+    border-radius: 20px;
     background-blend-mode:hard-light;
     background-color: rgba(121, 144, 225, 1);
 }
@@ -39,36 +36,41 @@
     flex-direction: row;
     width: 100%;
     border-radius: 15%;
-    height: 160px;
+    position: relative;
+    height: 300px;
     border-radius: 18px;
     opacity: 40%;
     object-fit: cover;
 }
 
-.user_cover_icons {
+.cover_icons {
     display: flex;
-    position: absolute;
-    align-items: center;
-    justify-content: center;
+    position: relative;
     background-color: rgba(217, 217, 217, 1);
-    padding: 6px 6px 6px 6px;
-    right: 9rem;
-    margin-top: 50px;
-    border-radius: 100%;
+    top:-5rem;
+    transform: scale(1.38);
+    color: rgb(69, 67, 67);
+    left:48rem;
+    width: 50px;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+    opacity: 85%;
+    border-radius: 100%; 
 }
 
 .user_profile_bg {
     position: relative;
-    left: 3rem;
+    left: 3.6rem;
     flex: 1;
     display: flex;
-    bottom: 2.4rem;
+    bottom: 4rem;
 }
 
 .user_profile_photo {
     object-fit: cover;
-    width: 50%;
-    height: 130px;
+    width: 165px;
+    height: 170px;
     border-radius: 10%;
 }
 
@@ -76,41 +78,47 @@
     display: flex;
     position: relative;
     background-color: rgba(217, 217, 217, 1);
-    padding: 4px 4px 4px 4px;
-    top:4.2rem;
-    right:1rem;
-    height: 25%;
+    padding: 5px 5px 5px 5px;
+    top:6.3rem;
+    transform: scale(1.2);
+    color: rgb(69, 67, 67);
+    right:1.7rem;
+    width: 50px;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+    opacity: 85%;
     border-radius: 100%;   
 }
 
 .user_ct_holder {
     display: flex;
+    margin-right: 65px;
     flex-direction: row;
-}
-.profile_user_name {
-    display: flex;
-    padding-top: 25px;
-    font-weight: 700;
-    color: rgba(151, 154, 150, 1);
-    gap: 1rem;
-    font-size: 35px;
-    flex-direction: row;
-    flex: 2;
 }
 
-.hr {
+.profile_mid {
+    display: flex;
     position: relative;
-    bottom: 3.2rem;
-    width: 30%;
-    right: 24px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    right: 19rem;
+    bottom: 0.8rem;
+}
+.profile_user_name {
+    font-weight: 700;
+    color: rgba(151, 154, 150, 1);
+    font-size: 33px;
+    text-decoration: underline  1px;
+    text-underline-offset: 7px;
 }
 
 .joined  {
     display: flex;
     flex-direction: row;
+    font-size: 21px;
     gap: 0.4rem;
-    bottom: 3rem;
-    right: 30px;
     color: rgba(151, 154, 150, 1);
     position: relative;
     align-items: center;
@@ -119,142 +127,275 @@
 
 .other_details {
     position: relative;
-    bottom: 1rem;
-    margin-left: 35px;
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
+    gap: 0.4rem;
 }
+
 .item_hr{
     position: relative;
     margin-left: 10px;
     right: 5px;
-    width: 45%;
+    width: 280px;
 }
 .profile_item_icon{
     top: 0.4rem;
     position: relative;
     color: rgb(123, 124, 123);
-    transform: scale(1.3);
+    transform: scale(1.1);
+}
+.profile_items_icon {
+    width: 18px;
+    height: 18px;
+    margin-left: 5px;
 }
 
 .profile_detail {
+    position: relative;
     color:  rgba(151, 154, 150, 1);
     font-weight: 400;
-    font-size: 22px;
-    margin-left: 15px;
+    font-size: 18px;
+    margin-left: 25px;
 }
 
 .profile_btn_cnt {
     display: flex;
-    padding-top: 20px;
+    padding-top: 50px;
     flex-direction: row;
+    font-size: 16px;
     align-items: center;
     justify-content: center;
-    gap: 3rem;
+    gap: 2rem;
+}
+.profile_btn {
+    width: 180px;
+    height: 40px;
+    background-color: var(--color-primary);
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 8px;
+    font-size: 15px;
 }
 
- @media screen and (max-width: 1000px) {
-    .user_profile_board {
-        width: 80%;
-        margin-left: 20px;
-    }
-
-    .user_profile_bg {
-        left: 1.5rem;
-        bottom: 2.4rem;
-    }
-
-    .user_profile_photo {
-        width: 100px;
-        height: 130px;
-    }
-
-    .joined{
-        margin-left: 7rem;
-        right: 0;
-        top: -4rem;
-        font-size: 18px;
-    }
-    .hr {
-        top: -4.2rem;
-        left: 65px;
-        width: 55%;
-    }
-    .profile_user_name {
-        font-size: 26px;
-        margin-left: 30px;
-    }
-     .profile_detail {
-        font-size: 16 px;
-    }
-    .profile_item_icon {
-        transform: scale(1.2);
-        top: 0rem;
-    }
-    .item_hr {
-        width: 70%;
-        top: -0.2rem;
-    }
-    .user_profile_bg {
-        left: 1.8rem;
-    }
-    .user_cover_icons {
-        right: 7rem;
-        margin-top: 50px;
-    }
+.profile_btn:hover {
+    background-color: rgb(10, 10, 202);
+    transition: ease-in-out 0.2s;
+}
+.profile_link_btn {
+    display: flex;
+    text-decoration: none;
+    padding-top: 2px;
+    color: #fff;
+    align-items: center;
+    justify-content: center;
+}
+.edit_icon {
+    margin-left: 8px;
+    width: 18px;
 }
 
- @media screen and (max-width: 600px) {
-    .side_containe {
-        display: none;
-    }
 
-    .user_profile_board {
-        width: 80%;
-        margin-left: 50px;
+@media screen and (max-width: 1500px) {
+    .cover_icons {
+        left:46rem;
+    }   
+ } 
+ @media screen and (max-width: 1400px) {
+    .cover_icons {
+        left:46rem;
     }
+    .profile_mid {
+        right: 13rem;
+    }   
+ } 
+ @media screen and (max-width: 1350px) {
+    .cover_icons {
+        left:41rem;
+    }   
+    .user_ct_holder {
+        margin-right: 15px;
+    }
+ } 
+ 
+ @media screen and (max-width: 1300px) {
+    .cover_icons {
+        left:39rem;
+    }   
+ } 
+ @media screen and (max-width: 1224px) {
+    .cover_icons {
+        left:36rem;
+    }
+    .profile_mid {
+        right: 10rem;
+    }  
+    .profile_mid {
+         right: 8rem;
+     }   
+ } 
+ @media screen and (max-width: 1144px) {
+    .cover_icons {
+        left:32rem;
+    } 
+    
+} 
+@media screen and (max-width: 1040px) {
+     .profile_mid {
+         right: 7rem;
+     }   
+    .cover_icons {
+        left:28rem;
+    }   
+ } 
+ @media screen and (max-width: 970px) {
+    .profile_mid {
+         right: 4rem;
+     }   
+     .user_ct_holder {
+        margin-right: 0px;
+    }
+    .cover_icons {
+        left:24rem;
+    }   
+ } 
+ @media screen and (max-width: 870px) {
+    .cover_icons {
+        left:20rem;
+    }
+    .profile_mid {
+         right: 0rem;
+     } 
+ } 
+ @media screen and (max-width: 725px) {
+    .cover_icons {
+        left:19rem;
+    }  
 
+ } 
+
+
+@media screen and (max-width: 745px) {
+      
+    .user_profile_bg {
+        left: 2rem;
+    }
+ } 
+@media screen and (max-width: 706px) {
+    .user_ct_holder {
+        display: flex;
+        margin-right: 65px;
+        flex-direction: column;
+    }
     .user_profile_bg {
         left: 3rem;
-        bottom: 2.4rem;
     }
-
-    .joined{
-        margin-left: 7rem;
-        right: 0;
-        top: -4rem;
-        font-size: 12px;
+    .profile_mid {
+        top: -3rem;
     }
-    .hr {
-        top: -4.2rem;
-        width: 30%;
-        left: 64px;
-        width: 50%;
+ } 
+ @media screen and (max-width: 665px) {
+    .cover_icons {
+        left:17.5rem;
+        transform: scale(1.1);
+    }  
+ } 
+ @media screen and (max-width: 600px) {
+    .side_container {
+        display: none;
     }
-    .profile_user_name {
-        font-size: 22px;
-        margin-left: 30px;
+    .user_profile_board {
+        width: 80%;
+        margin-left: 40px;
     }
-
+    .cover_icons {
+        left:23rem;
+    }
+   .other_details {
+        margin-left: 20px;
+    }
+    .profile_item_icon{
+        top: 0.4rem;
+        transform: scale(1);
+    }
     .profile_detail {
-        font-size: 12px;
+        position: relative;
+        color:  rgba(151, 154, 150, 1);
+        font-weight: 400;
+        font-size: 18px;
+        margin-left: 25px;
     }
-    .profile_item_icon {
-        transform: scale(0.8);
-        top: 0rem;
+    .user_profile_board {
+        height: 900px;
     }
-    .item_hr {
-        width: 70%;
-        top: -0.5rem;
+    
+}
+@media screen and (max-width: 535px) {
+      
+    .cover_icons {
+        left:19.5rem;
     }
-    .user_profile_bg {
-        left: 1.8rem;
+ } 
+ @media screen and (max-width: 450px) {
+    .cover_icons {
+        left:18rem;
+        transform: scale(1.1);
     }
-    .user_profile_photo {
-        width: 100px;
-        height: 130px;
-        border-radius: 10%;
+    .profile_btn_cnt {
+        gap: 1rem;
     }
-    .user_cover_icons {
-        right: 3rem;
-        margin-top: 50px;
+    .profile_btn {
+        width: 140px;
+        height: 40px;
+    }
+    .edit_icon {
+        width: 16px;
     }
 }
+@media screen and (max-width: 435px) {
+   .profile_mid {
+        left: 1.3rem;
+    }    
+    .cover_icons {
+        left:15rem;
+        transform: scale(1);
+
+    }
+    .profile_user_name {
+        font-weight: 700;
+        font-size: 30px;
+    }
+    .joined  {
+        font-size: 18px;
+    }
+
+ } 
+@media screen and (max-width: 360px) {
+   .item_hr{
+        width: 215px;
+    }   
+    .cover_icons {
+        left:14rem;
+
+    }
+    
+    .other_details {
+        margin-left: 10px;
+        gap: 0.4rem;
+    }
+    .profile_item_icon{
+        transform: scale(0.85);
+    }
+    .profile_items_icon {
+        width: 15px;
+        height: 15px;
+    }
+    .profile_detail {
+        color:  rgba(151, 154, 150, 1);
+        font-weight: 400;
+        font-size: 15px;
+        margin-left: 15px;
+    }
+ } 
