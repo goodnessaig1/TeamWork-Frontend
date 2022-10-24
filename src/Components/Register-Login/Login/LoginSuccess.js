@@ -8,7 +8,7 @@ const LoginSuccess = () => {
     useEffect(() => {
         setTimeout(() => {
             history.push('/dashboard')
-        }, 4000);
+        }, 6000);
         // eslint-disable-next-line
     }, []);
 

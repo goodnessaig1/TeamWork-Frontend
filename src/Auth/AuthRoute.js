@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux";
 
 const AuthRoute = ({ component: Component, Failed, userStatus, ...rest }) => {
      const dispatch = useDispatch();
-    useEffect(async () => {
+    useEffect(() => {
          dispatch(getUserDetails());
     }, []);
 
