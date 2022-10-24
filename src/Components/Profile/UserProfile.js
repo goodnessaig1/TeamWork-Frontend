@@ -4,7 +4,7 @@ import SideBar from '../Pages/SideBar'
 import "./UserProfile.css"
 import { PhotoCamera, EmailOutlined, CameraAltOutlined } from '@material-ui/icons'
 import Unavailiabe from "../../Utils/unavailiable1.png"
-import Upload from "../../Components/Assets/upload.png"
+// import Upload from "../../Components/Assets/upload.png"
 import { Link } from 'react-router-dom'
 import Home from '../Assets/Vectorhome.png'
 import Phone from '../Assets/Vectorphone.png'
