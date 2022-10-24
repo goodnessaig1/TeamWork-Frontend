@@ -95,6 +95,8 @@ Link {
     color: rgb(128, 157, 170);
     font-size: 22px;
     transition-duration: 0.25s;
+    text-decoration: underline 3px rgba(0, 0, 0, 1);
+    text-underline-offset: 7px;
 }
 
 .right {

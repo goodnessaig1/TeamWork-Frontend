@@ -29,7 +29,7 @@ const App = () => {
           <div className='routes'>
             {/* Home Routes         */}
               <Route path="/" exact component={Home}/>
-              <AuthRoute path="/dashboard" exact component={MainPage}/>
+              <Route path="/dashboard" exact component={MainPage}/>
               <AuthRoute path="/profile" exact component={UserProfile}/>
             {/* Routes Would go here */}
           </div>

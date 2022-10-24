@@ -32,10 +32,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-// const mapDispatchToProps = dispatch => {
-//     return {
-//         getUserDetails: () => dispatch(getUserDetails()),
-//     }
-// }
- 
 export default connect(mapStateToProps)(AuthRoute);

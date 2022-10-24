@@ -41,12 +41,12 @@ const Profile = ({userDetail}) => {
                     </div>
                 ):  null
             }
-           <div className='profile_bt'>
-            <div className=' link_button'>
-                <Link className="profile_btn" to='/profile'>
+           <div className='side_bar_btn'>
+            <Link className="profile_button" to='/profile'>
+                <div className='rofile_button'>
                     View Profile
-                </Link>
-            </div>
+                </div>
+            </Link>
            </div>
         </div>
     </div>

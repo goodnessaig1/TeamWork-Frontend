@@ -29,7 +29,7 @@ const UserProfile = ({userDetail}) => {
                                 </div>
                                 ):
                                 <div className='cover_bg'>
-                                    <img src={Upload} alt='' className='unavail'/>
+                                    {/* <img src={Upload} alt='' className='unavail'/> */}
                                 </div>
                         }
                     </div>

@@ -82,32 +82,47 @@
     font-size: 18px;
 }
 
-.profile_bt {
+.side_bar_btn {
     margin-top: 80px;
     text-align: center;
-    display: flex;
+    width: 100%;
     align-items: center;
     justify-content: center;
-    top: 5px;
-    text-decoration: none;
+    display: flex;
 }
-.profile_btn {
-    font-size: 14px;
-    color: #fff;
-    padding-top: 6px;
+
+.profile_button {
+    width: 60%;
+    border-radius: 10px;
+    height: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-primary);
     text-decoration: none;
+    color: #fff;
+    font-size: 16px;
     transition: ease-in-out 0.3s;
+}
+.profile_button:hover {
+    background-color: rgb(10, 10, 202);
+    transition: ease-in-out 0.2s;
 }
 
   /*     ======== MEDIA QUERIES (SMALER DEVICES ======= */
 
-  @media screen and (max-width: 750px) {
+  @media screen and (max-width: 780px) {
     .profile_others {
         font-size: 14px;
     }
     .joined_at {
         font-size: 12px;
         gap: 0.3rem;
+    }
+    .profile_button {
+        width: 80%;
+        white-space: nowrap;
+        font-size: 13px;
     }
   }
 
