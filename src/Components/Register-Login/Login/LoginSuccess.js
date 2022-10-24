@@ -17,7 +17,7 @@ const LoginSuccess = () => {
         <img src={img} className='success_img' alt=''/>
         <div className='success_ct'>
             <h4>Welcome Back</h4>
-            <p>You will be redirected to the dashboard in page shortly</p>
+            <p>You will be redirected to the dashboard shortly</p>
         </div>
     </div>
   )

@@ -10,6 +10,7 @@ import Home from '../Assets/Vectorhome.png'
 import Phone from '../Assets/Vectorphone.png'
 import Edit from '../Assets/Vectoredit.png'
 
+
 const UserProfile = ({userDetail}) => {
   return (
     <div className='user_profile_container'>
