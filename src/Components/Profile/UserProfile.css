@@ -50,7 +50,7 @@
     top:-5rem;
     transform: scale(1.38);
     color: rgb(69, 67, 67);
-    left:48rem;
+    left:88%;
     width: 50px;
     height: 50px;
     justify-content: center;
@@ -58,11 +58,13 @@
     opacity: 85%;
     border-radius: 100%; 
 }
+.unavailiable {
+    top:5.5rem;
+}
 
 .user_profile_bg {
     position: relative;
     left: 3.6rem;
-    flex: 1;
     display: flex;
     bottom: 4rem;
 }
@@ -99,17 +101,18 @@
 
 .profile_mid {
     display: flex;
-    position: relative;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
-    right: 19rem;
+    flex: 3;
+    margin-left: 65px;
     bottom: 0.8rem;
 }
 .profile_user_name {
+    text-align: center;
     font-weight: 700;
     color: rgba(151, 154, 150, 1);
-    font-size: 33px;
+    font-size: 32px;
     text-decoration: underline  1px;
     text-underline-offset: 7px;
 }
@@ -199,87 +202,23 @@
 }
 
 
-@media screen and (max-width: 1500px) {
-    .cover_icons {
-        left:46rem;
-    }   
- } 
- @media screen and (max-width: 1400px) {
-    .cover_icons {
-        left:46rem;
-    }
-    .profile_mid {
-        right: 13rem;
-    }   
- } 
  @media screen and (max-width: 1350px) {
-    .cover_icons {
-        left:41rem;
-    }   
     .user_ct_holder {
         margin-right: 15px;
     }
- } 
- 
- @media screen and (max-width: 1300px) {
-    .cover_icons {
-        left:39rem;
-    }   
- } 
- @media screen and (max-width: 1224px) {
-    .cover_icons {
-        left:36rem;
-    }
-    .profile_mid {
-        right: 10rem;
-    }  
-    .profile_mid {
-         right: 8rem;
-     }   
- } 
- @media screen and (max-width: 1144px) {
-    .cover_icons {
-        left:32rem;
-    } 
-    
 } 
-@media screen and (max-width: 1040px) {
-     .profile_mid {
-         right: 7rem;
-     }   
-    .cover_icons {
-        left:28rem;
-    }   
- } 
- @media screen and (max-width: 970px) {
-    .profile_mid {
-         right: 4rem;
-     }   
+ @media screen and (max-width: 970px) { 
      .user_ct_holder {
         margin-right: 0px;
     }
-    .cover_icons {
-        left:24rem;
-    }   
  } 
  @media screen and (max-width: 870px) {
     .cover_icons {
-        left:20rem;
+        left: 82%;
     }
-    .profile_mid {
-         right: 0rem;
-     } 
  } 
- @media screen and (max-width: 725px) {
-    .cover_icons {
-        left:19rem;
-    }  
-
- } 
-
 
 @media screen and (max-width: 745px) {
-      
     .user_profile_bg {
         left: 2rem;
     }
@@ -295,13 +234,10 @@
     }
     .profile_mid {
         top: -3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
- } 
- @media screen and (max-width: 665px) {
-    .cover_icons {
-        left:17.5rem;
-        transform: scale(1.1);
-    }  
  } 
  @media screen and (max-width: 600px) {
     .side_container {
@@ -311,9 +247,6 @@
         width: 80%;
         margin-left: 40px;
     }
-    .cover_icons {
-        left:23rem;
-    }
    .other_details {
         margin-left: 20px;
     }
@@ -322,8 +255,6 @@
         transform: scale(1);
     }
     .profile_detail {
-        position: relative;
-        color:  rgba(151, 154, 150, 1);
         font-weight: 400;
         font-size: 18px;
         margin-left: 25px;
@@ -331,17 +262,9 @@
     .user_profile_board {
         height: 900px;
     }
-    
 }
-@media screen and (max-width: 535px) {
-      
-    .cover_icons {
-        left:19.5rem;
-    }
- } 
  @media screen and (max-width: 450px) {
     .cover_icons {
-        left:18rem;
         transform: scale(1.1);
     }
     .profile_btn_cnt {
@@ -359,11 +282,6 @@
    .profile_mid {
         left: 1.3rem;
     }    
-    .cover_icons {
-        left:15rem;
-        transform: scale(1);
-
-    }
     .profile_user_name {
         font-weight: 700;
         font-size: 30px;
@@ -371,17 +289,14 @@
     .joined  {
         font-size: 18px;
     }
-
  } 
 @media screen and (max-width: 360px) {
    .item_hr{
         width: 215px;
     }   
     .cover_icons {
-        left:14rem;
-
+        left: 78%;
     }
-    
     .other_details {
         margin-left: 10px;
         gap: 0.4rem;
@@ -394,9 +309,7 @@
         height: 15px;
     }
     .profile_detail {
-        color:  rgba(151, 154, 150, 1);
-        font-weight: 400;
         font-size: 15px;
         margin-left: 15px;
     }
- } 
+ }    

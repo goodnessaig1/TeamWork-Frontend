@@ -9,7 +9,6 @@ import RegistrationSuccess from './Components/Register-Login/Register/Registrati
 import AuthRoute from './Auth/AuthRoute';
 import MainPage from './Components/Dashboard/MainPage';
 import UserProfile from './Components/Profile/UserProfile';
-import LoginSuccess from './Components/Register-Login/Login/LoginSuccess';
 
 
 
@@ -23,8 +22,6 @@ const App = () => {
         <Route path="/sign_in" exact component={Login}/>
         <Route path="/create-user" exact component={Register}/>
         <Route path="/registration_success" exact component={RegistrationSuccess}/>
-        <Route path="/login_success" exact component={LoginSuccess}/>
-        
         <Layout>
           <div className='routes'>
             {/* Home Routes         */}

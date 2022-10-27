@@ -5,8 +5,8 @@ import Unavailiabe from "../../Utils/unavailiable1.png"
 import { Link } from 'react-router-dom'
 
 const Profile = ({userDetail}) => {
-  
-  return (
+
+    return (
     <div className='profile_page'>
         <div className='profile_container'>
             <div className='cover_bg'></div>
@@ -24,8 +24,14 @@ const Profile = ({userDetail}) => {
                 userDetail && userDetail ? (
                     <div>
                         <div className='user_name'>
-                            <h2>{userDetail.firstName}</h2>
-                            <h2>{userDetail.lastName}</h2>
+                           <span>
+                            {
+                                userDetail ? (
+                                    <h3>{`${userDetail.firstName } ${userDetail.lastName}`}</h3>
+                                    ):
+                                    <h5 className='lengthy_user_name'>{`${userDetail.firstName } ${userDetail.lastName}`}</h5>
+                            }
+                           </span>
                         </div>
                         <div className='profile_others'>
                             <div>{userDetail.jobRole}</div>
@@ -43,7 +49,7 @@ const Profile = ({userDetail}) => {
             }
            <div className='side_bar_btn'>
             <Link className="profile_button" to='/profile'>
-                <div className='rofile_button'>
+                <div className='profile__btn'>
                     View Profile
                 </div>
             </Link>

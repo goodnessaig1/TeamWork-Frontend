@@ -33,8 +33,12 @@ const Register = ({RegisterUser}) => {
                 validationSchema= {
                     Yup.object({
                         firstName: Yup.string()
+                        .min(2, "First Name is too short")
+                        .max(8, "First Name is too long")
                         .required("Required"),
                         lastName: Yup.string()
+                        .min(2, "Last Name is too short")
+                        .max(8, "Last Name is too long")
                         .required("Required"),
                         email: Yup.string().email("Invalid email address")
                         .required("Required"),

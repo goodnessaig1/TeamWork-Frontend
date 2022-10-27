@@ -30,9 +30,9 @@
 }
 
 .profile_photo {
-    width: 35.5%;
     object-fit: cover;
     height: 100px;
+    width: 90px;
     border-radius: 20%;
 }
 
@@ -48,16 +48,21 @@
     gap: 0.4rem;
     align-items: center;
     justify-content: center;
+    /* overflow:auto; */
 }
 
-.user_name >h2 {
+.user_name >span {
     font-size: 25px;
     text-align: center;
     display: flex;
+    /* font-size: 100%; */
     font-weight: 700;
     color: rgba(151, 154, 150, 1);
     align-items: center;
     justify-content: center;
+}
+.lengthy_user_name {
+    font-size: 15px;
 }
 
 .profile_others  {

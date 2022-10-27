@@ -2,9 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import SideBar from '../Pages/SideBar'
 import "./UserProfile.css"
-import { PhotoCamera, EmailOutlined, CameraAltOutlined } from '@material-ui/icons'
+import { EmailOutlined, CameraAltOutlined } from '@material-ui/icons'
 import Unavailiabe from "../../Utils/unavailiable1.png"
-// import Upload from "../../Components/Assets/upload.png"
 import { Link } from 'react-router-dom'
 import Home from '../Assets/Vectorhome.png'
 import Phone from '../Assets/Vectorphone.png'
@@ -25,11 +24,11 @@ const UserProfile = ({userDetail}) => {
                             userDetail && userDetail.coverPhoto !== null ? (
                                 <div className='user_cover_bg'>
                                     <img src={userDetail.coverPhoto} alt='' className='user_cover_photo'/>
-                                    <span className='cover_icons'><CameraAltOutlined className='cover_icon'/></span>
+                                     <span className='cover_icons'><CameraAltOutlined className='cover_icon'/></span>
                                 </div>
                                 ):
                                 <div className='cover_bg'>
-                                    {/* <img src={Upload} alt='' className='unavail'/> */}
+                                    <span className='cover_icons unavailiable'><CameraAltOutlined className='cover_icon'/></span>
                                 </div>
                         }
                     </div>
@@ -41,25 +40,28 @@ const UserProfile = ({userDetail}) => {
                                     <span className='user_profile_icons'><CameraAltOutlined className='profile_icon'/></span>
                                 </div>
                                 ):
-                                <div className='profile_bg'>
-                                    <img src={Unavailiabe} alt='' className='profile_photo unav'/>
-                                    <span className='profile_icons'><PhotoCamera className='profile_icon'/></span>
+                                <div className='user_profile_bg'>
+                                    <img src={Unavailiabe} alt='' className='user_profile_photo unav'/>
+                                    <span className='user_profile_icons'><CameraAltOutlined className='profile_icon'/></span>
                                 </div>
                         }
+                            <div></div>
                         {
                             userDetail && userDetail ? (
                                 <div className='profile_mid'>
-                                <div className='profile_user_name'>
-                                    <span>{`${userDetail.firstName } ${userDetail.lastName}`}</span>
-                                </div>
-                                <div className='joined'>
-                                <span>Joined</span>
-                                <span>
-                                    {userDetail.createdAt.length > 4 ?
-                                        `${userDetail.createdAt.substring(0, 4)}` :userDetail.userData.createdAt
-                                    }    
-                                </span>
-                            </div>
+                                    <div>
+                                        <div className='profile_user_name'>
+                                            <span>{`${userDetail.firstName } ${userDetail.lastName}`}</span>
+                                        </div>
+                                        <div className='joined'>
+                                            <span>Joined</span>
+                                            <span>
+                                                {userDetail.createdAt.length > 4 ?
+                                                    `${userDetail.createdAt.substring(0, 4)}` :userDetail.userData.createdAt
+                                                }    
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
                             ):  null
                         }
@@ -112,6 +114,4 @@ const mapStateToProps = (state) => {
 }
 
 
-//  esonosodia
 export default connect(mapStateToProps)(UserProfile)
-// export default UserProfile
