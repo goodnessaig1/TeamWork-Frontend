@@ -1,0 +1,134 @@
+.profile_page {
+    margin-left: 15px;
+    display: flex;
+    z-index: 999;
+    position: fixed;
+    width: 20%;
+}
+
+.profile_container {
+    display: flex;
+    flex-direction: column;
+    width:96%;
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 10px 10px 10px 10px;
+    height: 520px;
+}
+
+.cover_bg {
+    height: 175px;
+    border-radius: 10px 10px 0 0;
+    background-color: rgba(121, 144, 225, 1);
+}
+
+.profile_bg {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: 3rem;
+}
+
+.profile_photo {
+    object-fit: cover;
+    height: 100px;
+    width: 90px;
+    border-radius: 20%;
+}
+
+.unav {
+    border-radius: 10%;
+}
+
+.user_name {
+    display: flex;
+    position: relative;
+    top: -0.3rem;
+    flex-direction: row;
+    gap: 0.4rem;
+    align-items: center;
+    justify-content: center;
+    /* overflow:auto; */
+}
+
+.user_name >span {
+    font-size: 25px;
+    text-align: center;
+    display: flex;
+    /* font-size: 100%; */
+    font-weight: 700;
+    color: rgba(151, 154, 150, 1);
+    align-items: center;
+    justify-content: center;
+}
+.lengthy_user_name {
+    font-size: 15px;
+}
+
+.profile_others  {
+    color: rgba(151, 154, 150, 1);
+    padding-top: 10px;
+    display: flex;
+    font-weight: 500;
+    flex-direction: column;
+    gap: 1.2rem;
+    font-size: 22px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.joined_at {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 18px;
+}
+
+.side_bar_btn {
+    margin-top: 80px;
+    text-align: center;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.profile_button {
+    width: 60%;
+    border-radius: 10px;
+    height: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-primary);
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    transition: ease-in-out 0.3s;
+}
+.profile_button:hover {
+    background-color: rgb(10, 10, 202);
+    transition: ease-in-out 0.2s;
+}
+
+  /*     ======== MEDIA QUERIES (SMALER DEVICES ======= */
+
+  @media screen and (max-width: 780px) {
+    .profile_others {
+        font-size: 14px;
+    }
+    .joined_at {
+        font-size: 12px;
+        gap: 0.3rem;
+    }
+    .profile_button {
+        width: 80%;
+        white-space: nowrap;
+        font-size: 13px;
+    }
+  }
+
+   

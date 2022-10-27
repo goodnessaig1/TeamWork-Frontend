@@ -1,5 +1,5 @@
 import React from 'react'
-import img from "../Register/registrationSuccess.jpg"
+import img from "../../Assets/registrationSuccess.jpg"
 import { useEffect } from "react";
 import { useHistory, } from 'react-router-dom'
 
@@ -13,9 +13,9 @@ const RegistrationSuccess = () => {
     }, []);
 
   return (
-    <div className='registration_success_container'>
-        <img src={img} className='registration_img' alt=''/>
-        <div className='registration_success'>
+    <div className='success_container'>
+        <img src={img} className='success_img' alt=''/>
+        <div className='success_ct'>
             <h4>Registration Successful</h4>
             <p>You will be redirected to the sign in page shortly</p>
         </div>

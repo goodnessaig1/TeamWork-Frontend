@@ -3,19 +3,20 @@ import React, { useEffect  } from 'react';
 import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
 import { getUserDetails } from './Actions/userActions';
+import { useDispatch } from "react-redux";
 
 
 
-const AuthRoute = ({ component: Component, getUserDetails, Failed, userStatus, ...rest }) => {
-
-    useEffect(() => {
-        getUserDetails();
+const AuthRoute = ({ component: Component, Failed, userStatus, ...rest }) => {
+     const dispatch = useDispatch();
+    useEffect(async () => {
+         dispatch(getUserDetails());
     }, []);
 
     return (
        <Route {...rest}
            render={props => (
-                userStatus && !Failed ?
+                userStatus && !Failed.failed ?
                    <Component {...props} />
                    :
                    <Redirect to={{ pathname: '/sign_in' }} />
@@ -27,14 +28,14 @@ const AuthRoute = ({ component: Component, getUserDetails, Failed, userStatus, .
 const mapStateToProps = (state) => {
     return {
         userStatus: state.user,
-        Failed: state.user.failed
+        Failed: state.user
     }
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        getUserDetails: () => dispatch(getUserDetails()),
-    }
-}
+// const mapDispatchToProps = dispatch => {
+//     return {
+//         getUserDetails: () => dispatch(getUserDetails()),
+//     }
+// }
  
-export default connect(mapStateToProps, mapDispatchToProps)(AuthRoute);
+export default connect(mapStateToProps)(AuthRoute);

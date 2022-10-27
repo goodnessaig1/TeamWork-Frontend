@@ -8,6 +8,7 @@ import Register from './Components/Register-Login/Register/Register';
 import RegistrationSuccess from './Components/Register-Login/Register/RegistrationSuccess';
 import AuthRoute from './Auth/AuthRoute';
 import MainPage from './Components/Dashboard/MainPage';
+import UserProfile from './Components/Profile/UserProfile';
 
 
 
@@ -17,6 +18,7 @@ const App = () => {
   return (
     <>
       <Switch>
+        
         <Route path="/sign_in" exact component={Login}/>
         <Route path="/create-user" exact component={Register}/>
         <Route path="/registration_success" exact component={RegistrationSuccess}/>
@@ -25,6 +27,7 @@ const App = () => {
             {/* Home Routes         */}
               <Route path="/" exact component={Home}/>
               <AuthRoute path="/dashboard" exact component={MainPage}/>
+              <AuthRoute path="/profile" exact component={UserProfile}/>
             {/* Routes Would go here */}
           </div>
         </Layout>

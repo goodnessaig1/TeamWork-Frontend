@@ -10,53 +10,104 @@
 .side_bar {
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-    width:95%;
-    margin-left: 100px;
+    width:92%;
+    margin-left: 50px;
     background-color: rgba(255, 255, 255, 1);
-    border-radius: 10px 10px 10px 10px;
-    
+    border-radius: 6px 6px 6px 6px;
 }
 
 .side_bar_top {
     width: 100%;
-    border-radius: 10px 10px 0px 0px;
+    height: 62px;
+    border-radius: 7px 7px 0px 0px;
     background: #7990E1;
 }
 
 .side_bar_top > h3 {
-    margin-left: 30px;
+    padding-top: 10px;
+    margin-left: 35px;
     color: #fff;
     font-weight: 700 bold;
-    font-size: 25px;
+    font-size: 28px;
 }
 
-.menu_home{
-    padding-top: 10px;
+.menu_items{
+    padding-top: 15px;
+    gap: 0.17rem;
+    text-align: left;
+    font-size: 23px;
 }
 
 .items {
-    padding: 15px 0px 0px 0px;
+    display: flex;
+    padding: 18px 0px 0px 0px;
+    flex-direction: column;
+    color: rgba(137, 138, 141, 1);
+    font-weight: 500;
+    margin-left: 45px;
+}
+.items > h3 {
+    font-size: 30px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 1);
+}
+.side_bar_nav{
+    text-decoration: none;
     color: rgba(137, 138, 141, 1);
 }
 
+.side_bar_nav:hover {
+    cursor: pointer;
+    color: #3e3e4d;
+}
+.active_side_bar {
+    color: #7676e8;
+    background: #7990E1;
+}
+
 li {
+    text-align: left;
     text-decoration: none;
     list-style-type: none;
-    margin-left: 5px;
 }
 
   @media screen and (max-width: 1000px) {
     .side_bar {
-        width: 98%;
+        width: 78%;
         margin-left: 60px;
+    }
+
+    .menu_items{
+        padding-top: 15px;
+        gap: 0;
+        text-align: left;
+        font-size: 22px;
+    }
+    .items > h3 {
+        font-size: 24px;
     }
 }
 
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 900px) {
     .side_bar {
         margin-left: 40px;
+        width: 83%;
+    }
+    .items {
+        margin-left: 15px;
+    }
+    .menu_items{
+        padding-top: 15px;
+        gap: 0;
+        margin-right: 10px;
+        text-align: left;
+        font-size: 18px;
+    }
+    .items > h3 {
+        font-size: 21px;
+        white-space: nowrap;
+
     }
 }
 

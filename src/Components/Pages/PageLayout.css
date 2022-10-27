@@ -6,15 +6,17 @@
 }
 
 .page_right {
-    flex: 1;
+    flex: 1.2;
+    justify-content: center;
+    display: flex;
 }
 
 .page_center {
-    flex: 2;
+    flex: 1.5;
 }
 
 .page_left {
-    flex: 1;
+    flex: 1.2;
 }
 
 

@@ -1,10 +1,10 @@
 import React from 'react'
-import { BubbleChart, Home, AddAPhoto, NotificationsNone, AccountCircle } from '@material-ui/icons'
-import { Link, useHistory } from 'react-router-dom'
+import { Home, AddAPhoto, NotificationsNone, AccountCircle } from '@material-ui/icons'
+import { Link, NavLink, useHistory } from 'react-router-dom'
 import "./Header.css"
 import { connect } from 'react-redux'
 import { LogoutUser } from '../../Auth/Actions/userActions'
-
+import Search from "../../Components/Assets/Vectorsearch.png"
 import PropTypes from 'prop-types'
 
 const Header = ({LogoutUser, userStatus}) => {
@@ -15,40 +15,58 @@ const Header = ({LogoutUser, userStatus}) => {
         <div className='content'>
             <div className='left'>
                 <div className='left_cont'>
-                    <div className='logo_cont'>
-                        <BubbleChart className='App-logo icon_logo' />
-                    </div>
-                    <div>
+                    <span>
                         <h2>STAFFCONN</h2>
-                    </div>
+                    </span>
                 </div>
             </div>
+            {
+                userStatus && userStatus ?(
+                    <div className='search_bar'>
+                        <img src={Search} alt='' className='search_bar_img' />
+                        <span>
+                            <input  className='search' type='text' placeholder='Search....'/>
+                        </span>
+                    </div>
+                ):null
+            }
             <div className='center'>
                 <div className='center_container'>
-                    <Link to='/' style={{ textDecoration: 'none' }}>
+                    <NavLink to='/dashboard' className='nav_bar' activeClassName='active_link' >
                         <div className='nav_bar_container '>
                             <Home className='center_icon active'/>
                             <span>Home</span>
                         </div>
-                    </Link>
-                    <Link to='/upload' style={{ textDecoration: 'none' }}>
+                    </NavLink>
+                    <NavLink to='/upload' className='nav_bar' activeClassName='active_link' >
                         <div className='nav_bar_container'>
                             <AddAPhoto className='center_icon'/>
                             <span>Upload</span>
                         </div>
-                    </Link>
-                    <Link to='/notifications' style={{ textDecoration: 'none' }}>
+                    </NavLink>
+                    <NavLink to='/notifications' className='nav_bar' activeClassName='active_link' >
                         <div className='nav_bar_container'>
                             <NotificationsNone className='center_icon'/>
                             <span>Notification</span>
                         </div>
-                    </Link>
-                    <Link to='/profile' style={{ textDecoration: 'none' }}>
+                    </NavLink>
+                    <NavLink to='/profile'className='nav_bar' activeClassName='active_link'>
                         <div className='nav_bar_container'>
                             <AccountCircle className='center_icon'/>
                             <span>Profile</span>
                         </div>
-                    </Link>
+                    </NavLink>
+                </div>
+            </div>
+            <div className='middle'>
+                <div className='middle_container'>
+                    {
+                        userStatus && userStatus.profile !== null ? (
+                            <div className='profile_pix'>
+                               <img src={userStatus.profile} alt='' className='profile_pic'/>
+                            </div>
+                        ):null
+                    }
                 </div>
             </div>
             <div className='right'>
@@ -57,19 +75,19 @@ const Header = ({LogoutUser, userStatus}) => {
                         {
                             !!userStatus ?  (
                                 <Link 
-                                    className="register_link" 
+                                    className="link_btn" 
                                     to='/sign_in'
                                     onClick={()=> LogoutUser(history)}
                                 >
-                                    Sign out
+                                    Log Out
                                 </Link>
                                 ) : (
                                     
                                 <Link 
-                                    className="register_link" 
+                                    className="link_btn" 
                                     to='/sign_in'
                                 >
-                                    Sign In
+                                    Log In
                                 </Link>
                             )
                             

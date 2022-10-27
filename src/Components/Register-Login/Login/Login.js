@@ -65,7 +65,7 @@ const Login = ({LoginUser}) => {
                         <div className='button__group'>
                         { !isSubmitting && ( 
                         <button type='submit' className='formButton' >
-                            Login
+                            LOG IN
                         </button>
                         )}
                         {isSubmitting && (
@@ -77,16 +77,16 @@ const Login = ({LoginUser}) => {
                             />
                         )}
                         </div>
+                        <div className='forget_password'>
+                            Forgot password?
+                        </div>
                     </Form>
                 )}   
                 </Formik>
                 <div className='signup_container'>
-            <p className='more_text'>
-                    New here ? 
-                <Link to='/create-user' className='text_link'>
-                    Signup
-                </Link>
-            </p>
+                    <Link to='/create-user' className='text_link'>
+                        New user? Sign in
+                    </Link>
             </div>
         </div>      
             <div className='copyright'>

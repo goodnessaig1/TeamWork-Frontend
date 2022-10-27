@@ -1,0 +1,315 @@
+.user_container {
+    display: flex;
+    display: flex;
+    flex-direction: row;
+    min-height: var(--container-height);
+    padding-top: 26px;
+}
+
+.side_container {
+    flex: 1.25;
+    display: flex;
+    justify-content: center;
+}
+
+.user_main_container {
+    flex: 2.4;
+}
+
+.user_profile_board {
+    background-color: rgba(255, 255, 255, 1);
+    width: 85%;
+    border-radius: 18px;
+    padding-bottom: 50px;
+    position: relative;
+}
+.user_cover_bg {
+    height: 300px;
+    width: 100%;
+    border-radius: 20px;
+    background-blend-mode:hard-light;
+    background-color: rgba(121, 144, 225, 1);
+}
+
+.user_cover_photo {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    border-radius: 15%;
+    position: relative;
+    height: 300px;
+    border-radius: 18px;
+    opacity: 40%;
+    object-fit: cover;
+}
+
+.cover_icons {
+    display: flex;
+    position: relative;
+    background-color: rgba(217, 217, 217, 1);
+    top:-5rem;
+    transform: scale(1.38);
+    color: rgb(69, 67, 67);
+    left:88%;
+    width: 50px;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+    opacity: 85%;
+    border-radius: 100%; 
+}
+.unavailiable {
+    top:5.5rem;
+}
+
+.user_profile_bg {
+    position: relative;
+    left: 3.6rem;
+    display: flex;
+    bottom: 4rem;
+}
+
+.user_profile_photo {
+    object-fit: cover;
+    width: 165px;
+    height: 170px;
+    border-radius: 10%;
+}
+
+.user_profile_icons {
+    display: flex;
+    position: relative;
+    background-color: rgba(217, 217, 217, 1);
+    padding: 5px 5px 5px 5px;
+    top:6.3rem;
+    transform: scale(1.2);
+    color: rgb(69, 67, 67);
+    right:1.7rem;
+    width: 50px;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+    opacity: 85%;
+    border-radius: 100%;   
+}
+
+.user_ct_holder {
+    display: flex;
+    margin-right: 65px;
+    flex-direction: row;
+}
+
+.profile_mid {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    flex: 3;
+    margin-left: 65px;
+    bottom: 0.8rem;
+}
+.profile_user_name {
+    text-align: center;
+    font-weight: 700;
+    color: rgba(151, 154, 150, 1);
+    font-size: 32px;
+    text-decoration: underline  1px;
+    text-underline-offset: 7px;
+}
+
+.joined  {
+    display: flex;
+    flex-direction: row;
+    font-size: 21px;
+    gap: 0.4rem;
+    color: rgba(151, 154, 150, 1);
+    position: relative;
+    align-items: center;
+    justify-content: center;
+}
+
+.other_details {
+    position: relative;
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
+    gap: 0.4rem;
+}
+
+.item_hr{
+    position: relative;
+    margin-left: 10px;
+    right: 5px;
+    width: 280px;
+}
+.profile_item_icon{
+    top: 0.4rem;
+    position: relative;
+    color: rgb(123, 124, 123);
+    transform: scale(1.1);
+}
+.profile_items_icon {
+    width: 18px;
+    height: 18px;
+    margin-left: 5px;
+}
+
+.profile_detail {
+    position: relative;
+    color:  rgba(151, 154, 150, 1);
+    font-weight: 400;
+    font-size: 18px;
+    margin-left: 25px;
+}
+
+.profile_btn_cnt {
+    display: flex;
+    padding-top: 50px;
+    flex-direction: row;
+    font-size: 16px;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+.profile_btn {
+    width: 180px;
+    padding-top: 5px;
+    height: 40px;
+    background-color: var(--color-primary);
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+.profile_btn:hover {
+    background-color: rgb(10, 10, 202);
+    transition: ease-in-out 0.2s;
+}
+.profile_link_btn {
+    display: flex;
+    text-decoration: none;
+    padding-top: 2px;
+    color: #fff;
+    align-items: center;
+    justify-content: center;
+}
+.edit_icon {
+    margin-left: 8px;
+    width: 18px;
+}
+
+
+ @media screen and (max-width: 1350px) {
+    .user_ct_holder {
+        margin-right: 15px;
+    }
+} 
+ @media screen and (max-width: 970px) { 
+     .user_ct_holder {
+        margin-right: 0px;
+    }
+ } 
+ @media screen and (max-width: 870px) {
+    .cover_icons {
+        left: 82%;
+    }
+ } 
+
+@media screen and (max-width: 745px) {
+    .user_profile_bg {
+        left: 2rem;
+    }
+ } 
+@media screen and (max-width: 706px) {
+    .user_ct_holder {
+        display: flex;
+        margin-right: 65px;
+        flex-direction: column;
+    }
+    .user_profile_bg {
+        left: 3rem;
+    }
+    .profile_mid {
+        top: -3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+ } 
+ @media screen and (max-width: 600px) {
+    .side_container {
+        display: none;
+    }
+    .user_profile_board {
+        width: 80%;
+        margin-left: 40px;
+    }
+   .other_details {
+        margin-left: 20px;
+    }
+    .profile_item_icon{
+        top: 0.4rem;
+        transform: scale(1);
+    }
+    .profile_detail {
+        font-weight: 400;
+        font-size: 18px;
+        margin-left: 25px;
+    }
+    .user_profile_board {
+        height: 900px;
+    }
+}
+ @media screen and (max-width: 450px) {
+    .cover_icons {
+        transform: scale(1.1);
+    }
+    .profile_btn_cnt {
+        gap: 1rem;
+    }
+    .profile_btn {
+        width: 140px;
+        height: 40px;
+    }
+    .edit_icon {
+        width: 16px;
+    }
+}
+@media screen and (max-width: 435px) {
+   .profile_mid {
+        left: 1.3rem;
+    }    
+    .profile_user_name {
+        font-weight: 700;
+        font-size: 30px;
+    }
+    .joined  {
+        font-size: 18px;
+    }
+ } 
+@media screen and (max-width: 360px) {
+   .item_hr{
+        width: 215px;
+    }   
+    .cover_icons {
+        left: 78%;
+    }
+    .other_details {
+        margin-left: 10px;
+        gap: 0.4rem;
+    }
+    .profile_item_icon{
+        transform: scale(0.85);
+    }
+    .profile_items_icon {
+        width: 15px;
+        height: 15px;
+    }
+    .profile_detail {
+        font-size: 15px;
+        margin-left: 15px;
+    }
+ }    
