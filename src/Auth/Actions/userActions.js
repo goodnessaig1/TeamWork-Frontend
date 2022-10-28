@@ -14,6 +14,7 @@ export const loginUserSuccess = request => {
     }
 }
 
+
 export const userDetails = request => {
     return {
         type: GET_USER_DATA,
@@ -81,6 +82,34 @@ export const LoginUser = (credentials, history, setFieldError, setSubmitting) =>
             setSubmitting(false);
         })
         .catch(err => console.error(err));
+    }
+}
+
+
+export const ChangeUserPassword = (credentials, history) => {
+    // Make checks and get some 
+    return () => {
+        axios.patch(`${SERVER}auth/v1/change_password`,
+        credentials,
+        {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${(localStorage.getItem('token'))}`
+            }
+        }
+        ).then((response) => {
+            const { data } = response;
+            if (data.status === "Failed") {
+                const { message} = data;
+                alert(message)
+            } else if (data.status === "success") {
+                history.push("/change_password_success")
+            }
+        }).catch(error =>{
+        const errorMsg = error
+        console.log(errorMsg)
+    })
+        
     }
 }
 

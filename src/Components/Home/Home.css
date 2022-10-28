@@ -7,7 +7,7 @@
 
 .home_left {
     flex: 1;
-    padding: 200px 140px; 
+    padding: 80px 140px; 
 }
 
 h5 {
@@ -22,7 +22,7 @@ h5 {
 
 .home_right_container {
     right: 40px;
-    margin-top: 80px;
+    margin-top: 25px;
     margin-left: -130px;
     width: 459px;
     height: 500px;

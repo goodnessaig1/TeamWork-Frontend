@@ -202,6 +202,117 @@
 }
 
 
+/* CHANGE PASSWORD */
+.change_password {
+    display: flex;
+    align-items: center;
+    min-height: var(--container-height);
+    justify-content: center;
+}
+
+.change_password_container {
+    background: #FFFFFF;
+    bottom: 7rem;
+    position: relative;
+    box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    width: 400px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 355px;
+}
+.password_container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.password_input {
+    border-radius: 30px;
+    /* box-shadow: 2px 2px 2px var(--color-primary); */
+    border: 1px solid rgba(151, 154, 150, 1);
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    width: 270px;
+}
+.password__input {
+    padding-top: 3px;
+    font-size: 18px;
+    text-align: center;
+    margin-left: 12px;
+}
+
+.password_container > button {
+    width: 270px;
+    height: 45px;
+    background-color: var(--color-primary);
+    font-size: 16px;
+    border: 3px solid;
+    border-radius: 20px;
+    color: #fff;
+    outline: 0;
+    transition: ease-in-out 0.3s;
+}
+
+.password_container>button:hover {
+    background-color: rgb(58, 45, 173);
+    cursor: pointer;
+}
+
+.error_msg {
+    color: red;
+    font-size: 12px;
+}
+
+.password_change_success {
+    display: flex;
+    min-height: var(--container-height);
+    align-items: center;
+    justify-content: center;
+}
+
+.password_change_container {
+    background: #FFFFFF;
+    bottom: 5rem;
+    position: relative;
+    box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    width: 440px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 365px;
+}
+.password_span {
+    position: relative;
+    bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    flex-direction: column;
+}
+
+.password_span >p {
+    font-weight: 700;
+    font-size: 20px;
+    width: 350px;
+    color: rgba(69, 90, 100, 1);
+    text-align: center;
+}
+
+.success_img {
+    width: 60px;
+    height: 65px;
+}
+
+
+
  @media screen and (max-width: 1350px) {
     .user_ct_holder {
         margin-right: 15px;
@@ -262,7 +373,47 @@
     .user_profile_board {
         height: 900px;
     }
+
+    /*======= Password ========*/
+    .change_password_container {
+        width: 300px;
+        height: 270px;
+    }
+    .password_container{
+        gap: 1.5rem;
+    }
+    .password_input {
+        height: 35px;
+        width: 240px;
+    }
+    .password__input {
+        padding-top: 1px;
+        font-size: 18px;
+        margin-left: 6px;
+    }
+    .password_container > button {
+        width: 240px;
+        height: 41px;
+    }
+    .password_change_container {
+        bottom: 6rem;
+        width: 300px;
+        height: 270px;
+    }
+    .password_span >p {
+        font-weight: 700;
+        font-size: 15px;
+        width: 230px;
+        color: rgba(69, 90, 100, 1);
+        text-align: center;
+    }
+    .success_img {
+        width: 50px;
+        height: 55px;
+    }
 }
+
+
  @media screen and (max-width: 450px) {
     .cover_icons {
         transform: scale(1.1);

@@ -1,7 +1,7 @@
 import { 
     LOGIN_USER,
     GET_USER_DATA,
-    GET_USER_DETAILS_FAILURE
+    GET_USER_DETAILS_FAILURE,
 } from "../Actions/types";
 
 
@@ -18,6 +18,7 @@ export default function(state={},action){
         
         case GET_USER_DETAILS_FAILURE:
             return {...state, failed: action.payload }
+        
         default:
              return state; 
              
