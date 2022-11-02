@@ -104,7 +104,7 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    flex: 3;
+    flex: 3;  
     margin-left: 65px;
     bottom: 0.8rem;
 }
@@ -115,6 +115,10 @@
     font-size: 32px;
     text-decoration: underline  1px;
     text-underline-offset: 7px;
+}
+.lenthy__user_name {
+    /* margin-right: 30px; */
+    font-size: 29px;
 }
 
 .joined  {
@@ -153,6 +157,10 @@
     width: 18px;
     height: 18px;
     margin-left: 5px;
+}
+
+.add_contact_link {
+    text-decoration: none;
 }
 
 .profile_detail {
@@ -212,7 +220,7 @@
 
 .change_password_container {
     background: #FFFFFF;
-    bottom: 7rem;
+    bottom: 2.5rem;
     position: relative;
     box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3);
     border-radius: 20px;
@@ -232,6 +240,7 @@
 }
 
 .password_input {
+    display: flex;
     border-radius: 30px;
     /* box-shadow: 2px 2px 2px var(--color-primary); */
     border: 1px solid rgba(151, 154, 150, 1);
@@ -241,10 +250,9 @@
     width: 270px;
 }
 .password__input {
-    padding-top: 3px;
+    margin-bottom: 4px;
     font-size: 18px;
     text-align: center;
-    margin-left: 12px;
 }
 
 .password_container > button {
@@ -278,7 +286,7 @@
 
 .password_change_container {
     background: #FFFFFF;
-    bottom: 5rem;
+    bottom: 2rem;
     position: relative;
     box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3);
     border-radius: 20px;
@@ -327,14 +335,6 @@
     .cover_icons {
         left: 82%;
     }
- } 
-
-@media screen and (max-width: 745px) {
-    .user_profile_bg {
-        left: 2rem;
-    }
- } 
-@media screen and (max-width: 706px) {
     .user_ct_holder {
         display: flex;
         margin-right: 65px;
@@ -344,12 +344,20 @@
         left: 3rem;
     }
     .profile_mid {
-        top: -3rem;
+        top: -2rem;
+        position: relative;
         display: flex;
         align-items: center;
         justify-content: center;
     }
  } 
+
+@media screen and (max-width: 745px) {
+    .user_profile_bg {
+        left: 2rem;
+    }
+ } 
+
  @media screen and (max-width: 600px) {
     .side_container {
         display: none;

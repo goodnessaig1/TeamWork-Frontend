@@ -55,11 +55,15 @@
     font-size: 25px;
     text-align: center;
     display: flex;
-    /* font-size: 100%; */
     font-weight: 700;
     color: rgba(151, 154, 150, 1);
     align-items: center;
     justify-content: center;
+}
+.lenthy_user_name {
+    font-size: 23px;
+    line-height: 28px;
+    white-space: nowrap;
 }
 .lengthy_user_name {
     font-size: 15px;
@@ -115,7 +119,11 @@
 }
 
   /*     ======== MEDIA QUERIES (SMALER DEVICES ======= */
-
+  @media screen and (max-width: 950px) {
+    .lenthy_user_name {
+        font-size: 19px;
+    }
+  }
   @media screen and (max-width: 780px) {
     .profile_others {
         font-size: 14px;
@@ -128,6 +136,9 @@
         width: 80%;
         white-space: nowrap;
         font-size: 13px;
+    }
+    .lenthy_user_name {
+        font-size: 15px;
     }
   }
 

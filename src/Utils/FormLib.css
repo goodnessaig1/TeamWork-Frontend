@@ -2,25 +2,27 @@
     display: flex;
     flex-direction: row;
     padding-top: 5px;
-    gap: 0.7rem;
+    gap: 0.15rem;
 }
 
 .input_icon {
     color: rgba(99, 100, 99, 1);
     transform: scale(0.85);
-    margin-left: 15px;
+    margin-left: 10px;
 }
 
 .right_icon {
-    position: relative;
-    left: 7px;
+    position: absolute;
+    left: 15.5rem;
 }
 
 input {
     border: none;
+    background-color: none;
 }
 
 .inputs {
+    width: 223px;
     text-decoration: none;
     outline: 0;
     letter-spacing: 1px;
@@ -56,18 +58,22 @@ input:focus {
 @media screen and (max-width: 580px) {
     .input_icon_container {
         padding-top: 1.5px;
-        gap: 0.2rem;
+        gap: 0rem;
+    }
+
+    .inputs {
+        width: 153px;
     }
 
     .input_icon {
         color: rgba(99, 100, 99, 1);
         transform: scale(0.85);
-
-        margin-left: 8px;
+        margin-top: 1px;
+        margin-left: 3px;
     }
     .right_icon {
         position: relative;
-        left: -3px;
+        left: -10px;
     }
     .input_icon {
         transform: scale(0.71);

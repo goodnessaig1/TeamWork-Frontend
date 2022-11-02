@@ -51,7 +51,14 @@ const UserProfile = ({userDetail}) => {
                                 <div className='profile_mid'>
                                     <div>
                                         <div className='profile_user_name'>
-                                            <span>{`${userDetail.firstName } ${userDetail.lastName}`}</span>
+                                           {
+                                                userDetail.firstName.length + userDetail.lastName.length < 16 ? (
+                                                    <span>{`${userDetail.firstName } ${userDetail.lastName}`}</span>
+                                                    ):
+                                                    <div>
+                                                        <h5 className='lenthy__user_name'>{`${userDetail.firstName.substring(0, 8) } ${userDetail.lastName.substring(0,8)}...`}</h5>
+                                                    </div>
+                                            }
                                         </div>
                                         <div className='joined'>
                                             <span>Joined</span>
@@ -81,7 +88,16 @@ const UserProfile = ({userDetail}) => {
                                 <hr className='item_hr'/>
                                 <div className='profile_item'>
                                     <span><img src={Phone} alt='' className='profile_items_icon'/></span>
-                                    <span className='profile_detail'>{userDetail.number}</span>
+                                    {
+                                        userDetail.number !== null ? (
+                                            <span className='profile_detail'>{userDetail.number}</span>
+                                        ):
+                                        <>
+                                            <Link to="add_contact" className='add_contact_link'>
+                                                <span className='profile_detail'>Add Contact</span>
+                                            </Link>
+                                        </>
+                                    }
                                 </div>
                                 <hr className='item_hr'/>
                             </div>

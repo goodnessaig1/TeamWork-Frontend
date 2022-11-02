@@ -1,5 +1,4 @@
-import axios from 'axios'
-import { SERVER } from '../../Utils/Proxy'
+import { apiRequest } from '../../Utils/axios';
 import {
     LOGIN_USER,
     GET_USER_DATA,
@@ -13,7 +12,6 @@ export const loginUserSuccess = request => {
         payload: request
     }
 }
-
 
 export const userDetails = request => {
     return {
@@ -30,40 +28,34 @@ export const getUserDetailsFailure = error => {
 }
 
 
-export const getUserDetails = () => {
-    return (dispatch) => {
-             axios.get(`${SERVER}auth/v1/auth`,
-        {
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${(localStorage.getItem('token'))}`
+
+
+
+
+export const RegisterUser = async (credentials, history, setFieldError, setSubmitting) => {
+    try {
+        const request = await apiRequest('POST', `auth/v1/create-user`, credentials )
+            const { data } = request;
+            if (data.status === "Failed") {
+                const { message} = data;
+                if (message.includes("email")) {
+                    setFieldError("email", message)
+                }
+                // complete submittiion
+                setSubmitting(false);
+            } else if (data.status === "success") {
+                history.push("/registration_success")
             }
-        }
-    ).then((response) => {
-        const userData = response.data
-        dispatch(userDetails(userData.data))
-    }).catch(error =>{
-        console.log(error)
-        const errorMsg = error
-        dispatch(getUserDetailsFailure(errorMsg))
-    })
+    } catch (error) {
+        throw new Error(error)
     }
 }
 
 
-export const LoginUser = (credentials, history, setFieldError, setSubmitting) => {
-    // Make checks and get some 
-    return (dispatch) => {
-        axios.post(`${SERVER}auth/v1/signin`,
-        credentials,
-        {
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }
-        ).then((response) => {
-            const { data } = response;
-
+export const LoginUser = async (credentials, history, setFieldError, setSubmitting) => {
+    try {
+        const request = await apiRequest('POST', `auth/v1/signin`, credentials )
+        const { data } = request;
              if (data.status === "Failed") {
                 const { message} = data;
                 if (message.includes("email")) {
@@ -77,68 +69,45 @@ export const LoginUser = (credentials, history, setFieldError, setSubmitting) =>
                 const token = userData.data.token
                 localStorage.setItem('token', token)
                 history.push("/dashboard")
-                dispatch(loginUserSuccess(userData))
+                return dispatch => {
+                    dispatch(loginUserSuccess(data))
+                }
             }
             setSubmitting(false);
-        })
-        .catch(err => console.error(err));
+    } catch (error) {
+        throw new Error(error)
     }
 }
 
 
-export const ChangeUserPassword = (credentials, history) => {
-    // Make checks and get some 
-    return () => {
-        axios.patch(`${SERVER}auth/v1/change_password`,
-        credentials,
-        {
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${(localStorage.getItem('token'))}`
-            }
+export const  getUserDetails = async () => {
+    try {
+        const request = await apiRequest('GET',`auth/v1/auth`)
+        const  userData  = request.data; 
+        return dispatch => {
+            dispatch(userDetails(userData.data))
         }
-        ).then((response) => {
-            const { data } = response;
-            if (data.status === "Failed") {
-                const { message} = data;
-                alert(message)
+    } catch (error) {
+        return dispatch => {
+            const errorMsg = error
+            dispatch(getUserDetailsFailure(errorMsg))
+        }
+    }
+}
+
+
+export const ChangeUserPassword = async (credentials, history) => {
+     try {
+        const request = await apiRequest('PATCH',`auth/v1/change_password`,credentials)
+        const  {data}  = request; 
+         if (data.status === "Failed") {
+                alert("The password you provideded is not correct. Check the password and try again")
+                history.push('profile')
             } else if (data.status === "success") {
                 history.push("/change_password_success")
             }
-        }).catch(error =>{
-        const errorMsg = error
-        console.log(errorMsg)
-    })
-        
-    }
-}
-
-export const RegisterUser = (credentials, history, setFieldError, 
-    setSubmitting)  => {
-        
-        return () => {
-        axios.post(`${SERVER}auth/v1/create-user`,
-        credentials,
-        {
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }
-        ).then((response)=>{
-            const { data } = response;
-
-            if (data.status === "Failed") {
-                const { message} = data;
-                if (message.includes("email")) {
-                    setFieldError("email", message)
-                }
-
-                // complete submittiion
-                setSubmitting(false);
-            } else if (data.status === "success") {
-                history.push("/registration_success")
-            }
-        }).catch(err => console.error(err));
+    } catch (error) {
+        throw new Error(error)
     }
 }
 
