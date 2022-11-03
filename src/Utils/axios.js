@@ -8,6 +8,7 @@ const defaultHeaders = {
     "Authorization": `Bearer ${(localStorage.getItem('token'))}`
 }
 
+
 export async function apiRequest(method, path, data,headers) {
     try {
         let url = `${baseURL}${path}`

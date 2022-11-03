@@ -29,9 +29,7 @@ const Profile = ({userDetail}) => {
                                 userDetail.firstName.length + userDetail.lastName.length < 14 ? (
                                     <h3>{`${userDetail.firstName } ${userDetail.lastName}`}</h3>
                                     ):
-                                    <div>
-                                        <h5 className='lenthy_user_name'>{`${userDetail.firstName.substring(0, 8) } ${userDetail.lastName.substring(0,3)}...`}</h5>
-                                    </div>
+                                    <h3>{`${userDetail.firstName.substring(0, 10) }  . ${userDetail.lastName.substring(0,1)}`}</h3>
                             }
                            </span>
                         </div>

@@ -6,7 +6,6 @@ import { useHistory } from 'react-router-dom'
 import { StepOne, StepTwo } from './Steps'
 
 
-
 const ChangePassword = ({ChangeUserPassword})=> {
     const history = useHistory()
     const [currentStep, setCurrentStep] = useState(0)
@@ -15,17 +14,18 @@ const ChangePassword = ({ChangeUserPassword})=> {
         newPassword: "",
         confirmPassword: ""
     });
-    const makeRequest = (formData) => {
-        ChangeUserPassword(formData, history)
+    const makeRequest = async (formData) => {
+        await ChangeUserPassword(formData, history)
     }
 
-    const handleNextStep = (newData, final = false) =>{
+    const handleNextStep = async (newData, final = false) =>{
         setData(prev => ({...prev, ...newData}))
         if (final) {
-            makeRequest(newData)
+            await makeRequest(newData)
         }
         setCurrentStep(prev => prev + 1) 
     }
+
     const steps = [
         <StepOne next={handleNextStep} data={data} />, 
         <StepTwo next={handleNextStep} data={data}/>
@@ -38,5 +38,5 @@ const ChangePassword = ({ChangeUserPassword})=> {
   );
 }
 
-export default connect(null, {ChangeUserPassword})(ChangePassword)
 
+export default connect(null, {ChangeUserPassword})(ChangePassword)

@@ -9,8 +9,7 @@ const ChangePasswordSuccess = () => {
         setTimeout(() => {
             history.push('/profile')
         }, 8000);
-        // eslint-disable-next-line
-    }, []);
+    }, [history]);
 
   return (
     <div className='password_change_success'>
