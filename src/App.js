@@ -9,6 +9,8 @@ import RegistrationSuccess from './Components/Register-Login/Register/Registrati
 import AuthRoute from './Auth/AuthRoute';
 import MainPage from './Components/Dashboard/MainPage';
 import UserProfile from './Components/Profile/UserProfile';
+import ChangePassword from './Components/Profile/ChangePassword';
+import ChangePasswordSuccess from './Components/Profile/ChangePasswordSuccess';
 
 
 
@@ -28,6 +30,8 @@ const App = () => {
               <Route path="/" exact component={Home}/>
               <AuthRoute path="/dashboard" exact component={MainPage}/>
               <AuthRoute path="/profile" exact component={UserProfile}/>
+              <AuthRoute path="/change_password" exact component={ChangePassword}/>
+              <AuthRoute path="/change_password_success" exact component={ChangePasswordSuccess}/>
             {/* Routes Would go here */}
           </div>
         </Layout>

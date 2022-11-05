@@ -9,8 +9,7 @@ const RegistrationSuccess = () => {
         setTimeout(() => {
             history.push('/sign_in')
         }, 8000);
-        // eslint-disable-next-line
-    }, []);
+    }, [history]);
 
   return (
     <div className='success_container'>

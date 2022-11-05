@@ -26,10 +26,10 @@ const Profile = ({userDetail}) => {
                         <div className='user_name'>
                            <span>
                             {
-                                userDetail ? (
+                                userDetail.firstName.length + userDetail.lastName.length < 14 ? (
                                     <h3>{`${userDetail.firstName } ${userDetail.lastName}`}</h3>
                                     ):
-                                    <h5 className='lengthy_user_name'>{`${userDetail.firstName } ${userDetail.lastName}`}</h5>
+                                    <h3>{`${userDetail.firstName.substring(0, 10) }  . ${userDetail.lastName.substring(0,1)}`}</h3>
                             }
                            </span>
                         </div>
@@ -39,7 +39,7 @@ const Profile = ({userDetail}) => {
                                 <span>Joined</span>
                                 <span>
                                     {userDetail.createdAt.length > 4 ?
-                                        `${userDetail.createdAt.substring(0, 4)}` :userDetail.userData.createdAt
+                                        `${userDetail.createdAt.substring(0, 4)}` :userDetail.createdAt
                                     }    
                                 </span>
                             </div>

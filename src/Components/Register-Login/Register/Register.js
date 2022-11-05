@@ -34,17 +34,17 @@ const Register = ({RegisterUser}) => {
                     Yup.object({
                         firstName: Yup.string()
                         .min(2, "First Name is too short")
-                        .max(8, "First Name is too long")
+                        .max(20, "First Name is too long")
                         .required("Required"),
                         lastName: Yup.string()
                         .min(2, "Last Name is too short")
-                        .max(8, "Last Name is too long")
+                        .max(20, "Last Name is too long")
                         .required("Required"),
                         email: Yup.string().email("Invalid email address")
                         .required("Required"),
                         password: Yup.string()
                         .min(6, "password is too short")
-                        .max(10, "password is too long")
+                        .max(70, "password is too long")
                         .required("Required"),
                         jobRole: Yup.string()
                         .required("Required"),
@@ -92,14 +92,13 @@ const Register = ({RegisterUser}) => {
                                 />
                             </div> 
                             <div className='input_container'>
-                                <div className='gender'>
-
-                                <label>Gender
-                                    <Field name="gender" as="select" className='options'>
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
+                                <div className='select'>
+                                    <Field name="gender" as="select">
+                                        {/* <option value="Male">Male</option> */}
+                                        <option defaultValue >Gender</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
                                     </Field>
-                                </label>
                                 </div>
                             </div>  
                             <div className='input_container'>

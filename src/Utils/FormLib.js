@@ -20,6 +20,7 @@ export const TextInput = ({icon, ...props}) =>{
                     </span>
                     <span>
                         <input
+                            // size='28'
                             className="inputs" 
                             {...field}
                             {...props}

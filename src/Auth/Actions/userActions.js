@@ -1,22 +1,56 @@
-import axios from 'axios'
-import { SERVER } from '../../Utils/Proxy'
+import { apiRequest } from '../../Utils/axios';
+import { toast } from 'react-toastify'
+
 import {
-    LOGIN_USER,
-    GET_USER_DATA,
+    LOGIN_USER_SUCCESS,
+    LOGIN_USER_FAILURE,
+    REGISTER_USER_SUCCESS,
+    REGISTER_USER_FAILURE,
     GET_USER_DETAILS_FAILURE,
+    GET_USER_DETAILS_REQUEST,
+    GET_USER_DETAILS_SUCCESS,
+    CHANGE_PASSWORD_SUCCESS,
+    CHANGE_PASSWORD_FAILURE,
 } from './types';
 
 
-export const loginUserSuccess = request => {
+export const registerUserSuccess = request => {
     return {
-        type: LOGIN_USER,
+        type: REGISTER_USER_SUCCESS,
         payload: request
     }
 }
 
-export const userDetails = request => {
+export const registerUserFailure = request => {
     return {
-        type: GET_USER_DATA,
+        type: REGISTER_USER_FAILURE,
+        payload: request
+    }
+}
+
+export const loginUserSuccess = request => {
+    return {
+        type: LOGIN_USER_SUCCESS,
+        payload: request
+    }
+}
+
+export const loginUserFailure = error => {
+    return {
+        type: LOGIN_USER_FAILURE,
+        payload: error
+    }
+}
+
+export const userDetailsSuccess = request => {
+    return {
+        type: GET_USER_DETAILS_SUCCESS,
+        payload: request
+    }
+}
+export const userDetailsRequest = request => {
+    return {
+        type: GET_USER_DETAILS_REQUEST,
         payload: request
     }
 }
@@ -27,90 +61,122 @@ export const getUserDetailsFailure = error => {
         payload: error
     }
 }
-
-
-export const getUserDetails = () => {
-    return (dispatch) => {
-             axios.get(`${SERVER}auth/v1/auth`,
-        {
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${(localStorage.getItem('token'))}`
-            }
-        }
-    ).then((response) => {
-        const userData = response.data
-        dispatch(userDetails(userData.data))
-    }).catch(error =>{
-        console.log(error)
-        const errorMsg = error
-        dispatch(getUserDetailsFailure(errorMsg))
-    })
+export const changePasswordSuccess = success => {
+    return {
+        type: CHANGE_PASSWORD_SUCCESS,
+        payload: success
+    }
+}
+export const changePasswordFailure = error => {
+    return {
+        type: CHANGE_PASSWORD_FAILURE,
+        payload: error
     }
 }
 
 
-export const LoginUser = (credentials, history, setFieldError, setSubmitting) => {
-    // Make checks and get some 
-    return (dispatch) => {
-        axios.post(`${SERVER}auth/v1/signin`,
-        credentials,
-        {
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }
-        ).then((response) => {
-            const { data } = response;
 
-             if (data.status === "Failed") {
-                const { message} = data;
-                if (message.includes("email")) {
-                    setFieldError("email", message)
+
+export function RegisterUser(credentials, history, setFieldError, setSubmitting) {
+    return dispatch => {
+        const promise = apiRequest('POST', `auth/v1/create-user`, credentials);
+        promise.then(
+            function (payload) {
+                const { data } = payload;
+                if (data.status === "Failed") {
+                    const { message} = data;
+                    if (message.includes("email")) {
+                        setFieldError("email", message)
+                    }
+                    // complete submittiion
+                    setSubmitting(false);
+                } else if (data.status === "success") {
+                    dispatch(registerUserFailure(data))
+                    history.push("/registration_success")
                 }
-                if (message.includes("password")) {
-                    setFieldError("password", message)
-                }
-            } else if (data.status === "success") {
-                const userData = data
-                const token = userData.data.token
-                localStorage.setItem('token', token)
-                history.push("/dashboard")
-                dispatch(loginUserSuccess(userData))
+            },
+            function (error) {
+                const errorMsg = error
+                dispatch(registerUserFailure(errorMsg))
             }
-            setSubmitting(false);
-        })
-        .catch(err => console.error(err));
-    }
+        );
+        return promise;
+    };
 }
 
-export const RegisterUser = (credentials, history, setFieldError, 
-    setSubmitting)  => {
-        
-        return () => {
-        axios.post(`${SERVER}auth/v1/create-user`,
-        credentials,
-        {
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }
-        ).then((response)=>{
-            const { data } = response;
 
-            if (data.status === "Failed") {
-                const { message} = data;
-                if (message.includes("email")) {
-                    setFieldError("email", message)
+export function LoginUser(credentials, history, setFieldError, setSubmitting) {
+    return dispatch => {
+        const promise = apiRequest('POST', `auth/v1/signin`, credentials);
+        promise.then(
+            function (payload) {
+                const { data } = payload;
+                if (data.status === "Failed") {
+                    const { message} = data;
+                    if (message.includes("email")) {
+                        setFieldError("email", message)
+                    }
+                    if (message.includes("password")) {
+                        setFieldError("password", message)
+                    }
+                } else if (data.status === "success") {
+                    const userData = data
+                    const token = userData.data.token
+                    localStorage.setItem('token', token)
+                    history.push("/dashboard")
+                    dispatch(loginUserSuccess(data))
                 }
-
-                // complete submittiion
                 setSubmitting(false);
-            } else if (data.status === "success") {
-                history.push("/registration_success")
+            },
+            function (error) {
+                const errorMsg = error
+                dispatch(loginUserFailure(errorMsg))
             }
-        }).catch(err => console.error(err));
-    }
+        );
+        return promise;
+    };
+}
+
+export function getUserDetails() {
+    return dispatch => {
+        const promise = apiRequest('GET',`auth/v1/auth`);
+        dispatch(userDetailsRequest());
+        promise.then(
+            function (payload) {
+                const  userData  = payload.data;
+                dispatch(userDetailsSuccess(userData?.data));
+            },
+            function (error) {
+                const errorMsg = error
+                dispatch(getUserDetailsFailure(errorMsg))
+            }
+        );
+        return promise;
+    };
+}
+
+export function ChangeUserPassword(credentials, history) {
+    return dispatch => {
+        const promise = apiRequest('PATCH',`auth/v1/change_password`,credentials);
+        promise.then(
+            function (payload) {
+                const  {data}  = payload; 
+                if (data.status === "Failed") {
+                    dispatch(changePasswordFailure(data))
+                    toast.error('Wrong Password!', {position: toast.POSITION.TOP_RIGHT});
+                    history.push('profile')
+                } else if (data.status === "success") {
+                    toast.success('Successful', {position: toast.POSITION.TOP_RIGHT});
+                    dispatch(changePasswordSuccess(data))
+                    history.push("/change_password_success")
+                }
+            },
+            function (error) {
+                dispatch(changePasswordFailure(error))
+            }
+        );
+        return promise;
+    };
 }
 
 
