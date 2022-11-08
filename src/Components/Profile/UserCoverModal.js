@@ -7,7 +7,6 @@ import { useHistory } from 'react-router-dom';
 import { UploadCoverPhoto } from '../../Auth/Actions/userActions';
 
 
-
 const UserCoverModal = ({UploadCoverPhoto, setCoverImg}) => {
     const history = useHistory()
     const [preview, setPreview] = useState([])
@@ -40,38 +39,40 @@ const UserCoverModal = ({UploadCoverPhoto, setCoverImg}) => {
                 onSubmit={(values, {setSubmitting, setFieldError}) => {
                     let formData = new FormData();
                     formData.append(`photo`, values.photo);
-                    UploadCoverPhoto(formData, history, setFieldError, setSubmitting)
+                    UploadCoverPhoto(formData,handleClick, setCoverImg, history,setSubmitting, setFieldError)
                 }}
                 >
                 {(formik) => {
                     return (
                     <>
                         <Form>
-                        <div className="upload_center">
-                            <div className='dropzoneContainer'>
-                                <label className='upload_middle'>
-                                    <AddToPhotos className='icon'/>
-                                    <span>Add Photo</span>
-                                    <input
-                                        className='upload_input'
-                                        name="photo"
-                                        accept="image/*"
-                                        type="file"
-                                        onChange={(e) => {
-                                        const files = e.target.files[0];
-                                        formik.setFieldValue("photo", files);
-                                        if(files) {
-                                        const reader = new FileReader()
-                                            reader.readAsDataURL(files)
-                                            reader.onload = () => {
-                                                setPreview(reader.result)
-                                            }
-                                        }
-                                        }}
-                                    />
-                                </label>
-                        </div>
-                        </div>
+                            { preview.length === 0 && (
+                                <div className="upload_center">
+                                    <div className='dropzoneContainer'>
+                                        <label className='upload_middle'>
+                                            <AddToPhotos className='icon'/>
+                                            <span>Add Photo</span>
+                                            <input
+                                                className='upload_input'
+                                                name="photo"
+                                                accept="image/*"
+                                                type="file"
+                                                onChange={(e) => {
+                                                    const files = e.target.files[0];
+                                                formik.setFieldValue("photo", files);
+                                                if(files) {
+                                                const reader = new FileReader()
+                                                    reader.readAsDataURL(files)
+                                                    reader.onload = () => {
+                                                        setPreview(reader.result)
+                                                    }
+                                                }
+                                                }}
+                                            />
+                                        </label>
+                                    </div>
+                                </div>
+                            )}
                         {
                             preview.length !== 0 &&   (
                                 <div className="image">
@@ -94,5 +95,6 @@ const UserCoverModal = ({UploadCoverPhoto, setCoverImg}) => {
       </div>
   )
 }
+
 
 export default connect(null, {UploadCoverPhoto})(UserCoverModal)

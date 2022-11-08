@@ -8,6 +8,7 @@ import {
     GET_USER_DETAILS_FAILURE,
     CHANGE_PASSWORD_SUCCESS,
     CHANGE_PASSWORD_FAILURE,
+    CHANGE_PICTURE_SUCCESS,
 } from "../Actions/types";
 
 
@@ -41,6 +42,9 @@ export default function(state={},action){
         
         case CHANGE_PASSWORD_FAILURE:
             return {...state, error: action.payload }
+        
+            case CHANGE_PICTURE_SUCCESS:
+            return {...state, uploadSuccess: action.payload }
         
         default:
              return state; 

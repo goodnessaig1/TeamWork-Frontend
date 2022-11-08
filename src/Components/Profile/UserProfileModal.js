@@ -9,18 +9,18 @@ import { UploadProfilePIx } from '../../Auth/Actions/userActions';
 
 
 const UserProfileModal = ({UploadProfilePIx, setProfile}) => {
+    const [preview, setPreview] = useState([])
     const history = useHistory()
     const handleClick = (e) => {
     if (e.target.classList.contains("dismiss")) {
       setProfile(null);
     }
   };
-  const [preview, setPreview] = useState([])
-const handleCancle = (e)=>{
-    if (e.target){
-        setPreview([])
+    const handleCancle = (e)=>{
+        if (e.target){
+            setPreview([])
+        }
     }
-}
   return (
     <div className="overlay dismiss" onClick={handleClick}>
         <div className='modal_container'>
@@ -38,38 +38,40 @@ const handleCancle = (e)=>{
                 onSubmit={(values, {setSubmitting, setFieldError}) => {
                     let formData = new FormData();
                     formData.append(`profile`, values.profile);
-                    UploadProfilePIx(formData, history, setFieldError, setSubmitting)
+                    UploadProfilePIx(formData,handleClick,setProfile, history, setFieldError, setSubmitting)
                 }}
                 >
                 {(formik) => {
                     return (
                     <>
                         <Form>
-                        <div className="upload_center">
-                            <div className='dropzoneContainer'>
-                                <label className='upload_middle'>
-                                    <AddToPhotos className='icon'/>
-                                    <span>Add Photo</span>
-                                    <input
-                                        className='upload_input'
-                                        name="profile"
-                                        accept="image/*"
-                                        type="file"
-                                        onChange={(e) => {
-                                        const files = e.target.files[0];
-                                        formik.setFieldValue("profile", files);
-                                        if(files) {
-                                        const reader = new FileReader()
-                                            reader.readAsDataURL(files)
-                                            reader.onload = () => {
-                                                setPreview(reader.result)
-                                            }
-                                        }
-                                        }}
-                                    />
-                                </label>
-                        </div>
-                        </div>
+                            { preview.length === 0 && (
+                                <div className="upload_center">
+                                    <div className='dropzoneContainer'>
+                                        <label className='upload_middle'>
+                                            <AddToPhotos className='icon'/>
+                                            <span>Add Photo</span>
+                                            <input
+                                                className='upload_input'
+                                                name="profile"
+                                                accept="image/*"
+                                                type="file"
+                                                onChange={(e) => {
+                                                const files = e.target.files[0];
+                                                formik.setFieldValue("profile", files);
+                                                if(files) {
+                                                const reader = new FileReader()
+                                                    reader.readAsDataURL(files)
+                                                    reader.onload = () => {
+                                                        setPreview(reader.result)
+                                                    }
+                                                }
+                                                }}
+                                                />
+                                        </label>
+                                    </div>
+                                </div>
+                            )}
                         {
                             preview.length !== 0 &&   (
                                 <div className="image">

@@ -11,6 +11,7 @@ import {
     GET_USER_DETAILS_SUCCESS,
     CHANGE_PASSWORD_SUCCESS,
     CHANGE_PASSWORD_FAILURE,
+    CHANGE_PICTURE_SUCCESS
 } from './types';
 
 
@@ -64,6 +65,12 @@ export const getUserDetailsFailure = error => {
 export const changePasswordSuccess = success => {
     return {
         type: CHANGE_PASSWORD_SUCCESS,
+        payload: success
+    }
+}
+export const changePictureSuccess = success => {
+    return {
+        type: CHANGE_PICTURE_SUCCESS,
         payload: success
     }
 }
@@ -180,16 +187,7 @@ export function ChangeUserPassword(credentials, history) {
 }
 
 
-export const LogoutUser = (history) =>{
-   return () => {
-    localStorage.removeItem("token");
-    
-    history.push("/sign_in");
-  };
-};
-
-
-export const UploadProfilePIx = (formData, history) =>{
+export const UploadProfilePIx = (formData, history,setProfile) =>{
     return async (dispatch) => {
        const promise =   apiRequest('PATCH', `auth/v1/upload_pix`,formData,
         {
@@ -207,6 +205,9 @@ export const UploadProfilePIx = (formData, history) =>{
                     history.push('profile')
                 } else if (data.status === "success") {
                     toast.success('Successful', {position: toast.POSITION.TOP_RIGHT});
+                    dispatch(getUserDetails())
+                    dispatch(changePictureSuccess(data))
+                    return setProfile(null)
                 }
             },
             function (error) {
@@ -217,7 +218,7 @@ export const UploadProfilePIx = (formData, history) =>{
     }
 }
 
-export const UploadCoverPhoto = (formData, history) =>{
+export const UploadCoverPhoto = (formData, history,setCoverImg) =>{
     return async (dispatch) => {
        const promise =   apiRequest('PATCH', `auth/v1/cover_photo`,formData,
         {
@@ -234,7 +235,10 @@ export const UploadCoverPhoto = (formData, history) =>{
                     toast.error('An Error occured!', {position: toast.POSITION.TOP_RIGHT});
                     history.push('profile')
                 } else if (data.status === "success") {
+                    dispatch(getUserDetails())
                     toast.success('Successful', {position: toast.POSITION.TOP_RIGHT});
+                    dispatch(changePictureSuccess(data))
+                    return setCoverImg(null)
                 }
             },
             function (error) {
@@ -244,3 +248,12 @@ export const UploadCoverPhoto = (formData, history) =>{
         return promise;
     }
 }
+
+
+export const LogoutUser = (history) =>{
+   return () => {
+    localStorage.removeItem("token");
+    
+    history.push("/sign_in");
+  };
+};
