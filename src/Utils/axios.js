@@ -5,6 +5,8 @@ const  baseURL = "https://nodejs-teamwork.herokuapp.com/"
 const defaultHeaders = {
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*",
+    //  "Content-Type": "multipart/form-data",
+    'Accept': 'multipart/form-data',
     "Authorization": `Bearer ${(localStorage.getItem('token'))}`
 }
 

@@ -187,3 +187,60 @@ export const LogoutUser = (history) =>{
     history.push("/sign_in");
   };
 };
+
+
+export const UploadProfilePIx = (formData, history) =>{
+    return async (dispatch) => {
+       const promise =   apiRequest('PATCH', `auth/v1/upload_pix`,formData,
+        {
+            headers: {
+                
+                "Content-Type": "multipart/form-data",
+                'Accept': 'multipart/form-data',
+            },
+        });
+         promise.then(
+            function (payload) {
+                const  {data}  = payload; 
+                if (data.status === "Failed") {
+                    toast.error('An Error occured!', {position: toast.POSITION.TOP_RIGHT});
+                    history.push('profile')
+                } else if (data.status === "success") {
+                    toast.success('Successful', {position: toast.POSITION.TOP_RIGHT});
+                }
+            },
+            function (error) {
+                throw new Error(error)
+            }
+        );
+        return promise;
+    }
+}
+
+export const UploadCoverPhoto = (formData, history) =>{
+    return async (dispatch) => {
+       const promise =   apiRequest('PATCH', `auth/v1/cover_photo`,formData,
+        {
+            headers: {
+                
+                "Content-Type": "multipart/form-data",
+                'Accept': 'multipart/form-data',
+            },
+        });
+         promise.then(
+            function (payload) {
+                const  {data}  = payload; 
+                if (data.status === "Failed") {
+                    toast.error('An Error occured!', {position: toast.POSITION.TOP_RIGHT});
+                    history.push('profile')
+                } else if (data.status === "success") {
+                    toast.success('Successful', {position: toast.POSITION.TOP_RIGHT});
+                }
+            },
+            function (error) {
+                throw new Error(error)
+            }
+        );
+        return promise;
+    }
+}
