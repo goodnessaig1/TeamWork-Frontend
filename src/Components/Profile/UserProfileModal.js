@@ -4,12 +4,12 @@ import { Formik, Form } from "formik";
 import {  AddToPhotos } from '@material-ui/icons';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { UploadProfilePIx } from '../../Auth/Actions/userActions';
+import { UploadProfilePhoto } from '../../Auth/Actions/userActions';
 import { Audio } from  'react-loader-spinner'
 
 
 
-const UserProfileModal = ({UploadProfilePIx, setProfile}) => {
+const UserProfileModal = ({UploadProfilePhoto, setProfile}) => {
     const [preview, setPreview] = useState([])
     const history = useHistory()
     const handleClick = (e) => {
@@ -39,7 +39,7 @@ const UserProfileModal = ({UploadProfilePIx, setProfile}) => {
                 onSubmit={(values, {setSubmitting, setFieldError}) => {
                     let formData = new FormData();
                     formData.append(`profile`, values.profile);
-                    UploadProfilePIx(formData, history,setProfile,handleClick, setFieldError, setSubmitting)
+                    UploadProfilePhoto(formData, history,setProfile,handleClick, setFieldError, setSubmitting)
                 }}
                 >
                 {({isSubmitting,setFieldValue}) => {
@@ -108,4 +108,4 @@ const UserProfileModal = ({UploadProfilePIx, setProfile}) => {
   )
 }
 
-export default connect(null, {UploadProfilePIx})(UserProfileModal)
+export default connect(null, {UploadProfilePhoto})(UserProfileModal)

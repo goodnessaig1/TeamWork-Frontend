@@ -47,7 +47,9 @@ const Register = ({RegisterUser}) => {
                         .max(70, "password is too long")
                         .required("Required"),
                         jobRole: Yup.string()
-                        .required("Required"),
+                        .required("Required")
+                        .min(2, "JobRole should be at least 6 Character")
+                        .max(14, "JobRole should be a maximum of 14 Character"),
                         department: Yup.string()
                         .required("Required"),
                         address: Yup.string()

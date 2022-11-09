@@ -187,70 +187,67 @@ export function ChangeUserPassword(credentials, history) {
 }
 
 
-export const UploadProfilePIx = (formData, history,setProfile,setSubmitting) =>{
+export const UploadProfilePhoto = (formData, setProfile, setSubmitting) =>{
     return async (dispatch) => {
-       const promise =   apiRequest('PATCH', `auth/v1/upload_pix`,formData,
-        {
-            headers: {
-                
-                "Content-Type": "multipart/form-data",
-                'Accept': 'multipart/form-data',
-            },
-        });
-         promise.then(
-            function (payload) {
-                const  {data}  = payload; 
-                if (data.status === "Failed") {
-                    toast.error('An Error occured!', {position: toast.POSITION.TOP_RIGHT});
-                    history.push('profile')
-                } else if (data.status === "success") {
-                    toast.success('Successful', {position: toast.POSITION.TOP_RIGHT});
-                    dispatch(getUserDetails())
-                    dispatch(changePictureSuccess(data))
-                    return setProfile(null)
-                }
-                setSubmitting(false);
-            },
-            function (error) {
-                toast.error('An Error occured, Please try again', {position: toast.POSITION.TOP_RIGHT});
-                throw new Error(error)
-            }
-        );
-        return promise;
+       try {
+        const promise =   apiRequest('PATCH', `auth/v1/upload_pix`,formData,
+            {
+                headers: {
+                    
+                    "Content-Type": "multipart/form-data",
+                    'Accept': 'multipart/form-data',
+                },
+            });
+            promise.then(
+                function (payload) {
+                    const  {data}  = payload; 
+                    if (data.status === "success") {
+                        toast.success('Successful', {position: toast.POSITION.TOP_RIGHT});
+                        dispatch(getUserDetails())
+                        dispatch(changePictureSuccess(data))
+                        return setProfile(null)
+                    }
+                    setSubmitting(false);
+                },
+                function (error) {
+                    toast.error('An Error occured, Please try again', {position: toast.POSITION.TOP_RIGHT});
+                });
+                return promise;
+            } catch (error) {
+           throw new Error(error)
+       }
     }
 }
 
 
-export const UploadCoverPhoto = (formData, history,setCoverImg,setSubmitting) =>{
+export const UploadCoverPhoto = (formData, setCoverImg, setSubmitting) =>{
     return async (dispatch) => {
-       const promise =   apiRequest('PATCH', `auth/v1/cover_photo`,formData,
-        {
-            headers: {
-                
-                "Content-Type": "multipart/form-data",
-                'Accept': 'multipart/form-data',
-            },
-        });
-         promise.then(
-            function (payload) {
-                const  {data}  = payload; 
-                if (data.status === "Failed") {
-                    toast.error('An Error occured!', {position: toast.POSITION.TOP_RIGHT});
-                    history.push('profile')
-                } else if (data.status === "success") {
-                    dispatch(getUserDetails())
-                    toast.success('Successful', {position: toast.POSITION.TOP_RIGHT});
-                    dispatch(changePictureSuccess(data))
-                    return setCoverImg(null)
-                }
-                setSubmitting(false);
-            },
-            function (error) {
-                toast.error('An Error occured, Please try again', {position: toast.POSITION.TOP_RIGHT});
-                throw new Error(error);
-            }
-        );
-        return promise;
+       try {
+            const promise =   apiRequest('PATCH', `auth/v1/cover_photo`,formData,
+                {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                        'Accept': 'multipart/form-data',
+                    },
+                });
+                promise.then(
+                    function (payload) {
+                        const  {data}  = payload; 
+                        if (data.status === "success") {
+                            dispatch(getUserDetails())
+                            toast.success('Successful', {position: toast.POSITION.TOP_RIGHT});
+                            dispatch(changePictureSuccess(data))
+                            return setCoverImg(null)
+                        }
+                        setSubmitting(false);
+                    },
+                    function (error) {
+                        toast.error('An Error occured, Please try again', {position: toast.POSITION.TOP_RIGHT});
+                    });
+                return promise;
+        } catch (error) {
+           throw new Error(error);
+       }
     }
 }
 
