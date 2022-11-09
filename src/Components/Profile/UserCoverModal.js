@@ -5,6 +5,7 @@ import {  AddToPhotos } from '@material-ui/icons';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { UploadCoverPhoto } from '../../Auth/Actions/userActions';
+import { Audio } from  'react-loader-spinner'
 
 
 const UserCoverModal = ({UploadCoverPhoto, setCoverImg}) => {
@@ -42,7 +43,7 @@ const UserCoverModal = ({UploadCoverPhoto, setCoverImg}) => {
                     UploadCoverPhoto(formData,handleClick, setCoverImg, history,setSubmitting, setFieldError)
                 }}
                 >
-                {(formik) => {
+                {({isSubmitting, setFieldValue}) => {
                     return (
                     <>
                         <Form>
@@ -59,7 +60,7 @@ const UserCoverModal = ({UploadCoverPhoto, setCoverImg}) => {
                                                 type="file"
                                                 onChange={(e) => {
                                                     const files = e.target.files[0];
-                                                formik.setFieldValue("photo", files);
+                                                    setFieldValue("photo", files);
                                                 if(files) {
                                                 const reader = new FileReader()
                                                     reader.readAsDataURL(files)
@@ -81,10 +82,22 @@ const UserCoverModal = ({UploadCoverPhoto, setCoverImg}) => {
                                 </div>
                             )
                         }
-                        <div className='upload_button'>
-                            <button type="submit" className='submit_btn'>
-                                Upload
-                            </button>
+                        <div className='button_container'>
+                            { !isSubmitting && ( 
+                                <div className='upload_button'>
+                                    <button type="submit" className='submit_btn'>
+                                        Upload
+                                    </button>
+                                </div>
+                            )}
+                            {isSubmitting && (
+                                <Audio
+                                    type="ThreeDots"
+                                    color="rgba(121, 144, 225, 1)"
+                                    height={33}
+                                    width={20}
+                                />
+                            )}
                         </div>
                         </Form>
                     </>

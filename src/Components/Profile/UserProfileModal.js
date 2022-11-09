@@ -5,6 +5,7 @@ import {  AddToPhotos } from '@material-ui/icons';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { UploadProfilePIx } from '../../Auth/Actions/userActions';
+import { Audio } from  'react-loader-spinner'
 
 
 
@@ -38,10 +39,10 @@ const UserProfileModal = ({UploadProfilePIx, setProfile}) => {
                 onSubmit={(values, {setSubmitting, setFieldError}) => {
                     let formData = new FormData();
                     formData.append(`profile`, values.profile);
-                    UploadProfilePIx(formData,handleClick,setProfile, history, setFieldError, setSubmitting)
+                    UploadProfilePIx(formData, history,setProfile,handleClick, setFieldError, setSubmitting)
                 }}
                 >
-                {(formik) => {
+                {({isSubmitting,setFieldValue}) => {
                     return (
                     <>
                         <Form>
@@ -58,7 +59,7 @@ const UserProfileModal = ({UploadProfilePIx, setProfile}) => {
                                                 type="file"
                                                 onChange={(e) => {
                                                 const files = e.target.files[0];
-                                                formik.setFieldValue("profile", files);
+                                                setFieldValue("profile", files);
                                                 if(files) {
                                                 const reader = new FileReader()
                                                     reader.readAsDataURL(files)
@@ -80,10 +81,22 @@ const UserProfileModal = ({UploadProfilePIx, setProfile}) => {
                                 </div>
                             )
                         }
-                        <div className='upload_button'>
-                            <button type="submit" className='submit_btn'>
-                                Upload
-                            </button>
+                        <div className='button_container'>
+                            { !isSubmitting && ( 
+                                <div className='upload_button'>
+                                    <button type="submit" className='submit_btn'>
+                                        Upload
+                                    </button>
+                                </div>
+                            )}
+                            {isSubmitting && (
+                                <Audio
+                                    type="ThreeDots"
+                                    color="rgba(121, 144, 225, 1)"
+                                    height={33}
+                                    width={20}
+                                />
+                            )}
                         </div>
                         </Form>
                     </>
