@@ -53,12 +53,13 @@ const UserCoverModal = ({UploadCoverPhoto, setCoverImg}) => {
                 onSubmit={(values, {setSubmitting,}) => {
                     let formData = new FormData();
                     formData.append(`photo`, values.photo);
-                    UploadCoverPhoto(formData, setSubmitting).then(response => {
+                    UploadCoverPhoto(formData).then(response => {
                         const {data} = response;
                         if (data.status === "success") {
                             toast.success('Successful', {position: toast.POSITION.TOP_RIGHT});
                             setCoverImg(null)
                         }
+                    setSubmitting(false);
                     })
                 }}
                 >

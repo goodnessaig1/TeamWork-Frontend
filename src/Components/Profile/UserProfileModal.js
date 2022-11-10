@@ -3,7 +3,6 @@ import './Modal.css'
 import { Formik, Form } from "formik";
 import {  AddToPhotos } from '@material-ui/icons';
 import { connect } from 'react-redux';
-// import { useHistory } from 'react-router-dom';
 import { UploadProfilePhoto } from '../../Auth/Actions/userActions';
 import { Audio } from  'react-loader-spinner'
 import { toast } from 'react-toastify'
@@ -12,7 +11,7 @@ import { toast } from 'react-toastify'
 
 const UserProfileModal = ({UploadProfilePhoto, setProfile}) => {
     const [preview, setPreview] = useState([])
-    // const history = useHistory()
+
     const handlePhotoChange = (e, setFieldValue) =>{
         const files = e.target.files[0];
             setFieldValue("profile", files);
@@ -24,16 +23,20 @@ const UserProfileModal = ({UploadProfilePhoto, setProfile}) => {
                 }
             }
     }
+
     const handleClick = (e) => {
-    if (e.target.classList.contains("dismiss")) {
-      setProfile(null);
-    }
-  };
+        if (e.target.classList.contains("dismiss")) {
+        setProfile(null);
+        }
+    };
+    
     const handleCancle = (e)=>{
         if (e.target){
             setPreview([])
         }
     }
+  
+  
   return (
     <div className="overlay dismiss" onClick={handleClick}>
         <div className='modal_container'>
@@ -51,12 +54,13 @@ const UserProfileModal = ({UploadProfilePhoto, setProfile}) => {
                 onSubmit={(values, {setSubmitting}) => {
                     let formData = new FormData();
                     formData.append(`profile`, values.profile);
-                    UploadProfilePhoto(formData, setSubmitting).then(response => {
+                    UploadProfilePhoto(formData).then(response => {
                         const {data} = response;
                         if (data.status === "success") {
                             toast.success('Successful', {position: toast.POSITION.TOP_RIGHT});
                             setProfile(null)
                         }
+                        setSubmitting(false);
                     })
                 }}
                 >

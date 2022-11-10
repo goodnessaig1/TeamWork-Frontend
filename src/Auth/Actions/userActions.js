@@ -187,7 +187,7 @@ export function ChangeUserPassword(credentials, history) {
 }
 
 
-export const UploadProfilePhoto = (formData, setSubmitting) =>{
+export const UploadProfilePhoto = (formData) =>{
     return async (dispatch) => {
         const promise =   apiRequest('PATCH', `auth/v1/upload_pix`,formData,
             {
@@ -200,7 +200,6 @@ export const UploadProfilePhoto = (formData, setSubmitting) =>{
                 const  {data}  = payload; 
                     dispatch(getUserDetails())
                     dispatch(changePictureSuccess(data))
-                    setSubmitting(false);
             }).catch((error) => {
                 toast.error('An Error occured, Please try again', {position: toast.POSITION.TOP_RIGHT});
                 })
@@ -209,7 +208,7 @@ export const UploadProfilePhoto = (formData, setSubmitting) =>{
 }
 
 
-export const UploadCoverPhoto = (formData, setSubmitting) =>{
+export const UploadCoverPhoto = (formData) =>{
     return async (dispatch) => {
         const promise =   apiRequest('PATCH', `auth/v1/cover_photo`,formData,
             {
@@ -222,7 +221,6 @@ export const UploadCoverPhoto = (formData, setSubmitting) =>{
                 const  {data}  = payload; 
                     dispatch(getUserDetails())
                     dispatch(changePictureSuccess(data))
-                    setSubmitting(false);
             }).catch((error) => {
                 toast.error('An Error occured, Please try again', {position: toast.POSITION.TOP_RIGHT});
             })
