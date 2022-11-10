@@ -3,26 +3,39 @@ import './Modal.css'
 import { Formik, Form } from "formik";
 import {  AddToPhotos } from '@material-ui/icons';
 import { connect } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import { UploadCoverPhoto } from '../../Auth/Actions/userActions';
 import { Audio } from  'react-loader-spinner'
+import { toast } from 'react-toastify'
+
 
 
 const UserCoverModal = ({UploadCoverPhoto, setCoverImg}) => {
-    const history = useHistory()
     const [preview, setPreview] = useState([])
-    const handleClick = (e) => {
-    
-    if (e.target.classList.contains("dismiss")) {
-      setCoverImg(null);
+    const handlePhotoChange = (e, setFieldValue) =>{
+        const files = e.target.files[0];
+            setFieldValue("photo", files);
+            if(files) {
+            const reader = new FileReader()
+                reader.readAsDataURL(files)
+                reader.onload = () => {
+                    setPreview(reader.result)
+                }
+            }
     }
-  };
+    
+    const handleClick = (e) => {
+        if (e.target.classList.contains("dismiss")) {
+        setCoverImg(null);
+        }
+    };
+
     const handleCancle = (e)=>{
         if (e.target){
             setPreview([])
         }
     }
 
+    
   return (
     <div className="overlay dismiss" onClick={handleClick}>
         <div className='modal_container'>
@@ -37,10 +50,16 @@ const UserCoverModal = ({UploadCoverPhoto, setCoverImg}) => {
                 initialValues={{
                     photo: ''
                 }}
-                onSubmit={(values, {setSubmitting, setFieldError}) => {
+                onSubmit={(values, {setSubmitting,}) => {
                     let formData = new FormData();
                     formData.append(`photo`, values.photo);
-                    UploadCoverPhoto(formData,handleClick, setCoverImg, history,setSubmitting, setFieldError)
+                    UploadCoverPhoto(formData,handleClick, setSubmitting).then(response => {
+                        const {data} = response;
+                        if (data.status === "success") {
+                            toast.success('Successful', {position: toast.POSITION.TOP_RIGHT});
+                            setCoverImg(null)
+                        }
+                    })
                 }}
                 >
                 {({isSubmitting, setFieldValue}) => {
@@ -59,15 +78,7 @@ const UserCoverModal = ({UploadCoverPhoto, setCoverImg}) => {
                                                 accept="image/*"
                                                 type="file"
                                                 onChange={(e) => {
-                                                    const files = e.target.files[0];
-                                                    setFieldValue("photo", files);
-                                                if(files) {
-                                                const reader = new FileReader()
-                                                    reader.readAsDataURL(files)
-                                                    reader.onload = () => {
-                                                        setPreview(reader.result)
-                                                    }
-                                                }
+                                                    handlePhotoChange(e,setFieldValue)
                                                 }}
                                             />
                                         </label>

@@ -3,15 +3,27 @@ import './Modal.css'
 import { Formik, Form } from "formik";
 import {  AddToPhotos } from '@material-ui/icons';
 import { connect } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 import { UploadProfilePhoto } from '../../Auth/Actions/userActions';
 import { Audio } from  'react-loader-spinner'
+import { toast } from 'react-toastify'
 
 
 
 const UserProfileModal = ({UploadProfilePhoto, setProfile}) => {
     const [preview, setPreview] = useState([])
-    const history = useHistory()
+    // const history = useHistory()
+    const handlePhotoChange = (e, setFieldValue) =>{
+        const files = e.target.files[0];
+            setFieldValue("profile", files);
+            if(files) {
+            const reader = new FileReader()
+                reader.readAsDataURL(files)
+                reader.onload = () => {
+                    setPreview(reader.result)
+                }
+            }
+    }
     const handleClick = (e) => {
     if (e.target.classList.contains("dismiss")) {
       setProfile(null);
@@ -36,10 +48,16 @@ const UserProfileModal = ({UploadProfilePhoto, setProfile}) => {
                 initialValues={{
                     profile: ''
                 }}
-                onSubmit={(values, {setSubmitting, setFieldError}) => {
+                onSubmit={(values, {setSubmitting}) => {
                     let formData = new FormData();
                     formData.append(`profile`, values.profile);
-                    UploadProfilePhoto(formData, history,setProfile,handleClick, setFieldError, setSubmitting)
+                    UploadProfilePhoto(formData, setSubmitting).then(response => {
+                        const {data} = response;
+                        if (data.status === "success") {
+                            toast.success('Successful', {position: toast.POSITION.TOP_RIGHT});
+                            setProfile(null)
+                        }
+                    })
                 }}
                 >
                 {({isSubmitting,setFieldValue}) => {
@@ -58,15 +76,7 @@ const UserProfileModal = ({UploadProfilePhoto, setProfile}) => {
                                                 accept="image/*"
                                                 type="file"
                                                 onChange={(e) => {
-                                                const files = e.target.files[0];
-                                                setFieldValue("profile", files);
-                                                if(files) {
-                                                const reader = new FileReader()
-                                                    reader.readAsDataURL(files)
-                                                    reader.onload = () => {
-                                                        setPreview(reader.result)
-                                                    }
-                                                }
+                                                    handlePhotoChange(e,setFieldValue)
                                                 }}
                                                 />
                                         </label>
