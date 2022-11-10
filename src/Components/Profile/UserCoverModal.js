@@ -35,7 +35,7 @@ const UserCoverModal = ({UploadCoverPhoto, setCoverImg}) => {
         }
     }
 
-    
+
   return (
     <div className="overlay dismiss" onClick={handleClick}>
         <div className='modal_container'>
@@ -53,7 +53,7 @@ const UserCoverModal = ({UploadCoverPhoto, setCoverImg}) => {
                 onSubmit={(values, {setSubmitting,}) => {
                     let formData = new FormData();
                     formData.append(`photo`, values.photo);
-                    UploadCoverPhoto(formData,handleClick, setSubmitting).then(response => {
+                    UploadCoverPhoto(formData, setSubmitting).then(response => {
                         const {data} = response;
                         if (data.status === "success") {
                             toast.success('Successful', {position: toast.POSITION.TOP_RIGHT});

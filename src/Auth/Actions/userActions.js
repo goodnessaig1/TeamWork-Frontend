@@ -192,7 +192,6 @@ export const UploadProfilePhoto = (formData, setSubmitting) =>{
         const promise =   apiRequest('PATCH', `auth/v1/upload_pix`,formData,
             {
                 headers: {
-                    
                     "Content-Type": "multipart/form-data",
                     'Accept': 'multipart/form-data',
                 },
@@ -207,11 +206,10 @@ export const UploadProfilePhoto = (formData, setSubmitting) =>{
                 })
         return promise;
     }
-
 }
 
 
-export const UploadCoverPhoto = (formData,  setSubmitting) =>{
+export const UploadCoverPhoto = (formData, setSubmitting) =>{
     return async (dispatch) => {
         const promise =   apiRequest('PATCH', `auth/v1/cover_photo`,formData,
             {
@@ -222,12 +220,12 @@ export const UploadCoverPhoto = (formData,  setSubmitting) =>{
             });
             promise.then(payload => {
                 const  {data}  = payload; 
-                dispatch(getUserDetails())
-                dispatch(changePictureSuccess(data))
-                setSubmitting(false);
+                    dispatch(getUserDetails())
+                    dispatch(changePictureSuccess(data))
+                    setSubmitting(false);
             }).catch((error) => {
                 toast.error('An Error occured, Please try again', {position: toast.POSITION.TOP_RIGHT});
-                })
+            })
         return promise;
     }
 }
