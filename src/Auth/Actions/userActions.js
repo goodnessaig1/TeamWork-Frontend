@@ -11,6 +11,7 @@ import {
     GET_USER_DETAILS_SUCCESS,
     CHANGE_PASSWORD_SUCCESS,
     CHANGE_PASSWORD_FAILURE,
+    CHANGE_PICTURE_SUCCESS
 } from './types';
 
 
@@ -64,6 +65,12 @@ export const getUserDetailsFailure = error => {
 export const changePasswordSuccess = success => {
     return {
         type: CHANGE_PASSWORD_SUCCESS,
+        payload: success
+    }
+}
+export const changePictureSuccess = success => {
+    return {
+        type: CHANGE_PICTURE_SUCCESS,
         payload: success
     }
 }
@@ -177,6 +184,48 @@ export function ChangeUserPassword(credentials, history) {
         );
         return promise;
     };
+}
+
+
+export const UploadProfilePhoto = (formData) =>{
+    return async (dispatch) => {
+        const promise =   apiRequest('PATCH', `auth/v1/upload_pix`,formData,
+            {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                    'Accept': 'multipart/form-data',
+                },
+            });
+            promise.then(payload => {
+                const  {data}  = payload; 
+                    dispatch(getUserDetails())
+                    dispatch(changePictureSuccess(data))
+            }).catch((error) => {
+                toast.error('An Error occured, Please try again', {position: toast.POSITION.TOP_RIGHT});
+                })
+        return promise;
+    }
+}
+
+
+export const UploadCoverPhoto = (formData) =>{
+    return async (dispatch) => {
+        const promise =   apiRequest('PATCH', `auth/v1/cover_photo`,formData,
+            {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                    'Accept': 'multipart/form-data',
+                },
+            });
+            promise.then(payload => {
+                const  {data}  = payload; 
+                    dispatch(getUserDetails())
+                    dispatch(changePictureSuccess(data))
+            }).catch((error) => {
+                toast.error('An Error occured, Please try again', {position: toast.POSITION.TOP_RIGHT});
+            })
+        return promise;
+    }
 }
 
 

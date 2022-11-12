@@ -57,6 +57,12 @@
     align-items: center;
     opacity: 85%;
     border-radius: 100%; 
+    cursor: pointer;
+}
+
+.cover_icons:hover, .user_profile_icons:hover{
+    background-color: rgb(190, 183, 183);
+    transition: 1s ease-out;
 }
 .unavailiable {
     top:5.5rem;
@@ -90,6 +96,7 @@
     justify-content: center;
     align-items: center;
     opacity: 85%;
+    cursor: pointer;
     border-radius: 100%;   
 }
 

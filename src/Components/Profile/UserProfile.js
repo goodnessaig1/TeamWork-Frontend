@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import SideBar from '../Pages/SideBar'
 import "./UserProfile.css"
@@ -8,9 +8,22 @@ import { Link } from 'react-router-dom'
 import Home from '../Assets/Vectorhome.png'
 import Phone from '../Assets/Vectorphone.png'
 import Edit from '../Assets/Vectoredit.png'
+import UserProfileModal from './UserProfileModal'
+import UserCoverModal from './UserCoverModal'
 
 
 const UserProfile = ({userDetail}) => {
+    const [profile, setProfile] = useState(null)
+    const [coverImg, setCoverImg] = useState(null)
+    
+    const handleImgClick = (profile)=>{
+        setProfile(profile)
+    }
+    
+    const handleCoverImgClick = (profile)=>{
+        setCoverImg(profile)
+    }
+
   return (
     <div className='user_profile_container'>
         <div className='user_container'>
@@ -24,11 +37,11 @@ const UserProfile = ({userDetail}) => {
                             userDetail && userDetail.coverPhoto !== null ? (
                                 <div className='user_cover_bg'>
                                     <img src={userDetail.coverPhoto} alt='' className='user_cover_photo'/>
-                                     <span className='cover_icons'><CameraAltOutlined className='cover_icon'/></span>
+                                     <span onClick={()=> handleCoverImgClick(userDetail.coverPhoto)} className='cover_icons'><CameraAltOutlined className='cover_icon'/></span>
                                 </div>
                                 ):
                                 <div className='cover_bg'>
-                                    <span className='cover_icons unavailiable'><CameraAltOutlined className='cover_icon'/></span>
+                                    <span onClick={()=> handleCoverImgClick(Unavailiabe)} className='cover_icons unavailiable'><CameraAltOutlined className='cover_icon'/></span>
                                 </div>
                         }
                     </div>
@@ -37,14 +50,15 @@ const UserProfile = ({userDetail}) => {
                             userDetail && userDetail.profile !== null ? (
                                 <div className='user_profile_bg'>
                                     <img src={userDetail.profile} alt='' className='user_profile_photo'/>
-                                    <span className='user_profile_icons'><CameraAltOutlined className='profile_icon'/></span>
+                                    <span onClick={()=> handleImgClick(userDetail.profile)} className='user_profile_icons'><CameraAltOutlined className='profile_icon'/></span>
                                 </div>
                                 ):
                                 <div className='user_profile_bg'>
                                     <img src={Unavailiabe} alt='' className='user_profile_photo unav'/>
-                                    <span className='user_profile_icons'><CameraAltOutlined className='profile_icon'/></span>
+                                    <span onClick={()=> handleImgClick(Unavailiabe)} className='user_profile_icons'><CameraAltOutlined className='profile_icon'/></span>
                                 </div>
                         }
+                        
                             <div></div>
                         {
                             userDetail && userDetail ? (
@@ -116,6 +130,16 @@ const UserProfile = ({userDetail}) => {
                     </div>
                 </div>
             </div>
+            {
+                profile  && (
+                    <UserProfileModal profile={profile} setProfile={setProfile} />
+                )                            
+            }
+            {
+                coverImg  && (
+                    <UserCoverModal coverImg={coverImg} setCoverImg={setCoverImg} />
+                )                            
+            }
             </div>
         </div>
     </div>
