@@ -14,6 +14,7 @@ import commentIcon from '../Assets/comment.png'
 
 
 const MainPage = ({feeds,user}) => {
+    
     const dispatch = useDispatch()
     const getBackgroundColor = (value) => {
       let color;
@@ -64,7 +65,9 @@ const MainPage = ({feeds,user}) => {
                 <input type='text' placeholder='Share your thoughts...' className='share_input'/>
             </div>
         </div>
-        {/*========    MAIN FEEDS ===========*/}
+    
+                              
+                                      {/*========    MAIN FEEDS ===========*/}
         <div className='dash_board_container'>
                 {
                   feeds && feeds.map((item, index) =>
