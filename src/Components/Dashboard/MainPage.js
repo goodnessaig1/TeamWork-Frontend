@@ -83,11 +83,14 @@ const MainPage = ({feeds,user}) => {
                             <div>
                                 <h4 className='post_author'>{item.post_author}</h4>
                                 <span className='author_job_role'>{item.author_jobrole}</span>
-                                <span className='time'>{moment(item.post_date).fromNow()}</span>
+                                <div className='time_container'>
+                                  <span className='time'>{moment(item.post_date).fromNow()}</span>
+                                  <div className='dot'>.</div>
+                                </div>
                             </div>
                         </div>
                             <div className='post_container'>
-                                <div className='post_title'>{item.title}</div>
+                                <div className='gif_post_title'>{item.title}</div>
                                 <img src={item.post}  className='post' alt='' />
                             </div>
                             <div className='like_comment_container'>
@@ -98,24 +101,14 @@ const MainPage = ({feeds,user}) => {
                                     ):
                                     <img className='like_img' src={Liked} alt=''/>
                                 }
-                                <span>Like</span>
+                                    <span>{item.number_of_likes}</span>
                               </div>
                               <div className='comment'>
-                                Comment
+                                <img src={commentIcon}  className='comment_Icon' alt=''/>
+                                <span>{item.number_of_commennt}</span>
                               </div>
                             </div>
-                            <hr className='feeds_hr'/>
-                            <div className='number_of_likes_comment'>
-                                <div className='number_of_likes'>
-                                  <span>{item.number_of_likes}</span>
-                                  <img className='like_icon' src={Liked} alt=''/>
-                                </div>
-                                <div className='number_of_comments'>
-                                  <span>{item.number_of_commennt}</span>
-                                  <img src={commentIcon} alt=''/>
-                                  {/* <SmsOutlined/> */}
-                                </div>
-                            </div>
+                            
                             {
                               item.comment !== null ? (
                                 <div className='post_comment_container'>
@@ -152,7 +145,10 @@ const MainPage = ({feeds,user}) => {
                             <div>
                                 <h4 className='post_author'>{item.post_author}</h4>
                                 <span className='author_job_role'>{item.author_jobrole}</span>
-                                <span className='time'>{moment(item.post_date).fromNow()}</span>
+                                <div className='time_container'>
+                                  <span className='time'>{moment(item.post_date).fromNow()}</span>
+                                  <div className='dot'>.</div>
+                                </div>
                             </div>
                         </div>
                         <div className='post_container'>
@@ -175,25 +171,14 @@ const MainPage = ({feeds,user}) => {
                                     ):
                                     <img className='like_img' src={Liked} alt=''/>
                                 }
-                                <span>Like</span>
+                                <span>{item.number_of_likes}</span>
                               </div>
                               <div className='comment'>
-                                Comment
+                                <img src={commentIcon} className='comment_Icon' alt=''/>
+                                <span>{item.number_of_commennt}</span>
                               </div>
                             </div>
-                            <hr className='feeds_hr'/>
-                            <div className='number_of_likes_comment'>
-                                <div className='number_of_likes'>
-                                  <span>{item.number_of_likes}</span>
-                                  <img className='like_icon' src={Liked} alt=''/>
-                                  
-                                </div>
-                                <div className='number_of_comments'>
-                                  <span>{item.number_of_commennt}</span>
-                                  <img src={commentIcon} alt=''/>
-
-                                </div>
-                            </div>
+                            
                               {
                               item.comment !== null ? (
                                 <div className='post_comment_container'>

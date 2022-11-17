@@ -38,14 +38,14 @@
 .feed_content {
     display: flex;
     border-radius: 20px;
-    margin-top: 20px;
-    padding: 15px;
+    margin-top: 15px;
+    padding: 5px 15px 15px 15px;
     background-color: #FFFFFF;
     flex-direction: column;
 }
 
 .feed_top {
-    margin: 22px 0px 12px 0px;
+    margin: 0 0px 12px 0px;
     display: flex;
     flex-direction: row;
 }
@@ -77,9 +77,19 @@
     font-weight: 500;
 }
 
+.time_container {
+    display: flex;
+    gap: 0.4rem;
+}
 .time {
     font-weight: 500;
     font-size: 16px;
+}
+
+.dot {
+    color: rgba(217, 217, 217, 1);
+    font-size: 36px;
+    margin-top: -8px;
 }
 
 .post_container {
@@ -91,10 +101,13 @@
 }
 .post_title {
     font-weight: 700;
+    color: black;
+}
+.gif_post_title {
+    font-weight: 500;
 }
 
 .post {
-    /* width: 300px; */
     height: 300px;
     background-color: white;
     object-fit: cover;
@@ -113,16 +126,16 @@
     display: flex;
     font-size: 28px;
     padding: 30px;
-    /* background-color: rgb(73, 131, 230); */
     text-align: center;
 }
 
 .like_comment_container {
     display: flex;
-    margin-top: 20px;
+    margin-top: 26px;
     flex-direction: row;
+    align-items: center;
     justify-content:space-between;
-    font-size: 28px;
+    font-size: 18px;
     color: rgba(151, 154, 150, 1);
 
 }
@@ -141,12 +154,24 @@
     cursor: pointer;
 }
 
+.comment {
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.comment_Icon {
+    width: 24px;
+    height: 24px;
+}
+
 .number_of_likes_comment {
     display: flex;
     margin-top: 10px;
     flex-direction: row;
     justify-content:space-between;
-    font-size: 28px;
+    font-size: 18px;
     color: rgba(151, 154, 150, 1);   
 }
 
@@ -165,18 +190,19 @@
     flex-direction: row;
     align-items: center;
     gap: 0.2rem;
+    justify-content: center;
 }
 
 .post_comment_container {
     display: flex;
-    margin-top: 8px;
+    margin-top: 20px;
     gap: 2rem;
     flex-direction: row;
     align-items: center;
 }
 
 .comment_section {
-    width: 75%;
+    padding-right: 35px;
     border-radius: 10px;
     height: 120px;
     display: flex;
@@ -187,10 +213,11 @@
     display: flex;
     margin-left: 30px;
     flex-direction: column;
-    margin-top: 5px;
+    margin-top: 16px;
+    gap: 0.2rem;
     color: rgba(151, 154, 150, 1);   
 }
 .comment__section >span {
-    font-size: 23px;
+    font-size: 20px;
     font-weight: 700;
 }
