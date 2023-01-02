@@ -57,6 +57,10 @@
     background-color: white;
     object-fit: cover;
 }
+.profile_commnet {
+    width: 70px;
+    height: 72px;
+}
 
 .feed_top >div {
     margin-left: 25px;
@@ -205,6 +209,7 @@
     padding-right: 35px;
     border-radius: 10px;
     height: 120px;
+    width: 100%;
     display: flex;
     background: rgba(245, 245, 245, 1);
 }

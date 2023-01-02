@@ -162,6 +162,10 @@
     color: rgb(123, 124, 123);
     transform: scale(1.1);
 }
+.phone_icon {
+    font-weight: 700;
+    color: black;
+}
 .profile_items_icon {
     width: 18px;
     height: 18px;

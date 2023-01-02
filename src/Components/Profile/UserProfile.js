@@ -101,7 +101,7 @@ const UserProfile = ({userDetail}) => {
                                 </div>
                                 <hr className='item_hr'/>
                                 <div className='profile_item'>
-                                    <span><img src={Phone} alt='' className='profile_items_icon'/></span>
+                                    <span><img src={Phone} alt='' className='profile_items_icon phone_icon'/></span>
                                     {
                                         userDetail.number !== null ? (
                                             <span className='profile_detail'>{userDetail.number}</span>

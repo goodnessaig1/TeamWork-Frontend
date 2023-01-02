@@ -71,7 +71,7 @@ const MainPage = ({feeds,user}) => {
         <div className='dash_board_container'>
                 {
                   feeds && feeds.map((item, index) =>
-                    <div key={item.post_date}>
+                    <div key={index}>
                     <div className='feed_content' >
                       {
                         item.post.includes("https://") ?(
@@ -118,7 +118,7 @@ const MainPage = ({feeds,user}) => {
                                     <div className='post_comment'>
                                       {
                                         item.comment_author_profile !== null ? (
-                                          <img src={item.comment_author_profile} className='profile__pix' alt='' />
+                                          <img src={item.comment_author_profile} className='profile__pix profile_commnet' alt='' />
                                         ):
                                         <img src={Unavailiabe} className='profile__pix' alt='' />
                                       }
@@ -188,7 +188,7 @@ const MainPage = ({feeds,user}) => {
                                     <div className='post_comment'>
                                       {
                                         item.comment_author_profile !== null ? (
-                                          <img src={item.comment_author_profile} className='profile__pix' alt='' />
+                                          <img src={item.comment_author_profile} className='profile__pix profile_commnet' alt='' />
                                         ):
                                         <img src={Unavailiabe} className='profile__pix' alt='' />
                                       }

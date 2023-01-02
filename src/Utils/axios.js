@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const  baseURL = "https://nodejs-teamwork.herokuapp.com/"
+const  baseURL = "https://teamwork-nodejs.onrender.com/"
 
 const defaultHeaders = {
     "Content-Type": "application/json",
