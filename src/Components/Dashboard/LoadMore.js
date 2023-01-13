@@ -1,3 +1,4 @@
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { getFeedDetails } from '../../Auth/Actions/feedActions';
 
