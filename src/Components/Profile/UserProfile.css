@@ -29,7 +29,7 @@
     height: 300px;
     width: 100%;
     border-radius: 20px;
-    background-blend-mode:hard-light;
+    background-blend-mode: hard-light;
     background-color: rgba(121, 144, 225, 1);
 }
 
@@ -49,25 +49,26 @@
     display: flex;
     position: relative;
     background-color: rgba(217, 217, 217, 1);
-    top:-5rem;
+    top: -5rem;
     transform: scale(1.38);
     color: rgb(69, 67, 67);
-    left:88%;
+    left: 88%;
     width: 50px;
     height: 50px;
     justify-content: center;
     align-items: center;
     opacity: 85%;
-    border-radius: 100%; 
+    border-radius: 100%;
     cursor: pointer;
 }
 
-.cover_icons:hover, .user_profile_icons:hover{
+.cover_icons:hover,
+.user_profile_icons:hover {
     background-color: rgb(190, 183, 183);
     transition: 1s ease-out;
 }
 .unavailiable {
-    top:5.5rem;
+    top: 5.5rem;
 }
 
 .user_profile_bg {
@@ -89,17 +90,17 @@
     position: relative;
     background-color: rgba(217, 217, 217, 1);
     padding: 5px 5px 5px 5px;
-    top:6.3rem;
+    top: 6.3rem;
     transform: scale(1.2);
     color: rgb(69, 67, 67);
-    right:1.7rem;
+    right: 1.7rem;
     width: 50px;
     height: 50px;
     justify-content: center;
     align-items: center;
     opacity: 85%;
     cursor: pointer;
-    border-radius: 100%;   
+    border-radius: 100%;
 }
 
 .user_ct_holder {
@@ -113,7 +114,7 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    flex: 3;  
+    flex: 3;
     margin-left: 65px;
     bottom: 0.8rem;
 }
@@ -122,7 +123,7 @@
     font-weight: 700;
     color: rgba(151, 154, 150, 1);
     font-size: 32px;
-    text-decoration: underline  1px;
+    text-decoration: underline 1px;
     text-underline-offset: 7px;
 }
 .lenthy__user_name {
@@ -130,7 +131,7 @@
     font-size: 29px;
 }
 
-.joined  {
+.joined {
     display: flex;
     flex-direction: row;
     font-size: 21px;
@@ -150,13 +151,13 @@
     gap: 0.4rem;
 }
 
-.item_hr{
+.item_hr {
     position: relative;
     margin-left: 10px;
     right: 5px;
     width: 280px;
 }
-.profile_item_icon{
+.profile_item_icon {
     top: 0.4rem;
     position: relative;
     color: rgb(123, 124, 123);
@@ -178,7 +179,7 @@
 
 .profile_detail {
     position: relative;
-    color:  rgba(151, 154, 150, 1);
+    color: rgba(151, 154, 150, 1);
     font-weight: 400;
     font-size: 18px;
     margin-left: 25px;
@@ -222,7 +223,6 @@
     width: 18px;
 }
 
-
 /* CHANGE PASSWORD */
 .change_password {
     display: flex;
@@ -232,7 +232,7 @@
 }
 
 .change_password_container {
-    background: #FFFFFF;
+    background: #ffffff;
     bottom: 2.5rem;
     position: relative;
     box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3);
@@ -244,7 +244,7 @@
     flex-direction: column;
     height: 355px;
 }
-.password_container{
+.password_container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -280,7 +280,7 @@
     transition: ease-in-out 0.3s;
 }
 
-.password_container>button:hover {
+.password_container > button:hover {
     background-color: rgb(58, 45, 173);
     cursor: pointer;
 }
@@ -298,7 +298,7 @@
 }
 
 .password_change_container {
-    background: #FFFFFF;
+    background: #ffffff;
     bottom: 2rem;
     position: relative;
     box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3);
@@ -319,7 +319,7 @@
     flex-direction: column;
 }
 
-.password_span >p {
+.password_span > p {
     font-weight: 700;
     font-size: 20px;
     width: 350px;
@@ -332,19 +332,17 @@
     height: 65px;
 }
 
-
-
- @media screen and (max-width: 1350px) {
+@media screen and (max-width: 1350px) {
     .user_ct_holder {
         margin-right: 15px;
     }
-} 
- @media screen and (max-width: 970px) { 
-     .user_ct_holder {
+}
+@media screen and (max-width: 970px) {
+    .user_ct_holder {
         margin-right: 0px;
     }
- } 
- @media screen and (max-width: 870px) {
+}
+@media screen and (max-width: 870px) {
     .cover_icons {
         left: 82%;
     }
@@ -363,15 +361,15 @@
         align-items: center;
         justify-content: center;
     }
- } 
+}
 
 @media screen and (max-width: 745px) {
     .user_profile_bg {
         left: 2rem;
     }
- } 
+}
 
- @media screen and (max-width: 600px) {
+@media screen and (max-width: 600px) {
     .side_container {
         display: none;
     }
@@ -379,10 +377,10 @@
         width: 80%;
         margin-left: 40px;
     }
-   .other_details {
+    .other_details {
         margin-left: 20px;
     }
-    .profile_item_icon{
+    .profile_item_icon {
         top: 0.4rem;
         transform: scale(1);
     }
@@ -400,7 +398,7 @@
         width: 300px;
         height: 270px;
     }
-    .password_container{
+    .password_container {
         gap: 1.5rem;
     }
     .password_input {
@@ -421,7 +419,7 @@
         width: 300px;
         height: 270px;
     }
-    .password_span >p {
+    .password_span > p {
         font-weight: 700;
         font-size: 15px;
         width: 230px;
@@ -434,8 +432,7 @@
     }
 }
 
-
- @media screen and (max-width: 450px) {
+@media screen and (max-width: 450px) {
     .cover_icons {
         transform: scale(1.1);
     }
@@ -451,21 +448,21 @@
     }
 }
 @media screen and (max-width: 435px) {
-   .profile_mid {
+    .profile_mid {
         left: 1.3rem;
-    }    
+    }
     .profile_user_name {
         font-weight: 700;
         font-size: 30px;
     }
-    .joined  {
+    .joined {
         font-size: 18px;
     }
- } 
+}
 @media screen and (max-width: 360px) {
-   .item_hr{
+    .item_hr {
         width: 215px;
-    }   
+    }
     .cover_icons {
         left: 78%;
     }
@@ -473,7 +470,7 @@
         margin-left: 10px;
         gap: 0.4rem;
     }
-    .profile_item_icon{
+    .profile_item_icon {
         transform: scale(0.85);
     }
     .profile_items_icon {
@@ -484,4 +481,4 @@
         font-size: 15px;
         margin-left: 15px;
     }
- }    
+}

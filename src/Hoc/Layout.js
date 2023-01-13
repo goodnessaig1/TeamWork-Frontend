@@ -1,22 +1,20 @@
-import React, { useEffect } from 'react'
-import Header from '../Components/Header/Header'
-import './Layout.css'
+import React, { useEffect } from 'react';
+import Header from '../Components/Header/Header';
+import './Layout.css';
 
-
-const Layout = ({children}) =>{
-   useEffect(() => {
-  window.scrollTo(0, 0)
-}, [])
+const Layout = ({ children }) => {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     return (
-      <div>
-        <Header/>
-        <div className="page_container">
-          {children}
-          {/* Body */}
+        <div>
+            <Header />
+            <div className="page_container">
+                {children}
+                {/* Body */}
+            </div>
         </div>
-      </div>
-    )
-  }
+    );
+};
 
-
-export default Layout
+export default Layout;

@@ -15,7 +15,7 @@
 }
 
 .login_container {
-    background: #FFFFFF;
+    background: #ffffff;
     box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3);
     border-radius: 20px;
     width: 380px;
@@ -27,7 +27,7 @@
 }
 
 .input_container {
-    background: #FFFFFF;
+    background: #ffffff;
     border: 1px solid rgba(151, 154, 150, 1);
     border-radius: 30px;
     width: 290px;
@@ -73,7 +73,6 @@
     text-align: center;
 }
 
-
 .signup_container {
     display: flex;
     width: 290px;
@@ -106,12 +105,12 @@
     margin: 20px;
     text-align: center;
     color: var(--color-primary);
-} 
+}
 
 /*     ======== MEDIA QUERIES (SMALER DEVICES ======= */
 
-  @media screen and (max-width: 580px) {
-    .title >h2 {
+@media screen and (max-width: 580px) {
+    .title > h2 {
         padding-top: 5px;
         font-size: 30px;
     }
@@ -178,8 +177,7 @@
         padding: 0px;
         margin: 20px;
         font-size: 12px;
-    } 
-
+    }
 }
 
 /* @media (max-width: 320px) {

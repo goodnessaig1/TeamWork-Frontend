@@ -3,66 +3,63 @@
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
-  }
-  
-  body {
-   min-height: 100vh;
-   overflow: auto;
- } 
+}
+
+body {
+    min-height: 100vh;
+    overflow: auto;
+}
 
 .mainContainer {
-  padding-top: 50px;
-  display: flex;
-  flex-direction: row;
+    padding-top: 50px;
+    display: flex;
+    flex-direction: row;
 }
 
 .routes {
-  /* min-height: 100vh !important; */
-  background-color: rgba(252, 252, 254, 1);
-  padding-top: 120px;
+    /* min-height: 100vh !important; */
+    background-color: rgba(252, 252, 254, 1);
+    padding-top: 120px;
 }
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+    height: 40vmin;
+    pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
 }
-
 
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
-
 :root {
-   --header-bg: rgba(255, 255, 255, 1);
-   --color-primary: rgba(121, 144, 225, 1);
-;
-   --color-bg-variant: #2c2c6c;
-   --color-white: #fff;
-   --color-light: rgba(255, 255, 255, 0.6);
-   --color-primary-variant: rgba(77, 181, 255, 0.4);
+    --header-bg: rgba(255, 255, 255, 1);
+    --color-primary: rgba(121, 144, 225, 1);
+    --color-bg-variant: #2c2c6c;
+    --color-white: #fff;
+    --color-light: rgba(255, 255, 255, 0.6);
+    --color-primary-variant: rgba(77, 181, 255, 0.4);
 
-  --transition: all 400ms ease;
+    --transition: all 400ms ease;
 
-   --container-height: 100vh;
-   --container-width-lg: 75%;
-   --container-width-md: 86%;
-   --container-width-sm: 90%;
+    --container-height: 100vh;
+    --container-width-lg: 75%;
+    --container-width-md: 86%;
+    --container-width-sm: 90%;
 }
 
 /*     ======== MEDIA QUERIES (SMALER DEVICES ======= */
 
-  @media screen and (max-width: 680px) {
+@media screen and (max-width: 680px) {
     .routes {
         padding-top: 45px;
     }

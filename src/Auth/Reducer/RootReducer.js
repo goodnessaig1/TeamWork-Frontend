@@ -1,11 +1,10 @@
-import { combineReducers } from "redux";
+import { combineReducers } from 'redux';
 import user from './userReducer';
 import feeds from './feedsReducer';
 
-
 const RootReducer = combineReducers({
     user,
-    feeds
-})
+    feeds,
+});
 
 export default RootReducer;
