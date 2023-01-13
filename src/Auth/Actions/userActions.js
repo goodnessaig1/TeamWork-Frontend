@@ -209,7 +209,7 @@ export const UploadProfilePhoto = formData => {
                 dispatch(changePictureSuccess(data));
             })
             .catch(error => {
-                toast.error('An Error occured, Please try again', {
+                toast.error(`An Error occured ${error}`, {
                     position: toast.POSITION.TOP_RIGHT,
                 });
             });
@@ -232,7 +232,7 @@ export const UploadCoverPhoto = formData => {
                 dispatch(changePictureSuccess(data));
             })
             .catch(error => {
-                toast.error('An Error occured, Please try again', {
+                toast.error(`An Error occured ${error}`, {
                     position: toast.POSITION.TOP_RIGHT,
                 });
             });
