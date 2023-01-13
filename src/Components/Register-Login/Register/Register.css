@@ -9,10 +9,10 @@
 }
 
 .register_page_container::before {
-    content: "";
-    background-image: url("../../../../public//register.png.png");
+    content: '';
+    background-image: url('../../../../public//register.png.png');
     background-size: cover;
-    position:absolute;
+    position: absolute;
     top: 0px;
     right: 0px;
     bottom: 0px;
@@ -25,7 +25,7 @@
 }
 
 .register_container {
-    background: #FFFFFF;
+    background: #ffffff;
     box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3);
     border-radius: 20px;
     width: 380px;
@@ -66,18 +66,18 @@ select::-ms-expand {
 select {
     color: rgba(151, 154, 150, 1);
     flex: 1;
-    padding: 0 .5em;
+    padding: 0 0.5em;
     cursor: pointer;
 }
 
 .select::after {
-    content: "\25BC";
+    content: '\25BC';
     padding-top: 2px;
     display: flex;
     align-items: center;
     cursor: pointer;
     pointer-events: none;
-    transition: .25s all ease;
+    transition: 0.25s all ease;
 }
 .select:hover:after {
     color: var(--color-primary);
@@ -100,7 +100,6 @@ select {
 
 /*  */
 
-
 .success_container {
     background-color: rgba(252, 252, 254, 1);
     height: var(--container-height);
@@ -115,33 +114,31 @@ select {
     align-items: center;
     justify-content: center;
     text-align: center;
-    color:  rgba(151, 154, 150, 1);
+    color: rgba(151, 154, 150, 1);
 }
 
-.success_ct > h4  {
+.success_ct > h4 {
     font-size: 35px;
     font-weight: 700;
 }
 
-.success_ct > p  {
+.success_ct > p {
     font-size: 20px;
     font-weight: 500;
 }
 
-
 /*     ======== MEDIA QUERIES (SMALER DEVICES ======= */
 
-  @media screen and (max-width: 580px) {
+@media screen and (max-width: 580px) {
     .register_page_container {
         width: 100%;
     }
-*
-    .success_ct > h4  {
+    * .success_ct > h4 {
         font-size: 23px;
         font-weight: 500;
     }
 
-    .success_ct > p  {
+    .success_ct > p {
         font-size: 15px;
         font-weight: 400;
     }
@@ -161,8 +158,8 @@ select {
     .register_container {
         height: 550px;
         width: 90%;
-    }  
-    
+    }
+
     .register_form_inputs {
         gap: 1.5rem;
     }

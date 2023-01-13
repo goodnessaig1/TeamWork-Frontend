@@ -43,7 +43,6 @@ input:focus {
     border-color: transparent !important;
 }
 
-
 .error_message {
     font-size: 11px;
     color: red;
@@ -51,7 +50,7 @@ input:focus {
     margin-bottom: 10px;
     text-align: left;
     margin-left: 15px;
-} 
+}
 
 /*     ======== MEDIA QUERIES (SMALER DEVICES ======= */
 
@@ -78,5 +77,4 @@ input:focus {
     .input_icon {
         transform: scale(0.71);
     }
-} 
-
+}

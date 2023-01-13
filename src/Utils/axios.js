@@ -1,28 +1,26 @@
-import axios from "axios"
+import axios from 'axios';
 
-const  baseURL = "https://nodejs-teamwork.herokuapp.com/"
+const baseURL = 'https://teamwork-nodejs.onrender.com/';
 
 const defaultHeaders = {
-    "Content-Type": "application/json",
-    "Access-Control-Allow-Origin": "*",
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
     //  "Content-Type": "multipart/form-data",
-    'Accept': 'multipart/form-data',
-    "Authorization": `Bearer ${(localStorage.getItem('token'))}`
-}
+    Accept: 'multipart/form-data',
+    Authorization: `Bearer ${localStorage.getItem('token')}`,
+};
 
-
-export async function apiRequest(method, path, data,headers) {
+export async function apiRequest(method, path, data, headers) {
     try {
-        let url = `${baseURL}${path}`
+        let url = `${baseURL}${path}`;
         const request = await axios({
-            method: method ,
+            method: method,
             url: url,
-            data:data,
-            headers: headers = defaultHeaders
+            data: data,
+            headers: (headers = defaultHeaders),
         });
-        return request
+        return request;
     } catch (error) {
-        throw new Error(error)
+        throw new Error(error);
     }
 }
-    
