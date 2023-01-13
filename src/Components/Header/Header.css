@@ -111,16 +111,20 @@ Link {
     text-decoration: none;
 }
 .link_button {
-    width: 170px;
-    height: 50px;
-    background-color: var(--color-primary);
-    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    display: flex;
 }
 
 .link_btn {
+    width: 170px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    background-color: var(--color-primary);
     border-color: transparent;
     font-size: 16px;
     color: rgba(255, 255, 255, 1);
@@ -139,7 +143,7 @@ Link {
     justify-content: center;
 }
 
-.link_button:hover {
+.link_btn:hover {
     background-color: rgb(10, 10, 202);
     transition: ease-in-out 0.2s;
 }

@@ -40,7 +40,10 @@ const LoadMore = ({ offSet, setOffSet, feedsLength, setIsLoading }) => {
                     </div>
                 ) : null}
                 {feedsLength >= 3 ? (
-                    <div className="load_event" onClick={e => handleLoadMore()}>
+                    <div
+                        className="load_event"
+                        onClick={(e) => handleLoadMore()}
+                    >
                         LoadMore...
                     </div>
                 ) : null}

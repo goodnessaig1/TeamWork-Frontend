@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import PageLayout from '../Pages/PageLayout';
 import { useDispatch } from 'react-redux';
@@ -62,7 +61,7 @@ const MainPage = ({ feeds, user }) => {
     );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return {
         feeds: state.feeds.allFeeds,
         user: state.user.userData,

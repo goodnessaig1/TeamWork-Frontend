@@ -22,13 +22,13 @@ const UserProfileModal = ({ UploadProfilePhoto, setProfile }) => {
         }
     };
 
-    const handleClick = e => {
+    const handleClick = (e) => {
         if (e.target.classList.contains('dismiss')) {
             setProfile(null);
         }
     };
 
-    const handleCancle = e => {
+    const handleCancle = (e) => {
         if (e.target) {
             setPreview([]);
         }
@@ -53,7 +53,7 @@ const UserProfileModal = ({ UploadProfilePhoto, setProfile }) => {
                     onSubmit={(values, { setSubmitting }) => {
                         let formData = new FormData();
                         formData.append(`profile`, values.profile);
-                        UploadProfilePhoto(formData).then(response => {
+                        UploadProfilePhoto(formData).then((response) => {
                             const { data } = response;
                             if (data.status === 'success') {
                                 toast.success('Successful', {
@@ -80,7 +80,7 @@ const UserProfileModal = ({ UploadProfilePhoto, setProfile }) => {
                                                         name="profile"
                                                         accept="image/*"
                                                         type="file"
-                                                        onChange={e => {
+                                                        onChange={(e) => {
                                                             handlePhotoChange(
                                                                 e,
                                                                 setFieldValue

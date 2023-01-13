@@ -13,21 +13,21 @@ const ChangePassword = ({ ChangeUserPassword }) => {
         newPassword: '',
         confirmPassword: '',
     });
-    const makeRequest = async formData => {
+    const makeRequest = async (formData) => {
         await ChangeUserPassword(formData, history);
     };
 
     const handleNextStep = async (newData, final = false) => {
-        setData(prev => ({ ...prev, ...newData }));
+        setData((prev) => ({ ...prev, ...newData }));
         if (final) {
             await makeRequest(newData);
         }
-        setCurrentStep(prev => prev + 1);
+        setCurrentStep((prev) => prev + 1);
     };
 
     const steps = [
-        <StepOne next={handleNextStep} data={data} />,
-        <StepTwo next={handleNextStep} data={data} />,
+        <StepOne next={handleNextStep} key={1} data={data} />,
+        <StepTwo next={handleNextStep} key={2} data={data} />,
     ];
 
     return <div className="change_password">{steps[currentStep]}</div>;
