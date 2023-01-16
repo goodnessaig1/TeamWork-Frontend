@@ -1,6 +1,6 @@
 import React from 'react';
 import Like from '../Assets/like.png';
-import Liked from '../Assets/liked.png';
+import isLike from '../Assets/liked.png';
 import moment from 'moment';
 import commentIcon from '../Assets/comment.png';
 import LoadMore from './LoadMore';
@@ -80,7 +80,7 @@ const Feeds = ({
                                                     ) : (
                                                         <img
                                                             className="like_img"
-                                                            src={Liked}
+                                                            src={isLike}
                                                             alt=""
                                                         />
                                                     )}
@@ -214,7 +214,7 @@ const Feeds = ({
                                                         ) : (
                                                             <img
                                                                 className="like_img"
-                                                                src={Liked}
+                                                                src={isLike}
                                                                 alt=""
                                                             />
                                                         )}
