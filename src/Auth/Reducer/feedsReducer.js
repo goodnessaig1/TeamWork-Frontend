@@ -1,18 +1,39 @@
-import {
-    GET_ALL_FEEDS_SUCCESS,
-    GET_ALL_FEEDS_REQUEST,
-    GET_ALL_FEEDS_FAILURE,
-} from '../Actions/types';
+import * as types from '../Actions/types';
 
-// eslint-disable-next-line
-export default function (state = {}, action) {
+const initialState = {
+    getFeedDetails: {
+        requesting: false,
+        error: null,
+        success: false,
+    },
+};
+export default function (state = initialState, action) {
     switch (action.type) {
-        case GET_ALL_FEEDS_REQUEST:
-            return { ...state, feedsRequest: action.payload };
-        case GET_ALL_FEEDS_SUCCESS:
-            return { ...state, allFeeds: action.payload };
-        case GET_ALL_FEEDS_FAILURE:
-            return { ...state, Failled: action.payload };
+        case types.GET_ALL_FEEDS_REQUEST:
+            return Object.assign({}, state, {
+                getFeedDetails: {
+                    requesting: false,
+                    error: null,
+                    success: true,
+                },
+            });
+        case types.GET_ALL_FEEDS_SUCCESS:
+            return Object.assign({}, state, {
+                getFeedDetails: {
+                    requesting: false,
+                    error: null,
+                    success: true,
+                },
+                allFeeds: action.payload,
+            });
+        case types.GET_ALL_FEEDS_FAILURE:
+            return Object.assign({}, state, {
+                getFeedDetails: {
+                    requesting: false,
+                    error: action.payload,
+                    success: true,
+                },
+            });
 
         default:
             return state;

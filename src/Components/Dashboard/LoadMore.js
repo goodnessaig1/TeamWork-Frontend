@@ -6,8 +6,8 @@ const LoadMore = ({ offSet, setOffSet, feedsLength, setIsLoading }) => {
     const dispatch = useDispatch();
     const handleLoadMore = () => {
         if (offSet < 20) {
-            setOffSet(offSet + 3);
-            const newOffset = offSet + 3;
+            setOffSet(offSet + 5);
+            const newOffset = offSet + 5;
             dispatch(getFeedDetails(newOffset, setIsLoading));
             window.scrollTo({
                 top: 0,
@@ -17,8 +17,8 @@ const LoadMore = ({ offSet, setOffSet, feedsLength, setIsLoading }) => {
     };
     const handlePrevious = () => {
         if (offSet > 0) {
-            setOffSet(offSet - 3);
-            const newOffset = offSet - 3;
+            setOffSet(offSet - 5);
+            const newOffset = offSet - 5;
             dispatch(getFeedDetails(newOffset, setIsLoading));
             window.scrollTo({
                 top: 0,
@@ -39,7 +39,7 @@ const LoadMore = ({ offSet, setOffSet, feedsLength, setIsLoading }) => {
                         Previous
                     </div>
                 ) : null}
-                {feedsLength >= 3 ? (
+                {feedsLength >= 5 ? (
                     <div
                         className="load_event"
                         onClick={(e) => handleLoadMore()}

@@ -13,6 +13,6 @@ export const CHANGE_PASSWORD_FAILURE = 'change_password_failure';
 
 export const CHANGE_PICTURE_SUCCESS = 'change_picture_success';
 
-export const GET_ALL_FEEDS_REQUEST = 'get_all_feeds_request';
-export const GET_ALL_FEEDS_SUCCESS = 'get_all_feeds_success';
-export const GET_ALL_FEEDS_FAILURE = 'get_all_feeds_failure';
+export const GET_ALL_FEEDS_REQUEST = 'GET_ALL_FEEDS_REQUEST';
+export const GET_ALL_FEEDS_SUCCESS = 'GET_ALL_FEEDS_SUCCESS';
+export const GET_ALL_FEEDS_FAILURE = 'GET_ALL_FEEDS_FAILURE';

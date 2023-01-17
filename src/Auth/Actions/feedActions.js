@@ -1,28 +1,24 @@
 import { apiRequest } from '../../Utils/axios';
 import { toast } from 'react-toastify';
 
-import {
-    GET_ALL_FEEDS_SUCCESS,
-    GET_ALL_FEEDS_FAILURE,
-    GET_ALL_FEEDS_REQUEST,
-} from './types';
+import * as types from './types';
 
-export const getAllFeeds = (request) => {
+export const getAllFeedsRequest = () => {
     return {
-        type: GET_ALL_FEEDS_SUCCESS,
-        payload: request,
+        type: types.GET_ALL_FEEDS_REQUEST,
     };
 };
-export const getAllFeedsRequest = (request) => {
+
+export const getAllFeedsSuccess = (request) => {
     return {
-        type: GET_ALL_FEEDS_REQUEST,
+        type: types.GET_ALL_FEEDS_SUCCESS,
         payload: request,
     };
 };
 
 export const getAllFeedsFailure = (error) => {
     return {
-        type: GET_ALL_FEEDS_FAILURE,
+        type: types.GET_ALL_FEEDS_FAILURE,
         payload: error,
     };
 };
@@ -30,7 +26,7 @@ export const getAllFeedsFailure = (error) => {
 export function getFeedDetails(offset, setIsLoading) {
     return (dispatch) => {
         setIsLoading(true);
-        const promise = apiRequest('GET', `v1/feeds?limit=4&offset=${offset}`);
+        const promise = apiRequest('GET', `v1/feeds?limit=5&offset=${offset}`);
         dispatch(getAllFeedsRequest());
         promise.then(
             function (payload) {
@@ -42,7 +38,7 @@ export function getFeedDetails(offset, setIsLoading) {
                     setIsLoading(false);
                 } else if (feedsData.status === 'Success') {
                     setIsLoading(false);
-                    dispatch(getAllFeeds(feedsData?.data));
+                    dispatch(getAllFeedsSuccess(feedsData?.data));
                 }
             },
             function (error) {
