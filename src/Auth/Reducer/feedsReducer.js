@@ -12,11 +12,12 @@ export default function (state = initialState, action) {
         case types.GET_ALL_FEEDS_REQUEST:
             return Object.assign({}, state, {
                 getFeedDetails: {
-                    requesting: false,
+                    requesting: true,
                     error: null,
                     success: true,
                 },
             });
+
         case types.GET_ALL_FEEDS_SUCCESS:
             return Object.assign({}, state, {
                 getFeedDetails: {
@@ -26,6 +27,7 @@ export default function (state = initialState, action) {
                 },
                 allFeeds: action.payload,
             });
+
         case types.GET_ALL_FEEDS_FAILURE:
             return Object.assign({}, state, {
                 getFeedDetails: {

@@ -7,18 +7,17 @@ import './DashBoard.css';
 import Unavailiabe from '../../Utils/unavailiable1.png';
 import Feeds from './Feeds';
 
-const MainPage = ({ feeds, user }) => {
+const MainPage = ({ feeds, user, requesting }) => {
     const [offSet, setOffSet] = useState(0);
     const feedsLength = feeds?.length;
     const dispatch = useDispatch();
-    const [isLoading, setIsLoading] = useState(false);
     useEffect(() => {
         window.scrollTo({
             top: 0,
             left: 0,
             behavior: 'smooth',
         });
-        dispatch(getFeedDetails(offSet, setIsLoading));
+        dispatch(getFeedDetails(offSet));
     }, []);
     return (
         <PageLayout>
@@ -52,8 +51,7 @@ const MainPage = ({ feeds, user }) => {
                         offSet={offSet}
                         feedsLength={feedsLength}
                         setOffSet={setOffSet}
-                        isLoading={isLoading}
-                        setIsLoading={setIsLoading}
+                        requesting={requesting}
                     />
                 </div>
             </div>
@@ -65,6 +63,7 @@ const mapStateToProps = (state) => {
     return {
         feeds: state.feeds.allFeeds,
         user: state.user.userData,
+        requesting: state.feeds.getFeedDetails?.requesting,
     };
 };
 

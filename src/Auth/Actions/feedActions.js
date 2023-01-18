@@ -23,9 +23,8 @@ export const getAllFeedsFailure = (error) => {
     };
 };
 
-export function getFeedDetails(offset, setIsLoading) {
+export function getFeedDetails(offset) {
     return (dispatch) => {
-        setIsLoading(true);
         const promise = apiRequest('GET', `v1/feeds?limit=5&offset=${offset}`);
         dispatch(getAllFeedsRequest());
         promise.then(
@@ -35,9 +34,7 @@ export function getFeedDetails(offset, setIsLoading) {
                     toast.error('An error occured!', {
                         position: toast.POSITION.TOP_RIGHT,
                     });
-                    setIsLoading(false);
                 } else if (feedsData.status === 'Success') {
-                    setIsLoading(false);
                     dispatch(getAllFeedsSuccess(feedsData?.data));
                 }
             },

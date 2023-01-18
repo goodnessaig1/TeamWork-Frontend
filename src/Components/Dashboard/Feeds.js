@@ -8,17 +8,10 @@ import { getBackgroundColor } from '../../Utils/colors';
 import { ColorRing } from 'react-loader-spinner';
 import Unavailiabe from '../../Utils/unavailiable1.png';
 
-const Feeds = ({
-    feeds,
-    offSet,
-    setOffSet,
-    feedsLength,
-    setIsLoading,
-    isLoading,
-}) => {
+const Feeds = ({ feeds, offSet, setOffSet, feedsLength, requesting }) => {
     return (
         <div>
-            {!isLoading && (
+            {!requesting && (
                 <div className="dash_board_container">
                     {feeds &&
                         feeds.map((item, index) => (
@@ -143,7 +136,6 @@ const Feeds = ({
                                     ) : (
                                         <div className="feed_content">
                                             <div className="feed_top">
-                                                {/* user?.profile ? */}
                                                 {item?.profile_pix ? (
                                                     <img
                                                         src={item.profile_pix}
@@ -288,12 +280,11 @@ const Feeds = ({
                             offSet={offSet}
                             feedsLength={feedsLength}
                             setOffSet={setOffSet}
-                            setIsLoading={setIsLoading}
                         />
                     </div>
                 </div>
             )}
-            {isLoading && (
+            {requesting && (
                 <div className="loading_container">
                     <ColorRing
                         height="80"

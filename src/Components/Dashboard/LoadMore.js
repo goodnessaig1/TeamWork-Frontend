@@ -2,13 +2,13 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { getFeedDetails } from '../../Auth/Actions/feedActions';
 
-const LoadMore = ({ offSet, setOffSet, feedsLength, setIsLoading }) => {
+const LoadMore = ({ offSet, setOffSet, feedsLength }) => {
     const dispatch = useDispatch();
     const handleLoadMore = () => {
         if (offSet < 20) {
             setOffSet(offSet + 5);
             const newOffset = offSet + 5;
-            dispatch(getFeedDetails(newOffset, setIsLoading));
+            dispatch(getFeedDetails(newOffset));
             window.scrollTo({
                 top: 0,
                 left: 0,
@@ -19,7 +19,7 @@ const LoadMore = ({ offSet, setOffSet, feedsLength, setIsLoading }) => {
         if (offSet > 0) {
             setOffSet(offSet - 5);
             const newOffset = offSet - 5;
-            dispatch(getFeedDetails(newOffset, setIsLoading));
+            dispatch(getFeedDetails(newOffset));
             window.scrollTo({
                 top: 0,
                 left: 0,
