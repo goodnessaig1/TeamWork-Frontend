@@ -233,6 +233,9 @@
 }
 .load_more_bg {
     background-color: #fff;
+    border-radius: 0px 0px 18px 18px;
+    top: -10px;
+    position: relative;
 }
 
 .load_more_container {
@@ -245,9 +248,21 @@
     font-weight: 600;
     justify-content: space-between;
 }
+.load_event {
+    font-size: 18px;
+}
 
 .load_event:hover {
     color: rgb(179, 195, 243);
     font-weight: 700;
     transition: 0.4s ease-out;
+}
+
+@media screen and (max-width: 600px) {
+    .dash_board_container {
+        padding-bottom: 90px;
+    }
+    .load_event {
+        font-size: 22px;
+    }
 }

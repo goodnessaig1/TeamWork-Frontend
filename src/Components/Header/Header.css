@@ -190,7 +190,7 @@ Link {
         height: 50px;
         border-radius: 43%;
     }
-    .link_button {
+    .link_btn {
         width: 150px;
         height: 50px;
     }
@@ -208,7 +208,7 @@ Link {
     .search_bar {
         width: 20%;
     }
-    .link_button {
+    .link_btn {
         width: 115px;
     }
     .left_cont > span {
@@ -316,9 +316,15 @@ Link {
         transform: translateX(-50%);
         bottom: 0rem;
         display: flex;
-        gap: 4.5rem;
+        justify-content: space-around;
+        /* gap: 4.5rem; */
         margin-left: 0px;
         backdrop-filter: blur(15px);
+    }
+    .active_link {
+        border-radius: 50%;
+        padding-bottom: 1.8px;
+        background-color: var(--color-primary);
     }
     h2 {
         font-size: 30px;
@@ -331,8 +337,6 @@ Link {
     .link_btn {
         padding: 4px 10px;
         font-size: 12px;
-    }
-    .link_button {
         width: 90px;
         height: 42px;
     }
@@ -354,7 +358,7 @@ Link {
         height: 30px;
         border-radius: 40%;
     }
-    .link_button {
+    .link_btn {
         width: 77px;
         height: 30px;
     }
@@ -376,8 +380,6 @@ Link {
         padding: 3px 8px;
         font-size: 12px;
         margin-right: 6px;
-    }
-    .link_button {
         width: 60px;
         height: 30px;
     }

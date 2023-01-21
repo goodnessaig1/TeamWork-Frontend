@@ -35,7 +35,6 @@ const Login = ({ LoginUser }) => {
                             .required('Required'),
                     })}
                     onSubmit={(values, { setSubmitting, setFieldError }) => {
-                        // console.log(values)
                         LoginUser(
                             values,
                             history,
