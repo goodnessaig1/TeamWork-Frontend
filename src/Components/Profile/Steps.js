@@ -3,7 +3,7 @@ import React from 'react';
 import './UserProfile.css';
 import * as Yup from 'yup';
 import { useEffect } from 'react';
-// useEffect
+import { Audio } from 'react-loader-spinner';
 
 const stepOneValidatiionSchema = Yup.object({
     previousPassword: Yup.string()
@@ -12,7 +12,7 @@ const stepOneValidatiionSchema = Yup.object({
         .required('Required'),
 });
 
-export const StepOne = props => {
+export const StepOne = (props) => {
     useEffect(() => {
         window.scrollTo({
             top: 0,
@@ -20,7 +20,7 @@ export const StepOne = props => {
             behavior: 'smooth',
         });
     }, []);
-    const handleSubmit = values => {
+    const handleSubmit = (values) => {
         props.next(values);
     };
     return (
@@ -72,7 +72,7 @@ const stepTwoValidatiionSchema = Yup.object({
         .oneOf([Yup.ref('newPassword')], 'Passwords must match'),
 });
 
-export const StepTwo = props => {
+export const StepTwo = (props) => {
     useEffect(() => {
         window.scrollTo({
             top: 0,
@@ -80,7 +80,8 @@ export const StepTwo = props => {
             behavior: 'smooth',
         });
     }, []);
-    const handleSubmit = values => {
+    const isRequesting = props.requesting;
+    const handleSubmit = (values) => {
         props.next(values, true);
     };
     return (
@@ -119,7 +120,17 @@ export const StepTwo = props => {
                                     <ErrorMessage name="confirmPassword" />
                                 </div>
                             </span>
-                            <button type="submit">Submit</button>
+                            {!isRequesting && (
+                                <button type="submit">Submit</button>
+                            )}
+                            {isRequesting && (
+                                <Audio
+                                    type="ThreeDots"
+                                    color="rgba(121, 144, 225, 1)"
+                                    height={20}
+                                    width={10}
+                                />
+                            )}
                         </div>
                     </Form>
                 )}

@@ -1,47 +1,208 @@
-import {
-    LOGIN_USER_SUCCESS,
-    LOGIN_USER_FAILURE,
-    REGISTER_USER_SUCCESS,
-    REGISTER_USER_FAILURE,
-    GET_USER_DETAILS_REQUEST,
-    GET_USER_DETAILS_SUCCESS,
-    GET_USER_DETAILS_FAILURE,
-    CHANGE_PASSWORD_SUCCESS,
-    CHANGE_PASSWORD_FAILURE,
-    CHANGE_PICTURE_SUCCESS,
-} from '../Actions/types';
+import * as types from '../Actions/types';
 
-// eslint-disable-next-line
-export default function (state = {}, action) {
+const initialState = {
+    RegisterUser: {
+        requesting: false,
+        error: null,
+        success: false,
+    },
+    LoginUser: {
+        requesting: false,
+        error: null,
+        success: false,
+    },
+    getUserDetails: {
+        requesting: false,
+        error: null,
+        success: false,
+    },
+    ChangeUserPassword: {
+        requesting: false,
+        error: null,
+        success: false,
+    },
+    UploadProfilePhoto: {
+        requesting: false,
+        error: null,
+        success: false,
+    },
+    UploadCoverPhoto: {
+        requesting: false,
+        error: null,
+        success: false,
+    },
+    LogoutUser: {},
+};
+
+export default function (state = initialState, action) {
     switch (action.type) {
-        case LOGIN_USER_SUCCESS:
-            return { ...state, user: action.payload };
+        //      REGISTER USER
+        case types.REGISTER_USER_REQUEST:
+            return Object.assign({}, state, {
+                RegisterUser: {
+                    requesting: true,
+                    error: null,
+                    success: false,
+                },
+            });
 
-        case REGISTER_USER_SUCCESS:
-            return { ...state, user: action.payload };
-        case REGISTER_USER_FAILURE:
-            return { ...state, failed: action.payload };
+        case types.REGISTER_USER_SUCCESS:
+            return Object.assign({}, state, {
+                RegisterUser: {
+                    requesting: false,
+                    error: null,
+                    success: true,
+                },
+                user: action.payload,
+            });
 
-        case LOGIN_USER_FAILURE:
-            return { ...state, failed: action.payload };
+        case types.REGISTER_USER_FAILURE:
+            return Object.assign({}, state, {
+                RegisterUser: {
+                    requesting: false,
+                    error: null,
+                    success: false,
+                },
+            });
 
-        case GET_USER_DETAILS_SUCCESS:
-            return { ...state, userData: action.payload };
+        //            LOGIN USER
+        case types.LOGIN_USER_REQUEST:
+            return Object.assign({}, state, {
+                LoginUser: {
+                    requesting: true,
+                    error: null,
+                    success: false,
+                },
+            });
+        case types.LOGIN_USER_SUCCESS:
+            return Object.assign({}, state, {
+                LoginUser: {
+                    requesting: false,
+                    error: null,
+                    success: true,
+                },
+                user: action.payload,
+            });
+        case types.LOGIN_USER_FAILURE:
+            return Object.assign({}, state, {
+                LoginUser: {
+                    requesting: false,
+                    error: null,
+                    success: false,
+                },
+            });
 
-        case GET_USER_DETAILS_FAILURE:
-            return { ...state, failed: action.payload };
+        //            GET USER DETAILS
+        case types.GET_USER_DETAILS_REQUEST:
+            return Object.assign({}, state, {
+                getUserDetails: {
+                    requesting: true,
+                    error: null,
+                    success: false,
+                },
+            });
+        case types.GET_USER_DETAILS_SUCCESS:
+            return Object.assign({}, state, {
+                getUserDetails: {
+                    requesting: false,
+                    error: null,
+                    success: true,
+                },
+                userData: action.payload,
+            });
+        case types.GET_USER_DETAILS_FAILURE:
+            return Object.assign({}, state, {
+                getUserDetails: {
+                    requesting: false,
+                    error: null,
+                    success: false,
+                },
+                failed: action.payload,
+            });
 
-        case GET_USER_DETAILS_REQUEST:
-            return { ...state, failed: action.payload };
+        //            GET USER PASSWORD
+        case types.CHANGE_PASSWORD_REQUEST:
+            return Object.assign({}, state, {
+                ChangeUserPassword: {
+                    requesting: true,
+                    error: null,
+                    success: false,
+                },
+            });
+        case types.CHANGE_PASSWORD_SUCCESS:
+            return Object.assign({}, state, {
+                ChangeUserPassword: {
+                    requesting: false,
+                    error: null,
+                    success: true,
+                },
+                success: action.payload,
+            });
+        case types.CHANGE_PASSWORD_FAILURE:
+            return Object.assign({}, state, {
+                ChangeUserPassword: {
+                    requesting: false,
+                    error: null,
+                    success: false,
+                },
+                failed: action.payload,
+            });
 
-        case CHANGE_PASSWORD_SUCCESS:
-            return { ...state, success: action.payload };
+        //            GET USER PROFILE PICTURE
+        case types.CHANGE_PROFILE_PICTURE_REQUEST:
+            return Object.assign({}, state, {
+                UploadProfilePhoto: {
+                    requesting: true,
+                    error: null,
+                    success: false,
+                },
+            });
+        case types.CHANGE_PROFILE_PICTURE_SUCCESS:
+            return Object.assign({}, state, {
+                UploadProfilePhoto: {
+                    requesting: false,
+                    error: null,
+                    success: true,
+                },
+                uploadSuccess: action.payload,
+            });
+        case types.CHANGE_PROFILE_PICTURE_FAILURE:
+            return Object.assign({}, state, {
+                UploadProfilePhoto: {
+                    requesting: false,
+                    error: null,
+                    success: false,
+                },
+                failed: action.payload,
+            });
 
-        case CHANGE_PASSWORD_FAILURE:
-            return { ...state, error: action.payload };
-
-        case CHANGE_PICTURE_SUCCESS:
-            return { ...state, uploadSuccess: action.payload };
+        //            GET USER COVER PHOTO
+        case types.CHANGE_COVER_PHOTO_REQUEST:
+            return Object.assign({}, state, {
+                UploadCoverPhoto: {
+                    requesting: true,
+                    error: null,
+                    success: false,
+                },
+            });
+        case types.CHANGE_COVER_PHOTO_SUCCESS:
+            return Object.assign({}, state, {
+                UploadCoverPhoto: {
+                    requesting: false,
+                    error: null,
+                    success: true,
+                },
+                uploadSuccess: action.payload,
+            });
+        case types.CHANGE_COVER_PHOTO_FAILURE:
+            return Object.assign({}, state, {
+                UploadCoverPhoto: {
+                    requesting: false,
+                    error: null,
+                    success: false,
+                },
+                failed: action.payload,
+            });
 
         default:
             return state;

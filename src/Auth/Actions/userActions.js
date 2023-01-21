@@ -1,81 +1,120 @@
 import { apiRequest } from '../../Utils/axios';
 import { toast } from 'react-toastify';
+import * as types from './types';
 
-import {
-    LOGIN_USER_SUCCESS,
-    LOGIN_USER_FAILURE,
-    REGISTER_USER_SUCCESS,
-    REGISTER_USER_FAILURE,
-    GET_USER_DETAILS_FAILURE,
-    GET_USER_DETAILS_REQUEST,
-    GET_USER_DETAILS_SUCCESS,
-    CHANGE_PASSWORD_SUCCESS,
-    CHANGE_PASSWORD_FAILURE,
-    CHANGE_PICTURE_SUCCESS,
-} from './types';
-
-export const registerUserSuccess = request => {
+export const registerUserRequest = (request) => {
     return {
-        type: REGISTER_USER_SUCCESS,
+        type: types.REGISTER_USER_REQUEST,
+        payload: request,
+    };
+};
+export const registerUserSuccess = (request) => {
+    return {
+        type: types.REGISTER_USER_SUCCESS,
         payload: request,
     };
 };
 
-export const registerUserFailure = request => {
+export const registerUserFailure = (error) => {
     return {
-        type: REGISTER_USER_FAILURE,
-        payload: request,
-    };
-};
-
-export const loginUserSuccess = request => {
-    return {
-        type: LOGIN_USER_SUCCESS,
-        payload: request,
-    };
-};
-
-export const loginUserFailure = error => {
-    return {
-        type: LOGIN_USER_FAILURE,
+        type: types.REGISTER_USER_FAILURE,
         payload: error,
     };
 };
 
-export const userDetailsSuccess = request => {
+export const loginUserRequest = (request) => {
     return {
-        type: GET_USER_DETAILS_SUCCESS,
-        payload: request,
-    };
-};
-export const userDetailsRequest = request => {
-    return {
-        type: GET_USER_DETAILS_REQUEST,
+        type: types.LOGIN_USER_REQUEST,
         payload: request,
     };
 };
 
-export const getUserDetailsFailure = error => {
+export const loginUserSuccess = (request) => {
     return {
-        type: GET_USER_DETAILS_FAILURE,
+        type: types.LOGIN_USER_SUCCESS,
+        payload: request,
+    };
+};
+
+export const loginUserFailure = (error) => {
+    return {
+        type: types.LOGIN_USER_FAILURE,
         payload: error,
     };
 };
-export const changePasswordSuccess = success => {
+
+export const userDetailsSuccess = (request) => {
     return {
-        type: CHANGE_PASSWORD_SUCCESS,
+        type: types.GET_USER_DETAILS_SUCCESS,
+        payload: request,
+    };
+};
+export const userDetailsRequest = (request) => {
+    return {
+        type: types.GET_USER_DETAILS_REQUEST,
+        payload: request,
+    };
+};
+
+export const getUserDetailsFailure = (error) => {
+    return {
+        type: types.GET_USER_DETAILS_FAILURE,
+        payload: error,
+    };
+};
+export const changePasswordRequest = (request) => {
+    return {
+        type: types.CHANGE_PASSWORD_REQUEST,
+        payload: request,
+    };
+};
+export const changePasswordSuccess = (success) => {
+    return {
+        type: types.CHANGE_PASSWORD_SUCCESS,
         payload: success,
     };
 };
-export const changePictureSuccess = success => {
+
+export const changePasswordFailure = (error) => {
     return {
-        type: CHANGE_PICTURE_SUCCESS,
+        type: types.CHANGE_PASSWORD_FAILURE,
+        payload: error,
+    };
+};
+
+export const changeProfilePictureRequest = (request) => {
+    return {
+        type: types.CHANGE_PROFILE_PICTURE_REQUEST,
+        payload: request,
+    };
+};
+export const changeProfilePictureSuccess = (success) => {
+    return {
+        type: types.CHANGE_PROFILE_PICTURE_SUCCESS,
         payload: success,
     };
 };
-export const changePasswordFailure = error => {
+export const changeProfilePictureFailure = (error) => {
     return {
-        type: CHANGE_PASSWORD_FAILURE,
+        type: types.CHANGE_PROFILE_PICTURE_FAILURE,
+        payload: error,
+    };
+};
+export const changeCoverPhotoRequest = (request) => {
+    return {
+        type: types.CHANGE_COVER_PHOTO_REQUEST,
+        payload: request,
+    };
+};
+export const changeCoverPhotoSuccess = (success) => {
+    return {
+        type: types.CHANGE_COVER_PHOTO_SUCCESS,
+        payload: success,
+    };
+};
+export const changeCoverPhotoFailure = (error) => {
+    return {
+        type: types.CHANGE_COVER_PHOTO_FAILURE,
         payload: error,
     };
 };
@@ -86,8 +125,9 @@ export function RegisterUser(
     setFieldError,
     setSubmitting
 ) {
-    return dispatch => {
+    return (dispatch) => {
         const promise = apiRequest('POST', `auth/v1/create-user`, credentials);
+        dispatch(registerUserRequest());
         promise.then(
             function (payload) {
                 const { data } = payload;
@@ -99,7 +139,7 @@ export function RegisterUser(
                     // complete submittiion
                     setSubmitting(false);
                 } else if (data.status === 'success') {
-                    dispatch(registerUserFailure(data));
+                    dispatch(registerUserSuccess(data));
                     history.push('/registration_success');
                 }
             },
@@ -113,11 +153,13 @@ export function RegisterUser(
 }
 
 export function LoginUser(credentials, history, setFieldError, setSubmitting) {
-    return dispatch => {
+    return (dispatch) => {
         const promise = apiRequest('POST', `auth/v1/signin`, credentials);
+        dispatch(loginUserRequest());
         promise.then(
             function (payload) {
                 const { data } = payload;
+
                 if (data.status === 'Failed') {
                     const { message } = data;
                     if (message.includes('email')) {
@@ -130,10 +172,11 @@ export function LoginUser(credentials, history, setFieldError, setSubmitting) {
                     const userData = data;
                     const token = userData.data.token;
                     localStorage.setItem('token', token);
-                    history.push('/dashboard');
                     dispatch(loginUserSuccess(data));
+                    history.push('/dashboard');
+                    setSubmitting(false);
                 }
-                setSubmitting(false);
+                window.location.reload(true);
             },
             function (error) {
                 const errorMsg = error;
@@ -145,7 +188,7 @@ export function LoginUser(credentials, history, setFieldError, setSubmitting) {
 }
 
 export function getUserDetails() {
-    return dispatch => {
+    return (dispatch) => {
         const promise = apiRequest('GET', `auth/v1/auth`);
         dispatch(userDetailsRequest());
         promise.then(
@@ -163,12 +206,13 @@ export function getUserDetails() {
 }
 
 export function ChangeUserPassword(credentials, history) {
-    return dispatch => {
+    return (dispatch) => {
         const promise = apiRequest(
             'PATCH',
             `auth/v1/change_password`,
             credentials
         );
+        dispatch(changePasswordRequest());
         promise.then(
             function (payload) {
                 const { data } = payload;
@@ -194,53 +238,57 @@ export function ChangeUserPassword(credentials, history) {
     };
 }
 
-export const UploadProfilePhoto = formData => {
-    return async dispatch => {
+export const UploadProfilePhoto = (formData) => {
+    return async (dispatch) => {
         const promise = apiRequest('PATCH', `auth/v1/upload_pix`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
                 Accept: 'multipart/form-data',
             },
         });
+        dispatch(changeProfilePictureRequest());
         promise
-            .then(payload => {
+            .then((payload) => {
                 const { data } = payload;
                 dispatch(getUserDetails());
-                dispatch(changePictureSuccess(data));
+                dispatch(changeProfilePictureSuccess(data));
             })
-            .catch(error => {
+            .catch((error) => {
                 toast.error(`An Error occured ${error}`, {
                     position: toast.POSITION.TOP_RIGHT,
                 });
+                dispatch(changeProfilePictureFailure(error));
             });
         return promise;
     };
 };
 
-export const UploadCoverPhoto = formData => {
-    return async dispatch => {
+export const UploadCoverPhoto = (formData) => {
+    return async (dispatch) => {
         const promise = apiRequest('PATCH', `auth/v1/cover_photo`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
                 Accept: 'multipart/form-data',
             },
         });
+        dispatch(changeCoverPhotoRequest());
         promise
-            .then(payload => {
+            .then((payload) => {
                 const { data } = payload;
                 dispatch(getUserDetails());
-                dispatch(changePictureSuccess(data));
+                dispatch(changeCoverPhotoSuccess(data));
             })
-            .catch(error => {
+            .catch((error) => {
                 toast.error(`An Error occured ${error}`, {
                     position: toast.POSITION.TOP_RIGHT,
                 });
+                dispatch(changeCoverPhotoFailure(error));
             });
         return promise;
     };
 };
 
-export const LogoutUser = history => {
+export const LogoutUser = (history) => {
     return () => {
         localStorage.removeItem('token');
 

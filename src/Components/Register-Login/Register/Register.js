@@ -56,7 +56,6 @@ const Register = ({ RegisterUser }) => {
                         address: Yup.string().required('Required'),
                     })}
                     onSubmit={(values, { setSubmitting, setFieldError }) => {
-                        // console.log(values)
                         RegisterUser(
                             values,
                             history,

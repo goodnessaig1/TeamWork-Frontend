@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { StepOne, StepTwo } from './Steps';
 
-const ChangePassword = ({ ChangeUserPassword }) => {
+const ChangePassword = ({ ChangeUserPassword, requesting }) => {
     const history = useHistory();
     const [currentStep, setCurrentStep] = useState(0);
     const [data, setData] = useState({
@@ -27,10 +27,21 @@ const ChangePassword = ({ ChangeUserPassword }) => {
 
     const steps = [
         <StepOne next={handleNextStep} key={1} data={data} />,
-        <StepTwo next={handleNextStep} key={2} data={data} />,
+        <StepTwo
+            next={handleNextStep}
+            key={2}
+            data={data}
+            requesting={requesting}
+        />,
     ];
 
     return <div className="change_password">{steps[currentStep]}</div>;
 };
 
-export default connect(null, { ChangeUserPassword })(ChangePassword);
+const mapStateToProps = (state) => {
+    return {
+        requesting: state.user.ChangeUserPassword?.requesting,
+    };
+};
+
+export default connect(mapStateToProps, { ChangeUserPassword })(ChangePassword);

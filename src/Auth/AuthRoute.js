@@ -9,13 +9,12 @@ const AuthRoute = ({ component: Component, Failed, userStatus, ...rest }) => {
     useEffect(() => {
         dispatch(getUserDetails());
     }, []);
-    //   console.log(userStatus);
 
     return (
         <Route
             {...rest}
             render={(props) =>
-                userStatus && !Failed.failed ? (
+                userStatus && !Failed ? (
                     <Component {...props} />
                 ) : (
                     <Redirect to={{ pathname: '/sign_in' }} />
@@ -28,14 +27,8 @@ const AuthRoute = ({ component: Component, Failed, userStatus, ...rest }) => {
 const mapStateToProps = (state) => {
     return {
         userStatus: state.user,
-        Failed: state.user,
+        Failed: state.user?.failed,
     };
 };
-
-// const mapDispatchToProps = dispatch => {
-//     return {
-//         getUserDetails: () => dispatch(getUserDetails()),
-//     }
-// }
 
 export default connect(mapStateToProps)(AuthRoute);
