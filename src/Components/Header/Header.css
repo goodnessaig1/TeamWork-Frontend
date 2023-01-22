@@ -302,8 +302,7 @@ Link {
 
     .center_icon {
         display: block !important;
-        font-size: 26px !important;
-        color: rgba(69, 90, 100, 1);
+        font-size: 33px !important;
     }
 
     .center_container {
@@ -321,17 +320,15 @@ Link {
         margin-left: 0px;
         backdrop-filter: blur(15px);
     }
-    .active_link {
-        border-radius: 50%;
-        padding-bottom: 1.8px;
-        background-color: var(--color-primary);
+    .nav_bar {
+        color: rgb(117, 110, 110);
     }
     h2 {
         font-size: 30px;
         margin-left: 10px;
     }
     .active_link {
-        color: var(--color-primary) !important;
+        color: rgb(134, 134, 255);
     }
 
     .link_btn {
