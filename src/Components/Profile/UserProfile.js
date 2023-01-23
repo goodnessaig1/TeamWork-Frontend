@@ -15,11 +15,11 @@ const UserProfile = ({ userDetail }) => {
     const [profile, setProfile] = useState(null);
     const [coverImg, setCoverImg] = useState(null);
 
-    const handleImgClick = profile => {
+    const handleImgClick = (profile) => {
         setProfile(profile);
     };
 
-    const handleCoverImgClick = profile => {
+    const handleCoverImgClick = (profile) => {
         setCoverImg(profile);
     };
 
@@ -229,10 +229,9 @@ const UserProfile = ({ userDetail }) => {
     );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return {
         userDetail: state.user.userData,
-        Failed: state.user.failed,
     };
 };
 

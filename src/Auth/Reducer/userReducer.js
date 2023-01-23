@@ -60,7 +60,7 @@ export default function (state = initialState, action) {
             return Object.assign({}, state, {
                 RegisterUser: {
                     requesting: false,
-                    error: null,
+                    error: action.payload,
                     success: false,
                 },
             });
@@ -114,10 +114,9 @@ export default function (state = initialState, action) {
             return Object.assign({}, state, {
                 getUserDetails: {
                     requesting: false,
-                    error: null,
+                    error: action.payload,
                     success: false,
                 },
-                failed: action.payload,
             });
 
         //            GET USER PASSWORD
@@ -142,10 +141,9 @@ export default function (state = initialState, action) {
             return Object.assign({}, state, {
                 ChangeUserPassword: {
                     requesting: false,
-                    error: null,
+                    error: action.payload,
                     success: false,
                 },
-                failed: action.payload,
             });
 
         //            GET USER PROFILE PICTURE
@@ -170,10 +168,9 @@ export default function (state = initialState, action) {
             return Object.assign({}, state, {
                 UploadProfilePhoto: {
                     requesting: false,
-                    error: null,
+                    error: action.payload,
                     success: false,
                 },
-                failed: action.payload,
             });
 
         //            GET USER COVER PHOTO
@@ -198,10 +195,9 @@ export default function (state = initialState, action) {
             return Object.assign({}, state, {
                 UploadCoverPhoto: {
                     requesting: false,
-                    error: null,
+                    error: action.payload,
                     success: false,
                 },
-                failed: action.payload,
             });
 
         default:

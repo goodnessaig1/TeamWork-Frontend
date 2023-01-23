@@ -27,7 +27,7 @@ const AuthRoute = ({ component: Component, Failed, userStatus, ...rest }) => {
 const mapStateToProps = (state) => {
     return {
         userStatus: state.user,
-        Failed: state.user?.failed,
+        Failed: state.user?.getUserDetails.error,
     };
 };
 
