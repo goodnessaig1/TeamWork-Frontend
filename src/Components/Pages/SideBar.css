@@ -1,8 +1,9 @@
 .side_bar_container {
-    align-items: center;
     display: flex;
+    margin-left: 5px;
     justify-content: center;
     flex-direction: column;
+    align-items: center;
     z-index: 999;
     position: fixed;
 }
@@ -11,8 +12,8 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width:100%;
-    margin-left: 50px;
+    width: 100%;
+    margin-left: 60px;
     background-color: rgba(255, 255, 255, 1);
     border-radius: 6px 6px 6px 6px;
     padding-bottom: 40px;
@@ -22,7 +23,7 @@
     width: 100%;
     height: 62px;
     border-radius: 7px 7px 0px 0px;
-    background: #7990E1;
+    background: #7990e1;
 }
 
 .side_bar_top > h3 {
@@ -33,7 +34,7 @@
     font-size: 28px;
 }
 
-.menu_items{
+.menu_items {
     padding-top: 10px;
     gap: 0.17rem;
     text-align: left;
@@ -55,7 +56,7 @@
     font-weight: 600;
     color: rgba(0, 0, 0, 1);
 }
-.side_bar_nav{
+.side_bar_nav {
     text-decoration: none;
     color: rgba(137, 138, 141, 1);
 }
@@ -66,7 +67,7 @@
 }
 .active_side_bar {
     color: #7676e8;
-    background: #7990E1;
+    background: #7990e1;
 }
 
 li {
@@ -74,19 +75,26 @@ li {
     text-decoration: none;
     list-style-type: none;
 }
+
+@media screen and (max-width: 1230px) {
+    .side_bar {
+        margin-left: 10px;
+    }
+}
+
 @media screen and (max-width: 1050px) {
     .items {
         width: 170px;
     }
 }
-@media screen and (max-width: 1000px) {
 
+@media screen and (max-width: 1000px) {
     .side_bar {
         width: 78%;
         margin-left: 60px;
     }
 
-    .menu_items{
+    .menu_items {
         padding-top: 15px;
         gap: 0;
         text-align: left;
@@ -108,7 +116,7 @@ li {
     .items {
         margin-left: 15px;
     }
-    .menu_items{
+    .menu_items {
         padding-top: 15px;
         gap: 0;
         margin-right: 10px;
@@ -118,7 +126,6 @@ li {
     .items > h3 {
         font-size: 21px;
         white-space: nowrap;
-
     }
 }
 @media screen and (max-width: 770px) {
@@ -135,7 +142,7 @@ li {
     }
 }
 
-  @media screen and (max-width: 640px) {
+@media screen and (max-width: 640px) {
     .side_bar {
         margin-left: 15px;
     }

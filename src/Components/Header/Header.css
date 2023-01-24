@@ -1,4 +1,4 @@
- .header__container {
+.header__container {
     background-color: var(--header-bg);
     position: fixed;
     height: 85px;
@@ -18,7 +18,7 @@
     flex: 0.9;
     display: flex;
     /* align-items:flex-end; */
-    justify-content:flex-end;
+    justify-content: flex-end;
     margin-right: 20px;
 }
 
@@ -29,11 +29,12 @@
     flex-direction: row;
 }
 
-.left_cont >span {
+.left_cont > span {
     color: var(--color-primary);
     font-weight: 700 bolder;
     font-size: 21px;
-    margin-left: 55px;
+    margin-right: 40px;
+    /* margin-left: 55px; */
 }
 
 .search_bar {
@@ -41,7 +42,7 @@
     flex: 0.59;
     height: 50px;
     flex-direction: row;
-    border: 1.4px solid  var(--color-primary);
+    border: 1.4px solid var(--color-primary);
     border-radius: 8px;
     align-items: center;
 }
@@ -69,8 +70,8 @@ Link {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 1.8rem;
-    justify-content:center;
+    gap: 1.9rem;
+    justify-content: center;
     text-decoration: none !important;
     margin-left: 30px;
     cursor: pointer;
@@ -82,7 +83,7 @@ Link {
 
 .nav_bar_container {
     color: rgba(69, 90, 100, 1);
-    font-size: 21px;
+    font-size: 19px;
     font-weight: 600;
     text-decoration: none;
 }
@@ -91,7 +92,7 @@ Link {
     display: none !important;
 }
 
-.nav_bar_container > span:hover  {
+.nav_bar_container > span:hover {
     color: rgb(128, 157, 170);
     font-size: 22px;
     transition-duration: 0.25s;
@@ -110,16 +111,20 @@ Link {
     text-decoration: none;
 }
 .link_button {
-    width: 170px;
-    height: 50px;
-    background-color: var(--color-primary);
-    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    display: flex;
 }
 
 .link_btn {
+    width: 170px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    background-color: var(--color-primary);
     border-color: transparent;
     font-size: 16px;
     color: rgba(255, 255, 255, 1);
@@ -138,7 +143,7 @@ Link {
     justify-content: center;
 }
 
-.link_button:hover {
+.link_btn:hover {
     background-color: rgb(10, 10, 202);
     transition: ease-in-out 0.2s;
 }
@@ -154,14 +159,14 @@ Link {
 }
 .profile_pic {
     width: 60px;
-    height:62px;
+    height: 62px;
     border-radius: 43%;
 }
 
 /* MEDIA QUERRIES FOR MEDIUM DEVICES */
 
 @media screen and (max-width: 1150px) {
-    .left_cont >span {
+    .left_cont > span {
         margin-left: 5px;
     }
 
@@ -182,10 +187,10 @@ Link {
     }
     .profile_pic {
         width: 47px;
-        height:50px;
+        height: 50px;
         border-radius: 43%;
     }
-    .link_button {
+    .link_btn {
         width: 150px;
         height: 50px;
     }
@@ -203,10 +208,10 @@ Link {
     .search_bar {
         width: 20%;
     }
-    .link_button {
+    .link_btn {
         width: 115px;
     }
-    .left_cont >span {
+    .left_cont > span {
         font-size: 20px;
     }
 }
@@ -226,27 +231,27 @@ Link {
     }
 }
 
-  /*     ======== MEDIA QUERIES (SMALER DEVICES ======= */
+/*     ======== MEDIA QUERIES (SMALER DEVICES ======= */
 
-  @media screen and (max-width: 810px) {
-    .left_cont >span {
+@media screen and (max-width: 810px) {
+    .left_cont > span {
         margin-left: 15px;
     }
     .profile_pic {
         margin-left: 10px;
         width: 38px;
-        height:42px;
+        height: 42px;
         border-radius: 43%;
     }
-  }
-  /*     ======== MEDIA QUERIES (SMALER DEVICES ======= */
+}
+/*     ======== MEDIA QUERIES (SMALER DEVICES ======= */
 
-  @media screen and (max-width: 700px) {
-    .nav_bar_container >span {
+@media screen and (max-width: 700px) {
+    .nav_bar_container > span {
         font-size: 10px;
         margin: 4px;
     }
-    .nav_bar_container > span:hover  {
+    .nav_bar_container > span:hover {
         font-size: 18px;
     }
     .profile_pic {
@@ -255,7 +260,7 @@ Link {
         margin-top: 5px;
         margin-right: 10px;
     }
-    .left_cont >span {
+    .left_cont > span {
         font-size: 15px;
         font-weight: 300;
     }
@@ -270,7 +275,7 @@ Link {
 
 /*     ======== MEDIA QUERIES (SMALL DEVICES ======= */
 
-  @media screen and (max-width: 600px) {
+@media screen and (max-width: 600px) {
     .header__container {
         height: 70px;
         padding-top: 5px;
@@ -294,11 +299,10 @@ Link {
     .nav_bar_container > span {
         display: none;
     }
-    
+
     .center_icon {
         display: block !important;
-        font-size: 26px !important;
-        color: rgba(69, 90, 100, 1);
+        font-size: 33px !important;
     }
 
     .center_container {
@@ -311,51 +315,52 @@ Link {
         transform: translateX(-50%);
         bottom: 0rem;
         display: flex;
-        gap: 4.5rem;
+        justify-content: space-around;
+        /* gap: 4.5rem; */
         margin-left: 0px;
         backdrop-filter: blur(15px);
+    }
+    .nav_bar {
+        color: rgb(117, 110, 110);
     }
     h2 {
         font-size: 30px;
         margin-left: 10px;
     }
     .active_link {
-        color: var(--color-primary) !important;
+        color: rgb(134, 134, 255);
     }
 
     .link_btn {
         padding: 4px 10px;
         font-size: 12px;
-    }
-    .link_button {
         width: 90px;
         height: 42px;
     }
     .profile_pic {
         margin-left: 0px;
         width: 42px;
-        height:45px;
+        height: 45px;
         border-radius: 43%;
     }
-    
-  }
-    
+}
+
 /*     ======== MEDIA QUERIES (SMALER DEVICES ======= */
 @media screen and (max-width: 400px) {
-    .left_cont >span {
+    .left_cont > span {
         margin-left: 0;
     }
-     .profile_pic {
+    .profile_pic {
         width: 28px;
         height: 30px;
         border-radius: 40%;
     }
-    .link_button {
+    .link_btn {
         width: 77px;
         height: 30px;
     }
 }
-  @media screen and (max-width: 350px) {
+@media screen and (max-width: 350px) {
     .header__container {
         height: 45px;
     }
@@ -372,14 +377,11 @@ Link {
         padding: 3px 8px;
         font-size: 12px;
         margin-right: 6px;
-    }
-    .link_button {
         width: 60px;
         height: 30px;
     }
-   
 }
-  @media screen and (max-width: 300px) {
+@media screen and (max-width: 300px) {
     .header__container {
         height: 40px;
     }

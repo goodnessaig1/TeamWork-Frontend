@@ -1,42 +1,47 @@
-import React, { useState } from 'react'
-import "./UserProfile.css"
-import { ChangeUserPassword } from '../../Auth/Actions/userActions'
-import { connect } from 'react-redux'
-import { useHistory } from 'react-router-dom'
-import { StepOne, StepTwo } from './Steps'
+import React, { useState } from 'react';
+import './UserProfile.css';
+import { ChangeUserPassword } from '../../Auth/Actions/userActions';
+import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { StepOne, StepTwo } from './Steps';
 
-
-const ChangePassword = ({ChangeUserPassword})=> {
-    const history = useHistory()
-    const [currentStep, setCurrentStep] = useState(0)
+const ChangePassword = ({ ChangeUserPassword, requesting }) => {
+    const history = useHistory();
+    const [currentStep, setCurrentStep] = useState(0);
     const [data, setData] = useState({
-        previousPassword: "",
-        newPassword: "",
-        confirmPassword: ""
+        previousPassword: '',
+        newPassword: '',
+        confirmPassword: '',
     });
     const makeRequest = async (formData) => {
-        await ChangeUserPassword(formData, history)
-    }
+        await ChangeUserPassword(formData, history);
+    };
 
-    const handleNextStep = async (newData, final = false) =>{
-        setData(prev => ({...prev, ...newData}))
+    const handleNextStep = async (newData, final = false) => {
+        setData((prev) => ({ ...prev, ...newData }));
         if (final) {
-            await makeRequest(newData)
+            await makeRequest(newData);
         }
-        setCurrentStep(prev => prev + 1) 
-    }
+        setCurrentStep((prev) => prev + 1);
+    };
 
     const steps = [
-        <StepOne next={handleNextStep} data={data} />, 
-        <StepTwo next={handleNextStep} data={data}/>
+        <StepOne next={handleNextStep} key={1} data={data} />,
+        <StepTwo
+            next={handleNextStep}
+            key={2}
+            data={data}
+            requesting={requesting}
+        />,
     ];
 
-  return (
-    <div className='change_password'>
-        {steps[currentStep]}
-    </div>
-  );
-}
+    return <div className="change_password">{steps[currentStep]}</div>;
+};
 
+const mapStateToProps = (state) => {
+    return {
+        requesting: state.user.ChangeUserPassword?.requesting,
+    };
+};
 
-export default connect(null, {ChangeUserPassword})(ChangePassword)
+export default connect(mapStateToProps, { ChangeUserPassword })(ChangePassword);

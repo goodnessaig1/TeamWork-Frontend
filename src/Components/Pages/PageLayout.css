@@ -13,15 +13,14 @@
 
 .page_center {
     flex: 1.5;
+    margin: 0 45px 0 0;
 }
 
 .page_left {
     flex: 1.2;
 }
 
-
-  @media screen and (max-width: 600px) {
-
+@media screen and (max-width: 600px) {
     .page_right {
         display: none;
     }
