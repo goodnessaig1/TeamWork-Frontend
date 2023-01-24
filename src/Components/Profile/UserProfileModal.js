@@ -7,7 +7,12 @@ import { UploadProfilePhoto } from '../../Auth/Actions/userActions';
 import { Audio } from 'react-loader-spinner';
 import { toast } from 'react-toastify';
 
-const UserProfileModal = ({ UploadProfilePhoto, setProfile }) => {
+const UserProfileModal = ({
+    UploadProfilePhoto,
+    setProfile,
+    modal,
+    setModal,
+}) => {
     const [preview, setPreview] = useState([]);
 
     const handlePhotoChange = (e, setFieldValue) => {
@@ -21,13 +26,6 @@ const UserProfileModal = ({ UploadProfilePhoto, setProfile }) => {
             };
         }
     };
-
-    const handleClick = (e) => {
-        if (e.target.classList.contains('dismiss')) {
-            setProfile(null);
-        }
-    };
-
     const handleCancle = (e) => {
         if (e.target) {
             setPreview([]);
@@ -35,103 +33,117 @@ const UserProfileModal = ({ UploadProfilePhoto, setProfile }) => {
     };
 
     return (
-        <div className="overlay dismiss" onClick={handleClick}>
-            <div className="modal_container">
-                <div className="upload_profile_right">
-                    <div className="modal_top">
-                        <h3>Upload Profile</h3>
-                        <span className="dismiss button" onClick={handleClick}>
-                            X
-                        </span>
-                    </div>
-                    <hr className="upload_hr" />
-                </div>
-                <Formik
-                    initialValues={{
-                        profile: '',
-                    }}
-                    onSubmit={(values, { setSubmitting }) => {
-                        let formData = new FormData();
-                        formData.append(`profile`, values.profile);
-                        UploadProfilePhoto(formData).then((response) => {
-                            const { data } = response;
-                            if (data.status === 'success') {
-                                toast.success('Successful', {
-                                    position: toast.POSITION.TOP_RIGHT,
-                                });
-                                setProfile(null);
-                            }
-                            setSubmitting(false);
-                        });
-                    }}
-                >
-                    {({ isSubmitting, setFieldValue }) => {
-                        return (
-                            <>
-                                <Form>
-                                    {preview.length === 0 && (
-                                        <div className="upload_center">
-                                            <div className="dropzoneContainer">
-                                                <label className="upload_middle">
-                                                    <AddToPhotos className="icon" />
-                                                    <span>Add Photo</span>
-                                                    <input
-                                                        className="upload_input"
-                                                        name="profile"
-                                                        accept="image/*"
-                                                        type="file"
-                                                        onChange={(e) => {
-                                                            handlePhotoChange(
-                                                                e,
-                                                                setFieldValue
-                                                            );
-                                                        }}
+        <div>
+            {modal && (
+                <div className="overlay">
+                    <div className="modal_container">
+                        <div className="upload_profile_right">
+                            <div className="modal_top">
+                                <h3>Upload Profile</h3>
+                                <span
+                                    className="button"
+                                    onClick={() => setModal(false)}
+                                >
+                                    X
+                                </span>
+                            </div>
+                            <hr className="upload_hr" />
+                        </div>
+                        <Formik
+                            initialValues={{
+                                profile: '',
+                            }}
+                            onSubmit={(values, { setSubmitting }) => {
+                                let formData = new FormData();
+                                formData.append(`profile`, values.profile);
+                                UploadProfilePhoto(formData).then(
+                                    (response) => {
+                                        const { data } = response;
+                                        if (data.status === 'success') {
+                                            toast.success('Successful', {
+                                                position:
+                                                    toast.POSITION.TOP_RIGHT,
+                                            });
+                                            setProfile(null);
+                                        }
+                                        setSubmitting(false);
+                                    }
+                                );
+                            }}
+                        >
+                            {({ isSubmitting, setFieldValue }) => {
+                                return (
+                                    <>
+                                        <Form>
+                                            {preview.length === 0 && (
+                                                <div className="upload_center">
+                                                    <div className="dropzoneContainer">
+                                                        <label className="upload_middle">
+                                                            <AddToPhotos className="icon" />
+                                                            <span>
+                                                                Add Photo
+                                                            </span>
+                                                            <input
+                                                                className="upload_input"
+                                                                name="profile"
+                                                                accept="image/*"
+                                                                type="file"
+                                                                onChange={(
+                                                                    e
+                                                                ) => {
+                                                                    handlePhotoChange(
+                                                                        e,
+                                                                        setFieldValue
+                                                                    );
+                                                                }}
+                                                            />
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            )}
+                                            {preview.length !== 0 && (
+                                                <div className="image">
+                                                    <img
+                                                        src={preview}
+                                                        alt=""
+                                                        className="selected_image"
                                                     />
-                                                </label>
+                                                    <div
+                                                        className="cancel"
+                                                        onClick={handleCancle}
+                                                    >
+                                                        X
+                                                    </div>
+                                                </div>
+                                            )}
+                                            <div className="button_container">
+                                                {!isSubmitting && (
+                                                    <div className="upload_button">
+                                                        <button
+                                                            type="submit"
+                                                            className="submit_btn"
+                                                        >
+                                                            Upload
+                                                        </button>
+                                                    </div>
+                                                )}
+                                                {isSubmitting && (
+                                                    <Audio
+                                                        type="ThreeDots"
+                                                        color="rgba(121, 144, 225, 1)"
+                                                        height={33}
+                                                        width={20}
+                                                    />
+                                                )}
                                             </div>
-                                        </div>
-                                    )}
-                                    {preview.length !== 0 && (
-                                        <div className="image">
-                                            <img
-                                                src={preview}
-                                                alt=""
-                                                className="selected_image"
-                                            />
-                                            <div
-                                                className="cancel"
-                                                onClick={handleCancle}
-                                            >
-                                                X
-                                            </div>
-                                        </div>
-                                    )}
-                                    <div className="button_container">
-                                        {!isSubmitting && (
-                                            <div className="upload_button">
-                                                <button
-                                                    type="submit"
-                                                    className="submit_btn"
-                                                >
-                                                    Upload
-                                                </button>
-                                            </div>
-                                        )}
-                                        {isSubmitting && (
-                                            <Audio
-                                                type="ThreeDots"
-                                                color="rgba(121, 144, 225, 1)"
-                                                height={33}
-                                                width={20}
-                                            />
-                                        )}
-                                    </div>
-                                </Form>
-                            </>
-                        );
-                    }}
-                </Formik>
-            </div>
+                                        </Form>
+                                    </>
+                                );
+                            }}
+                        </Formik>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
