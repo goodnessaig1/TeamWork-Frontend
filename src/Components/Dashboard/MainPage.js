@@ -6,10 +6,16 @@ import { getFeedDetails } from '../../Auth/Actions/feedActions';
 import './DashBoard.css';
 import Unavailiabe from '../../Utils/unavailiable1.png';
 import Feeds from './Feeds';
+import PostArticles from '../Post/postArticles';
+import PostGif from '../Post/postGif';
 
 const MainPage = ({ feeds, user, requesting }) => {
     const [offSet, setOffSet] = useState(0);
     const feedsLength = feeds?.length;
+    const [postArticle, setPostArticle] = useState(null);
+    const [postArticleModal, setPostArticleModal] = useState(false);
+    const [postGif, setPostGif] = useState(null);
+    const [postGifModal, setPostGifModal] = useState(false);
     const dispatch = useDispatch();
     useEffect(() => {
         window.scrollTo({
@@ -19,6 +25,10 @@ const MainPage = ({ feeds, user, requesting }) => {
         });
         dispatch(getFeedDetails(offSet));
     }, []);
+    const handleUploadClick = (e) => {
+        setPostArticle(e);
+        setPostArticleModal(true);
+    };
     return (
         <PageLayout>
             <div className="dashboard_container">
@@ -39,8 +49,9 @@ const MainPage = ({ feeds, user, requesting }) => {
                         )}
                         <input
                             type="text"
-                            placeholder="Share your thoughts..."
                             className="share_input"
+                            placeholder="Share your thoughts..."
+                            onClick={() => handleUploadClick(true)}
                         />
                     </div>
                 </div>
@@ -53,6 +64,29 @@ const MainPage = ({ feeds, user, requesting }) => {
                         setOffSet={setOffSet}
                         requesting={requesting}
                     />
+                </div>
+                <div>
+                    {postArticle && (
+                        <PostArticles
+                            postArticleModal={postArticleModal}
+                            setPostArticleModal={setPostArticleModal}
+                            postArticle={postArticle}
+                            setPostGif={setPostGif}
+                            setPostGifModal={setPostGifModal}
+                            postGif={postGif}
+                            postGifModal={postGifModal}
+                        />
+                    )}
+                </div>
+                <div>
+                    {postGif && (
+                        <PostGif
+                            postGif={postGif}
+                            postGifModal={postGifModal}
+                            setPostGifModal={setPostGifModal}
+                            setPostArticleModal={setPostArticleModal}
+                        />
+                    )}
                 </div>
             </div>
         </PageLayout>
