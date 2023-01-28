@@ -29,7 +29,7 @@ const PostArticlesModal = ({
         <div>
             {postArticleModal && (
                 <div className="overlay">
-                    <div className="modal_containe upload">
+                    <div className="upload">
                         <div className="upload_profile_right">
                             <div className="modal_top create_post">
                                 <h3>Create Post</h3>
@@ -76,7 +76,7 @@ const PostArticlesModal = ({
                             validationSchema={Yup.object({
                                 title: Yup.string()
                                     .required('Required')
-                                    .max(35, 'Title too long'),
+                                    .max(35, 'Please, make the title brief'),
                                 article: Yup.string().required('Required'),
                             })}
                             onSubmit={(values) => {
@@ -127,17 +127,17 @@ const PostArticlesModal = ({
                                                         name="article"
                                                         type="text"
                                                         label="Article"
-                                                        placeholder="article"
+                                                        placeholder={`Share your toughts, ${user.firstName}`}
                                                     />
                                                 </div>
                                             </div>
-                                            <div
-                                                className="add_photo_container"
-                                                onClick={(e) =>
-                                                    handleUploadClick(true)
-                                                }
-                                            >
-                                                <div className="add_photo">
+                                            <div className="add_photo_container">
+                                                <div
+                                                    className="add_photo"
+                                                    onClick={(e) =>
+                                                        handleUploadClick(true)
+                                                    }
+                                                >
                                                     <div className="add__photo">
                                                         Add a photo
                                                         <Collections className="add_photo_icon" />

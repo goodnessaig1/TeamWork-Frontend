@@ -19,10 +19,12 @@ const UserProfile = ({ userDetail }) => {
 
     const handleImgClick = (profile) => {
         setProfile(profile);
+        setModal(true);
     };
 
     const handleCoverImgClick = (profile) => {
         setCoverImg(profile);
+        setCoverModal(true);
     };
 
     return (
@@ -49,10 +51,7 @@ const UserProfile = ({ userDetail }) => {
                                         }
                                         className="cover_icons"
                                     >
-                                        <CameraAltOutlined
-                                            onClick={() => setCoverModal(true)}
-                                            className="cover_icon"
-                                        />
+                                        <CameraAltOutlined className="cover_icon" />
                                     </span>
                                 </div>
                             ) : (
@@ -63,10 +62,7 @@ const UserProfile = ({ userDetail }) => {
                                         }
                                         className="cover_icons unavailiable"
                                     >
-                                        <CameraAltOutlined
-                                            onClick={() => setCoverModal(true)}
-                                            className="cover_icon"
-                                        />
+                                        <CameraAltOutlined className="cover_icon" />
                                     </span>
                                 </div>
                             )}
@@ -85,10 +81,7 @@ const UserProfile = ({ userDetail }) => {
                                         }
                                         className="user_profile_icons"
                                     >
-                                        <CameraAltOutlined
-                                            onClick={() => setModal(true)}
-                                            className="profile_icon"
-                                        />
+                                        <CameraAltOutlined className="profile_icon" />
                                     </span>
                                 </div>
                             ) : (
@@ -104,10 +97,7 @@ const UserProfile = ({ userDetail }) => {
                                         }
                                         className="user_profile_icons"
                                     >
-                                        <CameraAltOutlined
-                                            onClick={() => setModal(true)}
-                                            className="profile_icon"
-                                        />
+                                        <CameraAltOutlined className="profile_icon" />
                                     </span>
                                 </div>
                             )}

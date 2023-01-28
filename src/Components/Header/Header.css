@@ -328,7 +328,8 @@ Link {
         margin-left: 10px;
     }
     .active_link {
-        color: rgb(134, 134, 255);
+        color: rgba(64, 123, 255, 1);
+        /* color: var(--color-primary); */
     }
 
     .link_btn {

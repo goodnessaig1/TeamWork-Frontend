@@ -167,7 +167,7 @@ const PostGifModal = ({
                                             </div>
                                             <div className="posts">
                                                 {!requesting && (
-                                                    <div className="upload_button">
+                                                    <div className="upload_button gif_upload_btn">
                                                         <button
                                                             type="submit"
                                                             className="submit_btn"

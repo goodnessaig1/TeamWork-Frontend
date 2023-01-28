@@ -1,6 +1,5 @@
 .upload_profile_container {
     display: flex;
-    /* position: absolute; */
     flex-direction: row;
     margin-top: 15px;
 }
@@ -106,8 +105,6 @@
     justify-content: center;
     display: flex;
 }
-.category_select {
-}
 
 select::-ms-expand {
     display: none;
@@ -200,4 +197,43 @@ select::-ms-expand {
 .create_post {
     margin-left: 30px;
     gap: 2rem;
+}
+
+@media screen and (max-width: 820px) {
+    .upload {
+        width: 415px;
+        height: 450px;
+    }
+    .post_input {
+        width: 380px;
+        height: 32px;
+    }
+    .add_photo {
+        margin: 0px;
+        height: 45px;
+        width: 170px;
+        border: 1px dashed #ced4d9;
+        margin-top: 10px;
+        margin-right: 13px;
+    }
+    .posts > div {
+        width: 390px;
+    }
+
+    .gif_dropzone_container {
+        width: 380px;
+        height: 180px;
+        background-color: rgb(255, 255, 248);
+    }
+
+    .selected_gif {
+        width: 380px;
+        height: 170px;
+    }
+    .gif_upload_btn {
+        margin: 5px;
+    }
+    .toggle_modals {
+        right: 11%;
+    }
 }
