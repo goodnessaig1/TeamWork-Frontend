@@ -17,14 +17,18 @@ const MainPage = ({ feeds, user, requesting }) => {
     const [postGif, setPostGif] = useState(null);
     const [postGifModal, setPostGifModal] = useState(false);
     const dispatch = useDispatch();
+    const [data, setData] = useState();
     useEffect(() => {
         window.scrollTo({
             top: 0,
             left: 0,
             behavior: 'smooth',
         });
-        dispatch(getFeedDetails(offSet));
+        dispatch(getFeedDetails(offSet)).then((res) => {
+            setData(res.data.data);
+        });
     }, []);
+
     const handleUploadClick = (e) => {
         setPostArticle(e);
         setPostArticleModal(true);
@@ -58,7 +62,10 @@ const MainPage = ({ feeds, user, requesting }) => {
                 {/*========    MAIN FEEDS ===========*/}
                 <div>
                     <Feeds
-                        feeds={feeds}
+                        feeds={data}
+                        setData={setData}
+                        setPostArticle={setPostArticle}
+                        setPostArticleModal={setPostArticleModal}
                         offSet={offSet}
                         feedsLength={feedsLength}
                         setOffSet={setOffSet}

@@ -25,7 +25,7 @@ export const getAllFeedsFailure = (error) => {
 
 export function getFeedDetails(offset) {
     return (dispatch) => {
-        const promise = apiRequest('GET', `v1/feeds?limit=5&offset=${offset}`);
+        const promise = apiRequest('GET', `v1/feeds?limit=10&offset=${offset}`);
         dispatch(getAllFeedsRequest());
         promise.then(
             function (payload) {
