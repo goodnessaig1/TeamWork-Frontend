@@ -23,7 +23,7 @@ const Feeds = ({
 }) => {
     const dispatch = useDispatch();
     const [hasMore, setHasMore] = useState(true);
-    const fetchMoreData = async () => {
+    const fetchMoreData = () => {
         if (feedsLength >= 10) {
             setTimeout(() => {
                 setOffSet(offSet + 10);
