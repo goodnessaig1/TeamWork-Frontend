@@ -27,4 +27,12 @@
     .page_left {
         display: none;
     }
+    .page_center {
+        margin: 0;
+    }
+}
+@media screen and (max-width: 380px) {
+    .page_layout_container {
+        padding-top: 8px;
+    }
 }

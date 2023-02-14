@@ -358,25 +358,31 @@ Link {
         height: 30px;
     }
 }
-@media screen and (max-width: 350px) {
+@media screen and (max-width: 380px) {
     .header__container {
-        height: 45px;
+        height: 40px;
     }
     .content {
-        height: 50px;
+        height: 45px;
     }
     .right_container {
-        padding-right: 7px;
+        padding-right: 0px;
     }
     h2 {
         font-size: 22px;
     }
     .link_btn {
-        padding: 3px 8px;
-        font-size: 12px;
-        margin-right: 6px;
-        width: 60px;
-        height: 30px;
+        padding: 3px 5px;
+        font-size: 10px;
+        margin-right: 4px;
+        width: 55px;
+        height: 26px;
+    }
+    .center_container {
+        height: 55px;
+    }
+    .center_icon {
+        font-size: 27px !important;
     }
 }
 @media screen and (max-width: 300px) {

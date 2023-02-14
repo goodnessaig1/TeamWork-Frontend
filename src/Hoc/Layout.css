@@ -13,3 +13,8 @@
         padding-top: 64px;
     }
 }
+@media screen and (max-width: 380px) {
+    .page_container {
+        padding-top: 50px;
+    }
+}
