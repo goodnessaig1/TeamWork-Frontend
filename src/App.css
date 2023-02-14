@@ -61,6 +61,6 @@ body {
 
 @media screen and (max-width: 680px) {
     .routes {
-        padding-top: 45px;
+        padding-top: 0px;
     }
 }

@@ -21,7 +21,9 @@ const Header = ({ LogoutUser, userStatus }) => {
                 <div className="left">
                     <div className="left_cont">
                         <span>
-                            <h2>STAFFCONN</h2>
+                            <h2>
+                                S<span>TAFFCONN</span>
+                            </h2>
                         </span>
                     </div>
                 </div>

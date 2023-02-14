@@ -278,22 +278,17 @@ Link {
 @media screen and (max-width: 600px) {
     .header__container {
         height: 70px;
-        padding-top: 5px;
+        display: flex;
+        padding-top: 3px;
     }
     .content {
         height: 65px;
-    }
-    .center {
-        flex: 2;
-    }
-    .right {
-        flex: 1;
     }
     .search_bar {
         display: none;
     }
     .profile_pic {
-        margin-right: -5px;
+        margin-right: 0px;
     }
 
     .nav_bar_container > span {
@@ -324,22 +319,24 @@ Link {
         color: rgb(117, 110, 110);
     }
     h2 {
-        font-size: 30px;
+        font-size: 25px;
         margin-left: 10px;
+    }
+    h2 > span {
+        text-transform: lowercase;
     }
     .active_link {
         color: rgba(64, 123, 255, 1);
-        /* color: var(--color-primary); */
     }
 
     .link_btn {
         padding: 4px 10px;
-        font-size: 12px;
-        width: 90px;
+        font-size: 10px;
+        width: 60px;
         height: 42px;
     }
     .profile_pic {
-        margin-left: 0px;
+        margin-left: 75px;
         width: 42px;
         height: 45px;
         border-radius: 43%;
@@ -357,7 +354,7 @@ Link {
         border-radius: 40%;
     }
     .link_btn {
-        width: 77px;
+        width: 60px;
         height: 30px;
     }
 }

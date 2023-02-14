@@ -237,3 +237,65 @@ select::-ms-expand {
         right: 11%;
     }
 }
+@media screen and (max-width: 450px) {
+    .upload {
+        width: 350px;
+        margin-right: 10px;
+        height: 435px;
+    }
+
+    .profile___image {
+        width: 55px;
+        height: 55px;
+    }
+
+    .user__name > div > h4 {
+        font-size: 15px;
+    }
+    .user__name > div > span {
+        font-size: 13px;
+    }
+
+    .post_inputs {
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+        line-height: 20%;
+        padding: 10px;
+    }
+    .post_input {
+        width: 323px;
+    }
+
+    .post_input_container {
+        border-color: brown bold;
+        border: 1px dashed #ced4d9;
+        background-color: #fff;
+    }
+    .add_photo {
+        height: 45px;
+        width: 160px;
+        margin-top: 10px;
+    }
+    .posts > div {
+        width: 330px;
+    }
+    .posts {
+        margin: 0;
+    }
+    .gif_dropzone_container {
+        width: 380px;
+        height: 162px;
+    }
+
+    .selected_gif {
+        width: 310px;
+        height: 165px;
+    }
+    .gif_upload_btn {
+        margin: 5px;
+    }
+    .toggle_modals {
+        right: 15%;
+    }
+}

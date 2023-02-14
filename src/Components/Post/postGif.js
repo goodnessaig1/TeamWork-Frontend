@@ -4,7 +4,7 @@ import './Post.css';
 import { Formik, Form } from 'formik';
 import { AddToPhotos } from '@material-ui/icons';
 import { connect } from 'react-redux';
-import { Audio } from 'react-loader-spinner';
+import { ProgressBar } from 'react-loader-spinner';
 import * as Yup from 'yup';
 import Unavailiabe from '../../Utils/unavailiable1.png';
 import { TextInput } from '../../Utils/FormLib';
@@ -178,11 +178,13 @@ const PostGifModal = ({
                                                 )}
                                                 {requesting && (
                                                     <div className="audio_btn">
-                                                        <Audio
-                                                            type="ThreeDots"
-                                                            color="rgba(121, 144, 225, 1)"
-                                                            height={35}
-                                                            width={30}
+                                                        <ProgressBar
+                                                            height="55"
+                                                            width="60"
+                                                            ariaLabel="progress-bar-loading"
+                                                            wrapperClass="progress-bar-wrapper"
+                                                            borderColor="blue"
+                                                            barColor="rgba(121, 144, 225, 1)"
                                                         />
                                                     </div>
                                                 )}
