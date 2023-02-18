@@ -277,33 +277,27 @@ Link {
 
 @media screen and (max-width: 600px) {
     .header__container {
-        height: 70px;
-        display: flex;
-        padding-top: 3px;
+        height: 45px;
     }
     .content {
-        height: 65px;
+        height: 45px;
     }
     .search_bar {
         display: none;
     }
-    .profile_pic {
-        margin-right: 0px;
-    }
-
     .nav_bar_container > span {
         display: none;
     }
 
     .center_icon {
         display: block !important;
-        font-size: 33px !important;
+        font-size: 30px !important;
     }
 
     .center_container {
         width: 100%;
         background-color: white;
-        height: 70px;
+        height: 60px;
         display: block;
         position: fixed;
         left: 50%;
@@ -311,7 +305,6 @@ Link {
         bottom: 0rem;
         display: flex;
         justify-content: space-around;
-        /* gap: 4.5rem; */
         margin-left: 0px;
         backdrop-filter: blur(15px);
     }
@@ -320,7 +313,7 @@ Link {
     }
     h2 {
         font-size: 25px;
-        margin-left: 10px;
+        margin-left: 30px;
     }
     h2 > span {
         text-transform: lowercase;
@@ -330,77 +323,36 @@ Link {
     }
 
     .link_btn {
-        padding: 4px 10px;
-        font-size: 10px;
-        width: 60px;
-        height: 42px;
+        font-size: 8px;
+        width: 50px;
+        height: 28px;
     }
     .profile_pic {
-        margin-left: 75px;
-        width: 42px;
-        height: 45px;
-        border-radius: 43%;
+        width: 28px;
+        height: 28px;
+        border-radius: 40%;
+    }
+    .middle {
+        margin-right: 0;
+    }
+    .right {
+        margin-left: 0;
+        /* flex: 0.6; */
     }
 }
 
 /*     ======== MEDIA QUERIES (SMALER DEVICES ======= */
-@media screen and (max-width: 400px) {
-    .left_cont > span {
+@media screen and (max-width: 550px) {
+    h2 {
         margin-left: 0;
     }
-    .profile_pic {
-        width: 28px;
-        height: 30px;
-        border-radius: 40%;
-    }
-    .link_btn {
-        width: 60px;
-        height: 30px;
-    }
 }
-@media screen and (max-width: 380px) {
-    .header__container {
-        height: 40px;
+@media screen and (max-width: 515px) {
+    .left {
+        margin-right: 30px;
+        flex: 2;
     }
-    .content {
-        height: 45px;
-    }
-    .right_container {
-        padding-right: 0px;
-    }
-    h2 {
-        font-size: 22px;
-    }
-    .link_btn {
-        padding: 3px 5px;
-        font-size: 10px;
-        margin-right: 4px;
-        width: 55px;
-        height: 26px;
-    }
-    .center_container {
-        height: 55px;
-    }
-    .center_icon {
-        font-size: 27px !important;
-    }
-}
-@media screen and (max-width: 300px) {
-    .header__container {
-        height: 40px;
-    }
-    .content {
-        height: 45px;
-    }
-    .center_container {
-        gap: 3.2rem;
-        margin-left: 0px;
-    }
-    h2 {
-        font-size: 15px;
-    }
-    .link_btn {
-        font-size: 8px;
-        margin-right: 6px;
+    .left_cont > span {
+        margin-left: 12px;
     }
 }

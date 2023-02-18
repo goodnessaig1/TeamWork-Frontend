@@ -87,8 +87,11 @@ const Login = ({ LoginUser }) => {
                         </Form>
                     )}
                 </Formik>
-                <div className="signup_container">
-                    <Link to="/create-user" className="text_link">
+                <div>
+                    <Link
+                        to="/create-user"
+                        className="signup_container text_link"
+                    >
                         New user? Sign in
                     </Link>
                 </div>
