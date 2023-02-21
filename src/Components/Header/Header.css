@@ -17,7 +17,6 @@
 .left {
     flex: 0.9;
     display: flex;
-    /* align-items:flex-end; */
     justify-content: flex-end;
     margin-right: 20px;
 }
@@ -34,7 +33,6 @@
     font-weight: 700 bolder;
     font-size: 21px;
     margin-right: 40px;
-    /* margin-left: 55px; */
 }
 
 .search_bar {
@@ -110,6 +108,9 @@ Link {
 .right_container {
     text-decoration: none;
 }
+.menu_bar {
+    display: none;
+}
 .link_button {
     display: flex;
     flex-direction: column;
@@ -143,6 +144,9 @@ Link {
     justify-content: center;
 }
 
+.middle > img {
+    display: none;
+}
 .link_btn:hover {
     background-color: rgb(10, 10, 202);
     transition: ease-in-out 0.2s;
@@ -277,10 +281,17 @@ Link {
 
 @media screen and (max-width: 600px) {
     .header__container {
-        height: 45px;
+        height: 50px;
     }
     .content {
-        height: 45px;
+        height: 50px;
+    }
+    .menu_bar {
+        margin-top: 3px;
+        display: block;
+    }
+    .right_container {
+        display: none;
     }
     .search_bar {
         display: none;
@@ -288,7 +299,15 @@ Link {
     .nav_bar_container > span {
         display: none;
     }
-
+    .middle > img {
+        display: block;
+        width: 20px;
+        height: 20px;
+    }
+    .search_input > img {
+        width: 20px;
+        height: 20px;
+    }
     .center_icon {
         display: block !important;
         font-size: 30px !important;
@@ -327,17 +346,39 @@ Link {
         width: 50px;
         height: 28px;
     }
+
     .profile_pic {
-        width: 28px;
-        height: 28px;
-        border-radius: 40%;
+        display: none;
+    }
+    .search_input > input {
+        width: 260px;
+        margin-left: 10px;
+        font-size: 18px;
+        margin-bottom: 2px;
+    }
+    .search_input_container {
+        margin-top: 4px;
+        display: flex;
+        margin-right: 35px;
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+    }
+    .search_input {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: 40px;
+        width: 330px;
+        border-radius: 20px;
+        border: 1.8px solid #ced4d9;
     }
     .middle {
         margin-right: 0;
     }
     .right {
         margin-left: 0;
-        /* flex: 0.6; */
+        flex: 0.45;
     }
 }
 

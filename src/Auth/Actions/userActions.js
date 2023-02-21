@@ -176,8 +176,8 @@ export function LoginUser(credentials, history, setFieldError, setSubmitting) {
                     dispatch(loginUserSuccess(data));
                     history.push('/dashboard');
                     setSubmitting(false);
+                    window.location.reload(true);
                 }
-                window.location.reload(true);
             },
             function (error) {
                 const errorMsg = error;

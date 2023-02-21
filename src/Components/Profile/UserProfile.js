@@ -139,6 +139,7 @@ const UserProfile = ({ userDetail }) => {
                                 </div>
                             ) : null}
                         </div>
+                        <hr className="user_name_hr" />
                         {userDetail && userDetail ? (
                             <div className="other_details">
                                 <div className="profile_item">

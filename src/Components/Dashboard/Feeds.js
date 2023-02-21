@@ -21,6 +21,7 @@ const Feeds = ({
     feedsLength,
     requesting,
 }) => {
+    // console.log(feeds);
     const dispatch = useDispatch();
     const [hasMore, setHasMore] = useState(true);
     const fetchMoreData = () => {
@@ -29,7 +30,7 @@ const Feeds = ({
                 setOffSet(offSet + 10);
                 const newOffset = offSet + 10;
                 dispatch(getFeedDetails(newOffset)).then((res) => {
-                    setData([...feeds, ...res.data.data]);
+                    setData(feeds.concat(res.data.data));
                 });
             }, 3000);
         } else {
@@ -40,7 +41,6 @@ const Feeds = ({
         setPostArticle(e);
         setPostArticleModal(true);
     };
-    // console.log(feeds);
 
     return (
         <div>
@@ -373,7 +373,7 @@ const Feeds = ({
                     </InfiniteScroll>
                 </div>
             )}
-            {requesting && (
+            {offSet === 0 && requesting && (
                 <div className="loading_container">
                     <ColorRing
                         height="80"

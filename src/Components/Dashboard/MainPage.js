@@ -28,7 +28,6 @@ const MainPage = ({ feeds, user, requesting }) => {
             setData(res.data.data);
         });
     }, []);
-
     const handleUploadClick = (e) => {
         setPostArticle(e);
         setPostArticleModal(true);
@@ -75,6 +74,8 @@ const MainPage = ({ feeds, user, requesting }) => {
                 <div>
                     {postArticle && (
                         <PostArticles
+                            feeds={data}
+                            setData={setData}
                             postArticleModal={postArticleModal}
                             setPostArticleModal={setPostArticleModal}
                             postArticle={postArticle}
@@ -88,6 +89,8 @@ const MainPage = ({ feeds, user, requesting }) => {
                 <div>
                     {postGif && (
                         <PostGif
+                            feeds={data}
+                            setData={setData}
                             postGif={postGif}
                             postGifModal={postGifModal}
                             setPostGifModal={setPostGifModal}

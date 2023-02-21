@@ -18,6 +18,8 @@ const PostArticlesModal = ({
     PostArticles,
     requesting,
     setPostGif,
+    feeds,
+    setData,
     setPostGifModal,
 }) => {
     const handleUploadClick = (e) => {
@@ -83,6 +85,12 @@ const PostArticlesModal = ({
                                 PostArticles(values).then((response) => {
                                     const { data } = response;
                                     if (data.status === 'success') {
+                                        const newData = data?.data;
+                                        const newArray = [].concat(
+                                            newData,
+                                            feeds
+                                        );
+                                        setData(newArray);
                                         toast.success('Successful', {
                                             position: toast.POSITION.TOP_RIGHT,
                                         });

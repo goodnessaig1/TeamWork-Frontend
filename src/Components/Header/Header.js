@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     Home,
     AddAPhoto,
     NotificationsNone,
     AccountCircle,
+    KeyboardBackspaceRounded,
 } from '@material-ui/icons';
 import { Link, NavLink, useHistory } from 'react-router-dom';
 import './Header.css';
@@ -11,22 +12,41 @@ import { connect } from 'react-redux';
 import { LogoutUser } from '../../Auth/Actions/userActions';
 import Search from '../../Components/Assets/Vectorsearch.png';
 import PropTypes from 'prop-types';
+import SideDrawer from '../Pages/SideDrawer';
 
 const Header = ({ LogoutUser, userStatus }) => {
     const history = useHistory();
+    const [click, setClick] = useState(false);
 
     return (
         <div className="header__container">
             <div className="content">
                 <div className="left">
                     <div className="left_cont">
-                        <span>
-                            <h2>
-                                S<span>TAFFCONN</span>
-                            </h2>
-                        </span>
+                        {!click && (
+                            <span>
+                                <h2>
+                                    S<span>TAFFCONN</span>
+                                </h2>
+                            </span>
+                        )}
                     </div>
                 </div>
+                {click && (
+                    <div className="search_input_container">
+                        <div onClick={() => setClick(false)}>
+                            <KeyboardBackspaceRounded />
+                        </div>
+                        <div className="search_input">
+                            <input type="text" placeholder="Search" />
+                            <img
+                                src={Search}
+                                alt=""
+                                className="search_bar_img"
+                            />
+                        </div>
+                    </div>
+                )}
                 {userStatus && userStatus ? (
                     <div className="search_bar">
                         <img src={Search} alt="" className="search_bar_img" />
@@ -84,6 +104,14 @@ const Header = ({ LogoutUser, userStatus }) => {
                     </div>
                 </div>
                 <div className="middle">
+                    {!click && (
+                        <img
+                            src={Search}
+                            alt=""
+                            className="search_bar_img"
+                            onClick={() => setClick(true)}
+                        />
+                    )}
                     <div className="middle_container">
                         {userStatus && userStatus.profile !== null ? (
                             <div className="profile_pix">
@@ -114,6 +142,11 @@ const Header = ({ LogoutUser, userStatus }) => {
                             )}
                         </div>
                     </div>
+                    {!click && (
+                        <div className="menu_bar">
+                            <SideDrawer />
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
