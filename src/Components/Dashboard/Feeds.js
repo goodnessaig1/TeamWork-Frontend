@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import Like from '../Assets/like.png';
 import isLike from '../Assets/liked.png';
 import moment from 'moment';
@@ -22,7 +22,6 @@ const Feeds = ({
     requesting,
 }) => {
     let pageYOffset = window.pageYOffset;
-    // console.log(feeds);
     const dispatch = useDispatch();
     const [hasMore, setHasMore] = useState(true);
     const fetchMoreData = () => {
@@ -31,17 +30,17 @@ const Feeds = ({
                 setOffSet(offSet + 10);
                 const newOffset = offSet + 10;
                 dispatch(getFeedDetails(newOffset)).then((res) => {
-                    pageYOffset = window.pageYOffset;
                     setData(feeds.concat(res.data.data));
+                    pageYOffset = window.pageYOffset;
                 });
             }, 3000);
         } else {
             setHasMore(false);
         }
     };
-    // console.log(pageYOffset);
-    React.useLayoutEffect(() => {
+    useLayoutEffect(() => {
         window.scroll({ top: pageYOffset });
+        // console.log(pageYOffset);
     }, [feeds]);
     const handleUploadClick = (e) => {
         setPostArticle(e);
