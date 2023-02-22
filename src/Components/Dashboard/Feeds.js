@@ -21,6 +21,7 @@ const Feeds = ({
     feedsLength,
     requesting,
 }) => {
+    let pageYOffset = window.pageYOffset;
     // console.log(feeds);
     const dispatch = useDispatch();
     const [hasMore, setHasMore] = useState(true);
@@ -30,6 +31,7 @@ const Feeds = ({
                 setOffSet(offSet + 10);
                 const newOffset = offSet + 10;
                 dispatch(getFeedDetails(newOffset)).then((res) => {
+                    pageYOffset = window.pageYOffset;
                     setData(feeds.concat(res.data.data));
                 });
             }, 3000);
@@ -37,6 +39,10 @@ const Feeds = ({
             setHasMore(false);
         }
     };
+    // console.log(pageYOffset);
+    React.useLayoutEffect(() => {
+        window.scroll({ top: pageYOffset });
+    }, [feeds]);
     const handleUploadClick = (e) => {
         setPostArticle(e);
         setPostArticleModal(true);
