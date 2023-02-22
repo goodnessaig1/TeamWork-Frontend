@@ -32,6 +32,7 @@ const Feeds = ({
                 dispatch(getFeedDetails(newOffset)).then((res) => {
                     setData(feeds.concat(res.data.data));
                     pageYOffset = window.pageYOffset;
+                    window.scroll({ top: pageYOffset });
                 });
             }, 3000);
         } else {

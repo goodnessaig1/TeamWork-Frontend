@@ -181,6 +181,7 @@ export function LoginUser(credentials, history, setFieldError, setSubmitting) {
             },
             function (error) {
                 const errorMsg = error;
+                // console.log(error);
                 dispatch(loginUserFailure(errorMsg));
             }
         );
