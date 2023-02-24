@@ -31,8 +31,11 @@ const Feeds = ({
             setTimeout(() => {
                 setOffSet(offSet + 10);
                 const newOffset = offSet + 10;
-                dispatch(getFeedDetails(newOffset));
-                setData(feeds.concat(data));
+                dispatch(getFeedDetails(newOffset)).then((res) => {
+                    setTimeout(() => {
+                        setData(feeds.concat(res.data.data));
+                    }, 800);
+                });
             }, 3000);
         } else {
             setHasMore(false);
