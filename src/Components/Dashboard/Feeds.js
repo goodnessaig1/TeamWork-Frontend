@@ -32,9 +32,9 @@ const Feeds = ({
                 setOffSet(offSet + 10);
                 const newOffset = offSet + 10;
                 dispatch(getFeedDetails(newOffset)).then((res) => {
-                    setTimeout(() => {
-                        setData(feeds.concat(res.data.data));
-                    }, 1000);
+                    // setTimeout(() => {
+                    setData(feeds.concat(Array.from(res.data.data)));
+                    // }, 1000);
                 });
             }, 3000);
         } else {
@@ -402,8 +402,6 @@ const Feeds = ({
 const mapStateToProps = (state) => {
     return {
         data: state.feeds.allFeeds,
-        user: state.user.userData,
-        requesting: state.feeds.getFeedDetails?.requesting,
     };
 };
 
