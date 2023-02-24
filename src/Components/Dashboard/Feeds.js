@@ -26,23 +26,23 @@ const Feeds = ({
     const [hasMore, setHasMore] = useState(true);
     const fetchMoreData = () => {
         if (feedsLength >= 10) {
-            pageYOffset = window.pageYOffset;
             setTimeout(() => {
+                pageYOffset = window.pageYOffset;
                 setOffSet(offSet + 10);
                 const newOffset = offSet + 10;
                 dispatch(getFeedDetails(newOffset)).then((res) => {
                     setData(feeds.concat(res.data.data));
                 });
-                // setTimeout(() => {
-                window.scrollTo({
-                    top: pageYOffset,
-                    left: 0,
-                    behavior: 'smooth',
-                });
-                // }, 2000);
+                setTimeout(() => {
+                    window.scrollTo({
+                        top: pageYOffset,
+                        left: 0,
+                        behavior: 'smooth',
+                    });
+                }, 1200);
                 // window.scroll({ top: pageYOffset });
+                console.log(pageYOffset);
             }, 2800);
-            console.log(pageYOffset);
         } else {
             setHasMore(false);
         }
