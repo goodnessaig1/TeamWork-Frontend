@@ -26,8 +26,8 @@ const Feeds = ({
     const [hasMore, setHasMore] = useState(true);
     const fetchMoreData = () => {
         if (feedsLength >= 10) {
+            pageYOffset = window.pageYOffset + 400;
             setTimeout(() => {
-                pageYOffset = window.pageYOffset;
                 setOffSet(offSet + 10);
                 const newOffset = offSet + 10;
                 dispatch(getFeedDetails(newOffset)).then((res) => {
@@ -39,10 +39,10 @@ const Feeds = ({
                         left: 0,
                         behavior: 'smooth',
                     });
-                }, 1200);
+                }, 800);
                 // window.scroll({ top: pageYOffset });
-                console.log(pageYOffset);
             }, 2800);
+            console.log(pageYOffset);
         } else {
             setHasMore(false);
         }
