@@ -34,7 +34,7 @@ const Feeds = ({
                 dispatch(getFeedDetails(newOffset)).then((res) => {
                     setTimeout(() => {
                         setData(feeds.concat(res.data.data));
-                    }, 800);
+                    }, 1000);
                 });
             }, 3000);
         } else {
