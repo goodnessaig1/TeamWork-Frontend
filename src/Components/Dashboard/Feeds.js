@@ -39,7 +39,7 @@ const Feeds = ({
                         left: 0,
                         behavior: 'smooth',
                     });
-                }, 800);
+                }, 1000);
                 // window.scroll({ top: pageYOffset });
             }, 2800);
             console.log(pageYOffset);
