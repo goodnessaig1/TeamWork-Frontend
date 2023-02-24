@@ -10,8 +10,10 @@ import Unavailiabe from '../../Utils/unavailiable1.png';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { getFeedDetails } from '../../Auth/Actions/feedActions';
 import { useDispatch } from 'react-redux';
+import { connect } from 'react-redux';
 
 const Feeds = ({
+    data,
     feeds,
     setData,
     setPostArticle,
@@ -21,6 +23,7 @@ const Feeds = ({
     feedsLength,
     requesting,
 }) => {
+    // console.log(data);
     const dispatch = useDispatch();
     const [hasMore, setHasMore] = useState(true);
     const fetchMoreData = () => {
@@ -28,13 +31,8 @@ const Feeds = ({
             setTimeout(() => {
                 setOffSet(offSet + 10);
                 const newOffset = offSet + 10;
-                dispatch(getFeedDetails(newOffset)).then((res) => {
-                    // setData(feeds.concat(res.data.data));
-                    const newData = res.data.data;
-                    const newArray = [].concat(feeds, newData);
-                    setData(newArray);
-                    // console.log(feeds);
-                });
+                dispatch(getFeedDetails(newOffset));
+                setData(feeds.concat(data));
             }, 3000);
         } else {
             setHasMore(false);
@@ -397,4 +395,13 @@ const Feeds = ({
     );
 };
 
-export default Feeds;
+// export default Feeds;
+const mapStateToProps = (state) => {
+    return {
+        data: state.feeds.allFeeds,
+        user: state.user.userData,
+        requesting: state.feeds.getFeedDetails?.requesting,
+    };
+};
+
+export default connect(mapStateToProps)(Feeds);
