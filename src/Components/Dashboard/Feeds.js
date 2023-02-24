@@ -21,7 +21,6 @@ const Feeds = ({
     feedsLength,
     requesting,
 }) => {
-    let pageYOffset = window.pageYOffset;
     const dispatch = useDispatch();
     const [hasMore, setHasMore] = useState(true);
     const fetchMoreData = () => {
@@ -30,19 +29,17 @@ const Feeds = ({
                 setOffSet(offSet + 10);
                 const newOffset = offSet + 10;
                 dispatch(getFeedDetails(newOffset)).then((res) => {
-                    setData(feeds.concat(res.data.data));
-                    pageYOffset = window.pageYOffset;
-                    window.scroll({ top: pageYOffset });
+                    // setData(feeds.concat(res.data.data));
+                    const newData = res.data.data;
+                    const newArray = [].concat(feeds, newData);
+                    setData(newArray);
+                    // console.log(feeds);
                 });
             }, 3000);
         } else {
             setHasMore(false);
         }
     };
-    useLayoutEffect(() => {
-        window.scroll({ top: pageYOffset });
-        // console.log(pageYOffset);
-    }, [feeds]);
     const handleUploadClick = (e) => {
         setPostArticle(e);
         setPostArticleModal(true);

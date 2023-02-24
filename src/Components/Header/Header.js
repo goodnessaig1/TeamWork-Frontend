@@ -5,6 +5,12 @@ import {
     NotificationsNone,
     AccountCircle,
     KeyboardBackspaceRounded,
+    Menu,
+    HomeOutlined,
+    AddPhotoAlternateOutlined,
+    AddAPhotoOutlined,
+    NotificationsOutlined,
+    AccountCircleOutlined,
 } from '@material-ui/icons';
 import { Link, NavLink, useHistory } from 'react-router-dom';
 import './Header.css';
@@ -17,6 +23,7 @@ import SideDrawer from '../Pages/SideDrawer';
 const Header = ({ LogoutUser, userStatus }) => {
     const history = useHistory();
     const [click, setClick] = useState(false);
+    const [open, setOpen] = useState(false);
 
     return (
         <div className="header__container">
@@ -112,6 +119,7 @@ const Header = ({ LogoutUser, userStatus }) => {
                             onClick={() => setClick(true)}
                         />
                     )}
+
                     <div className="middle_container">
                         {userStatus && userStatus.profile !== null ? (
                             <div className="profile_pix">
@@ -142,11 +150,17 @@ const Header = ({ LogoutUser, userStatus }) => {
                             )}
                         </div>
                     </div>
-                    {!click && (
-                        <div className="menu_bar">
-                            <SideDrawer />
-                        </div>
-                    )}
+                    {/* {!click && ( */}
+                    <div className="menu_bar">
+                        {!open && (
+                            <Menu
+                                className="menu__bar"
+                                onClick={() => setOpen(true)}
+                            />
+                        )}
+                        <SideDrawer open={open} setOpen={setOpen} />
+                    </div>
+                    {/* )} */}
                 </div>
             </div>
         </div>

@@ -25,7 +25,7 @@ export default function (state = initialState, action) {
                     error: null,
                     success: true,
                 },
-                success: action.payload,
+                gif: action.payload,
             });
 
         case types.POST_GIF_FAILURE:

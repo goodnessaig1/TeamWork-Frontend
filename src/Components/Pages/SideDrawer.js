@@ -24,91 +24,114 @@ import {
 } from '@material-ui/core';
 import { LogoutUser } from '../../Auth/Actions/userActions';
 
-const SideDrawer = ({ LogoutUser, userStatus }) => {
+const SideDrawer = ({ LogoutUser, userStatus, open, setOpen }) => {
     const history = useHistory();
-    const [open, setOpen] = useState(false);
-    const getList = () => (
-        <div style={{ width: 250 }} onClick={() => setOpen(false)}>
-            <List>
-                <ListItem button component={Link} to="/dashboard">
-                    <ListItemIcon>
-                        <HomeOutlined />
-                    </ListItemIcon>
-                    <ListItemText primary="Home" />
-                </ListItem>
-                <ListItem button component={Link} to="/upload">
-                    <ListItemIcon>
-                        <AddAPhotoOutlined />
-                    </ListItemIcon>
-                    <ListItemText primary="Upload" />
-                </ListItem>
-                <ListItem button component={Link} to="/notifications">
-                    <ListItemIcon>
-                        <NotificationsOutlined />
-                    </ListItemIcon>
-                    <ListItemText primary="Notification" />
-                </ListItem>
-                <ListItem button component={Link} to="/profile">
-                    <ListItemIcon>
-                        <AccountCircleOutlined />
-                    </ListItemIcon>
-                    <ListItemText primary="Profile" />
-                </ListItem>
-                {userStatus && userStatus.isAdmin ? (
-                    <div>
-                        <ListItem button>
-                            <ListItemIcon>
-                                <SupervisorAccountOutlined />
-                            </ListItemIcon>
-                            <ListItemText primary="Admin" />
-                        </ListItem>
-                        <ListItem button component={Link} to="/category">
-                            <ListItemIcon>
-                                <AddOutlined />
-                            </ListItemIcon>
-                            <ListItemText primary="Add Category" />
-                        </ListItem>
-                        <ListItem button component={Link} to="/create_admin">
-                            <ListItemIcon>
-                                <CreateNewFolderOutlined />
-                            </ListItemIcon>
-                            <ListItemText primary="Create Admin" />
-                        </ListItem>
-                        <ListItem button component={Link} to="/manage_users">
-                            <ListItemIcon>
-                                <VerifiedUserOutlined />
-                            </ListItemIcon>
-                            <ListItemText primary="Manage Users" />
-                        </ListItem>
-                    </div>
-                ) : null}
-                {!!userStatus ? (
-                    <div onClick={() => LogoutUser(history)}>
-                        <ListItem button component={Link} to="/sign_in">
-                            <ListItemIcon>
-                                <ExitToAppRounded />
-                            </ListItemIcon>
-                            <ListItemText primary="Log Out" />
-                        </ListItem>
-                    </div>
-                ) : (
-                    <ListItem button component={Link} to="/sign_in">
-                        <ListItemIcon>
-                            <LocalGasStationOutlined />
-                        </ListItemIcon>
-                        <ListItemText primary="Log In" />
-                    </ListItem>
-                )}
-            </List>
-        </div>
-    );
+
     return (
-        <div>
-            <Menu onClick={() => setOpen(true)} />
-            <Drawer open={open} anchor={'right'} onClose={() => setOpen(false)}>
-                {getList()}
-            </Drawer>
-        </div>
+        <>
+            {open && (
+                <div className="draw_bar_container">
+                    <div
+                        onClick={() => setOpen(false)}
+                        className="backdroup"
+                    ></div>
+                    <div className="side_bar_menu">
+                        <div
+                            className="close_draw_bar"
+                            onClick={() => setOpen(false)}
+                        >
+                            <span>X</span>
+                        </div>
+                        <div
+                            className="side_bar_items"
+                            onClick={() => setOpen(false)}
+                        >
+                            <Link to="/dashboard" className="side_bar_link">
+                                <div className="side_bar_item">
+                                    <HomeOutlined className="draw_bar_icon" />
+                                    <span>Home</span>
+                                </div>
+                            </Link>
+                            <Link to="/upload" className="side_bar_link">
+                                <div className="side_bar_item">
+                                    <AddAPhotoOutlined className="draw_bar_icon" />
+                                    <span>Upload</span>
+                                </div>
+                            </Link>
+                            <Link to="/notifications" className="side_bar_link">
+                                <div className="side_bar_item">
+                                    <NotificationsOutlined className="draw_bar_icon" />
+                                    <span>Notifications</span>
+                                </div>
+                            </Link>
+                            <Link to="/profile" className="side_bar_link">
+                                <div className="side_bar_item">
+                                    <AccountCircleOutlined className="draw_bar_icon" />
+                                    <span>Profile</span>
+                                </div>
+                            </Link>
+                            {userStatus && userStatus.isAdmin ? (
+                                <div>
+                                    {/* <Link className="side_bar_link"> */}
+                                    <div className="side_bar_item">
+                                        <SupervisorAccountOutlined className="draw_bar_icon" />
+                                        <span>Admin</span>
+                                    </div>
+                                    {/* </Link> */}
+                                    <Link
+                                        to="/category"
+                                        className="side_bar_link"
+                                    >
+                                        <div className="side_bar_item">
+                                            <AddOutlined className="draw_bar_icon" />
+                                            <span>Add Category</span>
+                                        </div>
+                                    </Link>
+                                    <Link
+                                        to="/create_admin"
+                                        className="side_bar_link"
+                                    >
+                                        <div className="side_bar_item">
+                                            <CreateNewFolderOutlined className="draw_bar_icon" />
+                                            <span>Create Admin</span>
+                                        </div>
+                                    </Link>
+                                    <Link
+                                        to="/manage_users"
+                                        className="side_bar_link"
+                                    >
+                                        <div className="side_bar_item">
+                                            <VerifiedUserOutlined className="draw_bar_icon" />
+                                            <span>Manage Users</span>
+                                        </div>
+                                    </Link>
+                                </div>
+                            ) : null}
+                            {!!userStatus ? (
+                                <div onClick={() => LogoutUser(history)}>
+                                    <Link
+                                        to="/sign_in"
+                                        className="side_bar_link"
+                                    >
+                                        <div className="side_bar_item">
+                                            <ExitToAppRounded className="draw_bar_icon" />
+                                            <span>Log Out</span>
+                                        </div>
+                                    </Link>
+                                </div>
+                            ) : (
+                                <Link to="/sign_in" className="side_bar_link">
+                                    <div className="side_bar_item">
+                                        <LocalGasStationOutlined className="draw_bar_icon" />
+                                        <span>Log In</span>
+                                    </div>
+                                </Link>
+                            )}
+                        </div>
+                    </div>
+                </div>
+            )}
+        </>
     );
 };
 

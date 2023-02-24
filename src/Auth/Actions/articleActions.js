@@ -49,13 +49,7 @@ export function getCategory() {
         promise.then(
             function (payload) {
                 const categories = payload.data;
-                if (categories.status === 'Failed') {
-                    toast.error('An error occured!', {
-                        position: toast.POSITION.TOP_RIGHT,
-                    });
-                } else if (categories.status === 'Success') {
-                    dispatch(getCategorySuccess(categories?.data));
-                }
+                dispatch(getCategorySuccess(categories?.data));
             },
             function (error) {
                 const errorMsg = error;
@@ -73,12 +67,8 @@ export function PostArticles(credentials) {
         promise.then(
             function (payload) {
                 const article = payload.data;
-                if (article.status === 'Failed') {
-                    article('Failed', article);
-                } else if (article.status === 'success') {
-                    dispatch(PostArticlesSuccess(article));
-                    dispatch(getFeedDetails(0));
-                }
+                dispatch(PostArticlesSuccess(article));
+                dispatch(getFeedDetails(0));
             },
             function (error) {
                 const errorMsg = error;
