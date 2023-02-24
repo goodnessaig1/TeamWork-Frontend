@@ -33,15 +33,15 @@ const Feeds = ({
                 dispatch(getFeedDetails(newOffset)).then((res) => {
                     setData(feeds.concat(res.data.data));
                 });
-                setTimeout(() => {
-                    window.scrollTo({
-                        top: pageYOffset,
-                        left: 0,
-                        behavior: 'smooth',
-                    });
-                }, 2000);
+                // setTimeout(() => {
+                window.scrollTo({
+                    top: pageYOffset,
+                    left: 0,
+                    behavior: 'smooth',
+                });
+                // }, 2000);
                 // window.scroll({ top: pageYOffset });
-            }, 3000);
+            }, 2800);
             console.log(pageYOffset);
         } else {
             setHasMore(false);
