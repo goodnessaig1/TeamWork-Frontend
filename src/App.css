@@ -62,6 +62,7 @@ body {
 @media screen and (max-width: 680px) {
     .routes {
         padding-top: 0px;
+        overflow-anchor: none;
     }
 }
 
