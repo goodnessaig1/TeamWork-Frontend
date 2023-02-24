@@ -281,10 +281,10 @@ Link {
 
 @media screen and (max-width: 600px) {
     .header__container {
-        height: 50px;
+        height: 45px;
     }
     .content {
-        height: 50px;
+        height: 45px;
     }
     .menu_bar {
         margin-top: 3px;
