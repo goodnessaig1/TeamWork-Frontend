@@ -30,6 +30,8 @@
     }
     .page_center {
         margin: 0;
+        overflow-anchor: none;
+        max-width: 100%;
     }
     .page_layout_container {
         padding-top: 6px;
