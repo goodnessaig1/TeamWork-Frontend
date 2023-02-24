@@ -10,10 +10,8 @@ import Unavailiabe from '../../Utils/unavailiable1.png';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { getFeedDetails } from '../../Auth/Actions/feedActions';
 import { useDispatch } from 'react-redux';
-import { connect } from 'react-redux';
 
 const Feeds = ({
-    data,
     feeds,
     setData,
     setPostArticle,
@@ -23,7 +21,7 @@ const Feeds = ({
     feedsLength,
     requesting,
 }) => {
-    // console.log(data);
+    let pageYOffset = window.pageYOffset;
     const dispatch = useDispatch();
     const [hasMore, setHasMore] = useState(true);
     const fetchMoreData = () => {
@@ -32,15 +30,25 @@ const Feeds = ({
                 setOffSet(offSet + 10);
                 const newOffset = offSet + 10;
                 dispatch(getFeedDetails(newOffset)).then((res) => {
-                    // setTimeout(() => {
-                    setData(feeds.concat(Array.from(res.data.data)));
-                    // }, 1000);
+                    setData(feeds.concat(res.data.data));
+                    pageYOffset = window.pageYOffset;
+                    // console.log(pageYOffset);
+                    window.scrollTo({
+                        top: pageYOffset,
+                        left: 0,
+                        behavior: 'smooth',
+                    });
                 });
+                // window.scroll({ top: pageYOffset });
             }, 3000);
         } else {
             setHasMore(false);
         }
     };
+    useLayoutEffect(() => {
+        window.scroll({ top: pageYOffset });
+        // console.log(pageYOffset);
+    }, [feeds]);
     const handleUploadClick = (e) => {
         setPostArticle(e);
         setPostArticleModal(true);
@@ -398,11 +406,4 @@ const Feeds = ({
     );
 };
 
-// export default Feeds;
-const mapStateToProps = (state) => {
-    return {
-        data: state.feeds.allFeeds,
-    };
-};
-
-export default connect(mapStateToProps)(Feeds);
+export default Feeds;
