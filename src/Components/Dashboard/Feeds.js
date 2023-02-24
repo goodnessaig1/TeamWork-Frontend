@@ -31,7 +31,8 @@ const Feeds = ({
                 setOffSet(offSet + 10);
                 const newOffset = offSet + 10;
                 dispatch(getFeedDetails(newOffset)).then((res) => {
-                    setData(feeds.concat(res.data.data));
+                    const newData = [].concat(feeds, res.data.data);
+                    setData(newData);
                 });
                 // setTimeout(() => {
                 //     window.scrollTo({
@@ -42,7 +43,7 @@ const Feeds = ({
                 // }, 1000);
                 // window.scroll({ top: pageYOffset });
             }, 2800);
-            console.log(pageYOffset);
+            // console.log(pageYOffset);
         } else {
             setHasMore(false);
         }
