@@ -25,24 +25,25 @@ const Feeds = ({
     const dispatch = useDispatch();
     const [hasMore, setHasMore] = useState(true);
     const fetchMoreData = () => {
+        pageYOffset = window.pageYOffset + 700;
         if (feedsLength >= 10) {
-            pageYOffset = window.pageYOffset + 400;
-            // setTimeout(() => {
-            setOffSet(offSet + 10);
-            const newOffset = offSet + 10;
-            dispatch(getFeedDetails(newOffset)).then((res) => {
-                const newData = [].concat(feeds, res.data.data);
-                setData(newData);
-            });
-            // setTimeout(() => {
-            //     window.scrollTo({
-            //         top: pageYOffset,
-            //         left: 0,
-            //         behavior: 'smooth',
-            //     });
-            // }, 1000);
-            // window.scroll({ top: pageYOffset });
-            // }, 2800);
+            setTimeout(() => {
+                setOffSet(offSet + 10);
+                const newOffset = offSet + 10;
+                dispatch(getFeedDetails(newOffset)).then((res) => {
+                    setData(feeds.concat(res.data.data));
+                });
+                if (screen.width <= 600) {
+                    setTimeout(() => {
+                        window.scrollTo({
+                            top: pageYOffset,
+                            left: 0,
+                            behavior: 'smooth',
+                        });
+                    }, 1200);
+                }
+                // window.scroll({ top: pageYOffset });
+            }, 2800);
             // console.log(pageYOffset);
         } else {
             setHasMore(false);
