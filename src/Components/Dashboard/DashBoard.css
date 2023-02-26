@@ -259,7 +259,8 @@
 
 @media screen and (max-width: 600px) {
     .dashboard_container {
-        position: absolute;
+        /* position: absolute; */
+        overflow-anchor: none;
         margin: 0 30px 0 22px;
     }
     .dash_board_container {
