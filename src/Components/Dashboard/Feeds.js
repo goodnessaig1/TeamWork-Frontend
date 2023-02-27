@@ -22,6 +22,7 @@ const Feeds = ({
     requesting,
 }) => {
     let pageYOffset = window.pageYOffset;
+    // console.log(window.scr);
     const dispatch = useDispatch();
     const [hasMore, setHasMore] = useState(true);
     const fetchMoreData = () => {

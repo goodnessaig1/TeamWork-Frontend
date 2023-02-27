@@ -309,25 +309,28 @@ Link {
         height: 20px;
     }
     .center_icon {
-        display: block !important;
+        display: none;
+        /* display: block !important; */
         font-size: 30px !important;
     }
 
     .center_container {
-        width: 100%;
-        background-color: white;
-        height: 60px;
-        display: block;
-        position: fixed;
+        /* width: 100%; */
+        /* background-color: white; */
+        /* height: 60px; */
+        display: none;
+        /* display: block; */
+        /* position: fixed;
         left: 50%;
         transform: translateX(-50%);
         bottom: 0rem;
         display: flex;
         justify-content: space-around;
         margin-left: 0px;
-        backdrop-filter: blur(15px);
+        backdrop-filter: blur(15px); */
     }
     .nav_bar {
+        display: none;
         color: rgb(117, 110, 110);
     }
     h2 {
