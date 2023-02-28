@@ -194,6 +194,13 @@
 @media screen and (max-width: 600px) {
     .modal_container {
         margin-right: 17rem;
+        width: 95%;
+    }
+    .submit_btn {
+        width: 350px;
+    }
+    .upload_button {
+        margin-top: 1px;
     }
     .button {
         left: 24%;

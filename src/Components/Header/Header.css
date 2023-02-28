@@ -317,8 +317,7 @@ Link {
         width: 100%;
         background-color: white;
         height: 60px;
-        display: none;
-        /* display: block; */
+        display: block;
         position: fixed;
         left: 50%;
         transform: translateX(-50%);

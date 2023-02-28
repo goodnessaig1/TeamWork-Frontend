@@ -22,7 +22,6 @@ const Feeds = ({
     requesting,
 }) => {
     let pageYOffset = window.pageYOffset;
-    // console.log(window.scr);
     const dispatch = useDispatch();
     const [hasMore, setHasMore] = useState(true);
     const fetchMoreData = () => {
@@ -41,19 +40,16 @@ const Feeds = ({
                             left: 0,
                             behavior: 'smooth',
                         });
-                    }, 1200);
+                    }, 1600);
                 }
-                // window.scroll({ top: pageYOffset });
             }, 2800);
-            // console.log(pageYOffset);
         } else {
             setHasMore(false);
         }
     };
-    useLayoutEffect(() => {
-        window.scroll({ top: pageYOffset });
-        // console.log(pageYOffset);
-    }, [feeds]);
+    // useLayoutEffect(() => {
+    //     window.scroll({ top: pageYOffset });
+    // }, [feeds]);
     const handleUploadClick = (e) => {
         setPostArticle(e);
         setPostArticleModal(true);
