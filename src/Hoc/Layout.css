@@ -15,8 +15,7 @@
 }
 @media screen and (max-width: 600px) {
     .page_container {
-        padding-top: 45px;
-        overflow-anchor: none;
+        padding-top: 54px;
     }
 }
 @media screen and (max-width: 380px) {
