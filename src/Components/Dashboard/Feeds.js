@@ -3,7 +3,7 @@ import Like from '../Assets/like.png';
 import isLike from '../Assets/liked.png';
 import moment from 'moment';
 import commentIcon from '../Assets/comment.png';
-import { EmojiEmotionsOutlined } from '@material-ui/icons';
+import { ArrowUpwardRounded, EmojiEmotionsOutlined } from '@material-ui/icons';
 import { getBackgroundColor } from '../../Utils/colors';
 import { ColorRing, Oval } from 'react-loader-spinner';
 import Unavailiabe from '../../Utils/unavailiable1.png';
@@ -25,9 +25,9 @@ const Feeds = ({
     const dispatch = useDispatch();
     const [hasMore, setHasMore] = useState(true);
     const fetchMoreData = () => {
-        // pageYOffset = window.pageYOffset + 700;
+        // pageYOffset = window.pageYOffset + 1000;
         if (feedsLength >= 10) {
-            const scrollPosition = window.scrollY + 1000;
+            let scrollPosition = window.scrollY + 1000;
             setTimeout(() => {
                 setOffSet(offSet + 10);
                 const newOffset = offSet + 10;
@@ -45,6 +45,13 @@ const Feeds = ({
         } else {
             setHasMore(false);
         }
+    };
+    const handleTopClick = () => {
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth',
+        });
     };
 
     const handleUploadClick = (e) => {
@@ -77,10 +84,17 @@ const Feeds = ({
                             </div>
                         }
                         endMessage={
-                            <div className="end_message">
-                                <div onClick={() => handleUploadClick(true)}>
-                                    You Can Share something new
-                                    <EmojiEmotionsOutlined />
+                            <div className="bottom_container">
+                                <div className="end_message">
+                                    <div
+                                        onClick={() => handleUploadClick(true)}
+                                    >
+                                        You Can Share something new
+                                        <EmojiEmotionsOutlined />
+                                    </div>
+                                </div>
+                                <div onClick={handleTopClick}>
+                                    <ArrowUpwardRounded className="arrow_up" />
                                 </div>
                             </div>
                         }
