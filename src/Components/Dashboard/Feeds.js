@@ -1,47 +1,37 @@
 import React, { useState } from 'react';
-import Like from '../Assets/like.png';
-import isLike from '../Assets/liked.png';
 import moment from 'moment';
 import commentIcon from '../Assets/comment.png';
-import { ArrowUpwardRounded, EmojiEmotionsOutlined } from '@material-ui/icons';
+import {
+    ArrowUpwardRounded,
+    EmojiEmotionsOutlined,
+    ThumbUpAltRounded,
+} from '@material-ui/icons';
 import { getBackgroundColor } from '../../Utils/colors';
 import { ColorRing, Oval } from 'react-loader-spinner';
 import Unavailiabe from '../../Utils/unavailiable1.png';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { getFeedDetails } from '../../Auth/Actions/feedActions';
+import { getMoreFeeds } from '../../Auth/Actions/feedActions';
 import { useDispatch } from 'react-redux';
 
 const Feeds = ({
     feeds,
-    setData,
     setPostArticle,
     setPostArticleModal,
     offSet,
     setOffSet,
     feedsLength,
     requesting,
+    feedsTotal,
 }) => {
-    // let pageYOffset = window.pageYOffset;
     const dispatch = useDispatch();
     const [hasMore, setHasMore] = useState(true);
     const fetchMoreData = () => {
-        // pageYOffset = window.pageYOffset + 1000;
-        if (feedsLength >= 10) {
-            let scrollPosition = window.scrollY + 1000;
+        if (feedsTotal != feedsLength) {
             setTimeout(() => {
-                setOffSet(offSet + 10);
                 const newOffset = offSet + 10;
-                dispatch(getFeedDetails(newOffset)).then((res) => {
-                    setData(feeds.concat(res.data.data));
-                });
-                if (screen.width <= 600) {
-                    setTimeout(() => {
-                        window.scrollTo(0, scrollPosition, {
-                            behavior: 'smooth',
-                        });
-                    }, 1500);
-                }
-            }, 2800);
+                setOffSet(newOffset);
+                dispatch(getMoreFeeds(newOffset));
+            }, 1700);
         } else {
             setHasMore(false);
         }
@@ -64,7 +54,7 @@ const Feeds = ({
             {!requesting && (
                 <div className="dash_board_container">
                     <InfiniteScroll
-                        dataLength={200}
+                        dataLength={feeds?.length}
                         next={fetchMoreData}
                         hasMore={hasMore}
                         loader={
@@ -161,17 +151,9 @@ const Feeds = ({
                                                         <div className="like">
                                                             {item.isliked ===
                                                             false ? (
-                                                                <img
-                                                                    className="like_img"
-                                                                    src={Like}
-                                                                    alt=""
-                                                                />
+                                                                <ThumbUpAltRounded className="like_icon" />
                                                             ) : (
-                                                                <img
-                                                                    className="like_img"
-                                                                    src={isLike}
-                                                                    alt=""
-                                                                />
+                                                                <ThumbUpAltRounded className="is_like_icon" />
                                                             )}
                                                             <span>
                                                                 {
@@ -308,24 +290,14 @@ const Feeds = ({
                                                         )}
                                                         <div className="like_comment_container">
                                                             <div className="like">
-                                                                {item.isliked ===
-                                                                false ? (
-                                                                    <img
-                                                                        className="like_img"
-                                                                        src={
-                                                                            Like
-                                                                        }
-                                                                        alt=""
-                                                                    />
-                                                                ) : (
-                                                                    <img
-                                                                        className="like_img"
-                                                                        src={
-                                                                            isLike
-                                                                        }
-                                                                        alt=""
-                                                                    />
-                                                                )}
+                                                                <div>
+                                                                    {item.isliked ===
+                                                                    false ? (
+                                                                        <ThumbUpAltRounded className="like_icon" />
+                                                                    ) : (
+                                                                        <ThumbUpAltRounded className="is_like_icon" />
+                                                                    )}
+                                                                </div>
                                                                 <span>
                                                                     {
                                                                         item.number_of_likes

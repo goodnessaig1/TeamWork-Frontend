@@ -172,16 +172,13 @@ export function LoginUser(credentials, history, setFieldError, setSubmitting) {
                     const userData = data;
                     const token = userData.data.token;
                     localStorage.setItem('token', token);
-                    dispatch(getUserDetails());
                     dispatch(loginUserSuccess(data));
                     history.push('/dashboard');
                     setSubmitting(false);
-                    window.location.reload(true);
                 }
             },
             function (error) {
                 const errorMsg = error;
-                // console.log(error);
                 dispatch(loginUserFailure(errorMsg));
             }
         );

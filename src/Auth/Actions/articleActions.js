@@ -1,8 +1,6 @@
 import { apiRequest } from '../../Utils/axios';
-import { toast } from 'react-toastify';
 
 import * as types from './types';
-import { getFeedDetails } from './feedActions';
 
 export const getCategoryRequest = () => {
     return {
@@ -42,6 +40,7 @@ export const PostArticlesFailure = (error) => {
         payload: error,
     };
 };
+
 export function getCategory() {
     return (dispatch) => {
         const promise = apiRequest('GET', `v1/categories`);
@@ -67,8 +66,7 @@ export function PostArticles(credentials) {
         promise.then(
             function (payload) {
                 const article = payload.data;
-                dispatch(PostArticlesSuccess(article));
-                dispatch(getFeedDetails(0));
+                dispatch(PostArticlesSuccess(article.data));
             },
             function (error) {
                 const errorMsg = error;

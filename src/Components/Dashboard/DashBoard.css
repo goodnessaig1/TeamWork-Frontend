@@ -158,6 +158,28 @@
     cursor: pointer;
 }
 
+.like_icon {
+    font-size: 30px !important;
+}
+.like > div {
+    display: flex;
+}
+.is_like_icon {
+    font-size: 30px !important;
+    color: var(--color-primary);
+}
+
+.like_icon:hover {
+    color: var(--color-primary);
+    font-size: 32px !important;
+    transition: 2s ease-in-out;
+}
+.is_like_icon:hover {
+    color: rgba(151, 154, 150, 1);
+    font-size: 32px !important;
+    transition: 2s ease-in-out;
+}
+
 .comment {
     display: flex;
     gap: 0.4rem;
@@ -186,7 +208,7 @@
     gap: 1rem;
 }
 .like_icon {
-    margin-bottom: 3px;
+    /* margin-bottom: 3px; */
 }
 
 .number_of_comments {
@@ -498,10 +520,6 @@
 
     .comment {
         gap: 0.3rem;
-    }
-    .like_img {
-        width: 19px;
-        height: 19px;
     }
 
     .comment_Icon {

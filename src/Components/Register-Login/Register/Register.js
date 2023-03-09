@@ -159,7 +159,7 @@ const Register = ({ RegisterUser }) => {
                     </Link>
                 </div>
             </div>
-            <div className="copyright">All rights reserved &copy; 2022</div>
+            <div className="copyright">All rights reserved &copy; 2023</div>
         </div>
     );
 };

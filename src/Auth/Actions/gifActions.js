@@ -2,7 +2,6 @@ import { apiRequest } from '../../Utils/axios';
 import { toast } from 'react-toastify';
 
 import * as types from './types';
-import { getFeedDetails } from './feedActions';
 
 export const PostGifRequest = () => {
     return {
@@ -36,8 +35,7 @@ export const PostGif = (formData) => {
         promise
             .then((payload) => {
                 const { data } = payload;
-                dispatch(getFeedDetails(0));
-                dispatch(PostGifSuccess(data));
+                dispatch(PostGifSuccess(data.data));
             })
             .catch((error) => {
                 toast.error(`An Error occured ${error}`, {
