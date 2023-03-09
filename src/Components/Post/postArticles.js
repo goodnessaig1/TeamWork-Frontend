@@ -71,7 +71,7 @@ const PostArticlesModal = ({
                             initialValues={{
                                 title: '',
                                 article: '',
-                                categoryId: '',
+                                categoryId: undefined,
                             }}
                             validationSchema={Yup.object({
                                 title: Yup.string()

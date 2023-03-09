@@ -1,5 +1,5 @@
 import { apiRequest } from '../../Utils/axios';
-
+import { toast } from 'react-toastify';
 import * as types from './types';
 
 export const getCategoryRequest = () => {
@@ -70,6 +70,11 @@ export function PostArticles(credentials) {
             },
             function (error) {
                 const errorMsg = error;
+                if ((error = 417)) {
+                    toast.error('Please Add a category', {
+                        position: toast.POSITION.TOP_RIGHT,
+                    });
+                }
                 dispatch(PostArticlesFailure(errorMsg));
             }
         );
