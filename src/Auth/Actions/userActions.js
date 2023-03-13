@@ -174,11 +174,17 @@ export function LoginUser(credentials, history, setFieldError, setSubmitting) {
                     localStorage.setItem('token', token);
                     dispatch(loginUserSuccess(data));
                     history.push('/dashboard');
-                    setSubmitting(false);
                 }
+                setSubmitting(false);
             },
             function (error) {
                 const errorMsg = error;
+                toast.error(
+                    'An error occured, please check your network and try again',
+                    {
+                        position: toast.POSITION.TOP_RIGHT,
+                    }
+                );
                 dispatch(loginUserFailure(errorMsg));
             }
         );

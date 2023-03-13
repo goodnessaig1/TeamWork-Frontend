@@ -12,7 +12,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { LoginUser } from '../../../Auth/Actions/userActions';
 
-const Login = ({ LoginUser }) => {
+const Login = ({ LoginUser, requesting }) => {
     const history = useHistory();
     return (
         <div className="login_page_container">
@@ -43,7 +43,7 @@ const Login = ({ LoginUser }) => {
                         );
                     }}
                 >
-                    {({ isSubmitting }) => (
+                    {() => (
                         <Form>
                             <div className="form_inputs">
                                 <div className="input_container">
@@ -64,7 +64,7 @@ const Login = ({ LoginUser }) => {
                                 </div>
                             </div>
                             <div className="button__group">
-                                {!isSubmitting && (
+                                {!requesting && (
                                     <button
                                         type="submit"
                                         className="formButton"
@@ -72,7 +72,7 @@ const Login = ({ LoginUser }) => {
                                         LOG IN
                                     </button>
                                 )}
-                                {isSubmitting && (
+                                {requesting && (
                                     <Audio
                                         type="ThreeDots"
                                         color="rgba(121, 144, 225, 1)"
@@ -105,4 +105,10 @@ Login.propTypes = {
     LoginUser: PropTypes.func,
 };
 
-export default connect(null, { LoginUser })(Login);
+const mapStateToProps = (state) => {
+    return {
+        requesting: state.user.LoginUser?.requesting,
+    };
+};
+
+export default connect(mapStateToProps, { LoginUser })(Login);

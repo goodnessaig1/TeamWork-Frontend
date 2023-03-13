@@ -12,7 +12,14 @@ import Unavailiabe from '../../Utils/unavailiable1.png';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { getMoreFeeds } from '../../Auth/Actions/feedActions';
 import { useDispatch } from 'react-redux';
-
+import {
+    GetSingleArticle,
+    LikeArticles,
+} from '../../Auth/Actions/articleActions';
+import { GetSingleGif, LikeGif } from '../../Auth/Actions/gifActions';
+import ViewGifModal from './ViewGifModal';
+import GifCommentModal from './GifCommentModal';
+import ArticleCommentModal from './ArticleCommentModal';
 const Feeds = ({
     feeds,
     setPostArticle,
@@ -22,9 +29,16 @@ const Feeds = ({
     feedsLength,
     requesting,
     feedsTotal,
+    clickedImage,
+    setClickedImage,
+    open,
+    setOpen,
 }) => {
     const dispatch = useDispatch();
     const [hasMore, setHasMore] = useState(true);
+    const [user, setUser] = useState(null);
+    const [gifModal, setGifModal] = useState(false);
+    const [articleModal, setArticleModal] = useState(false);
     const fetchMoreData = () => {
         if (feedsTotal != feedsLength) {
             setTimeout(() => {
@@ -47,6 +61,25 @@ const Feeds = ({
     const handleUploadClick = (e) => {
         setPostArticle(e);
         setPostArticleModal(true);
+    };
+    const handleLikes = (post_id, index) => {
+        dispatch(LikeArticles(post_id, index));
+    };
+    const handleGifLikes = (post_id, index) => {
+        dispatch(LikeGif(post_id, index));
+    };
+    const handleClick = (item, user) => {
+        setClickedImage(item.post);
+        setOpen(true);
+        setUser(user);
+    };
+    const handleCommentClick = (id) => {
+        dispatch(GetSingleGif(id, setGifModal));
+        setGifModal(true);
+    };
+    const handleArticleComment = (id) => {
+        dispatch(GetSingleArticle(id, setArticleModal));
+        setArticleModal(true);
     };
 
     return (
@@ -145,10 +178,24 @@ const Feeds = ({
                                                             src={item.post}
                                                             className="post"
                                                             alt=""
+                                                            onClick={() =>
+                                                                handleClick(
+                                                                    item,
+                                                                    item.profile_pix
+                                                                )
+                                                            }
                                                         />
                                                     </div>
                                                     <div className="like_comment_container">
-                                                        <div className="like">
+                                                        <div
+                                                            className="like"
+                                                            onClick={() =>
+                                                                handleGifLikes(
+                                                                    item.postid,
+                                                                    index
+                                                                )
+                                                            }
+                                                        >
                                                             {item.isliked ===
                                                             false ? (
                                                                 <ThumbUpAltRounded className="like_icon" />
@@ -168,6 +215,11 @@ const Feeds = ({
                                                                 }
                                                                 className="comment_Icon"
                                                                 alt=""
+                                                                onClick={() =>
+                                                                    handleCommentClick(
+                                                                        item.postid
+                                                                    )
+                                                                }
                                                             />
                                                             <span>
                                                                 {
@@ -289,7 +341,15 @@ const Feeds = ({
                                                             </div>
                                                         )}
                                                         <div className="like_comment_container">
-                                                            <div className="like">
+                                                            <div
+                                                                className="like"
+                                                                onClick={() =>
+                                                                    handleLikes(
+                                                                        item.postid,
+                                                                        index
+                                                                    )
+                                                                }
+                                                            >
                                                                 <div>
                                                                     {item.isliked ===
                                                                     false ? (
@@ -311,6 +371,11 @@ const Feeds = ({
                                                                     }
                                                                     className="comment_Icon"
                                                                     alt=""
+                                                                    onClick={() =>
+                                                                        handleArticleComment(
+                                                                            item.postid
+                                                                        )
+                                                                    }
                                                                 />
                                                                 <span>
                                                                     {
@@ -386,6 +451,30 @@ const Feeds = ({
                     />
                 </div>
             )}
+            <div>
+                {open && (
+                    <ViewGifModal
+                        open={open}
+                        setOpen={setOpen}
+                        clickedImage={clickedImage}
+                        setClickedImage={setClickedImage}
+                        user={user}
+                        setUser={setUser}
+                    />
+                )}
+                {gifModal && (
+                    <GifCommentModal
+                        gifModal={gifModal}
+                        setGifModal={setGifModal}
+                    />
+                )}
+                {articleModal && (
+                    <ArticleCommentModal
+                        articleModal={articleModal}
+                        setArticleModal={setArticleModal}
+                    />
+                )}
+            </div>
         </div>
     );
 };

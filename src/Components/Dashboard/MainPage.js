@@ -15,6 +15,8 @@ const MainPage = ({ user, feeds, requesting, feedsTotal }) => {
     const [postArticleModal, setPostArticleModal] = useState(false);
     const [postGif, setPostGif] = useState(null);
     const [postGifModal, setPostGifModal] = useState(false);
+    const [clickedImage, setClickedImage] = useState(null);
+    const [open, setOpen] = useState(false);
     const dispatch = useDispatch();
     useEffect(() => {
         window.scrollTo({
@@ -66,6 +68,10 @@ const MainPage = ({ user, feeds, requesting, feedsTotal }) => {
                         feedsLength={feedsLength}
                         requesting={requesting}
                         feedsTotal={feedsTotal}
+                        open={open}
+                        setOpen={setOpen}
+                        clickedImage={clickedImage}
+                        setClickedImage={setClickedImage}
                     />
                 </div>
                 <div>

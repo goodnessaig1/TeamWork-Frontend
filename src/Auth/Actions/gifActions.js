@@ -23,6 +23,65 @@ export const PostGifFailure = (error) => {
     };
 };
 
+export const likeGifRequest = () => {
+    return {
+        type: types.LIKE_GIF_REQUEST,
+    };
+};
+
+export const likeGifSuccess = (indexNumber, likedGif) => {
+    return {
+        type: types.LIKE_GIF_SUCCESS,
+        payload: { indexNumber, likedGif },
+    };
+};
+
+export const likeGifFailure = (error) => {
+    return {
+        type: types.LIKE_GIF_FAILURE,
+        payload: error,
+    };
+};
+
+export const getSingleGifRequest = () => {
+    return {
+        type: types.GET_SINGLE_GIF_REQUEST,
+    };
+};
+
+export const getSingleGifSuccess = (gifs, comments) => {
+    return {
+        type: types.GET_SINGLE_GIF_SUCCESS,
+        payload: { gifs, comments },
+    };
+};
+
+export const getSingleGifFailure = (error) => {
+    return {
+        type: types.GET_SINGLE_GIF_FAILURE,
+        payload: error,
+    };
+};
+
+export const PostGifCommentRequest = () => {
+    return {
+        type: types.POST_GIF_COMMENT_REQUEST,
+    };
+};
+
+export const PostGifCommentSuccess = (gifs, comments, postIndex) => {
+    return {
+        type: types.POST_GIF_COMMENT_SUCCESS,
+        payload: { gifs, comments, postIndex },
+    };
+};
+
+export const PostGifCommentFailure = (error) => {
+    return {
+        type: types.POST_GIF_COMMENT_FAILURE,
+        payload: error,
+    };
+};
 export const PostGif = (formData) => {
     return async (dispatch) => {
         const promise = apiRequest('POST', `v1/gifs`, formData, {
@@ -46,3 +105,71 @@ export const PostGif = (formData) => {
         return promise;
     };
 };
+
+export function LikeGif(id, index) {
+    return (dispatch) => {
+        const promise = apiRequest('POST', `v1/gifs/${id}/gif_likes`);
+        dispatch(likeGifRequest());
+        promise.then(
+            function (payload) {
+                const likedGif = payload.data.data;
+                dispatch(likeGifSuccess(index, likedGif));
+            },
+            function (error) {
+                const errorMsg = error;
+                dispatch(likeGifFailure(errorMsg));
+            }
+        );
+        return promise;
+    };
+}
+export function GetSingleGif(id, setGifModal) {
+    return (dispatch) => {
+        const promise = apiRequest('GET', `v1/gifs/${id}`);
+        dispatch(getSingleGifRequest());
+        promise.then(
+            function (payload) {
+                const { data } = payload.data;
+                const gifs = data.data;
+                const comments = data.comments;
+                dispatch(getSingleGifSuccess(gifs, comments));
+            },
+            function (error) {
+                const errorMsg = error;
+                if ((error = 400)) {
+                    toast.error('Network error or Token is expired', {
+                        position: toast.POSITION.TOP_RIGHT,
+                    });
+                }
+                setGifModal(false);
+                dispatch(getSingleGifFailure(errorMsg));
+            }
+        );
+        return promise;
+    };
+}
+export function PostGifComment(data, gifId, index) {
+    return (dispatch) => {
+        const promise = apiRequest('POST', `v1/gifs/${gifId}/comment`, data);
+        dispatch(PostGifCommentRequest());
+        promise.then(
+            function (payload) {
+                const { data } = payload.data;
+                const gifs = data.data;
+                const comments = data.comment;
+                toast.success(`Successful`, {
+                    position: toast.POSITION.TOP_RIGHT,
+                });
+                dispatch(PostGifCommentSuccess(gifs, comments, index));
+            },
+            function (error) {
+                const errorMsg = error;
+                toast.error(`An Error occured ${errorMsg}`, {
+                    position: toast.POSITION.TOP_RIGHT,
+                });
+                dispatch(PostGifCommentFailure(errorMsg));
+            }
+        );
+        return promise;
+    };
+}

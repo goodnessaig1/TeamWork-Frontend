@@ -67,6 +67,38 @@ export default function (state = initialState, action) {
                 allFeeds: [action.payload, ...state.allFeeds],
             });
 
+        case types.LIKE_ARTICLES_SUCCESS:
+            const { index, likedArticle } = action.payload;
+            let newArray = [...state.allFeeds];
+            newArray[index] = likedArticle;
+            return Object.assign({}, state, {
+                ...state,
+                allFeeds: newArray,
+            });
+
+        case types.LIKE_GIF_SUCCESS:
+            const { indexNumber, likedGif } = action.payload;
+            let newFeeds = [...state.allFeeds];
+            newFeeds[indexNumber] = likedGif;
+            return Object.assign({}, state, {
+                ...state,
+                allFeeds: newFeeds,
+            });
+
+        case types.POST_GIF_COMMENT_SUCCESS:
+            const { gifs } = action.payload;
+            return Object.assign({}, state, {
+                ...state,
+                allFeeds: [gifs, ...state.allFeeds],
+            });
+
+        case types.POST_ARTICLE_COMMENT_SUCCESS:
+            const { article } = action.payload;
+            return Object.assign({}, state, {
+                ...state,
+                allFeeds: [article, ...state.allFeeds],
+            });
+
         default:
             return state;
     }

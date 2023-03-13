@@ -87,7 +87,7 @@ export default function (state = initialState, action) {
             return Object.assign({}, state, {
                 LoginUser: {
                     requesting: false,
-                    error: null,
+                    error: action.payload,
                     success: false,
                 },
             });
