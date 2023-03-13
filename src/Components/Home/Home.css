@@ -69,9 +69,12 @@ h5 {
 @media screen and (max-width: 600px) {
     .home_container {
         display: flex;
+        overflow: hidden;
         background-image: url('../Assets/image\ 1home.png');
         flex-direction: column;
         width: 100%;
+        background-blend-mode: luminosity;
+        background-color: rgba(121, 144, 225, 1);
     }
     .home_left {
         flex: 1;
@@ -94,7 +97,8 @@ h5 {
         top: 5.5rem;
         background-color: #fff;
         color: var(--color-primary);
-        width: 85px;
+        width: 92px;
+        border: solid 3px rgb(65, 65, 230);
         font-size: 17px;
         height: 36px;
         opacity: 95%;
