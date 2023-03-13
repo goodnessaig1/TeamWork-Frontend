@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const baseURL = 'https://teamwork-nodejs.onrender.com/';
+// const baseURL = 'http://localhost:3001/';
 
 const defaultHeaders = {
     'Content-Type': 'application/json',
@@ -10,14 +11,17 @@ const defaultHeaders = {
     Authorization: `Bearer ${localStorage.getItem('token')}`,
 };
 
-export async function apiRequest(method, path, data, headers) {
+export async function apiRequest(method, path, data, headers = defaultHeaders) {
     try {
         let url = `${baseURL}${path}`;
         const request = await axios({
             method: method,
             url: url,
             data: data,
-            headers: (headers = defaultHeaders),
+            headers: {
+                ...headers,
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
         });
         return request;
     } catch (error) {

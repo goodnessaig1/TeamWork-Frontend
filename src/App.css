@@ -61,6 +61,15 @@ body {
 
 @media screen and (max-width: 680px) {
     .routes {
-        padding-top: 45px;
+        padding-top: 0px;
+        overflow-anchor: none;
+    }
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+    select,
+    textarea,
+    input {
+        font-size: 16px;
     }
 }

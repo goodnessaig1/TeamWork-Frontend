@@ -152,6 +152,15 @@ select {
     .input_container {
         height: 34px;
     }
+    .select {
+        margin-left: 1px;
+    }
+    select {
+        font-size: 14px;
+    }
+    .text_link_reg {
+        line-height: 10px;
+    }
 }
 
 @media (max-width: 320px) {

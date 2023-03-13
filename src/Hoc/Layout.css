@@ -10,6 +10,16 @@
 
 @media screen and (max-width: 680px) {
     .page_container {
-        padding-top: 64px;
+        padding-top: 55px;
+    }
+}
+@media screen and (max-width: 600px) {
+    .page_container {
+        padding-top: 54px;
+    }
+}
+@media screen and (max-width: 380px) {
+    .page_container {
+        padding-top: 50px;
     }
 }

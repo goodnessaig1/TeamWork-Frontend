@@ -176,7 +176,6 @@ export function LoginUser(credentials, history, setFieldError, setSubmitting) {
                     history.push('/dashboard');
                     setSubmitting(false);
                 }
-                window.location.reload(true);
             },
             function (error) {
                 const errorMsg = error;

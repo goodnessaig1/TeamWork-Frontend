@@ -150,13 +150,16 @@ const Register = ({ RegisterUser }) => {
                         </Form>
                     )}
                 </Formik>
-                <div className="signup_container">
-                    <Link to="/sign_in" className="text_link_reg">
+                <div className="">
+                    <Link
+                        to="/sign_in"
+                        className="text_link_reg signup_container"
+                    >
                         Already have an account ? Log in
                     </Link>
                 </div>
             </div>
-            <div className="copyright">All rights reserved &copy; 2022</div>
+            <div className="copyright">All rights reserved &copy; 2023</div>
         </div>
     );
 };

@@ -8,6 +8,7 @@
 .page_right {
     flex: 1.2;
     justify-content: center;
+    overflow-x: hidden;
     display: flex;
 }
 
@@ -26,5 +27,12 @@
     }
     .page_left {
         display: none;
+    }
+    .page_center {
+        margin: 0;
+        overflow-anchor: none;
+    }
+    .page_layout_container {
+        padding-top: 6px;
     }
 }

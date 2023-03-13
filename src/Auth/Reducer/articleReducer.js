@@ -1,70 +1,72 @@
 import * as types from '../Actions/types';
 
 const initialState = {
-    getFeeds: {
+    getCategory: {
         requesting: false,
         error: null,
         success: false,
     },
-    getMoreFeeds: {
+    PostArticles: {
         requesting: false,
         error: null,
         success: false,
     },
-
-    allFeeds: [],
 };
-
 export default function (state = initialState, action) {
     switch (action.type) {
-        case types.GET_ALL_FEEDS_REQUEST:
+        case types.GET_CATEGORIES_REQUEST:
             return Object.assign({}, state, {
-                getFeeds: {
+                getCategory: {
                     requesting: true,
                     error: null,
                     success: true,
                 },
             });
 
-        case types.GET_ALL_FEEDS_SUCCESS:
+        case types.GET_CATEGORIES_SUCCESS:
             return Object.assign({}, state, {
-                getFeeds: {
+                getCategory: {
                     requesting: false,
                     error: null,
                     success: true,
                 },
-                allFeeds: action.payload,
-            });
-        case types.GET_MORE_FEEDS_SUCCESS:
-            return Object.assign({}, state, {
-                ...state,
-                allFeeds: state.allFeeds.concat(action.payload),
+                categories: action.payload,
             });
 
-        case types.GET_ALL_FEEDS_FAILURE:
+        case types.GET_CATEGORIES_FAILURE:
             return Object.assign({}, state, {
-                getFeeds: {
+                getCategory: {
                     requesting: false,
                     error: action.payload,
                     success: true,
                 },
             });
-
-        case types.GET_FEEDS_TOTAL:
+        case types.POST_ARTICLES_REQUEST:
             return Object.assign({}, state, {
-                total: action.payload,
+                PostArticles: {
+                    requesting: true,
+                    error: null,
+                    success: true,
+                },
             });
 
         case types.POST_ARTICLES_SUCCESS:
             return Object.assign({}, state, {
-                ...state,
-                allFeeds: [action.payload, ...state.allFeeds],
+                PostArticles: {
+                    requesting: false,
+                    error: null,
+                    success: true,
+                },
+                articles: action.payload,
             });
 
-        case types.POST_GIF_SUCCESS:
+        case types.POST_ARTICLES_FAILURE:
             return Object.assign({}, state, {
-                ...state,
-                allFeeds: [action.payload, ...state.allFeeds],
+                PostArticles: {
+                    requesting: false,
+                    error: action.payload,
+                    success: true,
+                },
             });
 
         default:

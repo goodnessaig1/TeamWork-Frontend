@@ -126,6 +126,9 @@
     text-decoration: underline 1px;
     text-underline-offset: 7px;
 }
+.user_name_hr {
+    display: none;
+}
 .lenthy__user_name {
     /* margin-right: 30px; */
     font-size: 29px;
@@ -380,6 +383,15 @@
     .other_details {
         margin-left: 20px;
     }
+    .user_name_hr {
+        width: 100%;
+        position: inherit;
+        display: block;
+        bottom: 1.6rem;
+    }
+    .profile_user_name {
+        text-decoration: none;
+    }
     .profile_item_icon {
         top: 0.4rem;
         transform: scale(1);
@@ -404,6 +416,12 @@
     .password_input {
         height: 35px;
         width: 240px;
+    }
+    .profile_btn {
+        align-items: center;
+        display: flex;
+        padding-top: 0;
+        font-size: 13px;
     }
     .password__input {
         padding-top: 1px;
@@ -453,10 +471,10 @@
     }
     .profile_user_name {
         font-weight: 700;
-        font-size: 30px;
+        font-size: 21px;
     }
     .joined {
-        font-size: 18px;
+        font-size: 15px;
     }
 }
 @media screen and (max-width: 360px) {

@@ -41,7 +41,7 @@ const UserCoverModal = ({
                             <div className="modal_top">
                                 <h3>Upload Cover Photo</h3>
                                 <span
-                                    className="dismiss button cover "
+                                    className="button cover "
                                     onClick={() => setCoverModal(false)}
                                 >
                                     X
