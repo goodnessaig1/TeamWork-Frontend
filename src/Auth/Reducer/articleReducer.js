@@ -165,9 +165,10 @@ export default function (state = initialState, action) {
                 articleData: {
                     ...state,
                     articles: action.payload.article,
-                    comments: state.articleData.comments.concat(
-                        action.payload.comments
-                    ),
+                    comments: [
+                        action.payload.comments,
+                        ...state.articleData.comments,
+                    ],
                 },
             });
         case types.POST_ARTICLE_COMMENT_FAILURE:

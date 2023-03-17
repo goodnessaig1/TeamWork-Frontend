@@ -106,7 +106,7 @@ export default function (state = initialState, action) {
         case types.GET_SINGLE_GIF_FAILURE:
             return Object.assign({}, state, {
                 GetSingleGif: {
-                    requesting: true,
+                    requesting: false,
                     error: action.payload,
                     success: true,
                 },
@@ -130,9 +130,10 @@ export default function (state = initialState, action) {
                 gifData: {
                     ...state,
                     gifs: action.payload.gifs,
-                    comments: state.gifData.comments.concat(
-                        action.payload.comments
-                    ),
+                    comments: [
+                        action.payload.comments,
+                        ...state.gifData.comments,
+                    ],
                 },
             });
         case types.POST_GIF_COMMENT_FAILURE:

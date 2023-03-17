@@ -14,7 +14,7 @@ const initialState = {
 
     allFeeds: [],
 };
-
+let updatedFeeds;
 export default function (state = initialState, action) {
     switch (action.type) {
         case types.GET_ALL_FEEDS_REQUEST:
@@ -69,34 +69,38 @@ export default function (state = initialState, action) {
 
         case types.LIKE_ARTICLES_SUCCESS:
             const { index, likedArticle } = action.payload;
-            let newArray = [...state.allFeeds];
-            newArray[index] = likedArticle;
+            updatedFeeds = [...state.allFeeds];
+            updatedFeeds[index] = likedArticle;
             return Object.assign({}, state, {
                 ...state,
-                allFeeds: newArray,
+                allFeeds: updatedFeeds,
             });
 
         case types.LIKE_GIF_SUCCESS:
             const { indexNumber, likedGif } = action.payload;
-            let newFeeds = [...state.allFeeds];
-            newFeeds[indexNumber] = likedGif;
+            updatedFeeds = [...state.allFeeds];
+            updatedFeeds[indexNumber] = likedGif;
             return Object.assign({}, state, {
                 ...state,
-                allFeeds: newFeeds,
+                allFeeds: updatedFeeds,
             });
 
         case types.POST_GIF_COMMENT_SUCCESS:
-            const { gifs } = action.payload;
+            const { gifs, gifIndex } = action.payload;
+            updatedFeeds = [...state.allFeeds];
+            updatedFeeds[gifIndex] = gifs;
             return Object.assign({}, state, {
                 ...state,
-                allFeeds: [gifs, ...state.allFeeds],
+                allFeeds: updatedFeeds,
             });
 
         case types.POST_ARTICLE_COMMENT_SUCCESS:
-            const { article } = action.payload;
+            const { article, articleIndex } = action.payload;
+            updatedFeeds = [...state.allFeeds];
+            updatedFeeds[articleIndex] = article;
             return Object.assign({}, state, {
                 ...state,
-                allFeeds: [article, ...state.allFeeds],
+                allFeeds: updatedFeeds,
             });
 
         default:

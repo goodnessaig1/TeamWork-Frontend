@@ -4,10 +4,10 @@ import { useDispatch } from 'react-redux';
 import { connect } from 'react-redux';
 import { getFeeds } from '../../Auth/Actions/feedActions';
 import './DashBoard.css';
-import Unavailiabe from '../../Utils/unavailiable1.png';
 import Feeds from './Feeds';
 import PostArticles from '../Post/postArticles';
 import PostGif from '../Post/postGif';
+import { ProfilePicture } from '../../Utils/ProfilePicture';
 
 const MainPage = ({ user, feeds, requesting, feedsTotal }) => {
     const [offSet, setOffSet] = useState(0);
@@ -36,19 +36,10 @@ const MainPage = ({ user, feeds, requesting, feedsTotal }) => {
             <div className="dashboard_container">
                 <div className="dash_board_top">
                     <div className="dashboard_top">
-                        {user?.profile ? (
-                            <img
-                                src={user.profile}
-                                alt=""
-                                className="profile__image"
-                            />
-                        ) : (
-                            <img
-                                src={Unavailiabe}
-                                className="profile__image"
-                                alt=""
-                            />
-                        )}
+                        <ProfilePicture
+                            image={user?.profile}
+                            className="profile__image"
+                        />
                         <input
                             type="text"
                             className="share_input"
@@ -61,6 +52,7 @@ const MainPage = ({ user, feeds, requesting, feedsTotal }) => {
                 <div>
                     <Feeds
                         feeds={feeds}
+                        userData={user}
                         setPostArticle={setPostArticle}
                         setPostArticleModal={setPostArticleModal}
                         offSet={offSet}

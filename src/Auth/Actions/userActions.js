@@ -164,9 +164,11 @@ export function LoginUser(credentials, history, setFieldError, setSubmitting) {
                     const { message } = data;
                     if (message.includes('email')) {
                         setFieldError('email', message);
+                        dispatch(loginUserFailure(message));
                     }
                     if (message.includes('password')) {
                         setFieldError('password', message);
+                        dispatch(loginUserFailure(message));
                     }
                 } else if (data.status === 'success') {
                     const userData = data;

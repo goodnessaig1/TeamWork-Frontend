@@ -5,11 +5,11 @@ import { Collections } from '@material-ui/icons';
 import { connect } from 'react-redux';
 import { ProgressBar } from 'react-loader-spinner';
 import * as Yup from 'yup';
-import Unavailiabe from '../../Utils/unavailiable1.png';
 import { TextInput } from '../../Utils/FormLib';
 import { toast } from 'react-toastify';
 import Category from './Category';
 import { PostArticles } from '../../Auth/Actions/articleActions';
+import { ProfilePicture } from '../../Utils/ProfilePicture';
 
 const PostArticlesModal = ({
     user,
@@ -44,19 +44,10 @@ const PostArticlesModal = ({
                         </div>
                         <div className="upload_profile_container">
                             <div>
-                                {user?.profile ? (
-                                    <img
-                                        src={user.profile}
-                                        alt=""
-                                        className="profile___image"
-                                    />
-                                ) : (
-                                    <img
-                                        src={Unavailiabe}
-                                        className="profile__image"
-                                        alt=""
-                                    />
-                                )}
+                                <ProfilePicture
+                                    image={user.profile}
+                                    className="profile___image"
+                                />
                             </div>
                             <div className="user__name">
                                 {user && (

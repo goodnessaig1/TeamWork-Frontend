@@ -69,10 +69,10 @@ export const PostGifCommentRequest = () => {
     };
 };
 
-export const PostGifCommentSuccess = (gifs, comments, postIndex) => {
+export const PostGifCommentSuccess = (gifs, comments, gifIndex) => {
     return {
         type: types.POST_GIF_COMMENT_SUCCESS,
-        payload: { gifs, comments, postIndex },
+        payload: { gifs, comments, gifIndex },
     };
 };
 
@@ -123,7 +123,7 @@ export function LikeGif(id, index) {
         return promise;
     };
 }
-export function GetSingleGif(id, setGifModal) {
+export function GetSingleGif(id) {
     return (dispatch) => {
         const promise = apiRequest('GET', `v1/gifs/${id}`);
         dispatch(getSingleGifRequest());
@@ -141,7 +141,6 @@ export function GetSingleGif(id, setGifModal) {
                         position: toast.POSITION.TOP_RIGHT,
                     });
                 }
-                setGifModal(false);
                 dispatch(getSingleGifFailure(errorMsg));
             }
         );

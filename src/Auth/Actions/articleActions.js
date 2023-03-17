@@ -80,10 +80,10 @@ export const PostArticleCommentRequest = () => {
     };
 };
 
-export const PostArticleCommentSuccess = (article, comments) => {
+export const PostArticleCommentSuccess = (article, comments, articleIndex) => {
     return {
         type: types.POST_ARTICLE_COMMENT_SUCCESS,
-        payload: { article, comments },
+        payload: { article, comments, articleIndex },
     };
 };
 
@@ -158,7 +158,7 @@ export function LikeArticles(id, index) {
     };
 }
 
-export function GetSingleArticle(id, setArticleModal) {
+export function GetSingleArticle(id) {
     return (dispatch) => {
         const promise = apiRequest('GET', `v1/articles/${id}`);
         dispatch(getSingleArticleRequest());
@@ -176,7 +176,6 @@ export function GetSingleArticle(id, setArticleModal) {
                         position: toast.POSITION.TOP_RIGHT,
                     });
                 }
-                setArticleModal(false);
                 dispatch(getSingleArticleFailure(errorMsg));
             }
         );
@@ -184,9 +183,9 @@ export function GetSingleArticle(id, setArticleModal) {
     };
 }
 
-export function PostArticleComment(data, Id) {
+export function PostArticleComment(data, id, index) {
     return (dispatch) => {
-        const promise = apiRequest('POST', `v1/articles/${Id}/comment`, data);
+        const promise = apiRequest('POST', `v1/articles/${id}/comment`, data);
         dispatch(PostArticleCommentRequest());
         promise.then(
             function (payload) {
@@ -196,7 +195,7 @@ export function PostArticleComment(data, Id) {
                 toast.success(`Successful`, {
                     position: toast.POSITION.TOP_RIGHT,
                 });
-                dispatch(PostArticleCommentSuccess(article, comments));
+                dispatch(PostArticleCommentSuccess(article, comments, index));
             },
             function (error) {
                 const errorMsg = error;

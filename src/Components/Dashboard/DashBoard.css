@@ -57,8 +57,9 @@
     object-fit: cover;
 }
 .profile_commnet {
-    width: 70px;
-    height: 72px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
 }
 
 .feed_top > div {
@@ -135,8 +136,8 @@
 }
 
 .like_comment_container {
+    margin: 4px 30px 4px 30px;
     display: flex;
-    margin-top: 26px;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
@@ -188,6 +189,7 @@
 }
 
 .comment_Icon {
+    cursor: pointer;
     width: 24px;
     height: 24px;
 }
@@ -214,36 +216,52 @@
     gap: 0.2rem;
     justify-content: center;
 }
+.post__comment__container {
+    display: flex;
+    flex-direction: column;
+}
 
 .post_comment_container {
     display: flex;
-    margin-top: 20px;
-    gap: 2rem;
+    margin-top: 15px;
+    gap: 1.5rem;
     flex-direction: row;
-    align-items: center;
 }
 
 .comment_section {
-    padding-right: 35px;
+    padding-right: 15px;
     border-radius: 10px;
     line-height: 21px;
-    width: 100%;
     display: flex;
     background: rgba(245, 245, 245, 1);
 }
 
 .comment__section {
     display: flex;
-    margin-left: 30px;
+    margin-left: 15px;
     flex-direction: column;
-    margin-top: 10px;
+    margin-top: 8px;
     gap: 0.2rem;
     margin-bottom: 8px;
     color: rgba(151, 154, 150, 1);
 }
 .comment__section > span {
+    padding-right: 10px;
     font-size: 20px;
     font-weight: 700;
+}
+.view_more {
+    color: var(--color-primary);
+    cursor: pointer;
+    padding-top: 2px;
+}
+.add_comment__container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 16px;
+    cursor: pointer;
+    gap: 0.6rem;
 }
 
 .loading_container {
@@ -410,7 +428,7 @@
 }
 
 .gif_post {
-    width: 560px;
+    width: 98%;
     height: 300px;
 }
 
@@ -424,13 +442,15 @@
     display: flex;
     margin-top: 8px;
     gap: 0.5rem;
+    margin-left: 3px;
     flex-direction: row;
 }
 
 .comment___container {
     border-radius: 10px;
     margin-bottom: 5px;
-    width: 100%;
+    overflow: hidden;
+    padding-right: 15px;
     line-height: 20px;
     display: flex;
     flex-direction: column;
@@ -451,7 +471,7 @@
     left: 50%;
     transform: translateX(-50%);
     bottom: 3.4rem;
-    margin-left: 0px;
+    margin-left: 0;
 }
 
 .user_profile_pix {
@@ -463,6 +483,9 @@
 .add_comment_container {
     display: flex;
     gap: 0.6rem;
+    /* width: 100%; */
+    background-color: #fff;
+    padding-top: 6px;
     flex-direction: row;
     align-items: center;
 }
@@ -524,6 +547,10 @@
         width: 40px;
         height: 40px;
     }
+    .profile_commnet {
+        width: 33px;
+        height: 33px;
+    }
     .feed_top {
         margin: 0;
     }
@@ -583,7 +610,7 @@
     }
     .bigger_img {
         width: 99%;
-        top: 10rem;
+        top: 9rem;
         border-radius: 5px;
         position: absolute;
         height: 500px;
@@ -679,15 +706,11 @@
         line-height: 1.3;
     }
     .post_comment_container {
-        gap: 1.3rem;
+        gap: 0.7rem;
     }
-    .comment_section {
-        width: 100%;
-    }
-
     .comment__section {
-        margin-left: 20px;
-        margin-top: 16px;
+        margin-left: 10px;
+        margin-top: 7px;
         gap: 0rem;
     }
     .comment__section > span {
@@ -781,7 +804,6 @@
     }
 
     .like_comment_container {
-        margin-top: 14px;
         font-size: 14px;
     }
 
