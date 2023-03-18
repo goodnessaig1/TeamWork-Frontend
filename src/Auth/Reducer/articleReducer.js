@@ -6,6 +6,11 @@ const initialState = {
         error: null,
         success: false,
     },
+    getColors: {
+        requesting: false,
+        error: null,
+        success: false,
+    },
     PostArticles: {
         requesting: false,
         error: null,
@@ -61,6 +66,35 @@ export default function (state = initialState, action) {
                     success: true,
                 },
             });
+
+        case types.GET_COLORS_REQUEST:
+            return Object.assign({}, state, {
+                getCategory: {
+                    requesting: true,
+                    error: null,
+                    success: true,
+                },
+            });
+
+        case types.GET_COLORS_SUCCESS:
+            return Object.assign({}, state, {
+                getCategory: {
+                    requesting: false,
+                    error: null,
+                    success: true,
+                },
+                colors: action.payload,
+            });
+
+        case types.GET_COLORS_FAILURE:
+            return Object.assign({}, state, {
+                getCategory: {
+                    requesting: false,
+                    error: action.payload,
+                    success: true,
+                },
+            });
+
         case types.POST_ARTICLES_REQUEST:
             return Object.assign({}, state, {
                 PostArticles: {

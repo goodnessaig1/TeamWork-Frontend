@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import '../Profile/Modal.css';
 import './Post.css';
 import { Formik, Form, Field } from 'formik';
@@ -10,6 +11,7 @@ import { toast } from 'react-toastify';
 import Category from './Category';
 import { PostArticles } from '../../Auth/Actions/articleActions';
 import { ProfilePicture } from '../../Utils/ProfilePicture';
+import ColorPicker from '../../Utils/ColorPicker';
 
 const PostArticlesModal = ({
     user,
@@ -20,11 +22,14 @@ const PostArticlesModal = ({
     setPostGif,
     setPostGifModal,
 }) => {
+    const [selectedColor, setSelectedColor] = useState(null);
     const handleUploadClick = (e) => {
         setPostGif(e);
         setPostArticleModal(false);
         setPostGifModal(true);
     };
+    const colorId = selectedColor?.id;
+
     return (
         <div>
             {postArticleModal && (
@@ -63,6 +68,7 @@ const PostArticlesModal = ({
                                 title: '',
                                 article: '',
                                 categoryId: undefined,
+                                colorId: '',
                             }}
                             validationSchema={Yup.object({
                                 title: Yup.string()
@@ -71,6 +77,7 @@ const PostArticlesModal = ({
                                 article: Yup.string().required('Required'),
                             })}
                             onSubmit={(values) => {
+                                // console.log(values);
                                 PostArticles(values).then((response) => {
                                     const { data } = response;
                                     if (data.status === 'success') {
@@ -82,10 +89,10 @@ const PostArticlesModal = ({
                                 });
                             }}
                         >
-                            {() => {
+                            {({ setFieldValue, handleSubmit }) => {
                                 return (
                                     <>
-                                        <Form>
+                                        <Form onSubmit={handleSubmit}>
                                             <div className="post_inputs">
                                                 <div className="post_input_container category">
                                                     <div className="category_select">
@@ -112,17 +119,32 @@ const PostArticlesModal = ({
                                                         placeholder="title"
                                                     />
                                                 </div>
-                                                <div className="post_input_container">
-                                                    <TextInput
-                                                        className="post_input"
-                                                        name="article"
-                                                        type="text"
-                                                        label="Article"
-                                                        placeholder={`Share your toughts, ${user.firstName}`}
+                                                <TextInput
+                                                    name="article"
+                                                    type="textarea"
+                                                    style={{
+                                                        backgroundColor:
+                                                            selectedColor?.color,
+                                                        color: selectedColor?.color
+                                                            ? 'white'
+                                                            : null,
+                                                    }}
+                                                    label="Article"
+                                                    placeholder={`Share your toughts, ${user.firstName}`}
+                                                />
+                                            </div>
+
+                                            <div className="add_to_post_container">
+                                                <div>
+                                                    <ColorPicker
+                                                        selectedColor={
+                                                            selectedColor
+                                                        }
+                                                        setSelectedColor={
+                                                            setSelectedColor
+                                                        }
                                                     />
                                                 </div>
-                                            </div>
-                                            <div className="add_photo_container">
                                                 <div
                                                     className="add_photo"
                                                     onClick={(e) =>
@@ -140,6 +162,12 @@ const PostArticlesModal = ({
                                                     <div className="upload_button">
                                                         <button
                                                             type="submit"
+                                                            onClick={() => {
+                                                                setFieldValue(
+                                                                    'colorId',
+                                                                    colorId
+                                                                );
+                                                            }}
                                                             className="submit_btn"
                                                         >
                                                             POST

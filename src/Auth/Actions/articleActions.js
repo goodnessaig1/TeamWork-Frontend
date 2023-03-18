@@ -21,6 +21,25 @@ export const getCategoryFailure = (error) => {
         payload: error,
     };
 };
+export const getColorsRequest = () => {
+    return {
+        type: types.GET_COLORS_REQUEST,
+    };
+};
+
+export const getColorsSuccess = (success) => {
+    return {
+        type: types.GET_COLORS_SUCCESS,
+        payload: success,
+    };
+};
+
+export const getColorsFailure = (error) => {
+    return {
+        type: types.GET_COLORS_FAILURE,
+        payload: error,
+    };
+};
 export const PostArticlesRequest = () => {
     return {
         type: types.POST_ARTICLES_REQUEST,
@@ -111,6 +130,23 @@ export function getCategory() {
             function (error) {
                 const errorMsg = error;
                 dispatch(getCategoryFailure(errorMsg));
+            }
+        );
+        return promise;
+    };
+}
+export function getColors() {
+    return (dispatch) => {
+        const promise = apiRequest('GET', `v1/colors`);
+        dispatch(getColorsRequest());
+        promise.then(
+            function (payload) {
+                const colors = payload.data;
+                dispatch(getColorsSuccess(colors?.data));
+            },
+            function (error) {
+                const errorMsg = error;
+                dispatch(getColorsFailure(errorMsg));
             }
         );
         return promise;

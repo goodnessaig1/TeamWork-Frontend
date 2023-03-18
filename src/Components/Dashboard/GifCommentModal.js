@@ -21,23 +21,18 @@ const GifCommentModal = ({
     return (
         <div className="single_modal_container">
             <div className="modal_holder">
+                <div className="close_modal_container">
+                    <div
+                        className="close_modal"
+                        onClick={() => setGifModal(false)}
+                    >
+                        X
+                    </div>
+                </div>
+                <hr style={{ marginTop: '5px' }} />
                 <>
                     {!requesting && (
                         <>
-                            <div className="user_name">
-                                <span style={{ marginTop: '5px' }}>
-                                    {gifData && (
-                                        <h3>{`${gifData.post_author}'s Post`}</h3>
-                                    )}
-                                </span>
-                                <div
-                                    className="close_modal"
-                                    onClick={() => setGifModal(false)}
-                                >
-                                    X
-                                </div>
-                            </div>
-                            <hr style={{ marginTop: '5px' }} />
                             <div>
                                 {gifData && (
                                     <div className="post___container">

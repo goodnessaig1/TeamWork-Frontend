@@ -3,7 +3,6 @@ import moment from 'moment';
 import { Form, Formik } from 'formik';
 import { TextInput } from '../../Utils/FormLib';
 import { Send } from '@material-ui/icons';
-import { getBackgroundColor } from '../../Utils/colors';
 import { PostArticleComment } from '../../Auth/Actions/articleActions';
 import { Comment, RotatingLines } from 'react-loader-spinner';
 import { ProfilePicture } from '../../Utils/ProfilePicture';
@@ -23,23 +22,19 @@ const ArticleCommentModal = ({
     return (
         <div className="single_modal_container">
             <div className="modal_holder">
+                <div className="close_modal_container">
+                    <div
+                        style={{ marginTop: '5px' }}
+                        className="close_modal"
+                        onClick={() => setArticleModal(false)}
+                    >
+                        X
+                    </div>
+                </div>
+                <hr style={{ marginTop: '5px' }} />
                 <>
                     {!requesting && (
                         <>
-                            <div className="user_name">
-                                <span style={{ marginTop: '5px' }}>
-                                    {articleData && (
-                                        <h3>{`${articleData.post_author}'s Post`}</h3>
-                                    )}
-                                </span>
-                                <div
-                                    className="close_modal"
-                                    onClick={() => setArticleModal(false)}
-                                >
-                                    X
-                                </div>
-                            </div>
-                            <hr style={{ marginTop: '5px' }} />
                             <div>
                                 {articleData && (
                                     <div className="post___container">
@@ -74,19 +69,38 @@ const ArticleCommentModal = ({
                                                 </div>
                                             ) : (
                                                 <div>
-                                                    <span
-                                                        className="small_length_post"
-                                                        style={{
-                                                            background: `${getBackgroundColor(
-                                                                articleData
-                                                                    ?.post
-                                                                    ?.length
-                                                            )}`,
-                                                            color: 'white',
-                                                        }}
-                                                    >
-                                                        {articleData.post}
-                                                    </span>
+                                                    {articleData.color ===
+                                                    null ? (
+                                                        <div>
+                                                            <h3 className="post_title">
+                                                                {
+                                                                    articleData?.title
+                                                                }
+                                                            </h3>
+                                                            <span className="large_length_post">
+                                                                {
+                                                                    articleData?.post
+                                                                }
+                                                            </span>
+                                                        </div>
+                                                    ) : (
+                                                        <div>
+                                                            <span
+                                                                className="small_length_post"
+                                                                style={{
+                                                                    background: `${
+                                                                        articleData?.color ||
+                                                                        null
+                                                                    }`,
+                                                                    color: 'white',
+                                                                }}
+                                                            >
+                                                                {
+                                                                    articleData?.post
+                                                                }
+                                                            </span>
+                                                        </div>
+                                                    )}
                                                 </div>
                                             )}
                                         </div>

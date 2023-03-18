@@ -6,7 +6,6 @@ import {
     EmojiEmotionsOutlined,
     ThumbUpAltRounded,
 } from '@material-ui/icons';
-import { getBackgroundColor } from '../../Utils/colors';
 import { ColorRing, Oval } from 'react-loader-spinner';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { getMoreFeeds } from '../../Auth/Actions/feedActions';
@@ -36,7 +35,7 @@ const Feeds = ({
     open,
     setOpen,
 }) => {
-    // console.log(feeds);
+    console.log(feeds);
     const dispatch = useDispatch();
     const [hasMore, setHasMore] = useState(true);
     const [user, setUser] = useState(null);
@@ -134,7 +133,7 @@ const Feeds = ({
                                     <div key={index}>
                                         <div className="feed_content">
                                             {item?.post.includes('https://') ? (
-                                                <div className="feed_content">
+                                                <div className="feed__content">
                                                     <div className="feed_top">
                                                         <ProfilePicture
                                                             image={
@@ -239,7 +238,7 @@ const Feeds = ({
                                                     />
                                                 </div>
                                             ) : (
-                                                <div className="feed_content">
+                                                <div className="feed__content">
                                                     <div className="feed_top">
                                                         <ProfilePicture
                                                             image={
@@ -283,19 +282,38 @@ const Feeds = ({
                                                             </div>
                                                         ) : (
                                                             <div>
-                                                                <span
-                                                                    className="small_length_post"
-                                                                    style={{
-                                                                        background: `${getBackgroundColor(
-                                                                            item
-                                                                                ?.post
-                                                                                .length
-                                                                        )}`,
-                                                                        color: 'white',
-                                                                    }}
-                                                                >
-                                                                    {item?.post}
-                                                                </span>
+                                                                {item.color ===
+                                                                null ? (
+                                                                    <div>
+                                                                        <h3 className="post_title">
+                                                                            {
+                                                                                item?.title
+                                                                            }
+                                                                        </h3>
+                                                                        <span className="large_length_post">
+                                                                            {
+                                                                                item?.post
+                                                                            }
+                                                                        </span>
+                                                                    </div>
+                                                                ) : (
+                                                                    <div>
+                                                                        <span
+                                                                            className="small_length_post"
+                                                                            style={{
+                                                                                background: `${
+                                                                                    item?.color ||
+                                                                                    null
+                                                                                }`,
+                                                                                color: 'white',
+                                                                            }}
+                                                                        >
+                                                                            {
+                                                                                item?.post
+                                                                            }
+                                                                        </span>
+                                                                    </div>
+                                                                )}
                                                             </div>
                                                         )}
                                                         <hr
