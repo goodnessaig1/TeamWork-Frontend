@@ -59,6 +59,7 @@ input:focus {
     font-size: 16px;
     border: 1px dashed #ced4d9;
     border-radius: 5px;
+    resize: none;
 }
 .text_area:focus {
     outline: none;
