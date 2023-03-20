@@ -553,6 +553,7 @@
     }
     .feed_content {
         margin-top: 12px;
+        border-radius: 0px;
     }
     .feed__content {
         margin-top: 12px;
