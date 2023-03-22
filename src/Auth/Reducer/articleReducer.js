@@ -167,7 +167,7 @@ export default function (state = initialState, action) {
                     success: true,
                 },
                 articleData: {
-                    articles: action.payload.article,
+                    articles: action.payload.data,
                     comments: action.payload.comments,
                 },
             });
@@ -198,9 +198,9 @@ export default function (state = initialState, action) {
                 },
                 articleData: {
                     ...state,
-                    articles: action.payload.article,
+                    articles: action.payload.data,
                     comments: [
-                        action.payload.comments,
+                        action.payload.comment,
                         ...state.articleData.comments,
                     ],
                 },

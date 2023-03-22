@@ -3,7 +3,6 @@ import { ProfilePicture } from '../../Utils/ProfilePicture';
 
 const Comments = ({
     item,
-    index,
     userData,
     handleArticleComment,
     handleCommentClick,
@@ -16,9 +15,7 @@ const Comments = ({
                         {item?.number_of_comment > 3 && (
                             <div
                                 className="view_more"
-                                onClick={() =>
-                                    handleCommentClick(item.postid, index)
-                                }
+                                onClick={() => handleCommentClick(item.postid)}
                             >
                                 View More Comments
                             </div>
@@ -53,9 +50,7 @@ const Comments = ({
                                 className="user_profile_pix profile_commnet"
                             />
                             <div
-                                onClick={() =>
-                                    handleCommentClick(item.postid, index)
-                                }
+                                onClick={() => handleCommentClick(item.postid)}
                             >
                                 Write your comment
                             </div>
@@ -67,7 +62,7 @@ const Comments = ({
                             <div
                                 className="view_more"
                                 onClick={() =>
-                                    handleArticleComment(item.postid, index)
+                                    handleArticleComment(item.postid)
                                 }
                             >
                                 View More Comments
@@ -104,7 +99,7 @@ const Comments = ({
                             />
                             <div
                                 onClick={() =>
-                                    handleArticleComment(item.postid, index)
+                                    handleArticleComment(item.postid)
                                 }
                             >
                                 Write your comment

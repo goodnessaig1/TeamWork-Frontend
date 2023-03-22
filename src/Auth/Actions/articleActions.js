@@ -66,10 +66,10 @@ export const likeArticlesRequest = () => {
     };
 };
 
-export const likeArticlesSuccess = (index, likedArticle) => {
+export const likeArticlesSuccess = (success) => {
     return {
         type: types.LIKE_ARTICLES_SUCCESS,
-        payload: { index, likedArticle },
+        payload: success,
     };
 };
 
@@ -86,10 +86,10 @@ export const getSingleArticleRequest = () => {
     };
 };
 
-export const getSingleArticleSuccess = (article, comments) => {
+export const getSingleArticleSuccess = (success) => {
     return {
         type: types.GET_SINGLE_ARTICLE_SUCCESS,
-        payload: { article, comments },
+        payload: success,
     };
 };
 
@@ -99,10 +99,10 @@ export const PostArticleCommentRequest = () => {
     };
 };
 
-export const PostArticleCommentSuccess = (article, comments, articleIndex) => {
+export const PostArticleCommentSuccess = (success) => {
     return {
         type: types.POST_ARTICLE_COMMENT_SUCCESS,
-        payload: { article, comments, articleIndex },
+        payload: success,
     };
 };
 
@@ -176,14 +176,14 @@ export function PostArticles(credentials) {
     };
 }
 
-export function LikeArticles(id, index) {
+export function LikeArticles(id) {
     return (dispatch) => {
         const promise = apiRequest('POST', `v1/articles/${id}/like`);
         dispatch(likeArticlesRequest());
         promise.then(
             function (payload) {
                 const likedArticle = payload.data.data;
-                dispatch(likeArticlesSuccess(index, likedArticle));
+                dispatch(likeArticlesSuccess(likedArticle));
             },
             function (error) {
                 const errorMsg = error;
@@ -201,9 +201,8 @@ export function GetSingleArticle(id) {
         promise.then(
             function (payload) {
                 const { data } = payload.data;
-                const article = data.data;
-                const comments = data.comments;
-                dispatch(getSingleArticleSuccess(article, comments));
+                const articleData = data;
+                dispatch(getSingleArticleSuccess(articleData));
             },
             function (error) {
                 const errorMsg = error;
@@ -219,19 +218,18 @@ export function GetSingleArticle(id) {
     };
 }
 
-export function PostArticleComment(data, id, index) {
+export function PostArticleComment(data, id) {
     return (dispatch) => {
         const promise = apiRequest('POST', `v1/articles/${id}/comment`, data);
         dispatch(PostArticleCommentRequest());
         promise.then(
             function (payload) {
                 const { data } = payload.data;
-                const article = data.data;
-                const comments = data.comment;
+                const articleData = data;
                 toast.success(`Successful`, {
                     position: toast.POSITION.TOP_RIGHT,
                 });
-                dispatch(PostArticleCommentSuccess(article, comments, index));
+                dispatch(PostArticleCommentSuccess(articleData));
             },
             function (error) {
                 const errorMsg = error;

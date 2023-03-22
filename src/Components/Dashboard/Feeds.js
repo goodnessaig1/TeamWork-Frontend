@@ -35,13 +35,12 @@ const Feeds = ({
     open,
     setOpen,
 }) => {
-    console.log(feeds);
+    // console.log(feeds);
     const dispatch = useDispatch();
     const [hasMore, setHasMore] = useState(true);
     const [user, setUser] = useState(null);
     const [gifModal, setGifModal] = useState(false);
     const [articleModal, setArticleModal] = useState(false);
-    const [index, setIndex] = useState(null);
     const fetchMoreData = () => {
         if (feedsTotal != feedsLength) {
             setTimeout(() => {
@@ -65,26 +64,24 @@ const Feeds = ({
         setPostArticle(e);
         setPostArticleModal(true);
     };
-    const handleLikes = (post_id, index) => {
-        dispatch(LikeArticles(post_id, index));
+    const handleLikes = (post_id) => {
+        dispatch(LikeArticles(post_id));
     };
-    const handleGifLikes = (post_id, index) => {
-        dispatch(LikeGif(post_id, index));
+    const handleGifLikes = (post_id) => {
+        dispatch(LikeGif(post_id));
     };
     const handleClick = (item, user) => {
         setClickedImage(item.post);
         setOpen(true);
         setUser(user);
     };
-    const handleCommentClick = (id, index) => {
+    const handleCommentClick = (id) => {
         dispatch(GetSingleGif(id));
         setGifModal(true);
-        setIndex(index);
     };
-    const handleArticleComment = (id, index) => {
+    const handleArticleComment = (id) => {
         dispatch(GetSingleArticle(id, setArticleModal));
         setArticleModal(true);
-        setIndex(index);
     };
 
     return (
@@ -188,8 +185,7 @@ const Feeds = ({
                                                             className="like"
                                                             onClick={() =>
                                                                 handleGifLikes(
-                                                                    item?.postid,
-                                                                    index
+                                                                    item?.postid
                                                                 )
                                                             }
                                                         >
@@ -214,8 +210,7 @@ const Feeds = ({
                                                                 alt=""
                                                                 onClick={() =>
                                                                     handleCommentClick(
-                                                                        item.postid,
-                                                                        index
+                                                                        item.postid
                                                                     )
                                                                 }
                                                             />
@@ -230,7 +225,6 @@ const Feeds = ({
                                                     {/* Comments here */}
                                                     <Comments
                                                         item={item}
-                                                        index={index}
                                                         userData={userData}
                                                         handleCommentClick={
                                                             handleCommentClick
@@ -327,8 +321,7 @@ const Feeds = ({
                                                                 className="like"
                                                                 onClick={() =>
                                                                     handleLikes(
-                                                                        item.postid,
-                                                                        index
+                                                                        item.postid
                                                                     )
                                                                 }
                                                             >
@@ -355,8 +348,7 @@ const Feeds = ({
                                                                     alt=""
                                                                     onClick={() =>
                                                                         handleArticleComment(
-                                                                            item.postid,
-                                                                            index
+                                                                            item.postid
                                                                         )
                                                                     }
                                                                 />
@@ -371,7 +363,6 @@ const Feeds = ({
                                                         {/* Comments here */}
                                                         <Comments
                                                             item={item}
-                                                            index={index}
                                                             userData={userData}
                                                             handleArticleComment={
                                                                 handleArticleComment
@@ -419,14 +410,12 @@ const Feeds = ({
                     <GifCommentModal
                         gifModal={gifModal}
                         setGifModal={setGifModal}
-                        index={index}
                     />
                 )}
                 {articleModal && (
                     <ArticleCommentModal
                         articleModal={articleModal}
                         setArticleModal={setArticleModal}
-                        index={index}
                     />
                 )}
             </div>

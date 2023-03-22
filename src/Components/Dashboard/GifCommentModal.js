@@ -15,7 +15,6 @@ const GifCommentModal = ({
     PostGifComment,
     postGifRequest,
     requesting,
-    index,
 }) => {
     const gifId = gifData.postid;
     return (
@@ -29,8 +28,8 @@ const GifCommentModal = ({
                         X
                     </div>
                 </div>
-                <hr style={{ marginTop: '5px' }} />
                 <>
+                    <hr style={{ marginTop: '5px' }} />
                     {!requesting && (
                         <>
                             <div>
@@ -39,9 +38,9 @@ const GifCommentModal = ({
                                         <div className="profile_top">
                                             <ProfilePicture
                                                 image={gifData?.profile}
-                                                className="profile_img"
+                                                className="profile_img profile_commnet "
                                             />
-                                            <div>
+                                            <div style={{ marginTop: '5px' }}>
                                                 <span className="post_user_name">
                                                     {gifData?.post_author}
                                                 </span>
@@ -56,7 +55,12 @@ const GifCommentModal = ({
                                             </div>
                                         </div>
                                         <div>
-                                            <div style={{ fontSize: '14px' }}>
+                                            <div
+                                                style={{
+                                                    fontSize: '14px',
+                                                    marginTop: '5px',
+                                                }}
+                                            >
                                                 {gifData.title}
                                             </div>
                                             <img
@@ -116,16 +120,17 @@ const GifCommentModal = ({
                                             comment: '',
                                         }}
                                         onSubmit={(values, { resetForm }) => {
-                                            PostGifComment(
-                                                values,
-                                                gifId,
-                                                index
-                                            ).then((res) => {
-                                                const data = res.data;
-                                                if (data.status === 'success') {
-                                                    resetForm();
+                                            PostGifComment(values, gifId).then(
+                                                (res) => {
+                                                    const data = res.data;
+                                                    if (
+                                                        data.status ===
+                                                        'success'
+                                                    ) {
+                                                        resetForm();
+                                                    }
                                                 }
-                                            });
+                                            );
                                         }}
                                     >
                                         {() => (

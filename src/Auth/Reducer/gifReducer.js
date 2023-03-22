@@ -99,7 +99,7 @@ export default function (state = initialState, action) {
                     success: true,
                 },
                 gifData: {
-                    gifs: action.payload.gifs,
+                    gifs: action.payload.data,
                     comments: action.payload.comments,
                 },
             });
@@ -129,9 +129,9 @@ export default function (state = initialState, action) {
                 },
                 gifData: {
                     ...state,
-                    gifs: action.payload.gifs,
+                    gifs: action.payload.data,
                     comments: [
-                        action.payload.comments,
+                        action.payload.comment,
                         ...state.gifData.comments,
                     ],
                 },

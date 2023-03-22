@@ -14,7 +14,6 @@ const ArticleCommentModal = ({
     comments,
     PostArticleComment,
     postCommentRequest,
-    index,
     requesting,
 }) => {
     const articleId = articleData?.postid;
@@ -41,9 +40,9 @@ const ArticleCommentModal = ({
                                         <div className="profile_top">
                                             <ProfilePicture
                                                 image={articleData?.profile}
-                                                className="profile_img"
+                                                className="profile_img profile_commnet"
                                             />
-                                            <div>
+                                            <div style={{ marginTop: '5px' }}>
                                                 <span className="post_user_name">
                                                     {articleData?.post_author}
                                                 </span>
@@ -149,7 +148,7 @@ const ArticleCommentModal = ({
                                 <div className="add_comment_container">
                                     <ProfilePicture
                                         image={user?.profile}
-                                        className="user_profile_pix"
+                                        className="user_profile_pix profile_commnet"
                                     />
                                     <Formik
                                         initialValues={{
@@ -158,8 +157,7 @@ const ArticleCommentModal = ({
                                         onSubmit={(values, { resetForm }) => {
                                             PostArticleComment(
                                                 values,
-                                                articleId,
-                                                index
+                                                articleId
                                             ).then((res) => {
                                                 const data = res.data;
                                                 if (data.status === 'success') {

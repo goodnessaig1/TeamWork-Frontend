@@ -15,6 +15,9 @@ const initialState = {
     allFeeds: [],
 };
 let updatedFeeds;
+let article;
+let gif;
+let index;
 export default function (state = initialState, action) {
     switch (action.type) {
         case types.GET_ALL_FEEDS_REQUEST:
@@ -68,36 +71,48 @@ export default function (state = initialState, action) {
             });
 
         case types.LIKE_ARTICLES_SUCCESS:
-            const { index, likedArticle } = action.payload;
+            article = action.payload;
+            index = state.allFeeds.findIndex(
+                (item) => item.postid === article.postid
+            );
             updatedFeeds = [...state.allFeeds];
-            updatedFeeds[index] = likedArticle;
+            updatedFeeds[index] = article;
             return Object.assign({}, state, {
                 ...state,
                 allFeeds: updatedFeeds,
             });
 
         case types.LIKE_GIF_SUCCESS:
-            const { indexNumber, likedGif } = action.payload;
+            gif = action.payload;
+            index = state.allFeeds.findIndex(
+                (item) => item.postid === gif.postid
+            );
             updatedFeeds = [...state.allFeeds];
-            updatedFeeds[indexNumber] = likedGif;
+            updatedFeeds[index] = gif;
             return Object.assign({}, state, {
                 ...state,
                 allFeeds: updatedFeeds,
             });
 
         case types.POST_GIF_COMMENT_SUCCESS:
-            const { gifs, gifIndex } = action.payload;
+            gif = action.payload.data;
+            index = state.allFeeds.findIndex(
+                (item) => item.postid === gif.postid
+            );
             updatedFeeds = [...state.allFeeds];
-            updatedFeeds[gifIndex] = gifs;
+            updatedFeeds[index] = gif;
             return Object.assign({}, state, {
                 ...state,
                 allFeeds: updatedFeeds,
             });
 
         case types.POST_ARTICLE_COMMENT_SUCCESS:
-            const { article, articleIndex } = action.payload;
+            article = action.payload.data;
+            index = state.allFeeds.findIndex(
+                (item) => item.postid === article.postid
+            );
             updatedFeeds = [...state.allFeeds];
-            updatedFeeds[articleIndex] = article;
+            updatedFeeds[index] = article;
             return Object.assign({}, state, {
                 ...state,
                 allFeeds: updatedFeeds,

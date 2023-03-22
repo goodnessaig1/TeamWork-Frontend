@@ -29,10 +29,10 @@ export const likeGifRequest = () => {
     };
 };
 
-export const likeGifSuccess = (indexNumber, likedGif) => {
+export const likeGifSuccess = (success) => {
     return {
         type: types.LIKE_GIF_SUCCESS,
-        payload: { indexNumber, likedGif },
+        payload: success,
     };
 };
 
@@ -49,10 +49,10 @@ export const getSingleGifRequest = () => {
     };
 };
 
-export const getSingleGifSuccess = (gifs, comments) => {
+export const getSingleGifSuccess = (success) => {
     return {
         type: types.GET_SINGLE_GIF_SUCCESS,
-        payload: { gifs, comments },
+        payload: success,
     };
 };
 
@@ -69,10 +69,10 @@ export const PostGifCommentRequest = () => {
     };
 };
 
-export const PostGifCommentSuccess = (gifs, comments, gifIndex) => {
+export const PostGifCommentSuccess = (success) => {
     return {
         type: types.POST_GIF_COMMENT_SUCCESS,
-        payload: { gifs, comments, gifIndex },
+        payload: success,
     };
 };
 
@@ -106,14 +106,14 @@ export const PostGif = (formData) => {
     };
 };
 
-export function LikeGif(id, index) {
+export function LikeGif(id) {
     return (dispatch) => {
         const promise = apiRequest('POST', `v1/gifs/${id}/gif_likes`);
         dispatch(likeGifRequest());
         promise.then(
             function (payload) {
                 const likedGif = payload.data.data;
-                dispatch(likeGifSuccess(index, likedGif));
+                dispatch(likeGifSuccess(likedGif));
             },
             function (error) {
                 const errorMsg = error;
@@ -130,9 +130,8 @@ export function GetSingleGif(id) {
         promise.then(
             function (payload) {
                 const { data } = payload.data;
-                const gifs = data.data;
-                const comments = data.comments;
-                dispatch(getSingleGifSuccess(gifs, comments));
+                const gifData = data;
+                dispatch(getSingleGifSuccess(gifData));
             },
             function (error) {
                 const errorMsg = error;
@@ -147,19 +146,18 @@ export function GetSingleGif(id) {
         return promise;
     };
 }
-export function PostGifComment(data, gifId, index) {
+export function PostGifComment(data, gifId) {
     return (dispatch) => {
         const promise = apiRequest('POST', `v1/gifs/${gifId}/comment`, data);
         dispatch(PostGifCommentRequest());
         promise.then(
             function (payload) {
                 const { data } = payload.data;
-                const gifs = data.data;
-                const comments = data.comment;
+                const gifData = data;
                 toast.success(`Successful`, {
                     position: toast.POSITION.TOP_RIGHT,
                 });
-                dispatch(PostGifCommentSuccess(gifs, comments, index));
+                dispatch(PostGifCommentSuccess(gifData));
             },
             function (error) {
                 const errorMsg = error;

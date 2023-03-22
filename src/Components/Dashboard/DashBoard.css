@@ -111,6 +111,7 @@
 }
 .post_title {
     font-weight: 700;
+    margin-top: 5px;
     color: black;
 }
 .gif_post_title {
@@ -394,6 +395,7 @@
 .close_modal_container {
     position: relative;
     height: 45px;
+    margin-top: 8px;
 }
 
 .close_modal {
@@ -432,6 +434,7 @@
     border-radius: 50%;
 }
 .post_user_name {
+    margin-top: 10px;
     color: black;
 }
 
