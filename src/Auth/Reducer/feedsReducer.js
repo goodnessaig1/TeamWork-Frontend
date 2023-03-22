@@ -14,7 +14,10 @@ const initialState = {
 
     allFeeds: [],
 };
-
+let updatedFeeds;
+let article;
+let gif;
+let index;
 export default function (state = initialState, action) {
     switch (action.type) {
         case types.GET_ALL_FEEDS_REQUEST:
@@ -65,6 +68,54 @@ export default function (state = initialState, action) {
             return Object.assign({}, state, {
                 ...state,
                 allFeeds: [action.payload, ...state.allFeeds],
+            });
+
+        case types.LIKE_ARTICLES_SUCCESS:
+            article = action.payload;
+            index = state.allFeeds.findIndex(
+                (item) => item.postid === article.postid
+            );
+            updatedFeeds = [...state.allFeeds];
+            updatedFeeds[index] = article;
+            return Object.assign({}, state, {
+                ...state,
+                allFeeds: updatedFeeds,
+            });
+
+        case types.LIKE_GIF_SUCCESS:
+            gif = action.payload;
+            index = state.allFeeds.findIndex(
+                (item) => item.postid === gif.postid
+            );
+            updatedFeeds = [...state.allFeeds];
+            updatedFeeds[index] = gif;
+            return Object.assign({}, state, {
+                ...state,
+                allFeeds: updatedFeeds,
+            });
+
+        case types.POST_GIF_COMMENT_SUCCESS:
+            gif = action.payload.data;
+            index = state.allFeeds.findIndex(
+                (item) => item.postid === gif.postid
+            );
+            updatedFeeds = [...state.allFeeds];
+            updatedFeeds[index] = gif;
+            return Object.assign({}, state, {
+                ...state,
+                allFeeds: updatedFeeds,
+            });
+
+        case types.POST_ARTICLE_COMMENT_SUCCESS:
+            article = action.payload.data;
+            index = state.allFeeds.findIndex(
+                (item) => item.postid === article.postid
+            );
+            updatedFeeds = [...state.allFeeds];
+            updatedFeeds[index] = article;
+            return Object.assign({}, state, {
+                ...state,
+                allFeeds: updatedFeeds,
             });
 
         default:

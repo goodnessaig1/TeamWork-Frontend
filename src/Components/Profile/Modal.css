@@ -13,7 +13,7 @@
 }
 
 .modal_top {
-    margin-top: 14px;
+    margin-top: 6px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -29,7 +29,7 @@
     flex-direction: column;
     width: 530px;
     margin-right: 2rem;
-    height: 500px;
+    height: 510px;
     background-color: #fff;
     transition: 2s ease-in-out;
     border-radius: 8px;
@@ -52,6 +52,9 @@
     position: relative;
     left: 30%;
     width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
     height: 30px;
     border-radius: 100%;

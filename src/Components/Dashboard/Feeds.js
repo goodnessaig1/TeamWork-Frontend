@@ -6,15 +6,23 @@ import {
     EmojiEmotionsOutlined,
     ThumbUpAltRounded,
 } from '@material-ui/icons';
-import { getBackgroundColor } from '../../Utils/colors';
 import { ColorRing, Oval } from 'react-loader-spinner';
-import Unavailiabe from '../../Utils/unavailiable1.png';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { getMoreFeeds } from '../../Auth/Actions/feedActions';
 import { useDispatch } from 'react-redux';
-
+import {
+    GetSingleArticle,
+    LikeArticles,
+} from '../../Auth/Actions/articleActions';
+import { GetSingleGif, LikeGif } from '../../Auth/Actions/gifActions';
+import ViewGifModal from './ViewGifModal';
+import GifCommentModal from './GifCommentModal';
+import ArticleCommentModal from './ArticleCommentModal';
+import Comments from './Comments';
+import { ProfilePicture } from '../../Utils/ProfilePicture';
 const Feeds = ({
     feeds,
+    userData,
     setPostArticle,
     setPostArticleModal,
     offSet,
@@ -22,9 +30,17 @@ const Feeds = ({
     feedsLength,
     requesting,
     feedsTotal,
+    clickedImage,
+    setClickedImage,
+    open,
+    setOpen,
 }) => {
+    // console.log(feeds);
     const dispatch = useDispatch();
     const [hasMore, setHasMore] = useState(true);
+    const [user, setUser] = useState(null);
+    const [gifModal, setGifModal] = useState(false);
+    const [articleModal, setArticleModal] = useState(false);
     const fetchMoreData = () => {
         if (feedsTotal != feedsLength) {
             setTimeout(() => {
@@ -47,6 +63,25 @@ const Feeds = ({
     const handleUploadClick = (e) => {
         setPostArticle(e);
         setPostArticleModal(true);
+    };
+    const handleLikes = (post_id) => {
+        dispatch(LikeArticles(post_id));
+    };
+    const handleGifLikes = (post_id) => {
+        dispatch(LikeGif(post_id));
+    };
+    const handleClick = (item, user) => {
+        setClickedImage(item.post);
+        setOpen(true);
+        setUser(user);
+    };
+    const handleCommentClick = (id) => {
+        dispatch(GetSingleGif(id));
+        setGifModal(true);
+    };
+    const handleArticleComment = (id) => {
+        dispatch(GetSingleArticle(id, setArticleModal));
+        setArticleModal(true);
     };
 
     return (
@@ -94,41 +129,28 @@ const Feeds = ({
                                 return (
                                     <div key={index}>
                                         <div className="feed_content">
-                                            {item.post.includes('https://') ? (
-                                                <div className="feed_content">
+                                            {item?.post.includes('https://') ? (
+                                                <div className="feed__content">
                                                     <div className="feed_top">
-                                                        {item?.profile_pix ? (
-                                                            <img
-                                                                src={
-                                                                    item.profile_pix
-                                                                }
-                                                                className="profile__pix"
-                                                                alt=""
-                                                            />
-                                                        ) : (
-                                                            <img
-                                                                src={
-                                                                    Unavailiabe
-                                                                }
-                                                                className="profile__pix"
-                                                                alt=""
-                                                            />
-                                                        )}
+                                                        <ProfilePicture
+                                                            image={
+                                                                item?.profile
+                                                            }
+                                                            className="profile__pix"
+                                                        />
                                                         <div>
                                                             <h4 className="post_author">
                                                                 {
-                                                                    item.post_author
+                                                                    item?.post_author
                                                                 }
                                                             </h4>
                                                             <span className="author_job_role">
-                                                                {
-                                                                    item.author_jobrole
-                                                                }
+                                                                {item?.jobrole}
                                                             </span>
                                                             <div className="time_container">
                                                                 <span className="time">
                                                                     {moment(
-                                                                        item.post_date
+                                                                        item?.post_date
                                                                     ).fromNow()}
                                                                 </span>
                                                                 <div className="dot">
@@ -139,17 +161,35 @@ const Feeds = ({
                                                     </div>
                                                     <div className="post_container">
                                                         <div className="gif_post_title">
-                                                            {item.title}
+                                                            {item?.title}
                                                         </div>
                                                         <img
-                                                            src={item.post}
+                                                            src={item?.post}
                                                             className="post"
                                                             alt=""
+                                                            onClick={() =>
+                                                                handleClick(
+                                                                    item,
+                                                                    item?.profile
+                                                                )
+                                                            }
                                                         />
                                                     </div>
+                                                    <hr
+                                                        style={{
+                                                            marginTop: '26px',
+                                                        }}
+                                                    />
                                                     <div className="like_comment_container">
-                                                        <div className="like">
-                                                            {item.isliked ===
+                                                        <div
+                                                            className="like"
+                                                            onClick={() =>
+                                                                handleGifLikes(
+                                                                    item?.postid
+                                                                )
+                                                            }
+                                                        >
+                                                            {item?.liked ===
                                                             false ? (
                                                                 <ThumbUpAltRounded className="like_icon" />
                                                             ) : (
@@ -157,7 +197,7 @@ const Feeds = ({
                                                             )}
                                                             <span>
                                                                 {
-                                                                    item.number_of_likes
+                                                                    item?.number_of_likes
                                                                 }
                                                             </span>
                                                         </div>
@@ -168,90 +208,51 @@ const Feeds = ({
                                                                 }
                                                                 className="comment_Icon"
                                                                 alt=""
+                                                                onClick={() =>
+                                                                    handleCommentClick(
+                                                                        item.postid
+                                                                    )
+                                                                }
                                                             />
                                                             <span>
                                                                 {
-                                                                    item.number_of_commennt
+                                                                    item?.number_of_comment
                                                                 }
                                                             </span>
                                                         </div>
                                                     </div>
-
-                                                    {item?.comment ? (
-                                                        <div className="post_comment_container">
-                                                            <div className="post_comment">
-                                                                {item.comment_author_profile !==
-                                                                null ? (
-                                                                    <img
-                                                                        src={
-                                                                            item.comment_author_profile
-                                                                        }
-                                                                        className="profile__pix profile_commnet"
-                                                                        alt=""
-                                                                    />
-                                                                ) : (
-                                                                    <img
-                                                                        src={
-                                                                            Unavailiabe
-                                                                        }
-                                                                        className="profile__pix"
-                                                                        alt=""
-                                                                    />
-                                                                )}
-                                                            </div>
-                                                            <div className="comment_section">
-                                                                <div className="comment__section">
-                                                                    <span>{`${
-                                                                        item.comment_author
-                                                                    }  ${item.comment_author_last_name.substring(
-                                                                        0,
-                                                                        10
-                                                                    )}`}</span>
-                                                                    <div>
-                                                                        {
-                                                                            item.comment
-                                                                        }
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    ) : null}
+                                                    <hr />
+                                                    {/* Comments here */}
+                                                    <Comments
+                                                        item={item}
+                                                        userData={userData}
+                                                        handleCommentClick={
+                                                            handleCommentClick
+                                                        }
+                                                    />
                                                 </div>
                                             ) : (
-                                                <div className="feed_content">
+                                                <div className="feed__content">
                                                     <div className="feed_top">
-                                                        {item?.profile_pix ? (
-                                                            <img
-                                                                src={
-                                                                    item.profile_pix
-                                                                }
-                                                                className="profile__pix"
-                                                                alt=""
-                                                            />
-                                                        ) : (
-                                                            <img
-                                                                src={
-                                                                    Unavailiabe
-                                                                }
-                                                                className="profile__pix"
-                                                                alt=""
-                                                            />
-                                                        )}
+                                                        <ProfilePicture
+                                                            image={
+                                                                item?.profile
+                                                            }
+                                                            className="profile__pix"
+                                                        />
                                                         <div>
                                                             <h4 className="post_author">
                                                                 {
-                                                                    item.post_author
+                                                                    item?.post_author
                                                                 }
                                                             </h4>
                                                             <span className="author_job_role">
-                                                                {
-                                                                    item.author_jobrole
-                                                                }
+                                                                {item?.jobrole}
                                                             </span>
                                                             <div className="time_container">
                                                                 <span className="time">
                                                                     {moment(
-                                                                        item.post_date
+                                                                        item?.post_date
                                                                     ).fromNow()}
                                                                 </span>
                                                                 <div className="dot">
@@ -261,37 +262,71 @@ const Feeds = ({
                                                         </div>
                                                     </div>
                                                     <div className="post_container">
-                                                        {item.post.length >
+                                                        {item?.post?.length >
                                                         170 ? (
                                                             <div>
                                                                 <h3 className="post_title">
-                                                                    {item.title}
+                                                                    {
+                                                                        item?.title
+                                                                    }
                                                                 </h3>
                                                                 <span className="large_length_post">
-                                                                    {item.post}
+                                                                    {item?.post}
                                                                 </span>
                                                             </div>
                                                         ) : (
                                                             <div>
-                                                                <span
-                                                                    className="small_length_post"
-                                                                    style={{
-                                                                        background: `${getBackgroundColor(
-                                                                            item
-                                                                                .post
-                                                                                .length
-                                                                        )}`,
-                                                                        color: 'white',
-                                                                    }}
-                                                                >
-                                                                    {item.post}
-                                                                </span>
+                                                                {item.color ===
+                                                                null ? (
+                                                                    <div>
+                                                                        <h3 className="post_title">
+                                                                            {
+                                                                                item?.title
+                                                                            }
+                                                                        </h3>
+                                                                        <span className="large_length_post">
+                                                                            {
+                                                                                item?.post
+                                                                            }
+                                                                        </span>
+                                                                    </div>
+                                                                ) : (
+                                                                    <div>
+                                                                        <span
+                                                                            className="small_length_post"
+                                                                            style={{
+                                                                                background: `${
+                                                                                    item?.color ||
+                                                                                    null
+                                                                                }`,
+                                                                                color: 'white',
+                                                                            }}
+                                                                        >
+                                                                            {
+                                                                                item?.post
+                                                                            }
+                                                                        </span>
+                                                                    </div>
+                                                                )}
                                                             </div>
                                                         )}
+                                                        <hr
+                                                            style={{
+                                                                marginTop:
+                                                                    '26px',
+                                                            }}
+                                                        />
                                                         <div className="like_comment_container">
-                                                            <div className="like">
+                                                            <div
+                                                                className="like"
+                                                                onClick={() =>
+                                                                    handleLikes(
+                                                                        item.postid
+                                                                    )
+                                                                }
+                                                            >
                                                                 <div>
-                                                                    {item.isliked ===
+                                                                    {item?.liked ===
                                                                     false ? (
                                                                         <ThumbUpAltRounded className="like_icon" />
                                                                     ) : (
@@ -300,7 +335,7 @@ const Feeds = ({
                                                                 </div>
                                                                 <span>
                                                                     {
-                                                                        item.number_of_likes
+                                                                        item?.number_of_likes
                                                                     }
                                                                 </span>
                                                             </div>
@@ -311,54 +346,28 @@ const Feeds = ({
                                                                     }
                                                                     className="comment_Icon"
                                                                     alt=""
+                                                                    onClick={() =>
+                                                                        handleArticleComment(
+                                                                            item.postid
+                                                                        )
+                                                                    }
                                                                 />
                                                                 <span>
                                                                     {
-                                                                        item.number_of_commennt
+                                                                        item?.number_of_comment
                                                                     }
                                                                 </span>
                                                             </div>
                                                         </div>
-
-                                                        {item?.comment ? (
-                                                            <div className="post_comment_container">
-                                                                <div className="post_comment">
-                                                                    {item.comment_author_profile !==
-                                                                    null ? (
-                                                                        <img
-                                                                            src={
-                                                                                item.comment_author_profile
-                                                                            }
-                                                                            className="profile__pix profile_commnet"
-                                                                            alt=""
-                                                                        />
-                                                                    ) : (
-                                                                        <img
-                                                                            src={
-                                                                                Unavailiabe
-                                                                            }
-                                                                            className="profile__pix"
-                                                                            alt=""
-                                                                        />
-                                                                    )}
-                                                                </div>
-                                                                <div className="comment_section">
-                                                                    <div className="comment__section">
-                                                                        <span>{`${
-                                                                            item.comment_author
-                                                                        }  ${item.comment_author_last_name.substring(
-                                                                            0,
-                                                                            8
-                                                                        )}`}</span>
-                                                                        <div>
-                                                                            {
-                                                                                item.comment
-                                                                            }
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        ) : null}
+                                                        <hr />
+                                                        {/* Comments here */}
+                                                        <Comments
+                                                            item={item}
+                                                            userData={userData}
+                                                            handleArticleComment={
+                                                                handleArticleComment
+                                                            }
+                                                        />
                                                     </div>
                                                 </div>
                                             )}
@@ -386,6 +395,30 @@ const Feeds = ({
                     />
                 </div>
             )}
+            <div>
+                {open && (
+                    <ViewGifModal
+                        open={open}
+                        setOpen={setOpen}
+                        clickedImage={clickedImage}
+                        setClickedImage={setClickedImage}
+                        user={user}
+                        setUser={setUser}
+                    />
+                )}
+                {gifModal && (
+                    <GifCommentModal
+                        gifModal={gifModal}
+                        setGifModal={setGifModal}
+                    />
+                )}
+                {articleModal && (
+                    <ArticleCommentModal
+                        articleModal={articleModal}
+                        setArticleModal={setArticleModal}
+                    />
+                )}
+            </div>
         </div>
     );
 };

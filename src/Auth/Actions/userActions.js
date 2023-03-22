@@ -164,9 +164,11 @@ export function LoginUser(credentials, history, setFieldError, setSubmitting) {
                     const { message } = data;
                     if (message.includes('email')) {
                         setFieldError('email', message);
+                        dispatch(loginUserFailure(message));
                     }
                     if (message.includes('password')) {
                         setFieldError('password', message);
+                        dispatch(loginUserFailure(message));
                     }
                 } else if (data.status === 'success') {
                     const userData = data;
@@ -174,11 +176,17 @@ export function LoginUser(credentials, history, setFieldError, setSubmitting) {
                     localStorage.setItem('token', token);
                     dispatch(loginUserSuccess(data));
                     history.push('/dashboard');
-                    setSubmitting(false);
                 }
+                setSubmitting(false);
             },
             function (error) {
                 const errorMsg = error;
+                toast.error(
+                    'An error occured, please check your network and try again',
+                    {
+                        position: toast.POSITION.TOP_RIGHT,
+                    }
+                );
                 dispatch(loginUserFailure(errorMsg));
             }
         );

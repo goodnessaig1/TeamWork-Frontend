@@ -1,31 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import './Profile.css';
-import Unavailiabe from '../../Utils/unavailiable1.png';
 import { Link } from 'react-router-dom';
+import { ProfilePicture } from '../../Utils/ProfilePicture';
 
 const Profile = ({ userDetail }) => {
     return (
         <div className="profile_page">
             <div className="profile_container">
                 <div className="cover_bg"></div>
-                {userDetail && userDetail.profile !== null ? (
-                    <div className="profile_bg">
-                        <img
-                            src={userDetail.profile}
-                            alt=""
-                            className="profile_photo"
-                        />
-                    </div>
-                ) : (
-                    <div className="profile_bg">
-                        <img
-                            src={Unavailiabe}
-                            alt=""
-                            className="profile_photo unav"
-                        />
-                    </div>
-                )}
+                <div className="profile_bg">
+                    <ProfilePicture
+                        image={userDetail?.profile}
+                        className="profile_photo"
+                    />
+                </div>
                 {userDetail && userDetail ? (
                     <div>
                         <div className="user_name">
@@ -71,7 +60,7 @@ const Profile = ({ userDetail }) => {
     );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return {
         userDetail: state.user.userData,
         Failed: state.user.failed,
