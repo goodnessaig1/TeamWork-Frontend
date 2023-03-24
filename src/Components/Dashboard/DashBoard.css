@@ -607,7 +607,7 @@
     position: fixed;
     z-index: 1300;
     inset: 0px;
-    display: block;
+    /* display: block; */
 }
 
 .backdroup {
@@ -689,6 +689,12 @@
     }
     .dropdown_content {
         /* height: 200px; */
+    }
+    .bottom_back {
+        /* display: none; */
+    }
+    .backdroup {
+        /* display: none; */
     }
     .dropdown_content > span {
         /* padding-top: 30px; */
