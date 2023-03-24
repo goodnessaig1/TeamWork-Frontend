@@ -145,6 +145,35 @@ export default function (state = initialState, action) {
                 },
             });
 
+        case types.DELETE_GIF_REQUEST:
+            return Object.assign({}, state, {
+                DeleteGif: {
+                    requesting: true,
+                    error: false,
+                    success: true,
+                },
+            });
+
+        case types.DELETE_GIF_SUCCESS:
+            return Object.assign({}, state, {
+                DeleteGif: {
+                    requesting: false,
+                    error: false,
+                    success: true,
+                },
+                gifData: {
+                    gifs: action.payload.message,
+                },
+            });
+        case types.DELETE_GIF_FAILURE:
+            return Object.assign({}, state, {
+                DeleteGif: {
+                    requesting: false,
+                    error: action.payload,
+                    success: true,
+                },
+            });
+
         default:
             return state;
     }

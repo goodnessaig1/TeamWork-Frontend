@@ -118,6 +118,46 @@ export default function (state = initialState, action) {
                 allFeeds: updatedFeeds,
             });
 
+        case types.UPDATE_ARTICLE_SUCCESS:
+            article = action.payload;
+            index = state.allFeeds.findIndex(
+                (item) => item.postid === article.postid
+            );
+            updatedFeeds = [...state.allFeeds];
+            updatedFeeds[index] = article;
+            return Object.assign({}, state, {
+                ...state,
+                allFeeds: updatedFeeds,
+            });
+
+        case types.DELETE_ARTICLE_SUCCESS:
+            const articleId = action.payload;
+            index = state.allFeeds.findIndex(
+                (item) => item.postid === articleId
+            );
+            if (index !== -1) {
+                updatedFeeds = [...state.allFeeds];
+                updatedFeeds.splice(index, 1);
+                return Object.assign({}, state, {
+                    ...state,
+                    allFeeds: updatedFeeds,
+                });
+            }
+            return state;
+
+        case types.DELETE_GIF_SUCCESS:
+            const { gifId } = action.payload;
+            index = state.allFeeds.findIndex((item) => item.postid === gifId);
+            if (index !== -1) {
+                updatedFeeds = [...state.allFeeds];
+                updatedFeeds.splice(index, 1);
+                return Object.assign({}, state, {
+                    ...state,
+                    allFeeds: updatedFeeds,
+                });
+            }
+            return state;
+
         default:
             return state;
     }
