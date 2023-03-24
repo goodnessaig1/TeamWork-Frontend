@@ -682,6 +682,12 @@
     .dashboard_container {
         margin: 0 30px 0 22px;
     }
+    .dropdown_content {
+        height: 200px;
+    }
+    .dropdown_content > span {
+        padding-top: 30px;
+    }
     .dash_board_container {
         padding-bottom: 90px;
     }

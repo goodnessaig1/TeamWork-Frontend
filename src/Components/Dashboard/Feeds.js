@@ -595,14 +595,14 @@ const Feeds = ({
                         setPostToUpdate={setPostToUpdate}
                     />
                 )}
-                {activeDiv !== null && (
+                {/* {activeDiv !== null && (
                     <div className="bottom_back">
                         <div
                             onClick={() => setActiveDiv(null)}
                             className="backdroup"
                         ></div>
                     </div>
-                )}
+                )} */}
                 {confirmModal && (
                     <ConfirmModal
                         postToDelete={postToDelete}
