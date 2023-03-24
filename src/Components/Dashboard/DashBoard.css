@@ -607,7 +607,7 @@
     position: fixed;
     z-index: 1300;
     inset: 0px;
-    /* display: block; */
+    display: block;
 }
 
 .backdroup {
@@ -691,7 +691,7 @@
         /* height: 200px; */
     }
     .bottom_back {
-        /* display: none; */
+        display: none;
     }
     .backdroup {
         /* display: none; */
