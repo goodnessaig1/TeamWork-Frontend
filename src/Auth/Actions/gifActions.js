@@ -204,6 +204,11 @@ export function DeleteGif(id) {
             },
             function (error) {
                 const errorMsg = error;
+                if ((errorMsg = 404)) {
+                    toast.error('Not found', {
+                        position: toast.POSITION.TOP_RIGHT,
+                    });
+                }
                 dispatch(DeleteGifFailure(errorMsg));
             }
         );

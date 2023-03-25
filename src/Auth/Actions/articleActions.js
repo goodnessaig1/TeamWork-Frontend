@@ -296,11 +296,9 @@ export function UpdateArticle(data, id) {
             },
             function (error) {
                 const errorMsg = error;
-                // if ((error = 417)) {
-                //     toast.error('Please Add a category', {
-                //         position: toast.POSITION.TOP_RIGHT,
-                //     });
-                // }
+                toast.error('An error occured, try again later', {
+                    position: toast.POSITION.TOP_RIGHT,
+                });
                 dispatch(UpdateArticleFailure(errorMsg));
             }
         );
@@ -318,6 +316,11 @@ export function DeleteArticle(id) {
             },
             function (error) {
                 const errorMsg = error;
+                if ((errorMsg = 404)) {
+                    toast.error('Not found', {
+                        position: toast.POSITION.TOP_RIGHT,
+                    });
+                }
                 dispatch(DeleteArticleFailure(errorMsg));
             }
         );
