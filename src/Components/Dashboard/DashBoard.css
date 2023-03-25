@@ -867,6 +867,9 @@
         padding: 0;
         margin-left: 2rem;
     }
+    .bottom_back {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 530px) {
