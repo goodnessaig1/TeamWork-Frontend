@@ -31,6 +31,16 @@ const initialState = {
         error: null,
         success: false,
     },
+    UpdateArticle: {
+        requesting: false,
+        error: null,
+        success: false,
+    },
+    DeleteArticle: {
+        requesting: false,
+        error: null,
+        success: false,
+    },
     articleData: {
         articles: {},
         comments: [],
@@ -211,6 +221,64 @@ export default function (state = initialState, action) {
                     requesting: false,
                     error: action.payload,
                     success: false,
+                },
+            });
+
+        case types.UPDATE_ARTICLE_REQUEST:
+            return Object.assign({}, state, {
+                UpdateArticle: {
+                    requesting: true,
+                    error: false,
+                    success: true,
+                },
+            });
+
+        case types.UPDATE_ARTICLE_SUCCESS:
+            return Object.assign({}, state, {
+                UpdateArticle: {
+                    requesting: false,
+                    error: false,
+                    success: true,
+                },
+                articleData: {
+                    articles: action.payload,
+                },
+            });
+        case types.UPDATE_ARTICLE_FAILURE:
+            return Object.assign({}, state, {
+                UpdateArticle: {
+                    requesting: false,
+                    error: action.payload,
+                    success: true,
+                },
+            });
+
+        case types.DELETE_ARTICLE_REQUEST:
+            return Object.assign({}, state, {
+                DeleteArticle: {
+                    requesting: true,
+                    error: false,
+                    success: true,
+                },
+            });
+
+        case types.DELETE_ARTICLE_SUCCESS:
+            return Object.assign({}, state, {
+                DeleteArticle: {
+                    requesting: false,
+                    error: false,
+                    success: true,
+                },
+                articleData: {
+                    articles: action.payload,
+                },
+            });
+        case types.DELETE_ARTICLE_FAILURE:
+            return Object.assign({}, state, {
+                DeleteArticle: {
+                    requesting: false,
+                    error: action.payload,
+                    success: true,
                 },
             });
 

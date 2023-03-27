@@ -82,6 +82,27 @@ export const PostGifCommentFailure = (error) => {
         payload: error,
     };
 };
+
+export const DeleteGifRequest = () => {
+    return {
+        type: types.DELETE_GIF_REQUEST,
+    };
+};
+
+export const DeleteGifSuccess = (message, gifId) => {
+    return {
+        type: types.DELETE_GIF_SUCCESS,
+        payload: { message, gifId },
+    };
+};
+
+export const DeleteGifFailure = (error) => {
+    return {
+        type: types.DELETE_GIF_FAILURE,
+        payload: error,
+    };
+};
+
 export const PostGif = (formData) => {
     return async (dispatch) => {
         const promise = apiRequest('POST', `v1/gifs`, formData, {
@@ -165,6 +186,30 @@ export function PostGifComment(data, gifId) {
                     position: toast.POSITION.TOP_RIGHT,
                 });
                 dispatch(PostGifCommentFailure(errorMsg));
+            }
+        );
+        return promise;
+    };
+}
+
+export function DeleteGif(id) {
+    return (dispatch) => {
+        const promise = apiRequest('DELETE', `v1/gifs/${id}`);
+        dispatch(DeleteGifRequest());
+        promise.then(
+            function (payload) {
+                const message = payload.data.data;
+                const gifId = id;
+                dispatch(DeleteGifSuccess(message, gifId));
+            },
+            function (error) {
+                const errorMsg = error;
+                if ((errorMsg = 404)) {
+                    toast.error('Not found', {
+                        position: toast.POSITION.TOP_RIGHT,
+                    });
+                }
+                dispatch(DeleteGifFailure(errorMsg));
             }
         );
         return promise;

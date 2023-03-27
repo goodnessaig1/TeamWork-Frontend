@@ -20,6 +20,9 @@ import GifCommentModal from './GifCommentModal';
 import ArticleCommentModal from './ArticleCommentModal';
 import Comments from './Comments';
 import { ProfilePicture } from '../../Utils/ProfilePicture';
+import UpdateArticle from './UpdateArticle';
+import ConfirmModal from './ConfirmModal';
+
 const Feeds = ({
     feeds,
     userData,
@@ -35,12 +38,19 @@ const Feeds = ({
     open,
     setOpen,
 }) => {
-    // console.log(feeds);
+    // console.log(userData);
     const dispatch = useDispatch();
+    const [updateArticleModal, setUpdateArticleModal] = useState(false);
+    const [updateGifModal, setUpdateGifModal] = useState(false);
     const [hasMore, setHasMore] = useState(true);
     const [user, setUser] = useState(null);
     const [gifModal, setGifModal] = useState(false);
     const [articleModal, setArticleModal] = useState(false);
+    const [activeDiv, setActiveDiv] = useState(null);
+    const [postToUpdate, setPostToUpdate] = useState('');
+    const [confirmModal, setConfirmModal] = useState(false);
+    const [postToDelete, setPostToDelete] = useState(null);
+
     const fetchMoreData = () => {
         if (feedsTotal != feedsLength) {
             setTimeout(() => {
@@ -52,6 +62,7 @@ const Feeds = ({
             setHasMore(false);
         }
     };
+
     const handleTopClick = () => {
         window.scrollTo({
             top: 0,
@@ -64,24 +75,53 @@ const Feeds = ({
         setPostArticle(e);
         setPostArticleModal(true);
     };
+
     const handleLikes = (post_id) => {
         dispatch(LikeArticles(post_id));
     };
+
     const handleGifLikes = (post_id) => {
         dispatch(LikeGif(post_id));
     };
+
     const handleClick = (item, user) => {
         setClickedImage(item.post);
         setOpen(true);
         setUser(user);
     };
+
     const handleCommentClick = (id) => {
         dispatch(GetSingleGif(id));
         setGifModal(true);
+        setActiveDiv(null);
     };
+
     const handleArticleComment = (id) => {
-        dispatch(GetSingleArticle(id, setArticleModal));
+        dispatch(GetSingleArticle(id));
         setArticleModal(true);
+        setActiveDiv(null);
+    };
+
+    const handleUpdateArticle = (item) => {
+        setPostToUpdate(item);
+        setUpdateArticleModal(true);
+        setActiveDiv(null);
+    };
+
+    const handleDeleteArticle = (item) => {
+        setPostToDelete(item);
+        setConfirmModal(true);
+        setActiveDiv(null);
+    };
+
+    const handleDeleteGif = (item) => {
+        setPostToDelete(item);
+        setConfirmModal(true);
+        setActiveDiv(null);
+    };
+
+    const handleActiveModal = () => {
+        setActiveDiv(null);
     };
 
     return (
@@ -138,24 +178,83 @@ const Feeds = ({
                                                             }
                                                             className="profile__pix"
                                                         />
-                                                        <div>
-                                                            <h4 className="post_author">
-                                                                {
-                                                                    item?.post_author
-                                                                }
-                                                            </h4>
-                                                            <span className="author_job_role">
-                                                                {item?.jobrole}
-                                                            </span>
-                                                            <div className="time_container">
-                                                                <span className="time">
-                                                                    {moment(
-                                                                        item?.post_date
-                                                                    ).fromNow()}
+                                                        <div className="feed_top_container">
+                                                            <div>
+                                                                <h4 className="post_author">
+                                                                    {
+                                                                        item?.post_author
+                                                                    }
+                                                                </h4>
+                                                                <span className="author_job_role">
+                                                                    {
+                                                                        item?.jobrole
+                                                                    }
                                                                 </span>
-                                                                <div className="dot">
-                                                                    .
+                                                                <div className="time_container">
+                                                                    <span className="time">
+                                                                        {moment(
+                                                                            item?.post_date
+                                                                        ).fromNow()}
+                                                                    </span>
+                                                                    <div className="dot">
+                                                                        .
+                                                                    </div>
                                                                 </div>
+                                                            </div>
+                                                            {/*  EDIT POST */}
+                                                            <div className="dropdown">
+                                                                <div
+                                                                    className="dropbtn"
+                                                                    onClick={() =>
+                                                                        setActiveDiv(
+                                                                            index
+                                                                        )
+                                                                    }
+                                                                >
+                                                                    ...
+                                                                </div>
+                                                                {activeDiv ===
+                                                                    index && (
+                                                                    <div className="dropdown_content">
+                                                                        <span
+                                                                            className="close_dropdown"
+                                                                            onClick={
+                                                                                handleActiveModal
+                                                                            }
+                                                                        >
+                                                                            <i>
+                                                                                X
+                                                                            </i>
+                                                                        </span>
+                                                                        <span
+                                                                            onClick={() =>
+                                                                                handleCommentClick(
+                                                                                    item.postid
+                                                                                )
+                                                                            }
+                                                                        >
+                                                                            View
+                                                                            Post
+                                                                        </span>
+                                                                        {userData?.userId ==
+                                                                            item?.user_id && (
+                                                                            <>
+                                                                                <span
+                                                                                    style={{
+                                                                                        color: 'red',
+                                                                                    }}
+                                                                                    onClick={() =>
+                                                                                        handleDeleteGif(
+                                                                                            item
+                                                                                        )
+                                                                                    }
+                                                                                >
+                                                                                    Delete
+                                                                                </span>
+                                                                            </>
+                                                                        )}
+                                                                    </div>
+                                                                )}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -240,24 +339,94 @@ const Feeds = ({
                                                             }
                                                             className="profile__pix"
                                                         />
-                                                        <div>
-                                                            <h4 className="post_author">
-                                                                {
-                                                                    item?.post_author
-                                                                }
-                                                            </h4>
-                                                            <span className="author_job_role">
-                                                                {item?.jobrole}
-                                                            </span>
-                                                            <div className="time_container">
-                                                                <span className="time">
-                                                                    {moment(
-                                                                        item?.post_date
-                                                                    ).fromNow()}
+                                                        <div className="feed_top_container">
+                                                            <div>
+                                                                <h4 className="post_author">
+                                                                    {
+                                                                        item?.post_author
+                                                                    }
+                                                                </h4>
+                                                                <span className="author_job_role">
+                                                                    {
+                                                                        item?.jobrole
+                                                                    }
                                                                 </span>
-                                                                <div className="dot">
-                                                                    .
+                                                                <div className="time_container">
+                                                                    <span className="time">
+                                                                        {moment(
+                                                                            item?.post_date
+                                                                        ).fromNow()}
+                                                                    </span>
+                                                                    <div className="dot">
+                                                                        .
+                                                                    </div>
                                                                 </div>
+                                                            </div>
+
+                                                            {/*  EDIT POST */}
+                                                            <div className="dropdown">
+                                                                <div
+                                                                    className="dropbtn"
+                                                                    onClick={() =>
+                                                                        setActiveDiv(
+                                                                            index
+                                                                        )
+                                                                    }
+                                                                >
+                                                                    ...
+                                                                </div>
+                                                                {activeDiv ===
+                                                                    index && (
+                                                                    <div className="dropdown_content">
+                                                                        <span
+                                                                            className="close_dropdown"
+                                                                            onClick={
+                                                                                handleActiveModal
+                                                                            }
+                                                                        >
+                                                                            <i>
+                                                                                X
+                                                                            </i>
+                                                                        </span>
+                                                                        <span
+                                                                            onClick={() =>
+                                                                                handleArticleComment(
+                                                                                    item.postid
+                                                                                )
+                                                                            }
+                                                                        >
+                                                                            View
+                                                                            Post
+                                                                        </span>
+                                                                        {userData?.userId ==
+                                                                            item?.user_id && (
+                                                                            <>
+                                                                                <span
+                                                                                    onClick={() =>
+                                                                                        handleUpdateArticle(
+                                                                                            item
+                                                                                        )
+                                                                                    }
+                                                                                >
+                                                                                    Edit
+                                                                                    post
+                                                                                </span>
+                                                                                <span
+                                                                                    style={{
+                                                                                        color: 'red',
+                                                                                    }}
+                                                                                    onClick={() =>
+                                                                                        handleDeleteArticle(
+                                                                                            item
+                                                                                        )
+                                                                                    }
+                                                                                >
+                                                                                    Delete
+                                                                                </span>
+                                                                            </>
+                                                                        )}
+                                                                    </div>
+                                                                )}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -416,6 +585,29 @@ const Feeds = ({
                     <ArticleCommentModal
                         articleModal={articleModal}
                         setArticleModal={setArticleModal}
+                    />
+                )}
+                {updateArticleModal && (
+                    <UpdateArticle
+                        updateArticleModal={updateArticleModal}
+                        setUpdateArticleModal={setUpdateArticleModal}
+                        postToUpdate={postToUpdate}
+                        setPostToUpdate={setPostToUpdate}
+                    />
+                )}
+                {activeDiv !== null && (
+                    <div className="bottom_back">
+                        <div
+                            onClick={() => setActiveDiv(null)}
+                            className="backdroup"
+                        ></div>
+                    </div>
+                )}
+                {confirmModal && (
+                    <ConfirmModal
+                        postToDelete={postToDelete}
+                        setPostToDelete={setPostToDelete}
+                        setConfirmModal={setConfirmModal}
                     />
                 )}
             </div>

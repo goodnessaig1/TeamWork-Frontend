@@ -118,6 +118,47 @@ export const getSingleArticleFailure = (error) => {
         payload: error,
     };
 };
+
+export const UpdateArticleRequest = () => {
+    return {
+        type: types.UPDATE_ARTICLE_REQUEST,
+    };
+};
+
+export const UpdateArticleSuccess = (success) => {
+    return {
+        type: types.UPDATE_ARTICLE_SUCCESS,
+        payload: success,
+    };
+};
+
+export const UpdateArticleFailure = (error) => {
+    return {
+        type: types.UPDATE_ARTICLE_FAILURE,
+        payload: error,
+    };
+};
+
+export const DeleteArticleRequest = () => {
+    return {
+        type: types.DELETE_ARTICLE_REQUEST,
+    };
+};
+
+export const DeleteArticleSuccess = (success) => {
+    return {
+        type: types.DELETE_ARTICLE_SUCCESS,
+        payload: success,
+    };
+};
+
+export const DeleteArticleFailure = (error) => {
+    return {
+        type: types.DELETE_ARTICLE_FAILURE,
+        payload: error,
+    };
+};
+
 export function getCategory() {
     return (dispatch) => {
         const promise = apiRequest('GET', `v1/categories`);
@@ -237,6 +278,50 @@ export function PostArticleComment(data, id) {
                     position: toast.POSITION.TOP_RIGHT,
                 });
                 dispatch(PostArticleCommentFailure(errorMsg));
+            }
+        );
+        return promise;
+    };
+}
+
+export function UpdateArticle(data, id) {
+    return (dispatch) => {
+        const promise = apiRequest('PATCH', `v1/articles/${id}`, data);
+        dispatch(UpdateArticleRequest());
+        promise.then(
+            function (payload) {
+                const { data } = payload?.data;
+                const UpdatedArticle = data?.data;
+                dispatch(UpdateArticleSuccess(UpdatedArticle));
+            },
+            function (error) {
+                const errorMsg = error;
+                toast.error('An error occured, try again later', {
+                    position: toast.POSITION.TOP_RIGHT,
+                });
+                dispatch(UpdateArticleFailure(errorMsg));
+            }
+        );
+        return promise;
+    };
+}
+
+export function DeleteArticle(id) {
+    return (dispatch) => {
+        const promise = apiRequest('DELETE', `v1/articles/${id}`);
+        dispatch(DeleteArticleRequest());
+        promise.then(
+            function (payload) {
+                dispatch(DeleteArticleSuccess(id));
+            },
+            function (error) {
+                const errorMsg = error;
+                if ((errorMsg = 404)) {
+                    toast.error('Not found', {
+                        position: toast.POSITION.TOP_RIGHT,
+                    });
+                }
+                dispatch(DeleteArticleFailure(errorMsg));
             }
         );
         return promise;

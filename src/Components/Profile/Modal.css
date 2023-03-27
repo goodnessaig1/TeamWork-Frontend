@@ -64,6 +64,9 @@
     cursor: pointer;
 }
 
+.button:hover {
+    background-color: #e7e7e7;
+}
 .cover {
     left: 26%;
 }
