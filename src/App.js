@@ -11,6 +11,7 @@ import MainPage from './Components/Dashboard/MainPage';
 import UserProfile from './Components/Profile/UserProfile';
 import ChangePassword from './Components/Profile/ChangePassword';
 import ChangePasswordSuccess from './Components/Profile/ChangePasswordSuccess';
+import Notification from './Components/Notifications/Notification';
 
 const App = () => {
     return (
@@ -31,6 +32,11 @@ const App = () => {
                             path="/dashboard"
                             exact
                             component={MainPage}
+                        />
+                        <AuthRoute
+                            path="/notifications"
+                            exact
+                            component={Notification}
                         />
                         <AuthRoute
                             path="/profile"

@@ -90,9 +90,12 @@ Link {
     display: none !important;
 }
 
+.nav_bar_item:hover {
+    font-size: 21px;
+}
+
 .nav_bar_container > span:hover {
     color: rgb(128, 157, 170);
-    font-size: 22px;
     transition-duration: 0.25s;
     text-decoration: underline 3px rgba(0, 0, 0, 1);
     text-underline-offset: 7px;
@@ -166,6 +169,128 @@ Link {
     height: 62px;
     border-radius: 43%;
 }
+.active_notification {
+    display: none;
+}
+
+.active__notifications {
+    display: flex;
+}
+
+.active_notifications {
+    width: 20px;
+    height: 20px;
+    font-size: 15px;
+    color: white;
+    border-radius: 50%;
+    text-decoration: underline white 10px;
+    text-underline-offset: 7px;
+    background-color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* DRAW BAR */
+
+.draw_bar_container {
+    position: fixed;
+    z-index: 1300;
+    inset: 0px;
+    display: block;
+}
+
+.backdroup {
+    opacity: 1;
+    transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    z-index: -1;
+    position: fixed;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    -webkit-tap-highlight-color: transparent;
+}
+.close_draw_bar {
+    align-items: flex-end;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 2px;
+    margin-top: 2px;
+    font-size: 26px;
+}
+.close_draw_bar > span {
+    background-color: #dce2e9;
+    border-radius: 50%;
+    width: 32px;
+    cursor: pointer;
+    height: 32px;
+    display: flex;
+    color: #fff;
+    justify-content: center;
+    align-items: center;
+}
+.close_draw_bar > span:hover {
+    transition: 250ms ease-in-out;
+    background-color: var(--color-primary);
+}
+.side_bar_items {
+    margin-top: 20px;
+}
+
+.side_bar_menu {
+    transform: none;
+    left: auto;
+    right: 0;
+    top: 0;
+    flex: 1 0 auto;
+    height: 100%;
+    display: flex;
+    outline: 0;
+    z-index: 1200;
+    position: fixed;
+    transition: 0.4s ease-in-out;
+    overflow-y: auto;
+    flex-direction: column;
+    -webkit-overflow-scrolling: touch;
+    box-shadow: 0px 8px 10px -5px rgb(0 0 0 / 20%),
+        0px 16px 24px 2px rgb(0 0 0 / 14%), 0px 6px 30px 5px rgb(0 0 0 / 12%);
+    color: rgba(0, 0, 0, 0.87);
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    background-color: #fff;
+    width: 250px;
+}
+
+.side_bar_link {
+    text-decoration: none;
+}
+.side_bar_item {
+    display: flex;
+    color: rgb(57, 56, 56);
+    height: 45px;
+    gap: 1.5rem;
+    text-decoration: none;
+    flex-direction: row;
+    align-items: center;
+}
+.side_bar_item:hover {
+    background-color: #dce2e9;
+    transition: 225ms ease-out;
+    cursor: pointer;
+}
+.side_bar_item > span {
+    font-size: 17px;
+}
+
+.draw_bar_icon {
+    margin-left: 15px;
+    color: rgb(129, 126, 126);
+    font-size: 23px !important;
+}
 
 /* MEDIA QUERRIES FOR MEDIUM DEVICES */
 
@@ -194,6 +319,7 @@ Link {
         height: 50px;
         border-radius: 43%;
     }
+
     .link_btn {
         width: 150px;
         height: 50px;
@@ -330,6 +456,29 @@ Link {
     .nav_bar {
         color: rgb(117, 110, 110);
     }
+    .center_notification {
+        display: flex;
+    }
+    .active_notification {
+        text-decoration: none;
+        position: absolute;
+        background-color: red;
+        width: 17px;
+        height: 17px;
+        margin-left: 18px;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        color: #fff;
+        font-size: 12px;
+        display: flex;
+        text-underline-offset: none;
+    }
+    .active_link {
+        text-underline-offset: none;
+        text-decoration: none;
+    }
+
     h2 {
         font-size: 25px;
         margin-left: 30px;
@@ -396,103 +545,4 @@ Link {
     .left_cont > span {
         margin-left: 12px;
     }
-}
-
-.draw_bar_container {
-    position: fixed;
-    z-index: 1300;
-    inset: 0px;
-    display: block;
-}
-
-.backdroup {
-    opacity: 1;
-    transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    display: flex;
-    z-index: -1;
-    position: fixed;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(0, 0, 0, 0.5);
-    -webkit-tap-highlight-color: transparent;
-}
-.close_draw_bar {
-    align-items: flex-end;
-    display: flex;
-    justify-content: flex-end;
-    margin-right: 2px;
-    margin-top: 2px;
-    font-size: 26px;
-}
-.close_draw_bar > span {
-    background-color: #dce2e9;
-    border-radius: 50%;
-    width: 32px;
-    cursor: pointer;
-    height: 32px;
-    display: flex;
-    color: #fff;
-    justify-content: center;
-    align-items: center;
-}
-.close_draw_bar > span:hover {
-    transition: 250ms ease-in-out;
-    background-color: var(--color-primary);
-}
-.side_bar_items {
-    margin-top: 20px;
-}
-
-.side_bar_menu {
-    transform: none;
-    left: auto;
-    right: 0;
-    top: 0;
-    flex: 1 0 auto;
-    height: 100%;
-    display: flex;
-    outline: 0;
-    z-index: 1200;
-    position: fixed;
-    transition: 0.4s ease-in-out;
-    overflow-y: auto;
-    flex-direction: column;
-    -webkit-overflow-scrolling: touch;
-    box-shadow: 0px 8px 10px -5px rgb(0 0 0 / 20%),
-        0px 16px 24px 2px rgb(0 0 0 / 14%), 0px 6px 30px 5px rgb(0 0 0 / 12%);
-    color: rgba(0, 0, 0, 0.87);
-    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-    background-color: #fff;
-    width: 250px;
-}
-
-.side_bar_link {
-    text-decoration: none;
-}
-.side_bar_item {
-    display: flex;
-    color: rgb(57, 56, 56);
-    height: 45px;
-    gap: 1.5rem;
-    text-decoration: none;
-    flex-direction: row;
-    align-items: center;
-}
-.side_bar_item:hover {
-    background-color: #dce2e9;
-    transition: 225ms ease-out;
-    cursor: pointer;
-}
-.side_bar_item > span {
-    font-size: 17px;
-}
-
-.draw_bar_icon {
-    margin-left: 15px;
-    color: rgb(129, 126, 126);
-    font-size: 23px !important;
 }

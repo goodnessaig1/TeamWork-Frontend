@@ -41,7 +41,6 @@ const Feeds = ({
     // console.log(userData);
     const dispatch = useDispatch();
     const [updateArticleModal, setUpdateArticleModal] = useState(false);
-    const [updateGifModal, setUpdateGifModal] = useState(false);
     const [hasMore, setHasMore] = useState(true);
     const [user, setUser] = useState(null);
     const [gifModal, setGifModal] = useState(false);

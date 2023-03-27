@@ -1,11 +1,12 @@
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import moment from 'moment';
 import { Form, Formik } from 'formik';
 import { TextInput } from '../../Utils/FormLib';
-import { Send } from '@material-ui/icons';
-import { PostGifComment } from '../../Auth/Actions/gifActions';
+import { Send, ThumbUpAltRounded } from '@material-ui/icons';
+import { LikeGif, PostGifComment } from '../../Auth/Actions/gifActions';
 import { Comment, RotatingLines } from 'react-loader-spinner';
 import { ProfilePicture } from '../../Utils/ProfilePicture';
+import commentIcon from '../Assets/comment.png';
 
 const GifCommentModal = ({
     gifData,
@@ -17,6 +18,12 @@ const GifCommentModal = ({
     requesting,
 }) => {
     const gifId = gifData.postid;
+    const dispatch = useDispatch();
+
+    const handleGifLikes = (post_id) => {
+        dispatch(LikeGif(post_id));
+    };
+
     return (
         <div className="single_modal_container">
             <div className="modal_holder">
@@ -68,6 +75,41 @@ const GifCommentModal = ({
                                                 src={gifData?.post}
                                             />
                                         </div>
+                                        <hr
+                                            style={{
+                                                marginTop: '16px',
+                                            }}
+                                        />
+                                        <div className="like_comment_container">
+                                            <div
+                                                className="like"
+                                                onClick={() =>
+                                                    handleGifLikes(
+                                                        gifData?.postid
+                                                    )
+                                                }
+                                            >
+                                                {gifData?.liked === false ? (
+                                                    <ThumbUpAltRounded className="like_icon" />
+                                                ) : (
+                                                    <ThumbUpAltRounded className="is_like_icon" />
+                                                )}
+                                                <span>
+                                                    {gifData?.number_of_likes}
+                                                </span>
+                                            </div>
+                                            <div className="comment">
+                                                <img
+                                                    src={commentIcon}
+                                                    className="comment_Icon"
+                                                    alt=""
+                                                />
+                                                <span>
+                                                    {gifData?.number_of_comment}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <hr />
                                         <div className="comments____container">
                                             {comments &&
                                                 comments.map((item, index) => {
@@ -76,7 +118,7 @@ const GifCommentModal = ({
                                                             <div className="comments">
                                                                 <ProfilePicture
                                                                     image={
-                                                                        item.comment_author_profile
+                                                                        item?.comment_author_profile
                                                                     }
                                                                     className="comment_author_profile_pix"
                                                                 />
@@ -87,7 +129,7 @@ const GifCommentModal = ({
                                                                         }}
                                                                     >
                                                                         {
-                                                                            item.post_author
+                                                                            item?.post_author
                                                                         }
                                                                     </span>
                                                                     <span
@@ -97,7 +139,7 @@ const GifCommentModal = ({
                                                                         }}
                                                                     >
                                                                         {
-                                                                            item.comment
+                                                                            item?.comment
                                                                         }
                                                                     </span>
                                                                 </div>
@@ -205,7 +247,7 @@ const mapStateToProps = (state) => {
         gifData: state.gifs?.gifData?.gifs,
         comments: state.gifs?.gifData?.comments,
         user: state.user.userData,
-        requesting: state.gifs?.GetSingleGif.requesting,
+        requesting: state.gifs?.GetSingleGif?.requesting,
         postGifRequest: state.gifs?.PostGifComment.requesting,
     };
 };
