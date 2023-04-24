@@ -1,26 +1,56 @@
 .page_layout_container {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
     min-height: var(--container-height);
     padding-top: 26px;
 }
 
 .page_right {
-    flex: 1.2;
+    flex-basis: 30%;
     justify-content: center;
     overflow-x: hidden;
     display: flex;
 }
 
 .page_center {
-    flex: 1.5;
-    margin: 0 45px 0 0;
+    flex-basis: 40%;
 }
 
 .page_left {
-    flex: 1.2;
+    flex-basis: 30%;
+    display: flex;
+    justify-content: center;
 }
 
+@media screen and (max-width: 1660px) {
+    .page_left {
+        margin-right: 1.4%;
+    }
+    .page_right {
+        margin-left: 1.4%;
+    }
+}
+@media screen and (max-width: 980px) {
+    .page_right {
+        justify-content: start;
+        margin-left: 13px;
+    }
+    .page_left {
+        justify-content: end;
+        margin: 0;
+    }
+}
+@media screen and (max-width: 850px) {
+    .page_center {
+        flex-basis: 63%;
+        margin-right: 30px;
+    }
+    .page_left {
+        display: none;
+    }
+}
 @media screen and (max-width: 600px) {
     .page_right {
         display: none;
@@ -30,6 +60,7 @@
     }
     .page_center {
         margin: 0;
+        flex-basis: 100%;
         overflow-anchor: none;
     }
     .page_layout_container {

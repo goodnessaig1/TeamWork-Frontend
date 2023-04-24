@@ -8,7 +8,7 @@
 }
 
 .new_notifications {
-    height: 90px;
+    height: 84px;
     border-radius: 15px;
     display: flex;
     padding: 10px;
@@ -25,11 +25,12 @@
 }
 
 .old_notifications {
-    height: 90px;
+    height: 84px;
     border-radius: 15px;
     padding-top: 4px;
     display: flex;
     padding: 10px;
+    margin-bottom: 40px;
     margin-top: 8px;
     align-items: center;
     flex-direction: row;
@@ -48,9 +49,9 @@
 }
 
 .profile____image {
-    width: 54px;
-    height: 54px;
-    margin-left: 22px;
+    width: 48px;
+    height: 48px;
+    margin-left: 20px;
     border-radius: 13px;
 }
 

@@ -38,7 +38,24 @@ const Header = ({ LogoutUser, userStatus, notifications }) => {
                             </span>
                         )}
                     </div>
+                    {userStatus && userStatus ? (
+                        <div className="search_bar">
+                            <img
+                                src={Search}
+                                alt=""
+                                className="search_bar_img"
+                            />
+                            <span>
+                                <input
+                                    className="search"
+                                    type="text"
+                                    placeholder="Search...."
+                                />
+                            </span>
+                        </div>
+                    ) : null}
                 </div>
+
                 {click && (
                     <div className="search_input_container">
                         <div onClick={() => setClick(false)}>
@@ -54,18 +71,6 @@ const Header = ({ LogoutUser, userStatus, notifications }) => {
                         </div>
                     </div>
                 )}
-                {userStatus && userStatus ? (
-                    <div className="search_bar">
-                        <img src={Search} alt="" className="search_bar_img" />
-                        <span>
-                            <input
-                                className="search"
-                                type="text"
-                                placeholder="Search...."
-                            />
-                        </span>
-                    </div>
-                ) : null}
                 <div className="center">
                     <div className="center_container">
                         <NavLink
@@ -134,7 +139,7 @@ const Header = ({ LogoutUser, userStatus, notifications }) => {
                         />
                     )}
 
-                    <div className="middle_container">
+                    <div className="right">
                         {userStatus && userStatus.profile !== null ? (
                             <div className="profile_pix">
                                 <img
@@ -144,10 +149,7 @@ const Header = ({ LogoutUser, userStatus, notifications }) => {
                                 />
                             </div>
                         ) : null}
-                    </div>
-                </div>
-                <div className="right">
-                    <div className="right_container">
+
                         <div className="link_button">
                             {!!userStatus ? (
                                 <Link
@@ -164,7 +166,6 @@ const Header = ({ LogoutUser, userStatus, notifications }) => {
                             )}
                         </div>
                     </div>
-                    {/* {!click && ( */}
                     <div className="menu_bar">
                         {!open && (
                             <Menu

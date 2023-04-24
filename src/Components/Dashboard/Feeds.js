@@ -214,7 +214,7 @@ const Feeds = ({
                                                                 </div>
                                                                 {activeDiv ===
                                                                     index && (
-                                                                    <div className="dropdown_content">
+                                                                    <div className="dropdown_content dropdownsingle">
                                                                         <span
                                                                             className="close_dropdown"
                                                                             onClick={
@@ -273,11 +273,7 @@ const Feeds = ({
                                                             }
                                                         />
                                                     </div>
-                                                    <hr
-                                                        style={{
-                                                            marginTop: '26px',
-                                                        }}
-                                                    />
+                                                    <hr className="hr_" />
                                                     <div className="like_comment_container">
                                                         <div
                                                             className="like"
@@ -319,7 +315,7 @@ const Feeds = ({
                                                             </span>
                                                         </div>
                                                     </div>
-                                                    <hr />
+                                                    <hr className="hr__" />
                                                     {/* Comments here */}
                                                     <Comments
                                                         item={item}
@@ -376,7 +372,7 @@ const Feeds = ({
                                                                 </div>
                                                                 {activeDiv ===
                                                                     index && (
-                                                                    <div className="dropdown_content">
+                                                                    <div className="dropdown_content dropdownsingle">
                                                                         <span
                                                                             className="close_dropdown"
                                                                             onClick={
@@ -478,12 +474,7 @@ const Feeds = ({
                                                                 )}
                                                             </div>
                                                         )}
-                                                        <hr
-                                                            style={{
-                                                                marginTop:
-                                                                    '26px',
-                                                            }}
-                                                        />
+                                                        <hr className="hr_" />
                                                         <div className="like_comment_container">
                                                             <div
                                                                 className="like"
@@ -527,7 +518,7 @@ const Feeds = ({
                                                                 </span>
                                                             </div>
                                                         </div>
-                                                        <hr />
+                                                        <hr className="hr__" />
                                                         {/* Comments here */}
                                                         <Comments
                                                             item={item}

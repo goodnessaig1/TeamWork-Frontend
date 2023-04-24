@@ -113,6 +113,7 @@ const ArticleCommentModal = ({
                                             )}
                                         </div>
                                         <hr
+                                            className="hr__"
                                             style={{
                                                 marginTop: '16px',
                                             }}
@@ -153,7 +154,7 @@ const ArticleCommentModal = ({
                                                 </span>
                                             </div>
                                         </div>
-                                        <hr />
+                                        <hr className="hr__" />
                                         <div className="comments____container">
                                             {comments &&
                                                 comments.map((item, index) => {
