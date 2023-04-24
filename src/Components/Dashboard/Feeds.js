@@ -214,17 +214,18 @@ const Feeds = ({
                                                                 </div>
                                                                 {activeDiv ===
                                                                     index && (
-                                                                    <div className="dropdown_content dropdownsingle">
-                                                                        <span
-                                                                            className="close_dropdown"
-                                                                            onClick={
-                                                                                handleActiveModal
-                                                                            }
-                                                                        >
-                                                                            <i>
-                                                                                X
-                                                                            </i>
-                                                                        </span>
+                                                                    <div className="dropdown_content">
+                                                                        <div className="close_dropdown">
+                                                                            <span
+                                                                                onClick={
+                                                                                    handleActiveModal
+                                                                                }
+                                                                            >
+                                                                                <i>
+                                                                                    X
+                                                                                </i>
+                                                                            </span>
+                                                                        </div>
                                                                         <span
                                                                             onClick={() =>
                                                                                 handleCommentClick(
@@ -372,17 +373,18 @@ const Feeds = ({
                                                                 </div>
                                                                 {activeDiv ===
                                                                     index && (
-                                                                    <div className="dropdown_content dropdownsingle">
-                                                                        <span
-                                                                            className="close_dropdown"
-                                                                            onClick={
-                                                                                handleActiveModal
-                                                                            }
-                                                                        >
-                                                                            <i>
-                                                                                X
-                                                                            </i>
-                                                                        </span>
+                                                                    <div className="dropdown_content">
+                                                                        <div className="close_dropdown">
+                                                                            <span
+                                                                                onClick={
+                                                                                    handleActiveModal
+                                                                                }
+                                                                            >
+                                                                                <i>
+                                                                                    X
+                                                                                </i>
+                                                                            </span>
+                                                                        </div>
                                                                         <span
                                                                             onClick={() =>
                                                                                 handleArticleComment(

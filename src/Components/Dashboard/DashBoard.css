@@ -578,40 +578,52 @@
     border-radius: 50%;
 }
 
-/* .dropdown_content {
+.dropdown_content {
     position: absolute;
-    z-index: 1999;
+    z-index: 2000;
+    margin-left: -7rem;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
-    margin-top: 2rem;
-    min-width: 164px;
-    min-height: 180px;
-    justify-content: space-between;
+    justify-content: space-evenly;
+    width: 122px;
     border-radius: 8px;
-    margin-left: -7rem;
+    font-weight: 500;
     background-color: #fff;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-} */
+    right: 0.1rem;
+}
 
-.close_dropdown > i {
-    /* display: flex; */
+.dropdown_content > span {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    height: 30px;
+    padding-left: 10px;
+}
+
+.dropdown_content > span:hover {
+    background-color: #7990e1;
+    border-radius: 4px;
+    color: white;
+}
+
+.dropdown_content::before {
+    position: absolute;
+    z-index: -10;
+    right: 1.2rem;
+    content: '';
+    top: -0.6rem;
+    width: 16px;
+    height: 16px;
+    transform: rotate(45deg);
+    background-color: #fff;
+    border-left: 3px solid #f7f7f7;
+    border-top: 3px solid #f7f7f7;
+}
+
+.close_dropdown {
     display: none;
-    /* font-size: 25px; */
-    /* margin-top: 15px; */
-    /* margin-right: 20px; */
-    /* justify-content: right; */
 }
-
-.dropdownsingle span {
-    /* color: #888888; */
-    /* padding: 2px 16px 25px 16px; */
-    /* text-decoration: none; */
-    /* display: block; */
-}
-
-/* .dropdown_content span:hover {
-    background-color: #f1f1f1;
-} */
 
 .bottom_back {
     position: fixed;
@@ -655,7 +667,6 @@
     padding: 32px;
     background-color: #fff;
     border-radius: 8px;
-    /* box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.2); */
 }
 
 .modal-content h2 {
@@ -890,43 +901,30 @@
     }
     /*  POST DROP DOWN */
     .dropdown_content {
-        width: 95%;
         background-color: white;
-        height: 350px;
-        position: fixed;
-        left: 50%;
-        border-radius: 30px 30px 0 0;
-        transform: translateX(-50%);
-        bottom: 3.5rem;
-        transition: all 0.6s ease-in-out;
+        padding-bottom: 14px;
+    }
+
+    .close_dropdown {
         display: flex;
-        flex-direction: column;
-        gap: 3rem;
+        align-items: center;
+        position: relative;
+        color: white;
+        top: -0.2em;
+        font-size: 21px;
+    }
+    .close_dropdown > span > i {
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
         justify-content: center;
-        font-size: 30px;
-        margin-left: 0px;
-        backdrop-filter: blur(15px);
-        box-shadow: 0 1px 5px rgb(0 0 0 / 4%), 0 1px 3px rgb(0 0 0 / 5%);
-    }
-
-    .close_dropdown > i {
-        position: fixed;
-        top: 1rem;
-        color: red;
-        font-size: 32px;
-        right: 2rem;
-        margin-left: -30px;
-        margin-top: 0;
-        margin-right: 0;
-    }
-
-    .dropdown_content span {
-        display: block;
-        padding: 0;
-        margin-left: 2rem;
+        background-color: rgb(161, 156, 156);
+        border-radius: 50%;
+        margin-left: 4.8rem;
     }
     .bottom_back {
-        display: none;
+        /* display: none; */
     }
 }
 
@@ -1103,40 +1101,4 @@
     .comment__section > div {
         font-size: 14px;
     }
-}
-
-.dropdownsingle {
-    position: absolute;
-    z-index: 1;
-    margin-left: -7rem;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    width: 122px;
-    height: 90px;
-    border-radius: 8px;
-    background-color: #fff;
-    right: 0.1rem;
-}
-
-.dropdown_content > span {
-    padding: 2px;
-    display: flex;
-    margin-left: 10px;
-    width: 100%;
-}
-
-.dropdownsingle::before {
-    position: absolute;
-    z-index: -10;
-    right: 1.2rem;
-    content: '';
-    top: -0.6rem;
-    width: 16px;
-    height: 16px;
-    transform: rotate(45deg);
-    background-color: #fff;
-    border-left: 3px solid #f7f7f7;
-    border-top: 3px solid #f7f7f7;
 }
