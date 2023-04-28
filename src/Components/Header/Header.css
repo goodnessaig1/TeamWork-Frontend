@@ -228,7 +228,7 @@ Link {
 }
 .drop_bar_btn:hover {
     transition: 250ms ease-in-out;
-    background-color: var(--color-primary);
+    /* background-color: var(--color-primary); */
 }
 .side_bar_items {
     margin-top: 15px;
