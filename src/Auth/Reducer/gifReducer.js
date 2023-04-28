@@ -138,8 +138,8 @@ export default function (state = initialState, action) {
                     ...state,
                     gifs: action.payload.data,
                     comments: [
-                        action.payload.comment,
                         ...state.gifData.comments,
+                        action.payload.comment,
                     ],
                 },
             });

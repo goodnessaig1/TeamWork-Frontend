@@ -48,9 +48,9 @@
     box-shadow: 3px 5px 7px rgba(0, 0, 0, 0.5);
 }
 
-.button {
+.create_post > span {
     position: relative;
-    left: 30%;
+    left: 32%;
     width: 30px;
     display: flex;
     align-items: center;
@@ -58,17 +58,30 @@
     text-align: center;
     height: 30px;
     border-radius: 100%;
-    background-color: rgb(202, 199, 199);
+    background-color: rgb(244, 244, 244);
     font-size: 20px;
-    color: red;
+    color: #6c757d;
     cursor: pointer;
 }
-
+.close_upload {
+    width: 33px;
+    height: 33px;
+    border-radius: 50%;
+    position: absolute;
+    margin-left: 29.5%;
+    color: #6c757d;
+    align-items: center;
+    justify-content: center;
+}
+.close_upload_icon {
+    margin: 1px 0 0 1px;
+    font-size: 29px !important;
+}
+.close_upload:hover {
+    background-color: rgb(247, 245, 245);
+}
 .button:hover {
     background-color: #e7e7e7;
-}
-.cover {
-    left: 26%;
 }
 
 .upload_center {

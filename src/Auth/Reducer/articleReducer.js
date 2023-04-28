@@ -219,8 +219,8 @@ export default function (state = initialState, action) {
                     ...state,
                     articles: action.payload.data,
                     comments: [
-                        action.payload.comment,
                         ...state.articleData.comments,
+                        action.payload.comment,
                     ],
                 },
             });

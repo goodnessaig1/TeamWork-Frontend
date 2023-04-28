@@ -70,14 +70,6 @@ const SideBar = () => {
                             <li>All Feeds</li>
                         </NavLink>
                         <NavLink
-                            to="/recent"
-                            className="side_bar_nav"
-                            activeClassName="active_side_bar"
-                        >
-                            <FiberNew className="side_bar_icon" />
-                            <li>Recent</li>
-                        </NavLink>
-                        <NavLink
                             to="/sign_in"
                             onClick={() => LogoutUser(history)}
                             className="side_bar_nav"
@@ -108,6 +100,14 @@ const SideBar = () => {
                         >
                             {/* <AddOutlined className="side_bar_icon" /> */}
                             <li className="admin">Add category</li>
+                        </NavLink>
+                        <NavLink
+                            to="/recent"
+                            className="side_bar_nav"
+                            activeClassName="active_side_bar"
+                        >
+                            {/* <AddOutlined className="side_bar_icon" /> */}
+                            <li className="admin">Add color</li>
                         </NavLink>
                         <NavLink
                             to="/recent"

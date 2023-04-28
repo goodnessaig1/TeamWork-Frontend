@@ -1,3 +1,5 @@
+import { Close } from '@material-ui/icons';
+
 const ViewGifModal = ({
     clickedImage,
     setClickedImage,
@@ -16,7 +18,7 @@ const ViewGifModal = ({
             <img src={user} alt="" className="author_profile" />
             <img src={clickedImage} className="bigger_img" alt="bigger_img" />
             <div className="close_img" onClick={() => handleClick()}>
-                X
+                <Close className="close_img_icon" />
             </div>
         </div>
     );

@@ -13,6 +13,7 @@ import {
     LocalGasStationOutlined,
     VerifiedUserOutlined,
     AddOutlined,
+    Close,
 } from '@material-ui/icons';
 import { connect } from 'react-redux';
 import {
@@ -40,7 +41,7 @@ const SideDrawer = ({ LogoutUser, userStatus, open, setOpen }) => {
                             className="close_draw_bar"
                             onClick={() => setOpen(false)}
                         >
-                            <span>X</span>
+                            <Close className="drop_bar_btn" />
                         </div>
                         <div
                             className="side_bar_items"

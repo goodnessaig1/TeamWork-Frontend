@@ -2,7 +2,7 @@ import { connect, useDispatch } from 'react-redux';
 import moment from 'moment';
 import { Form, Formik } from 'formik';
 import { TextInput } from '../../Utils/FormLib';
-import { Send, ThumbUpAltRounded } from '@material-ui/icons';
+import { Close, Send, ThumbUpAltRounded } from '@material-ui/icons';
 import {
     LikeArticles,
     PostArticleComment,
@@ -32,14 +32,13 @@ const ArticleCommentModal = ({
             <div className="modal_holder">
                 <div className="close_modal_container">
                     <div
-                        style={{ marginTop: '5px' }}
                         className="close_modal"
                         onClick={() => setArticleModal(false)}
                     >
-                        X
+                        <Close />
                     </div>
                 </div>
-                <hr style={{ marginTop: '5px' }} />
+                <hr className="hr__" />
                 <>
                     {!requesting && (
                         <>

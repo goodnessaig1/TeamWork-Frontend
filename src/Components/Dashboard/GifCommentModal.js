@@ -2,7 +2,7 @@ import { connect, useDispatch } from 'react-redux';
 import moment from 'moment';
 import { Form, Formik } from 'formik';
 import { TextInput } from '../../Utils/FormLib';
-import { Send, ThumbUpAltRounded } from '@material-ui/icons';
+import { Close, Send, ThumbUpAltRounded } from '@material-ui/icons';
 import { LikeGif, PostGifComment } from '../../Auth/Actions/gifActions';
 import { Comment, RotatingLines } from 'react-loader-spinner';
 import { ProfilePicture } from '../../Utils/ProfilePicture';
@@ -32,11 +32,11 @@ const GifCommentModal = ({
                         className="close_modal"
                         onClick={() => setGifModal(false)}
                     >
-                        X
+                        <Close />
                     </div>
                 </div>
                 <>
-                    <hr style={{ marginTop: '5px' }} />
+                    <hr className="hr__" />
                     {!requesting && (
                         <>
                             <div>

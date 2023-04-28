@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './Modal.css';
 import { Formik, Form } from 'formik';
-import { AddToPhotos } from '@material-ui/icons';
+import { AddToPhotos, Close } from '@material-ui/icons';
 import { connect } from 'react-redux';
 import { UploadProfilePhoto } from '../../Auth/Actions/userActions';
 import { Audio } from 'react-loader-spinner';
@@ -41,10 +41,10 @@ const UserProfileModal = ({
                             <div className="modal_top">
                                 <h3>Upload Profile</h3>
                                 <span
-                                    className="button"
+                                    className="close_upload"
                                     onClick={() => setModal(false)}
                                 >
-                                    X
+                                    <Close className="close_upload_icon" />
                                 </span>
                             </div>
                             <hr className="upload_hr" />

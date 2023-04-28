@@ -2,7 +2,7 @@ import '../Profile/Modal.css';
 import React, { useState } from 'react';
 import './Post.css';
 import { Formik, Form } from 'formik';
-import { AddToPhotos } from '@material-ui/icons';
+import { AddToPhotos, Close } from '@material-ui/icons';
 import { connect } from 'react-redux';
 import { ProgressBar } from 'react-loader-spinner';
 import * as Yup from 'yup';
@@ -50,7 +50,7 @@ const PostGifModal = ({
                                     className="button cover "
                                     onClick={() => setPostGifModal(false)}
                                 >
-                                    X
+                                    <Close />
                                 </span>
                             </div>
                             <hr className="upload_hr" />
@@ -65,8 +65,8 @@ const PostGifModal = ({
                             <div className="user__name">
                                 {user && (
                                     <div className="user_name_top">
-                                        <h4>{`${user.firstName} ${user.lastName}`}</h4>
-                                        <span>{user.jobRole}</span>
+                                        <h4>{`${user?.firstName} ${user?.lastName}`}</h4>
+                                        <span>{user?.jobRole}</span>
                                     </div>
                                 )}
                             </div>
@@ -81,8 +81,8 @@ const PostGifModal = ({
                             })}
                             onSubmit={(values, { setSubmitting }) => {
                                 let formData = new FormData();
-                                formData.append(`image`, values.image);
-                                formData.append(`title`, values.title);
+                                formData.append(`image`, values?.image);
+                                formData.append(`title`, values?.title);
                                 PostGif(formData).then((response) => {
                                     const { data } = response;
                                     if (data.status === 'success') {
@@ -108,7 +108,7 @@ const PostGifModal = ({
                                                             name="title"
                                                             type="text"
                                                             label="Title"
-                                                            placeholder={`Share your toughts, ${user.firstName}`}
+                                                            placeholder={`Share your toughts, ${user?.firstName}`}
                                                         />
                                                         <div
                                                             className="toggle_modals"
@@ -116,7 +116,7 @@ const PostGifModal = ({
                                                                 handleCancle
                                                             }
                                                         >
-                                                            <span>X</span>
+                                                            <Close />
                                                         </div>
                                                     </div>
                                                 </div>

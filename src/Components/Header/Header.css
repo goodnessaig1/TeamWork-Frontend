@@ -215,26 +215,23 @@ Link {
     display: flex;
     justify-content: flex-end;
     margin-right: 2px;
-    margin-top: 2px;
-    font-size: 26px;
 }
-.close_draw_bar > span {
-    background-color: #dce2e9;
-    border-radius: 50%;
-    width: 32px;
+
+.drop_bar_btn {
+    font-size: 35px !important;
+    margin-right: 3px;
     cursor: pointer;
-    height: 32px;
     display: flex;
-    color: #fff;
+    color: gray;
     justify-content: center;
     align-items: center;
 }
-.close_draw_bar > span:hover {
+.drop_bar_btn:hover {
     transition: 250ms ease-in-out;
     background-color: var(--color-primary);
 }
 .side_bar_items {
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
 .side_bar_menu {
