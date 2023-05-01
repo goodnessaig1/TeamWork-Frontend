@@ -36,13 +36,14 @@ const PostArticlesModal = ({
                 <div className="overlay">
                     <div className="upload">
                         <div className="upload_profile_right">
-                            <div className="modal_top create_post">
+                            <div className="modal_top">
+                                <span></span>
                                 <h3>Create Post</h3>
                                 <span
-                                    className="button close_modal "
+                                    className="close_upload"
                                     onClick={() => setPostArticleModal(false)}
                                 >
-                                    <Close />
+                                    <Close className="close_upload_icon" />
                                 </span>
                             </div>
                             <hr className="upload_hr" />

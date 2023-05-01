@@ -10,6 +10,7 @@ import { toast } from 'react-toastify';
 import { ProfilePicture } from '../../Utils/ProfilePicture';
 import ColorPicker from '../../Utils/ColorPicker';
 import { UpdateArticle } from '../../Auth/Actions/articleActions';
+import { Close } from '@material-ui/icons';
 
 const UpdateArticleModal = ({
     user,
@@ -32,12 +33,13 @@ const UpdateArticleModal = ({
                     <div className="upload">
                         <div className="upload_profile_right">
                             <div className="modal_top create_post">
+                                <span></span>
                                 <h3>Update Post</h3>
                                 <span
-                                    className="button cover "
+                                    className="close_upload cover "
                                     onClick={() => setUpdateArticleModal(false)}
                                 >
-                                    X
+                                    <Close className="close_upload_icon" />
                                 </span>
                             </div>
                             <hr className="upload_hr" />

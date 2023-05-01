@@ -81,6 +81,25 @@ export const changePasswordFailure = (error) => {
         payload: error,
     };
 };
+export const changeNumberRequest = (request) => {
+    return {
+        type: types.CHANGE_NUMBER_REQUEST,
+        payload: request,
+    };
+};
+export const changeNumberSuccess = (success) => {
+    return {
+        type: types.CHANGE_NUMBER_SUCCESS,
+        payload: success,
+    };
+};
+
+export const changeNumberFailure = (error) => {
+    return {
+        type: types.CHANGE_NUMBER_FAILURE,
+        payload: error,
+    };
+};
 
 export const changeProfilePictureRequest = (request) => {
     return {
@@ -239,6 +258,24 @@ export function ChangeUserPassword(credentials, history) {
             },
             function (error) {
                 dispatch(changePasswordFailure(error));
+            }
+        );
+        return promise;
+    };
+}
+
+export function ChangeUserNumber(credentials) {
+    return (dispatch) => {
+        const promise = apiRequest('PATCH', `auth/v1/number`, credentials);
+        dispatch(changeNumberRequest());
+        promise.then(
+            function (payload) {
+                const { data } = payload;
+                dispatch(getUserDetails());
+                dispatch(changeNumberSuccess(data));
+            },
+            function (error) {
+                dispatch(changeNumberFailure(error));
             }
         );
         return promise;

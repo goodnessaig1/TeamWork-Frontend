@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 function LikeButton({ isLiked }) {
     return (
-        <button className="button_def">
+        <button className="like_button">
             {isLiked ? (
                 <ThumbUpAltRounded className="is_like_icon" />
             ) : (

@@ -39,9 +39,10 @@ const UserCoverModal = ({
                     <div className="modal_container">
                         <div className="upload_profile_right">
                             <div className="modal_top">
+                                <span></span>
                                 <h3>Upload Cover Photo</h3>
                                 <span
-                                    className="close_upload cover "
+                                    className="close_upload "
                                     onClick={() => setCoverModal(false)}
                                 >
                                     <Close className="close_upload_icon" />

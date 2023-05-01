@@ -30,19 +30,21 @@ const ArticleCommentModal = ({
     return (
         <div className="single_modal_container">
             <div className="modal_holder">
-                <div className="close_modal_container">
-                    <div
-                        className="close_modal"
-                        onClick={() => setArticleModal(false)}
-                    >
-                        <Close />
+                <div className="top_close_modal">
+                    <div className="close_modal_container">
+                        <div
+                            className="close_modal"
+                            onClick={() => setArticleModal(false)}
+                        >
+                            <Close />
+                        </div>
                     </div>
+                    <hr className="hr_" />
                 </div>
-                <hr className="hr__" />
                 <>
                     {!requesting && (
                         <>
-                            <div>
+                            <div className="post___container_holder">
                                 {articleData && (
                                     <div className="post___container">
                                         <div className="profile_top">
@@ -50,7 +52,7 @@ const ArticleCommentModal = ({
                                                 image={articleData?.profile}
                                                 className="profile_img profile_commnet"
                                             />
-                                            <div style={{ marginTop: '5px' }}>
+                                            <div className="post_username_container">
                                                 <span className="post_user_name">
                                                     {articleData?.post_author}
                                                 </span>

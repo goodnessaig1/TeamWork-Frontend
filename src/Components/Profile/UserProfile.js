@@ -1,22 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { connect } from 'react-redux';
 import SideBar from '../Pages/SideBar';
 import './UserProfile.css';
-import { EmailOutlined, CameraAltOutlined } from '@material-ui/icons';
+import {
+    EmailOutlined,
+    CameraAltOutlined,
+    CameraAlt,
+    DragIndicator,
+    FileCopyOutlined,
+} from '@material-ui/icons';
 import Unavailiabe from '../../Utils/unavailiable1.png';
+import Wave from '../Assets/Rectangle19.png';
 import { Link } from 'react-router-dom';
 import Home from '../Assets/Vectorhome.png';
 import Phone from '../Assets/Vectorphone.png';
 import Edit from '../Assets/Vectoredit.png';
 import UserProfileModal from './UserProfileModal';
 import UserCoverModal from './UserCoverModal';
+import ChangePhoneNumber from './ChangePhoneNumber';
 
 const UserProfile = ({ userDetail }) => {
+    const [isCopied, setIsCopied] = useState(false);
     const [profile, setProfile] = useState(null);
     const [coverImg, setCoverImg] = useState(null);
     const [modal, setModal] = useState(false);
     const [coverModal, setCoverModal] = useState(false);
+    const [phoneNumber, setPhoneNumber] = useState(false);
+    const divRef = useRef(null);
 
+    function copyText() {
+        const textToCopy = divRef.current.innerText;
+        navigator.clipboard.writeText(textToCopy);
+        setIsCopied(true);
+        setTimeout(() => setIsCopied(false), 2000);
+    }
     const handleImgClick = (profile) => {
         setProfile(profile);
         setModal(true);
@@ -35,161 +52,265 @@ const UserProfile = ({ userDetail }) => {
                 </div>
                 <div className="user_main_container">
                     <div className="user_profile_board">
-                        <div className="user_photos">
-                            {userDetail && userDetail.coverPhoto !== null ? (
-                                <div className="user_cover_bg">
-                                    <img
-                                        src={userDetail.coverPhoto}
-                                        alt=""
-                                        className="user_cover_photo"
-                                    />
+                        <div className="profile_details_container">
+                            <div className="user_photos">
+                                {userDetail &&
+                                userDetail.coverPhoto !== null ? (
+                                    <div className="user_cover_bg">
+                                        <img
+                                            src={userDetail.coverPhoto}
+                                            alt=""
+                                            className="user_cover_photo"
+                                        />
+                                        <span
+                                            onClick={() =>
+                                                handleCoverImgClick(
+                                                    userDetail.coverPhoto
+                                                )
+                                            }
+                                            className="cover_icons"
+                                        >
+                                            <CameraAltOutlined className="cover_icon" />
+                                        </span>
+                                    </div>
+                                ) : (
+                                    <div className="cover_bg">
+                                        <span
+                                            onClick={() =>
+                                                handleCoverImgClick(Unavailiabe)
+                                            }
+                                            className="cover_icons unavailiable"
+                                        >
+                                            <CameraAltOutlined className="cover_icon" />
+                                        </span>
+                                    </div>
+                                )}
+                            </div>
+                            <div className="user_ct_holder">
+                                {userDetail && userDetail.profile !== null ? (
+                                    <div className="user_profile_bg">
+                                        <img
+                                            src={userDetail.profile}
+                                            alt=""
+                                            className="user_profile_photo"
+                                        />
+                                        <span
+                                            onClick={() =>
+                                                handleImgClick(
+                                                    userDetail.profile
+                                                )
+                                            }
+                                            className="user_profile_icons"
+                                        >
+                                            <CameraAltOutlined className="profile_icon" />
+                                        </span>
+                                    </div>
+                                ) : (
+                                    <div className="user_profile_bg">
+                                        <img
+                                            src={Unavailiabe}
+                                            alt=""
+                                            className="user_profile_photo unav"
+                                        />
+                                        <span
+                                            onClick={() =>
+                                                handleImgClick(Unavailiabe)
+                                            }
+                                            className="user_profile_icons"
+                                        >
+                                            <CameraAltOutlined className="profile_icon" />
+                                        </span>
+                                    </div>
+                                )}
+
+                                <div></div>
+                                {userDetail && userDetail ? (
+                                    <div className="profile_mid">
+                                        <div>
+                                            <div className="profile_user_name">
+                                                {userDetail.firstName.length +
+                                                    userDetail.lastName.length <
+                                                16 ? (
+                                                    <span>{`${userDetail.firstName} ${userDetail.lastName}`}</span>
+                                                ) : (
+                                                    <div>
+                                                        <h5 className="lenthy__user_name">{`${userDetail.firstName.substring(
+                                                            0,
+                                                            8
+                                                        )} ${userDetail.lastName.substring(
+                                                            0,
+                                                            8
+                                                        )}...`}</h5>
+                                                    </div>
+                                                )}
+                                            </div>
+                                            <div className="joined">
+                                                <span>Joined</span>
+                                                <span>
+                                                    {userDetail.createdAt
+                                                        .length > 4
+                                                        ? `${userDetail.createdAt.substring(
+                                                              0,
+                                                              4
+                                                          )}`
+                                                        : userDetail.userData
+                                                              .createdAt}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ) : null}
+                            </div>
+                        </div>
+
+                        {/* Mobile */}
+                        <div className="mobile_profile_top">
+                            <div className="mobile_profile_pix">
+                                <div className="cover_photo_container">
+                                    <div
+                                        className="image-container"
+                                        style={{
+                                            backgroundColor: 'white',
+                                            width: '414px',
+                                            height: '390px',
+                                            backgroundImage: `url(${Wave})`,
+                                        }}
+                                    >
+                                        {userDetail?.coverPhoto && (
+                                            <img
+                                                className="image_wave"
+                                                src={userDetail?.coverPhoto}
+                                                alt="Your Image"
+                                            />
+                                        )}
+                                    </div>
                                     <span
                                         onClick={() =>
                                             handleCoverImgClick(
-                                                userDetail.coverPhoto
+                                                userDetail?.coverPhoto
                                             )
                                         }
-                                        className="cover_icons"
+                                        className="mobile_icon"
                                     >
-                                        <CameraAltOutlined className="cover_icon" />
+                                        <CameraAlt className="circle_profile_icon" />
                                     </span>
                                 </div>
-                            ) : (
-                                <div className="cover_bg">
-                                    <span
-                                        onClick={() =>
-                                            handleCoverImgClick(Unavailiabe)
-                                        }
-                                        className="cover_icons unavailiable"
-                                    >
-                                        <CameraAltOutlined className="cover_icon" />
-                                    </span>
-                                </div>
-                            )}
-                        </div>
-                        <div className="user_ct_holder">
-                            {userDetail && userDetail.profile !== null ? (
-                                <div className="user_profile_bg">
-                                    <img
-                                        src={userDetail.profile}
-                                        alt=""
-                                        className="user_profile_photo"
-                                    />
-                                    <span
-                                        onClick={() =>
-                                            handleImgClick(userDetail.profile)
-                                        }
-                                        className="user_profile_icons"
-                                    >
-                                        <CameraAltOutlined className="profile_icon" />
-                                    </span>
-                                </div>
-                            ) : (
-                                <div className="user_profile_bg">
-                                    <img
-                                        src={Unavailiabe}
-                                        alt=""
-                                        className="user_profile_photo unav"
-                                    />
-                                    <span
-                                        onClick={() =>
-                                            handleImgClick(Unavailiabe)
-                                        }
-                                        className="user_profile_icons"
-                                    >
-                                        <CameraAltOutlined className="profile_icon" />
-                                    </span>
-                                </div>
-                            )}
-
-                            <div></div>
-                            {userDetail && userDetail ? (
-                                <div className="profile_mid">
-                                    <div>
-                                        <div className="profile_user_name">
-                                            {userDetail.firstName.length +
-                                                userDetail.lastName.length <
-                                            16 ? (
-                                                <span>{`${userDetail.firstName} ${userDetail.lastName}`}</span>
+                                <div className="profile_circle_container">
+                                    <div className="profile_circle">
+                                        <div className="small_circle">
+                                            {userDetail?.profile ? (
+                                                <img
+                                                    src={userDetail?.profile}
+                                                    alt=""
+                                                    className="circle_profie"
+                                                />
                                             ) : (
-                                                <div>
-                                                    <h5 className="lenthy__user_name">{`${userDetail.firstName.substring(
-                                                        0,
-                                                        8
-                                                    )} ${userDetail.lastName.substring(
-                                                        0,
-                                                        8
-                                                    )}...`}</h5>
-                                                </div>
+                                                <img
+                                                    src={Unavailiabe}
+                                                    alt=""
+                                                    className="circle_profie"
+                                                />
                                             )}
                                         </div>
-                                        <div className="joined">
-                                            <span>Joined</span>
-                                            <span>
-                                                {userDetail.createdAt.length > 4
-                                                    ? `${userDetail.createdAt.substring(
-                                                          0,
-                                                          4
-                                                      )}`
-                                                    : userDetail.userData
-                                                          .createdAt}
-                                            </span>
-                                        </div>
                                     </div>
+                                    <span
+                                        onClick={() =>
+                                            handleImgClick(userDetail?.profile)
+                                        }
+                                        className="user_circle_icon"
+                                    >
+                                        <CameraAlt className="circle_profile_icon" />
+                                    </span>
                                 </div>
-                            ) : null}
+                            </div>
+                            <div className="profile__details">
+                                <div className="prfile__user_name">
+                                    {userDetail && (
+                                        <span className="user___name">{`${userDetail?.firstName} ${userDetail?.lastName}`}</span>
+                                    )}
+                                </div>
+                                <div className="time_joined">
+                                    <span>Joined</span>
+                                    <span>
+                                        {userDetail?.createdAt?.length > 4
+                                            ? `${userDetail?.createdAt.substring(
+                                                  0,
+                                                  4
+                                              )}`
+                                            : userDetail?.userData?.createdAt}
+                                    </span>
+                                </div>
+                            </div>
                         </div>
+
                         <hr className="user_name_hr" />
                         {userDetail && userDetail ? (
                             <div className="other_details">
-                                <div className="profile_item">
-                                    <span>
-                                        <img
-                                            src={Home}
-                                            alt=""
-                                            className="profile_items_icon"
-                                        />
-                                    </span>
-                                    <span className="profile_detail">
-                                        {userDetail.jobRole}
-                                    </span>
-                                </div>
-                                <hr className="item_hr" />
-                                <div className="profile_item">
-                                    <span>
-                                        <EmailOutlined className="profile_item_icon" />
-                                    </span>
-                                    <span className="profile_detail">
-                                        {userDetail.email}
-                                    </span>
-                                </div>
-                                <hr className="item_hr" />
-                                <div className="profile_item">
-                                    <span>
-                                        <img
-                                            src={Phone}
-                                            alt=""
-                                            className="profile_items_icon phone_icon"
-                                        />
-                                    </span>
-                                    {userDetail.number !== null ? (
-                                        <span className="profile_detail">
-                                            {userDetail.number}
+                                <div>
+                                    <div className="profile_item">
+                                        <span>
+                                            <img
+                                                src={Home}
+                                                alt=""
+                                                className="profile_items_icon"
+                                            />
                                         </span>
-                                    ) : (
-                                        <>
-                                            <Link
-                                                to="add_contact"
-                                                className="add_contact_link"
+                                        <span className="profile_detail">
+                                            {userDetail?.jobRole}
+                                        </span>
+                                    </div>
+                                    <hr className="item_hr" />
+                                    <div className="profile_item">
+                                        <span>
+                                            <EmailOutlined className="profile_item_icon" />
+                                        </span>
+                                        <span className="profile_detail">
+                                            {userDetail?.email}
+                                        </span>
+                                    </div>
+                                    <hr className="item_hr" />
+                                    <div className="profile_item">
+                                        <span>
+                                            <img
+                                                src={Phone}
+                                                alt=""
+                                                className="profile_items_icon phone_icon"
+                                            />
+                                        </span>
+                                        {userDetail?.number !== null ? (
+                                            <span
+                                                ref={divRef}
+                                                className="profile_detail Phone_num"
                                             >
-                                                <span className="profile_detail">
-                                                    Add Contact
+                                                <span onClick={copyText}>
+                                                    {userDetail?.number}
                                                 </span>
-                                            </Link>
-                                        </>
-                                    )}
+                                                <DragIndicator
+                                                    onClick={() =>
+                                                        setPhoneNumber(true)
+                                                    }
+                                                    className="change_number_icon"
+                                                />
+                                            </span>
+                                        ) : (
+                                            <span
+                                                className="profile_detail"
+                                                onClick={() =>
+                                                    setPhoneNumber(true)
+                                                }
+                                            >
+                                                Add Contact
+                                            </span>
+                                        )}
+                                    </div>
+                                    <hr className="item_hr" />
                                 </div>
-                                <hr className="item_hr" />
+                                {isCopied && (
+                                    <div className="copy_message">
+                                        <span>Copied!</span>
+                                        <FileCopyOutlined className="copy_icon" />
+                                    </div>
+                                )}
                             </div>
                         ) : null}
                         <div className="profile_btn_cnt">
@@ -216,6 +337,7 @@ const UserProfile = ({ userDetail }) => {
                             </div>
                         </div>
                     </div>
+
                     {profile && (
                         <UserProfileModal
                             profile={profile}
@@ -230,6 +352,13 @@ const UserProfile = ({ userDetail }) => {
                             setCoverModal={setCoverModal}
                             coverImg={coverImg}
                             setCoverImg={setCoverImg}
+                        />
+                    )}
+                    {phoneNumber && (
+                        <ChangePhoneNumber
+                            phoneNumber={phoneNumber}
+                            setPhoneNumber={setPhoneNumber}
+                            userDetail={userDetail}
                         />
                     )}
                 </div>

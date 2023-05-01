@@ -21,6 +21,11 @@ const initialState = {
         error: null,
         success: false,
     },
+    ChangeUserNumber: {
+        requesting: false,
+        error: null,
+        success: false,
+    },
     UploadProfilePhoto: {
         requesting: false,
         error: null,
@@ -140,6 +145,32 @@ export default function (state = initialState, action) {
         case types.CHANGE_PASSWORD_FAILURE:
             return Object.assign({}, state, {
                 ChangeUserPassword: {
+                    requesting: false,
+                    error: action.payload,
+                    success: false,
+                },
+            });
+        //            GET USER NUMBER
+        case types.CHANGE_NUMBER_REQUEST:
+            return Object.assign({}, state, {
+                ChangeUserNumber: {
+                    requesting: true,
+                    error: null,
+                    success: false,
+                },
+            });
+        case types.CHANGE_NUMBER_SUCCESS:
+            return Object.assign({}, state, {
+                ChangeUserNumber: {
+                    requesting: false,
+                    error: null,
+                    success: true,
+                },
+                success: action.payload,
+            });
+        case types.CHANGE_NUMBER_FAILURE:
+            return Object.assign({}, state, {
+                ChangeUserNumber: {
                     requesting: false,
                     error: action.payload,
                     success: false,

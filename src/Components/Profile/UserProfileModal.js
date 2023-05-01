@@ -39,6 +39,7 @@ const UserProfileModal = ({
                     <div className="modal_container">
                         <div className="upload_profile_right">
                             <div className="modal_top">
+                                <span></span>
                                 <h3>Upload Profile</h3>
                                 <span
                                     className="close_upload"
