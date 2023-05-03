@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import commentIcon from '../Assets/comment.png';
 import {
     ArrowUpwardRounded,
+    Close,
     EmojiEmotionsOutlined,
-    ThumbUpAltRounded,
 } from '@material-ui/icons';
 import { ColorRing, Oval } from 'react-loader-spinner';
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -22,6 +22,7 @@ import Comments from './Comments';
 import { ProfilePicture } from '../../Utils/ProfilePicture';
 import UpdateArticle from './UpdateArticle';
 import ConfirmModal from './ConfirmModal';
+import LikeButton from './Likes';
 
 const Feeds = ({
     feeds,
@@ -41,7 +42,6 @@ const Feeds = ({
     // console.log(userData);
     const dispatch = useDispatch();
     const [updateArticleModal, setUpdateArticleModal] = useState(false);
-    const [updateGifModal, setUpdateGifModal] = useState(false);
     const [hasMore, setHasMore] = useState(true);
     const [user, setUser] = useState(null);
     const [gifModal, setGifModal] = useState(false);
@@ -51,6 +51,19 @@ const Feeds = ({
     const [confirmModal, setConfirmModal] = useState(false);
     const [postToDelete, setPostToDelete] = useState(null);
 
+    useEffect(() => {
+        const body = document.querySelector('body');
+
+        if (gifModal || articleModal) {
+            body.style.overflow = 'hidden';
+        } else {
+            body.style.overflow = 'auto';
+        }
+
+        return () => {
+            body.style.overflow = 'auto';
+        };
+    }, [gifModal || articleModal]);
     const fetchMoreData = () => {
         if (feedsTotal != feedsLength) {
             setTimeout(() => {
@@ -216,16 +229,15 @@ const Feeds = ({
                                                                 {activeDiv ===
                                                                     index && (
                                                                     <div className="dropdown_content">
-                                                                        <span
-                                                                            className="close_dropdown"
-                                                                            onClick={
-                                                                                handleActiveModal
-                                                                            }
-                                                                        >
-                                                                            <i>
-                                                                                X
-                                                                            </i>
-                                                                        </span>
+                                                                        <div className="close_dropdown">
+                                                                            <span
+                                                                                onClick={
+                                                                                    handleActiveModal
+                                                                                }
+                                                                            >
+                                                                                <Close />
+                                                                            </span>
+                                                                        </div>
                                                                         <span
                                                                             onClick={() =>
                                                                                 handleCommentClick(
@@ -274,26 +286,22 @@ const Feeds = ({
                                                             }
                                                         />
                                                     </div>
-                                                    <hr
-                                                        style={{
-                                                            marginTop: '26px',
-                                                        }}
-                                                    />
+                                                    <hr className="hr_" />
                                                     <div className="like_comment_container">
-                                                        <div
-                                                            className="like"
-                                                            onClick={() =>
-                                                                handleGifLikes(
-                                                                    item?.postid
-                                                                )
-                                                            }
-                                                        >
-                                                            {item?.liked ===
-                                                            false ? (
-                                                                <ThumbUpAltRounded className="like_icon" />
-                                                            ) : (
-                                                                <ThumbUpAltRounded className="is_like_icon" />
-                                                            )}
+                                                        <div className="like">
+                                                            <div
+                                                                onClick={() =>
+                                                                    handleGifLikes(
+                                                                        item?.postid
+                                                                    )
+                                                                }
+                                                            >
+                                                                <LikeButton
+                                                                    isLiked={
+                                                                        item?.liked
+                                                                    }
+                                                                />
+                                                            </div>
                                                             <span>
                                                                 {
                                                                     item?.number_of_likes
@@ -320,7 +328,7 @@ const Feeds = ({
                                                             </span>
                                                         </div>
                                                     </div>
-                                                    <hr />
+                                                    <hr className="hr__" />
                                                     {/* Comments here */}
                                                     <Comments
                                                         item={item}
@@ -378,16 +386,15 @@ const Feeds = ({
                                                                 {activeDiv ===
                                                                     index && (
                                                                     <div className="dropdown_content">
-                                                                        <span
-                                                                            className="close_dropdown"
-                                                                            onClick={
-                                                                                handleActiveModal
-                                                                            }
-                                                                        >
-                                                                            <i>
-                                                                                X
-                                                                            </i>
-                                                                        </span>
+                                                                        <div className="close_dropdown">
+                                                                            <span
+                                                                                onClick={
+                                                                                    handleActiveModal
+                                                                                }
+                                                                            >
+                                                                                <Close />
+                                                                            </span>
+                                                                        </div>
                                                                         <span
                                                                             onClick={() =>
                                                                                 handleArticleComment(
@@ -479,28 +486,21 @@ const Feeds = ({
                                                                 )}
                                                             </div>
                                                         )}
-                                                        <hr
-                                                            style={{
-                                                                marginTop:
-                                                                    '26px',
-                                                            }}
-                                                        />
+                                                        <hr className="hr_" />
                                                         <div className="like_comment_container">
-                                                            <div
-                                                                className="like"
-                                                                onClick={() =>
-                                                                    handleLikes(
-                                                                        item.postid
-                                                                    )
-                                                                }
-                                                            >
-                                                                <div>
-                                                                    {item?.liked ===
-                                                                    false ? (
-                                                                        <ThumbUpAltRounded className="like_icon" />
-                                                                    ) : (
-                                                                        <ThumbUpAltRounded className="is_like_icon" />
-                                                                    )}
+                                                            <div className="like">
+                                                                <div
+                                                                    onClick={() =>
+                                                                        handleLikes(
+                                                                            item.postid
+                                                                        )
+                                                                    }
+                                                                >
+                                                                    <LikeButton
+                                                                        isLiked={
+                                                                            item?.liked
+                                                                        }
+                                                                    />
                                                                 </div>
                                                                 <span>
                                                                     {
@@ -528,7 +528,7 @@ const Feeds = ({
                                                                 </span>
                                                             </div>
                                                         </div>
-                                                        <hr />
+                                                        <hr className="hr__" />
                                                         {/* Comments here */}
                                                         <Comments
                                                             item={item}

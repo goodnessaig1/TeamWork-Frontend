@@ -1,11 +1,15 @@
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import moment from 'moment';
 import { Form, Formik } from 'formik';
 import { TextInput } from '../../Utils/FormLib';
-import { Send } from '@material-ui/icons';
-import { PostArticleComment } from '../../Auth/Actions/articleActions';
+import { Close, Send, ThumbUpAltRounded } from '@material-ui/icons';
+import {
+    LikeArticles,
+    PostArticleComment,
+} from '../../Auth/Actions/articleActions';
 import { Comment, RotatingLines } from 'react-loader-spinner';
 import { ProfilePicture } from '../../Utils/ProfilePicture';
+import commentIcon from '../Assets/comment.png';
 
 const ArticleCommentModal = ({
     articleData,
@@ -16,25 +20,31 @@ const ArticleCommentModal = ({
     postCommentRequest,
     requesting,
 }) => {
+    const dispatch = useDispatch();
     const articleId = articleData?.postid;
+
+    const handleLikes = (post_id) => {
+        dispatch(LikeArticles(post_id));
+    };
 
     return (
         <div className="single_modal_container">
             <div className="modal_holder">
-                <div className="close_modal_container">
-                    <div
-                        style={{ marginTop: '5px' }}
-                        className="close_modal"
-                        onClick={() => setArticleModal(false)}
-                    >
-                        X
+                <div className="top_close_modal">
+                    <div className="close_modal_container">
+                        <div
+                            className="close_modal"
+                            onClick={() => setArticleModal(false)}
+                        >
+                            <Close />
+                        </div>
                     </div>
+                    <hr className="hr_" />
                 </div>
-                <hr style={{ marginTop: '5px' }} />
                 <>
                     {!requesting && (
                         <>
-                            <div>
+                            <div className="post___container_holder">
                                 {articleData && (
                                     <div className="post___container">
                                         <div className="profile_top">
@@ -42,7 +52,7 @@ const ArticleCommentModal = ({
                                                 image={articleData?.profile}
                                                 className="profile_img profile_commnet"
                                             />
-                                            <div style={{ marginTop: '5px' }}>
+                                            <div className="post_username_container">
                                                 <span className="post_user_name">
                                                     {articleData?.post_author}
                                                 </span>
@@ -103,6 +113,49 @@ const ArticleCommentModal = ({
                                                 </div>
                                             )}
                                         </div>
+                                        <hr
+                                            className="hr__"
+                                            style={{
+                                                marginTop: '16px',
+                                            }}
+                                        />
+                                        <div className="like_comment_container">
+                                            <div
+                                                className="like"
+                                                onClick={() =>
+                                                    handleLikes(
+                                                        articleData.postid
+                                                    )
+                                                }
+                                            >
+                                                <div>
+                                                    {articleData?.liked ===
+                                                    false ? (
+                                                        <ThumbUpAltRounded className="like_icon" />
+                                                    ) : (
+                                                        <ThumbUpAltRounded className="is_like_icon" />
+                                                    )}
+                                                </div>
+                                                <span>
+                                                    {
+                                                        articleData?.number_of_likes
+                                                    }
+                                                </span>
+                                            </div>
+                                            <div className="comment">
+                                                <img
+                                                    src={commentIcon}
+                                                    className="comment_Icon"
+                                                    alt=""
+                                                />
+                                                <span>
+                                                    {
+                                                        articleData?.number_of_comment
+                                                    }
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <hr className="hr__" />
                                         <div className="comments____container">
                                             {comments &&
                                                 comments.map((item, index) => {

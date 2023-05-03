@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     Home,
     AddAPhoto,
@@ -6,24 +6,24 @@ import {
     AccountCircle,
     KeyboardBackspaceRounded,
     Menu,
-    HomeOutlined,
-    AddPhotoAlternateOutlined,
-    AddAPhotoOutlined,
-    NotificationsOutlined,
-    AccountCircleOutlined,
 } from '@material-ui/icons';
 import { Link, NavLink, useHistory } from 'react-router-dom';
 import './Header.css';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import { LogoutUser } from '../../Auth/Actions/userActions';
 import Search from '../../Components/Assets/Vectorsearch.png';
 import PropTypes from 'prop-types';
 import SideDrawer from '../Pages/SideDrawer';
+import { getNotifications } from '../../Auth/Actions/notificationActions';
 
-const Header = ({ LogoutUser, userStatus }) => {
+const Header = ({ LogoutUser, userStatus, notifications }) => {
     const history = useHistory();
+    const dispatch = useDispatch();
     const [click, setClick] = useState(false);
     const [open, setOpen] = useState(false);
+    useEffect(() => {
+        dispatch(getNotifications());
+    }, []);
 
     return (
         <div className="header__container">
@@ -38,7 +38,24 @@ const Header = ({ LogoutUser, userStatus }) => {
                             </span>
                         )}
                     </div>
+                    {userStatus && userStatus ? (
+                        <div className="search_bar">
+                            <img
+                                src={Search}
+                                alt=""
+                                className="search_bar_img"
+                            />
+                            <span>
+                                <input
+                                    className="search"
+                                    type="text"
+                                    placeholder="Search...."
+                                />
+                            </span>
+                        </div>
+                    ) : null}
                 </div>
+
                 {click && (
                     <div className="search_input_container">
                         <div onClick={() => setClick(false)}>
@@ -54,18 +71,6 @@ const Header = ({ LogoutUser, userStatus }) => {
                         </div>
                     </div>
                 )}
-                {userStatus && userStatus ? (
-                    <div className="search_bar">
-                        <img src={Search} alt="" className="search_bar_img" />
-                        <span>
-                            <input
-                                className="search"
-                                type="text"
-                                placeholder="Search...."
-                            />
-                        </span>
-                    </div>
-                ) : null}
                 <div className="center">
                     <div className="center_container">
                         <NavLink
@@ -75,7 +80,7 @@ const Header = ({ LogoutUser, userStatus }) => {
                         >
                             <Home className="center_icon active" />
                             <div className="nav_bar_container ">
-                                <span>Home</span>
+                                <span className="nav_bar_item">Home</span>
                             </div>
                         </NavLink>
                         <NavLink
@@ -85,7 +90,7 @@ const Header = ({ LogoutUser, userStatus }) => {
                         >
                             <AddAPhoto className="center_icon" />
                             <div className="nav_bar_container">
-                                <span>Upload</span>
+                                <span className="nav_bar_item">Upload</span>
                             </div>
                         </NavLink>
                         <NavLink
@@ -93,9 +98,23 @@ const Header = ({ LogoutUser, userStatus }) => {
                             className="nav_bar"
                             activeClassName="active_link"
                         >
-                            <NotificationsNone className="center_icon" />
-                            <div className="nav_bar_container">
-                                <span>Notification</span>
+                            <div className="center_notification">
+                                <NotificationsNone className="center_icon" />
+                                {notifications.totalUnread > 0 && (
+                                    <span className="active_notification">
+                                        {notifications.totalUnread}
+                                    </span>
+                                )}
+                            </div>
+                            <div className="nav_bar_container active__notifications">
+                                <span className="nav_bar_item">
+                                    Notification
+                                </span>
+                                {notifications.totalUnread > 0 && (
+                                    <span className="active_notifications">
+                                        {notifications.totalUnread}
+                                    </span>
+                                )}
                             </div>
                         </NavLink>
                         <NavLink
@@ -105,7 +124,7 @@ const Header = ({ LogoutUser, userStatus }) => {
                         >
                             <AccountCircle className="center_icon" />
                             <div className="nav_bar_container">
-                                <span>Profile</span>
+                                <span className="nav_bar_item">Profile</span>
                             </div>
                         </NavLink>
                     </div>
@@ -120,7 +139,7 @@ const Header = ({ LogoutUser, userStatus }) => {
                         />
                     )}
 
-                    <div className="middle_container">
+                    <div className="right">
                         {userStatus && userStatus.profile !== null ? (
                             <div className="profile_pix">
                                 <img
@@ -130,10 +149,7 @@ const Header = ({ LogoutUser, userStatus }) => {
                                 />
                             </div>
                         ) : null}
-                    </div>
-                </div>
-                <div className="right">
-                    <div className="right_container">
+
                         <div className="link_button">
                             {!!userStatus ? (
                                 <Link
@@ -150,7 +166,6 @@ const Header = ({ LogoutUser, userStatus }) => {
                             )}
                         </div>
                     </div>
-                    {/* {!click && ( */}
                     <div className="menu_bar">
                         {!open && (
                             <Menu
@@ -170,6 +185,7 @@ const Header = ({ LogoutUser, userStatus }) => {
 const mapStateToProps = (state) => {
     return {
         userStatus: state.user.userData,
+        notifications: state.notifications?.notifications,
     };
 };
 

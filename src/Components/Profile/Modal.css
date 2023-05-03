@@ -16,13 +16,15 @@
     margin-top: 6px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     color: var(--color-primary);
 }
 
 .upload_hr {
-    margin-top: 15px;
-    background-color: rgb(191, 181, 181);
+    margin-top: 10px;
+    height: 0.3px;
+    border: none;
+    background-color: lightgray;
 }
 .upload {
     display: flex;
@@ -48,27 +50,22 @@
     box-shadow: 3px 5px 7px rgba(0, 0, 0, 0.5);
 }
 
-.button {
-    position: relative;
-    left: 30%;
-    width: 30px;
-    display: flex;
+.close_upload {
+    width: 33px;
+    height: 33px;
+    margin-right: 10px;
+    border-radius: 50%;
+    color: #6c757d;
     align-items: center;
-    justify-content: center;
-    text-align: center;
-    height: 30px;
-    border-radius: 100%;
-    background-color: rgb(202, 199, 199);
-    font-size: 20px;
-    color: red;
     cursor: pointer;
+    justify-content: center;
 }
-
-.button:hover {
-    background-color: #e7e7e7;
+.close_upload_icon {
+    margin: 1px 0 0 1px;
+    font-size: 29px !important;
 }
-.cover {
-    left: 26%;
+.close_upload:hover {
+    background-color: rgb(247, 245, 245);
 }
 
 .upload_center {
@@ -180,9 +177,9 @@
     .button {
         left: 23%;
     }
-    .cover {
-        left: 20%;
-    }
+    /* .cover { */
+    /* left: 20%; */
+    /* } */
     .dropzoneContainer {
         width: 360px;
         height: 240px;
@@ -204,6 +201,9 @@
     }
     .submit_btn {
         width: 350px;
+    }
+    .create_post > span {
+        left: 21%;
     }
     .upload_button {
         margin-top: 1px;

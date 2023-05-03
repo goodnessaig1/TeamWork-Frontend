@@ -1,3 +1,15 @@
+import {
+    HomeOutlined,
+    NotificationsNone,
+    AddAPhotoOutlined,
+    AccountCircleOutlined,
+    CreateNewFolderOutlined,
+    AddOutlined,
+    VerifiedUserOutlined,
+    ExitToAppRounded,
+    FiberNew,
+    DashboardOutlined,
+} from '@material-ui/icons';
 import React, { useEffect } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import { LogoutUser } from '../../Auth/Actions/userActions';
@@ -15,23 +27,22 @@ const SideBar = () => {
     return (
         <div className="side_bar_container">
             <div className="side_bar">
-                <div className="side_bar_top">
-                    <h3>Menu</h3>
-                </div>
                 <div className="items">
                     <ul className="menu_items">
                         <NavLink
                             to="/dashboard"
-                            className="side_bar_nav"
+                            className="side_bar_nav "
                             activeClassName="active_side_bar"
                         >
-                            <li>Home</li>
+                            <HomeOutlined className="side_bar_icon" />{' '}
+                            <li>All Feeds</li>
                         </NavLink>
                         <NavLink
                             to="/upload"
                             className="side_bar_nav"
                             activeClassName="active_side_bar"
                         >
+                            <AddAPhotoOutlined className="side_bar_icon" />{' '}
                             <li>Uploads</li>
                         </NavLink>
                         <NavLink
@@ -39,6 +50,7 @@ const SideBar = () => {
                             className="side_bar_nav"
                             activeClassName="active_side_bar"
                         >
+                            <NotificationsNone className="side_bar_icon" />
                             <li>Notifications</li>
                         </NavLink>
                         <NavLink
@@ -46,26 +58,8 @@ const SideBar = () => {
                             className="side_bar_nav"
                             activeClassName="active_side_bar"
                         >
+                            <AccountCircleOutlined className="side_bar_icon" />
                             <li>Profile</li>
-                        </NavLink>
-                    </ul>
-                </div>
-                <div className="items">
-                    <h3>Quick Menu</h3>
-                    <ul className="menu_items">
-                        <NavLink
-                            to="/dashboard"
-                            className="side_bar_nav"
-                            activeClassName="active_side_bar"
-                        >
-                            <li>All Feeds</li>
-                        </NavLink>
-                        <NavLink
-                            to="/recent"
-                            className="side_bar_nav"
-                            activeClassName="active_side_bar"
-                        >
-                            <li>Recent</li>
                         </NavLink>
                         <NavLink
                             to="/sign_in"
@@ -73,6 +67,7 @@ const SideBar = () => {
                             className="side_bar_nav"
                             activeClassName="active_side_bar"
                         >
+                            <ExitToAppRounded className="side_bar_icon" />
                             <li>Log Out</li>
                         </NavLink>
                     </ul>
@@ -82,9 +77,38 @@ const SideBar = () => {
                 <div className="items">
                     <h3>Admin</h3>
                     <ul className="menu_items">
-                        <li>Add category</li>
-                        <li>Manage users</li>
-                        <li>Create Admin</li>
+                        <NavLink
+                            to="/recent"
+                            className="side_bar_nav"
+                            activeClassName="active_side_bar"
+                        >
+                            {/* <CreateNewFolderOutlined className="side_bar_icon" /> */}
+                            <li className="admin">Create Admin</li>
+                        </NavLink>
+                        <NavLink
+                            to="/recent"
+                            className="side_bar_nav"
+                            activeClassName="active_side_bar"
+                        >
+                            {/* <AddOutlined className="side_bar_icon" /> */}
+                            <li className="admin">Add category</li>
+                        </NavLink>
+                        <NavLink
+                            to="/recent"
+                            className="side_bar_nav"
+                            activeClassName="active_side_bar"
+                        >
+                            {/* <AddOutlined className="side_bar_icon" /> */}
+                            <li className="admin">Add color</li>
+                        </NavLink>
+                        <NavLink
+                            to="/recent"
+                            className="side_bar_nav"
+                            activeClassName="active_side_bar"
+                        >
+                            {/* <VerifiedUserOutlined className="side_bar_icon" /> */}
+                            <li className="admin">Manage users</li>
+                        </NavLink>
                     </ul>
                 </div>
             </div>

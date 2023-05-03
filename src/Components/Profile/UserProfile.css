@@ -7,7 +7,7 @@
 }
 
 .side_container {
-    flex: 1.05;
+    flex: 1.19;
     margin-right: 25px;
     padding-right: 25px;
     display: flex;
@@ -103,6 +103,9 @@
     border-radius: 100%;
 }
 
+.mobile_profile_top {
+    display: none;
+}
 .user_ct_holder {
     display: flex;
     margin-right: 65px;
@@ -130,7 +133,6 @@
     display: none;
 }
 .lenthy__user_name {
-    /* margin-right: 30px; */
     font-size: 29px;
 }
 
@@ -152,6 +154,7 @@
     flex-direction: column;
     margin-left: 50px;
     gap: 0.4rem;
+    line-height: 38px;
 }
 
 .item_hr {
@@ -258,7 +261,6 @@
 .password_input {
     display: flex;
     border-radius: 30px;
-    /* box-shadow: 2px 2px 2px var(--color-primary); */
     border: 1px solid rgba(151, 154, 150, 1);
     height: 40px;
     align-items: center;
@@ -335,6 +337,104 @@
     height: 65px;
 }
 
+/* CHANGE PHONE NUMBER */
+.change_phone_number_modal {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    padding: 10px;
+    height: 230px;
+    background-color: #fff;
+    transition: 2s ease-in-out;
+    border-radius: 8px;
+    box-shadow: 3px 5px 7px rgba(0, 0, 0, 0.5);
+}
+
+.close_num_container {
+    display: flex;
+    justify-content: flex-end;
+}
+.close_num {
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+.change_number_icon {
+    margin-left: 70px;
+    cursor: pointer;
+    margin-top: 5px;
+    position: absolute;
+}
+
+.close_num:hover {
+    background-color: rgb(246, 245, 245);
+}
+.number_inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    line-height: 20%;
+    padding: 2px 0 2px 0;
+}
+.number_input {
+    width: 258px;
+    margin-left: -3px;
+    height: 35px;
+}
+.change__number > span {
+    color: black;
+}
+.change__number {
+    display: flex;
+    margin-top: 10px;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.change_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px 10px 10px 10px;
+}
+
+.change__btn {
+    margin-top: 10px;
+    border: none;
+    outline: none;
+    width: 110px;
+    color: #fff;
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    height: 33px;
+    justify-content: center;
+    border-radius: 10px;
+    text-decoration: none;
+    background-color: var(--color-primary);
+}
+
+.copy_message {
+    color: var(--color-primary);
+    display: flex;
+    margin-top: 8rem;
+    margin-left: 1rem;
+    font-size: 15px;
+    position: absolute;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0.3rem;
+}
+.copy_icon {
+    font-size: 18px !important;
+}
+.Phone_num {
+    cursor: pointer;
+}
 @media screen and (max-width: 1350px) {
     .user_ct_holder {
         margin-right: 15px;
@@ -373,21 +473,139 @@
 }
 
 @media screen and (max-width: 600px) {
+    .profile_details_container {
+        display: none;
+    }
     .side_container {
         display: none;
     }
-    .user_profile_board {
-        width: 80%;
-        margin-left: 40px;
+    .mobile_profile_top {
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        align-items: center;
+        gap: 6rem;
     }
-    .other_details {
-        margin-left: 20px;
+    .cover_photo_container {
+        display: flex;
+        flex-direction: column;
+    }
+    .image_wave {
+        background-color: #fff;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 30%;
+        background-blend-mode: lighten;
+        border-radius: 30px 30px 71px 50px;
+    }
+
+    .mobile_icon {
+        position: absolute;
+        margin-top: 19rem;
+        margin-left: 22rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(217, 217, 217, 1);
+        width: 37px;
+        height: 37px;
+        border-radius: 50%;
+    }
+    .mobile_profile_pix {
+        width: 414px;
+        height: 390px;
+        background-color: #fff;
+        background-blend-mode: color;
+    }
+
+    .image-container {
+        border-radius: 30px;
+        background-repeat: no-repeat;
+    }
+
+    .profile_circle_container {
+        background-color: white;
+        position: absolute;
+        border-radius: 50%;
+        width: 200px;
+        margin-top: -7.2rem;
+        margin-left: 8px;
+        height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .small_circle {
+        object-fit: cover;
+        width: 180px;
+        display: flex;
+        margin-left: 1px;
+        align-items: center;
+        justify-content: center;
+        border: 4px rgba(121, 144, 225, 1) solid;
+        height: 180px;
+        border-radius: 50%;
+    }
+
+    .circle_profie {
+        height: 99%;
+        width: 99%;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    .user_circle_icon {
+        right: 0;
+        margin-top: 5rem;
+        box-shadow: 0 1px 5px rgb(0 0 0 / 4%), 0 1px 3px rgb(0 0 0 / 5%);
+        background-color: rgba(217, 217, 217, 1);
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        margin-right: 5px;
+        display: flex;
+        height: 36px;
+        border-radius: 50%;
+        position: absolute;
+    }
+
+    .circle_profile_icon {
+        color: rgba(121, 144, 225, 1);
+    }
+    .profile__details {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .user___name {
+        font-size: 16px;
+        font-weight: 500;
+    }
+
+    .time_joined {
+        display: flex;
+        flex-direction: row;
+        gap: 0.2rem;
+        font-size: 13px;
     }
     .user_name_hr {
         width: 100%;
         position: inherit;
         display: block;
-        bottom: 1.6rem;
+        margin-top: 5px;
+    }
+
+    .user_profile_board {
+        width: 100%;
+    }
+    .other_details {
+        margin-top: 20px;
+        display: flex;
+        line-height: 43px;
+        align-items: center;
+        margin-left: 0;
     }
     .profile_user_name {
         text-decoration: none;
@@ -404,6 +622,13 @@
     .user_profile_board {
         height: 900px;
     }
+    .edit_icon {
+        margin-left: 6px;
+        width: 14px;
+    }
+    .change_number_icon {
+        margin-top: 7px;
+    }
 
     /*======= Password ========*/
     .change_password_container {
@@ -419,9 +644,11 @@
     }
     .profile_btn {
         align-items: center;
+        width: 110px;
+        height: 35px;
         display: flex;
         padding-top: 0;
-        font-size: 13px;
+        font-size: 11px;
     }
     .password__input {
         padding-top: 1px;
@@ -451,15 +678,8 @@
 }
 
 @media screen and (max-width: 450px) {
-    .cover_icons {
-        transform: scale(1.1);
-    }
     .profile_btn_cnt {
         gap: 1rem;
-    }
-    .profile_btn {
-        width: 140px;
-        height: 40px;
     }
     .edit_icon {
         width: 16px;
@@ -468,35 +688,5 @@
 @media screen and (max-width: 435px) {
     .profile_mid {
         left: 1.3rem;
-    }
-    .profile_user_name {
-        font-weight: 700;
-        font-size: 21px;
-    }
-    .joined {
-        font-size: 15px;
-    }
-}
-@media screen and (max-width: 360px) {
-    .item_hr {
-        width: 215px;
-    }
-    .cover_icons {
-        left: 78%;
-    }
-    .other_details {
-        margin-left: 10px;
-        gap: 0.4rem;
-    }
-    .profile_item_icon {
-        transform: scale(0.85);
-    }
-    .profile_items_icon {
-        width: 15px;
-        height: 15px;
-    }
-    .profile_detail {
-        font-size: 15px;
-        margin-left: 15px;
     }
 }

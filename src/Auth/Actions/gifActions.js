@@ -23,9 +23,10 @@ export const PostGifFailure = (error) => {
     };
 };
 
-export const likeGifRequest = () => {
+export const likeGifRequest = (id) => {
     return {
         type: types.LIKE_GIF_REQUEST,
+        payload: id,
     };
 };
 
@@ -130,7 +131,7 @@ export const PostGif = (formData) => {
 export function LikeGif(id) {
     return (dispatch) => {
         const promise = apiRequest('POST', `v1/gifs/${id}/gif_likes`);
-        dispatch(likeGifRequest());
+        dispatch(likeGifRequest(id));
         promise.then(
             function (payload) {
                 const likedGif = payload.data.data;

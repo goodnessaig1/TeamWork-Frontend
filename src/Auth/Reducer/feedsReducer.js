@@ -18,6 +18,7 @@ let updatedFeeds;
 let article;
 let gif;
 let index;
+let post;
 export default function (state = initialState, action) {
     switch (action.type) {
         case types.GET_ALL_FEEDS_REQUEST:
@@ -77,6 +78,34 @@ export default function (state = initialState, action) {
             );
             updatedFeeds = [...state.allFeeds];
             updatedFeeds[index] = article;
+            return Object.assign({}, state, {
+                ...state,
+                allFeeds: updatedFeeds,
+            });
+
+        case types.LIKE_ARTICLES_REQUEST:
+            article = action.payload;
+            index = state.allFeeds.findIndex((item) => item.postid === article);
+            updatedFeeds = [...state.allFeeds];
+            post = updatedFeeds[index];
+            post.liked = !post.liked;
+            post.number_of_likes = post.liked
+                ? Number(post.number_of_likes) + 1
+                : Number(post.number_of_likes) - 1;
+            return Object.assign({}, state, {
+                ...state,
+                allFeeds: updatedFeeds,
+            });
+
+        case types.LIKE_GIF_REQUEST:
+            gif = action.payload;
+            index = state.allFeeds.findIndex((item) => item.postid === gif);
+            updatedFeeds = [...state.allFeeds];
+            post = updatedFeeds[index];
+            updatedFeeds[index].liked = !post.liked;
+            post.number_of_likes = post.liked
+                ? Number(post.number_of_likes) + 1
+                : Number(post.number_of_likes) - 1;
             return Object.assign({}, state, {
                 ...state,
                 allFeeds: updatedFeeds,

@@ -26,6 +26,7 @@ const initialState = {
         comments: [],
     },
 };
+let gif;
 export default function (state = initialState, action) {
     switch (action.type) {
         case types.POST_GIF_REQUEST:
@@ -66,18 +67,24 @@ export default function (state = initialState, action) {
             });
 
         case types.LIKE_GIF_SUCCESS:
+            gif = action.payload;
+            const comments = [...state.gifData.comments];
             return Object.assign({}, state, {
-                PostGif: {
+                LikeGif: {
                     requesting: false,
                     error: null,
                     success: true,
                 },
-                like: action.payload,
+                ...state,
+                gifData: {
+                    gifs: gif,
+                    comments: comments,
+                },
             });
 
         case types.LIKE_GIF_FAILURE:
             return Object.assign({}, state, {
-                PostGif: {
+                LikeGif: {
                     requesting: false,
                     error: action.payload,
                     success: true,
@@ -131,8 +138,8 @@ export default function (state = initialState, action) {
                     ...state,
                     gifs: action.payload.data,
                     comments: [
-                        action.payload.comment,
                         ...state.gifData.comments,
+                        action.payload.comment,
                     ],
                 },
             });

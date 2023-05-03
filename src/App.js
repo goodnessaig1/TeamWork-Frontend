@@ -11,6 +11,8 @@ import MainPage from './Components/Dashboard/MainPage';
 import UserProfile from './Components/Profile/UserProfile';
 import ChangePassword from './Components/Profile/ChangePassword';
 import ChangePasswordSuccess from './Components/Profile/ChangePasswordSuccess';
+import Notification from './Components/Notifications/Notification';
+import Upload from './Components/Upload/Upload';
 
 const App = () => {
     return (
@@ -31,6 +33,12 @@ const App = () => {
                             path="/dashboard"
                             exact
                             component={MainPage}
+                        />
+                        <AuthRoute path="/upload" exact component={Upload} />
+                        <AuthRoute
+                            path="/notifications"
+                            exact
+                            component={Notification}
                         />
                         <AuthRoute
                             path="/profile"

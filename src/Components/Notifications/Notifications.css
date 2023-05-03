@@ -1,0 +1,136 @@
+.notifications_container {
+    display: flex;
+    flex-direction: column;
+}
+
+.notifications_header {
+    display: none;
+}
+
+.new_notifications {
+    height: 84px;
+    border-radius: 15px;
+    display: flex;
+    padding: 10px;
+    margin-top: 8px;
+    align-items: center;
+    flex-direction: row;
+    gap: 1rem;
+    cursor: pointer;
+    background-color: rgba(238, 238, 255, 1);
+}
+
+.old_notification_container {
+    margin-top: 8px;
+}
+
+.old_notifications {
+    height: 84px;
+    border-radius: 15px;
+    padding-top: 4px;
+    display: flex;
+    padding: 10px;
+    margin-bottom: 40px;
+    margin-top: 8px;
+    align-items: center;
+    flex-direction: row;
+    gap: 1rem;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 1px 5px rgb(0 0 0 / 4%), 0 1px 3px rgb(0 0 0 / 5%);
+}
+
+.new_notifications:hover {
+    background-color: rgba(238, 238, 255, 0.5);
+}
+
+.old_notifications:hover {
+    background-color: rgba(238, 238, 255, 0.4);
+}
+
+.profile____image {
+    width: 48px;
+    height: 48px;
+    margin-left: 20px;
+    border-radius: 13px;
+}
+
+.notification {
+    display: inline-block;
+}
+
+.notification:hover {
+    text-decoration: 1px underline var(--color-primary);
+    text-underline-offset: 2px;
+}
+
+.notification_message:hover {
+    color: var(--color-primary);
+}
+
+.author_user_name {
+    font-weight: 500;
+}
+
+.notification_message {
+    display: flex;
+    flex-direction: column;
+}
+
+.date {
+    font-size: 12px;
+}
+
+.no_notifications {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5rem;
+    font-size: 25px;
+    flex-direction: row;
+    gap: 0.4rem;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+@media screen and (max-width: 600px) {
+    .notifications_header {
+        display: block;
+        margin-top: -6px;
+        background-color: white;
+    }
+
+    .notifications_header > h3 {
+        margin-left: 5%;
+        font-size: 20px;
+        margin-top: 8px;
+        color: var(--color-primary);
+    }
+
+    .new_notification_container > h3,
+    .old_notification_container > h3 {
+        margin-left: 5%;
+        margin-top: 10px;
+    }
+
+    .new_notifications {
+        height: 80px;
+        border-radius: 0;
+    }
+
+    .old_notification_container {
+        margin-top: 1px;
+    }
+
+    .old_notifications {
+        height: 80px;
+        border-radius: 0;
+    }
+
+    .profile____image {
+        width: 50px;
+        height: 50px;
+        border-radius: 26px;
+        margin-left: 8px;
+    }
+}

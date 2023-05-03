@@ -60,9 +60,10 @@ export const PostArticlesFailure = (error) => {
     };
 };
 
-export const likeArticlesRequest = () => {
+export const likeArticlesRequest = (request) => {
     return {
         type: types.LIKE_ARTICLES_REQUEST,
+        payload: request,
     };
 };
 
@@ -220,7 +221,7 @@ export function PostArticles(credentials) {
 export function LikeArticles(id) {
     return (dispatch) => {
         const promise = apiRequest('POST', `v1/articles/${id}/like`);
-        dispatch(likeArticlesRequest());
+        dispatch(likeArticlesRequest(id));
         promise.then(
             function (payload) {
                 const likedArticle = payload.data.data;

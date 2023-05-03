@@ -47,6 +47,9 @@ const initialState = {
     },
 };
 
+let article;
+let index;
+let updatedArticle;
 export default function (state = initialState, action) {
     switch (action.type) {
         case types.GET_CATEGORIES_REQUEST:
@@ -132,6 +135,7 @@ export default function (state = initialState, action) {
                     success: true,
                 },
             });
+
         case types.LIKE_ARTICLES_REQUEST:
             return Object.assign({}, state, {
                 LikeArticles: {
@@ -140,15 +144,20 @@ export default function (state = initialState, action) {
                     success: true,
                 },
             });
-
         case types.LIKE_ARTICLES_SUCCESS:
+            article = action.payload;
+            const comments = [...state.articleData.comments];
             return Object.assign({}, state, {
                 LikeArticles: {
                     requesting: false,
                     error: null,
                     success: true,
                 },
-                like: action.payload,
+                ...state,
+                articleData: {
+                    articles: article,
+                    comments: comments,
+                },
             });
 
         case types.LIKE_ARTICLES_FAILURE:
@@ -210,8 +219,8 @@ export default function (state = initialState, action) {
                     ...state,
                     articles: action.payload.data,
                     comments: [
-                        action.payload.comment,
                         ...state.articleData.comments,
+                        action.payload.comment,
                     ],
                 },
             });

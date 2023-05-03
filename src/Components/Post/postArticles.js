@@ -2,7 +2,7 @@ import { useState } from 'react';
 import '../Profile/Modal.css';
 import './Post.css';
 import { Formik, Form, Field } from 'formik';
-import { Collections } from '@material-ui/icons';
+import { Close, Collections } from '@material-ui/icons';
 import { connect } from 'react-redux';
 import { ProgressBar } from 'react-loader-spinner';
 import * as Yup from 'yup';
@@ -36,13 +36,14 @@ const PostArticlesModal = ({
                 <div className="overlay">
                     <div className="upload">
                         <div className="upload_profile_right">
-                            <div className="modal_top create_post">
+                            <div className="modal_top">
+                                <span></span>
                                 <h3>Create Post</h3>
                                 <span
-                                    className="button cover "
+                                    className="close_upload"
                                     onClick={() => setPostArticleModal(false)}
                                 >
-                                    X
+                                    <Close className="close_upload_icon" />
                                 </span>
                             </div>
                             <hr className="upload_hr" />
@@ -50,15 +51,15 @@ const PostArticlesModal = ({
                         <div className="upload_profile_container">
                             <div>
                                 <ProfilePicture
-                                    image={user.profile}
+                                    image={user?.profile}
                                     className="profile___image"
                                 />
                             </div>
                             <div className="user__name">
                                 {user && (
                                     <div className="user_name_top">
-                                        <h4>{`${user.firstName} ${user.lastName}`}</h4>
-                                        <span>{user.jobRole}</span>
+                                        <h4>{`${user?.firstName} ${user?.lastName}`}</h4>
+                                        <span>{user?.jobRole}</span>
                                     </div>
                                 )}
                             </div>
@@ -130,7 +131,7 @@ const PostArticlesModal = ({
                                                             : null,
                                                     }}
                                                     label="Article"
-                                                    placeholder={`Share your toughts, ${user.firstName}`}
+                                                    placeholder={`Share your toughts, ${user?.firstName}`}
                                                 />
                                             </div>
 
