@@ -35,7 +35,7 @@ const SideBar = () => {
                             activeClassName="active_side_bar"
                         >
                             <HomeOutlined className="side_bar_icon" />{' '}
-                            <li>Home</li>
+                            <li>All Feeds</li>
                         </NavLink>
                         <NavLink
                             to="/upload"
@@ -60,14 +60,6 @@ const SideBar = () => {
                         >
                             <AccountCircleOutlined className="side_bar_icon" />
                             <li>Profile</li>
-                        </NavLink>
-                        <NavLink
-                            to="/dashbord"
-                            className="side_bar_nav"
-                            activeClassName="active_side_bar"
-                        >
-                            <DashboardOutlined className="side_bar_icon" />
-                            <li>All Feeds</li>
                         </NavLink>
                         <NavLink
                             to="/sign_in"
