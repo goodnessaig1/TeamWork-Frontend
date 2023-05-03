@@ -39,10 +39,12 @@ const ChangePhoneNumber = ({
                                     }}
                                     validationSchema={Yup.object({
                                         number: Yup.string()
-                                            .required('Required')
-                                            .max(
-                                                14,
-                                                'Please, add a valid number'
+                                            .matches(
+                                                /^(?:\+234|0)[789]\d{9}$/,
+                                                'Invalid phone number'
+                                            )
+                                            .required(
+                                                'Phone number is required'
                                             ),
                                     })}
                                     onSubmit={(values) => {
