@@ -7,6 +7,7 @@ import { LikeGif, PostGifComment } from '../../Auth/Actions/gifActions';
 import { Comment, RotatingLines } from 'react-loader-spinner';
 import { ProfilePicture } from '../../Utils/ProfilePicture';
 import commentIcon from '../Assets/comment.png';
+import { MdVerified } from 'react-icons/md';
 
 const GifCommentModal = ({
     gifData,
@@ -52,6 +53,9 @@ const GifCommentModal = ({
                                         <div className="post_username_container">
                                             <span className="post_user_name">
                                                 {gifData?.post_author}
+                                                {gifData.isadmin && (
+                                                    <MdVerified className="verified" />
+                                                )}
                                             </span>
                                             <div className="post_time">
                                                 <span className="time">
@@ -124,14 +128,13 @@ const GifCommentModal = ({
                                                                 className="comment_author_profile_pix"
                                                             />
                                                             <div className="comment___container">
-                                                                <span
-                                                                    style={{
-                                                                        color: 'black',
-                                                                    }}
-                                                                >
+                                                                <span className="comment_user_name">
                                                                     {
                                                                         item?.post_author
                                                                     }
+                                                                    {item.isadmin && (
+                                                                        <MdVerified className="verified" />
+                                                                    )}
                                                                 </span>
                                                                 <span
                                                                     style={{

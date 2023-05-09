@@ -62,6 +62,7 @@
 
 .admin {
     margin-left: 10px;
+    cursor: pointer;
 }
 .active_side_bar {
     background-color: #7990e1;

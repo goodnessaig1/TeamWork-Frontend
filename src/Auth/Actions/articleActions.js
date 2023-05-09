@@ -113,6 +113,7 @@ export const PostArticleCommentFailure = (error) => {
         payload: error,
     };
 };
+
 export const getSingleArticleFailure = (error) => {
     return {
         type: types.GET_SINGLE_ARTICLE_FAILURE,
@@ -140,9 +141,10 @@ export const UpdateArticleFailure = (error) => {
     };
 };
 
-export const DeleteArticleRequest = () => {
+export const DeleteArticleRequest = (request) => {
     return {
         type: types.DELETE_ARTICLE_REQUEST,
+        payload: request,
     };
 };
 
@@ -309,19 +311,20 @@ export function UpdateArticle(data, id) {
 
 export function DeleteArticle(id) {
     return (dispatch) => {
-        const promise = apiRequest('DELETE', `v1/articles/${id}`);
-        dispatch(DeleteArticleRequest());
+        const promise = apiRequest('DELETE', `v1/artices/${id}`);
+        dispatch(DeleteArticleRequest(id));
         promise.then(
             function (payload) {
                 dispatch(DeleteArticleSuccess(id));
             },
             function (error) {
                 const errorMsg = error;
-                if ((errorMsg = 404)) {
-                    toast.error('Not found', {
-                        position: toast.POSITION.TOP_RIGHT,
-                    });
-                }
+                console.log(errorMsg);
+                // if ((errorMsg = 404)) {
+                toast.error('An error occured', {
+                    position: toast.POSITION.TOP_RIGHT,
+                });
+                // }
                 dispatch(DeleteArticleFailure(errorMsg));
             }
         );

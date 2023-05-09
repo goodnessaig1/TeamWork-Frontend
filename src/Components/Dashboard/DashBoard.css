@@ -34,6 +34,7 @@
     margin-bottom: 5px;
     font-size: 18px;
     font-weight: 350;
+    cursor: pointer;
 }
 .feed_content {
     border-radius: 20px;
@@ -98,6 +99,9 @@
 }
 
 .post_author {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     font-weight: 450;
     color: #050505;
     font-size: 16px;
@@ -270,6 +274,13 @@
     margin-bottom: 8px;
     color: rgba(151, 154, 150, 1);
 }
+
+.comment_user_name {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 .comment__section > span {
     padding-right: 10px;
     font-weight: 500;
@@ -491,8 +502,11 @@ img {
 .post_username_container {
     margin-top: 3px;
 }
-.post_user_name {
-    margin-top: 7px;
+.post_user_name,
+.comment_user_name {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     color: black;
 }
 
@@ -892,7 +906,7 @@ img {
     }
     .bigger_img {
         width: 99%;
-        top: 9rem;
+        top: 0rem;
         border-radius: 5px;
         position: absolute;
         height: 500px;

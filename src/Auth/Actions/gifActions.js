@@ -84,9 +84,10 @@ export const PostGifCommentFailure = (error) => {
     };
 };
 
-export const DeleteGifRequest = () => {
+export const DeleteGifRequest = (request) => {
     return {
         type: types.DELETE_GIF_REQUEST,
+        payload: request,
     };
 };
 
@@ -195,8 +196,8 @@ export function PostGifComment(data, gifId) {
 
 export function DeleteGif(id) {
     return (dispatch) => {
-        const promise = apiRequest('DELETE', `v1/gifs/${id}`);
-        dispatch(DeleteGifRequest());
+        const promise = apiRequest('DELETE', `v1/gs/${id}`);
+        dispatch(DeleteGifRequest(id));
         promise.then(
             function (payload) {
                 const message = payload.data.data;
@@ -205,11 +206,11 @@ export function DeleteGif(id) {
             },
             function (error) {
                 const errorMsg = error;
-                if ((errorMsg = 404)) {
-                    toast.error('Not found', {
-                        position: toast.POSITION.TOP_RIGHT,
-                    });
-                }
+                // if ((errorMsg = 404)) {
+                toast.error('An error occured', {
+                    position: toast.POSITION.TOP_RIGHT,
+                });
+                // }
                 dispatch(DeleteGifFailure(errorMsg));
             }
         );

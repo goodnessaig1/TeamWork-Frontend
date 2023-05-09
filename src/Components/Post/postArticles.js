@@ -12,6 +12,7 @@ import Category from './Category';
 import { PostArticles } from '../../Auth/Actions/articleActions';
 import { ProfilePicture } from '../../Utils/ProfilePicture';
 import ColorPicker from '../../Utils/ColorPicker';
+import { MdVerified } from 'react-icons/md';
 
 const PostArticlesModal = ({
     user,
@@ -22,6 +23,7 @@ const PostArticlesModal = ({
     setPostGif,
     setPostGifModal,
 }) => {
+    // console.log(user);
     const [selectedColor, setSelectedColor] = useState(null);
     const handleUploadClick = (e) => {
         setPostGif(e);
@@ -58,7 +60,12 @@ const PostArticlesModal = ({
                             <div className="user__name">
                                 {user && (
                                     <div className="user_name_top">
-                                        <h4>{`${user?.firstName} ${user?.lastName}`}</h4>
+                                        <h4 className="userName">
+                                            {`${user?.firstName} ${user?.lastName}`}
+                                            {user.isAdmin && (
+                                                <MdVerified className="verified" />
+                                            )}
+                                        </h4>
                                         <span>{user?.jobRole}</span>
                                     </div>
                                 )}
@@ -131,7 +138,7 @@ const PostArticlesModal = ({
                                                             : null,
                                                     }}
                                                     label="Article"
-                                                    placeholder={`Share your toughts, ${user?.firstName}`}
+                                                    placeholder={`Share your thoughts, ${user?.firstName}`}
                                                 />
                                             </div>
 

@@ -23,6 +23,7 @@ import { ProfilePicture } from '../../Utils/ProfilePicture';
 import UpdateArticle from './UpdateArticle';
 import ConfirmModal from './ConfirmModal';
 import LikeButton from './Likes';
+import { MdVerified } from 'react-icons/md';
 
 const Feeds = ({
     feeds,
@@ -197,6 +198,9 @@ const Feeds = ({
                                                                     {
                                                                         item?.post_author
                                                                     }
+                                                                    {item.isadmin && (
+                                                                        <MdVerified className="verified" />
+                                                                    )}
                                                                 </h4>
                                                                 <span className="author_job_role">
                                                                     {
@@ -353,6 +357,9 @@ const Feeds = ({
                                                                     {
                                                                         item?.post_author
                                                                     }
+                                                                    {item.isadmin && (
+                                                                        <MdVerified className="verified" />
+                                                                    )}
                                                                 </h4>
                                                                 <span className="author_job_role">
                                                                     {

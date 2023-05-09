@@ -13,6 +13,9 @@ import ChangePassword from './Components/Profile/ChangePassword';
 import ChangePasswordSuccess from './Components/Profile/ChangePasswordSuccess';
 import Notification from './Components/Notifications/Notification';
 import Upload from './Components/Upload/Upload';
+import AdminRoute from './Auth/AdminRoute';
+import CreateAdmin from './Components/Admin/CreateAdmin';
+import ManageUsers from './Components/Admin/ManageUsers';
 
 const App = () => {
     return (
@@ -56,6 +59,18 @@ const App = () => {
                             component={ChangePasswordSuccess}
                         />
                         {/* Routes Would go here */}
+                        {/* ========== Admin Route =========*/}
+
+                        <AdminRoute
+                            path="/create_admin"
+                            exact
+                            component={CreateAdmin}
+                        />
+                        <AdminRoute
+                            path="/manage_users"
+                            exact
+                            component={ManageUsers}
+                        />
                     </div>
                 </Layout>
             </Switch>

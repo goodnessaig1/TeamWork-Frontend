@@ -15,6 +15,7 @@ import { GetSingleGif } from '../../Auth/Actions/gifActions';
 import ArticleCommentModal from '../Dashboard/ArticleCommentModal';
 import GifCommentModal from '../Dashboard/GifCommentModal';
 import { NotificationsActiveOutlined } from '@material-ui/icons';
+import { MdVerified } from 'react-icons/md';
 
 const Notification = ({ notifications, requesting, totalNotifications }) => {
     const dispatch = useDispatch();
@@ -93,11 +94,14 @@ const Notification = ({ notifications, requesting, totalNotifications }) => {
                                                                                 {
                                                                                     item?.notifications_author
                                                                                 }
-                                                                            </span>{' '}
-                                                                            <span>
-                                                                                {
-                                                                                    item?.message
-                                                                                }
+                                                                                {item.isadmin && (
+                                                                                    <MdVerified className="verified v_notification" />
+                                                                                )}
+                                                                                <span>
+                                                                                    {
+                                                                                        item?.message
+                                                                                    }
+                                                                                </span>
                                                                             </span>
                                                                         </div>
                                                                         <div className="date">
@@ -128,11 +132,14 @@ const Notification = ({ notifications, requesting, totalNotifications }) => {
                                                                                 {
                                                                                     item?.notifications_author
                                                                                 }
-                                                                            </span>{' '}
-                                                                            <span>
-                                                                                {
-                                                                                    item?.message
-                                                                                }
+                                                                                {item.isadmin && (
+                                                                                    <MdVerified className="verified v_notification" />
+                                                                                )}
+                                                                                <span>
+                                                                                    {
+                                                                                        item?.message
+                                                                                    }
+                                                                                </span>
                                                                             </span>
                                                                         </div>
                                                                         <div className="date">
@@ -182,11 +189,14 @@ const Notification = ({ notifications, requesting, totalNotifications }) => {
                                                                                 {
                                                                                     item?.notifications_author
                                                                                 }
-                                                                            </span>{' '}
-                                                                            <span>
-                                                                                {
-                                                                                    item?.message
-                                                                                }
+                                                                                {item.isadmin && (
+                                                                                    <MdVerified className="verified v_notification" />
+                                                                                )}
+                                                                                <span>
+                                                                                    {
+                                                                                        item?.message
+                                                                                    }
+                                                                                </span>
                                                                             </span>
                                                                         </div>
                                                                         <div className="date">
@@ -217,11 +227,14 @@ const Notification = ({ notifications, requesting, totalNotifications }) => {
                                                                                 {
                                                                                     item?.notifications_author
                                                                                 }
-                                                                            </span>{' '}
-                                                                            <span>
-                                                                                {
-                                                                                    item?.message
-                                                                                }
+                                                                                {item.isadmin && (
+                                                                                    <MdVerified className="verified v_notification" />
+                                                                                )}
+                                                                                <span>
+                                                                                    {
+                                                                                        item?.message
+                                                                                    }
+                                                                                </span>
                                                                             </span>
                                                                         </div>
                                                                         <div className="date">

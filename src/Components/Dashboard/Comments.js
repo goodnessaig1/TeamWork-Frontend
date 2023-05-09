@@ -1,5 +1,6 @@
 import React from 'react';
 import { ProfilePicture } from '../../Utils/ProfilePicture';
+import { MdVerified } from 'react-icons/md';
 
 const Comments = ({
     item,
@@ -34,10 +35,12 @@ const Comments = ({
                                         </div>
                                         <div className="comment_section">
                                             <div className="comment__section">
-                                                <span>{`${item?.comment_author.substring(
-                                                    0,
-                                                    15
-                                                )}`}</span>
+                                                <span className="comment_user_name">
+                                                    {item?.comment_author}
+                                                    {item.isadmin && (
+                                                        <MdVerified className="verified" />
+                                                    )}
+                                                </span>
                                                 <div>{item?.comment}</div>
                                             </div>
                                         </div>
@@ -82,10 +85,12 @@ const Comments = ({
                                         </div>
                                         <div className="comment_section">
                                             <div className="comment__section">
-                                                <span>{`${item?.comment_author.substring(
-                                                    0,
-                                                    20
-                                                )}`}</span>
+                                                <span className="comment_user_name">
+                                                    {item?.comment_author}
+                                                    {item.isadmin && (
+                                                        <MdVerified className="verified" />
+                                                    )}
+                                                </span>
                                                 <div>{item?.comment}</div>
                                             </div>
                                         </div>

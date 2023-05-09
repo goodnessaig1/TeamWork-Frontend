@@ -36,6 +36,11 @@ const initialState = {
         error: null,
         success: false,
     },
+    UploadCoverPhoto: {
+        requesting: false,
+        error: null,
+        success: false,
+    },
     LogoutUser: {},
 };
 

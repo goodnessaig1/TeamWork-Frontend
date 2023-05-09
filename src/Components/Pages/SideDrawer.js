@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
 import {
-    Menu,
     AddAPhotoOutlined,
     ExitToAppRounded,
     AccountCircleOutlined,
@@ -16,18 +15,14 @@ import {
     Close,
 } from '@material-ui/icons';
 import { connect } from 'react-redux';
-import {
-    Drawer,
-    List,
-    ListItem,
-    ListItemIcon,
-    ListItemText,
-} from '@material-ui/core';
 import { LogoutUser } from '../../Auth/Actions/userActions';
+import AdminModal from '../Admin/AdminModal';
+import AddColorModal from '../Admin/AddColorModal';
 
 const SideDrawer = ({ LogoutUser, userStatus, open, setOpen }) => {
     const history = useHistory();
-
+    const [adminModal, setAdminModal] = useState(false);
+    const [addColorModal, setAddColorModal] = useState(false);
     return (
         <>
             {open && (
@@ -50,7 +45,7 @@ const SideDrawer = ({ LogoutUser, userStatus, open, setOpen }) => {
                             <Link to="/dashboard" className="side_bar_link">
                                 <div className="side_bar_item">
                                     <HomeOutlined className="draw_bar_icon" />
-                                    <span>Home</span>
+                                    <span>All Feeds</span>
                                 </div>
                             </Link>
                             <Link to="/upload" className="side_bar_link">
@@ -79,15 +74,7 @@ const SideDrawer = ({ LogoutUser, userStatus, open, setOpen }) => {
                                         <span>Admin</span>
                                     </div>
                                     {/* </Link> */}
-                                    <Link
-                                        to="/category"
-                                        className="side_bar_link"
-                                    >
-                                        <div className="side_bar_item">
-                                            <AddOutlined className="draw_bar_icon" />
-                                            <span>Add Category</span>
-                                        </div>
-                                    </Link>
+
                                     <Link
                                         to="/create_admin"
                                         className="side_bar_link"
@@ -106,6 +93,20 @@ const SideDrawer = ({ LogoutUser, userStatus, open, setOpen }) => {
                                             <span>Manage Users</span>
                                         </div>
                                     </Link>
+                                    <div
+                                        className="side_bar_item"
+                                        onClick={() => setAdminModal(true)}
+                                    >
+                                        <AddOutlined className="draw_bar_icon" />
+                                        <span>Add Category</span>
+                                    </div>
+                                    <div
+                                        className="side_bar_item"
+                                        onClick={() => setAddColorModal(true)}
+                                    >
+                                        <AddOutlined className="draw_bar_icon" />
+                                        <span>Add Color</span>
+                                    </div>
                                 </div>
                             ) : null}
                             {!!userStatus ? (
@@ -131,6 +132,18 @@ const SideDrawer = ({ LogoutUser, userStatus, open, setOpen }) => {
                         </div>
                     </div>
                 </div>
+            )}
+            {adminModal && (
+                <AdminModal
+                    adminModal={adminModal}
+                    setAdminModal={setAdminModal}
+                />
+            )}
+            {addColorModal && (
+                <AddColorModal
+                    addColorModal={addColorModal}
+                    setAddColorModal={setAddColorModal}
+                />
             )}
         </>
     );

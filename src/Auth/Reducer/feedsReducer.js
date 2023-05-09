@@ -159,11 +159,36 @@ export default function (state = initialState, action) {
                 allFeeds: updatedFeeds,
             });
 
+        case types.DELETE_ARTICLE_REQUEST:
+            article = action.payload;
+            index = state.allFeeds.findIndex((item) => item.postid === article);
+            if (index !== -1) {
+                updatedFeeds = [...state.allFeeds];
+                updatedFeeds.splice(index, 1);
+                return Object.assign({}, state, {
+                    ...state,
+                    allFeeds: updatedFeeds,
+                });
+            }
+            return state;
         case types.DELETE_ARTICLE_SUCCESS:
             const articleId = action.payload;
             index = state.allFeeds.findIndex(
                 (item) => item.postid === articleId
             );
+            if (index !== -1) {
+                updatedFeeds = [...state.allFeeds];
+                updatedFeeds.splice(index, 1);
+                return Object.assign({}, state, {
+                    ...state,
+                    allFeeds: updatedFeeds,
+                });
+            }
+            return state;
+
+        case types.DELETE_GIF_REQUEST:
+            gif = action.payload;
+            index = state.allFeeds.findIndex((item) => item.postid === gif);
             if (index !== -1) {
                 updatedFeeds = [...state.allFeeds];
                 updatedFeeds.splice(index, 1);
