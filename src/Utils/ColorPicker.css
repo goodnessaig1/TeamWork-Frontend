@@ -74,3 +74,10 @@
     gap: 0.4rem;
     margin-top: 8px;
 }
+
+@media screen and (max-width: 600px) {
+    .color_button,
+    .disable {
+        margin-top: 10px;
+    }
+}
