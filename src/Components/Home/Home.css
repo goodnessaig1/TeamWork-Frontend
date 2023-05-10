@@ -107,6 +107,7 @@ h5 {
         padding: 0;
         position: relative;
         top: 6rem;
+        align-items: center;
         flex-direction: column;
         display: flex;
         margin: 20px;
@@ -114,6 +115,7 @@ h5 {
 
     .home_left > h5 {
         padding: 0;
+        text-align: center;
         margin-top: -4px;
         margin-left: 6px;
         font-size: 14px;
@@ -128,27 +130,27 @@ h5 {
         margin-top: 50px;
         width: 100%;
     }
-    .sign_in_button {
+    .sign_up_button {
         text-decoration: none;
         color: #fff;
         background-color: var(--color-primary);
         font-size: 16px;
-        height: 38px;
-        width: 52%;
-        border-radius: 18px;
+        height: 50px;
+        width: 100%;
+        border-radius: 25px;
         display: flex;
         justify-content: center;
         align-items: center;
     }
-    .sign_up_button {
+    .sign_in_button {
         text-decoration: none;
         color: var(--color-primary);
         background-color: #fff;
         border: 2px var(--color-primary) solid;
         font-size: 16px;
-        height: 38px;
-        width: 52%;
-        border-radius: 18px;
+        height: 50px;
+        width: 100%;
+        border-radius: 25px;
         display: flex;
         justify-content: center;
         align-items: center;
