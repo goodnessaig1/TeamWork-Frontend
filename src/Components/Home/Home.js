@@ -26,7 +26,7 @@ const Home = () => {
                         <Link to="/sign_in" className="sign_in_button">
                             <span>Sign In</span>
                         </Link>
-                        <Link to="/create_user" className="sign_up_button">
+                        <Link to="/create-user" className="sign_up_button">
                             <span>Sign Up</span>
                         </Link>
                     </div>
