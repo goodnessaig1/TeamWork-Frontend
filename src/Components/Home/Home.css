@@ -106,7 +106,7 @@ h5 {
         margin-left: 0;
         padding: 0;
         position: relative;
-        top: 10rem;
+        top: 6rem;
         flex-direction: column;
         display: flex;
         margin: 20px;
@@ -132,9 +132,9 @@ h5 {
         text-decoration: none;
         color: #fff;
         background-color: var(--color-primary);
-        font-size: 22px;
-        height: 45px;
-        width: 55%;
+        font-size: 16px;
+        height: 38px;
+        width: 52%;
         border-radius: 18px;
         display: flex;
         justify-content: center;
@@ -145,9 +145,9 @@ h5 {
         color: var(--color-primary);
         background-color: #fff;
         border: 2px var(--color-primary) solid;
-        font-size: 22px;
-        height: 45px;
-        width: 55%;
+        font-size: 16px;
+        height: 38px;
+        width: 52%;
         border-radius: 18px;
         display: flex;
         justify-content: center;

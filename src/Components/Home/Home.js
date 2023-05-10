@@ -24,10 +24,10 @@ const Home = () => {
                     </div>
                     <div className="sign_in_up_btn">
                         <Link to="/sign_in" className="sign_in_button">
-                            <span>Sign In</span>
+                            <span>Sign in</span>
                         </Link>
                         <Link to="/create-user" className="sign_up_button">
-                            <span>Sign Up</span>
+                            <span>Sign up</span>
                         </Link>
                     </div>
                 </div>
