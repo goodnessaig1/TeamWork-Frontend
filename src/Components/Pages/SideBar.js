@@ -11,12 +11,16 @@ import { NavLink, useHistory } from 'react-router-dom';
 import { LogoutUser } from '../../Auth/Actions/userActions';
 import AddColorModal from '../Admin/AddColorModal';
 import AdminModal from '../Admin/AdminModal';
+import ReplaceColorModal from '../Admin/ReplaceColorModal';
 import './SideBar.css';
 
 const SideBar = ({ isAdmin }) => {
     const history = useHistory();
     const [adminModal, setAdminModal] = useState(false);
     const [addColorModal, setAddColorModal] = useState(false);
+    const [replaceColor, setReplaceColor] = useState(false);
+    const [newColor, setNewColor] = useState(null);
+
     useEffect(() => {
         window.scrollTo({
             top: 0,
@@ -120,6 +124,18 @@ const SideBar = ({ isAdmin }) => {
                 <AddColorModal
                     addColorModal={addColorModal}
                     setAddColorModal={setAddColorModal}
+                    setReplaceColor={setReplaceColor}
+                    newColor={newColor}
+                    setNewColor={setNewColor}
+                />
+            )}
+            {replaceColor && (
+                <ReplaceColorModal
+                    replaceColor={replaceColor}
+                    setReplaceColor={setReplaceColor}
+                    setAddColorModal={setAddColorModal}
+                    newColor={newColor}
+                    setNewColor={setNewColor}
                 />
             )}
         </>

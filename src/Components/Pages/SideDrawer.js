@@ -18,11 +18,14 @@ import { connect } from 'react-redux';
 import { LogoutUser } from '../../Auth/Actions/userActions';
 import AdminModal from '../Admin/AdminModal';
 import AddColorModal from '../Admin/AddColorModal';
+import ReplaceColorModal from '../Admin/ReplaceColorModal';
 
 const SideDrawer = ({ LogoutUser, userStatus, open, setOpen }) => {
     const history = useHistory();
     const [adminModal, setAdminModal] = useState(false);
     const [addColorModal, setAddColorModal] = useState(false);
+    const [replaceColor, setReplaceColor] = useState(false);
+    const [newColor, setNewColor] = useState(null);
     return (
         <>
             {open && (
@@ -143,6 +146,18 @@ const SideDrawer = ({ LogoutUser, userStatus, open, setOpen }) => {
                 <AddColorModal
                     addColorModal={addColorModal}
                     setAddColorModal={setAddColorModal}
+                    setReplaceColor={setReplaceColor}
+                    newColor={newColor}
+                    setNewColor={setNewColor}
+                />
+            )}
+            {replaceColor && (
+                <ReplaceColorModal
+                    replaceColor={replaceColor}
+                    setReplaceColor={setReplaceColor}
+                    setAddColorModal={setAddColorModal}
+                    newColor={newColor}
+                    setNewColor={setNewColor}
                 />
             )}
         </>

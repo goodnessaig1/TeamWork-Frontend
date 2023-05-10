@@ -16,6 +16,11 @@ const initialState = {
         error: null,
         success: false,
     },
+    UpdateColor: {
+        requesting: false,
+        error: null,
+        success: false,
+    },
     DeleteUser: {
         requesting: false,
         error: null,
@@ -115,6 +120,34 @@ export default function (state = initialState, action) {
         case types.ADD_COLOR_FAILURE:
             return Object.assign({}, state, {
                 AddColor: {
+                    requesting: false,
+                    error: action.payload,
+                    success: true,
+                },
+            });
+
+        case types.UPDATE_COLOR_REQUEST:
+            return Object.assign({}, state, {
+                UpdateColor: {
+                    requesting: true,
+                    error: null,
+                    success: true,
+                },
+            });
+
+        case types.UPDATE_COLOR_SUCCESS:
+            return Object.assign({}, state, {
+                UpdateColor: {
+                    requesting: false,
+                    error: null,
+                    success: true,
+                },
+                colors: action.payload,
+            });
+
+        case types.UPDATE_COLOR_FAILURE:
+            return Object.assign({}, state, {
+                UpdateColor: {
                     requesting: false,
                     error: action.payload,
                     success: true,

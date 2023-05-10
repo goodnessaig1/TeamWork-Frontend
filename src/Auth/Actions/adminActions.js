@@ -60,6 +60,26 @@ export const addColorFailure = (error) => {
         payload: error,
     };
 };
+export const updateColorRequest = () => {
+    return {
+        type: types.UPDATE_COLOR_REQUEST,
+    };
+};
+
+export const updateColorSuccess = (success) => {
+    return {
+        type: types.UPDATE_COLOR_SUCCESS,
+        payload: success,
+    };
+};
+
+export const updateColorFailure = (error) => {
+    return {
+        type: types.UPDATE_COLOR_FAILURE,
+        payload: error,
+    };
+};
+
 export const deleteUserRequest = (userId) => {
     return {
         type: types.DELETE_USER_REQUEST,
@@ -80,6 +100,7 @@ export const deleteUserFailure = (error) => {
         payload: error,
     };
 };
+
 export const createAdminRequest = (userId) => {
     return {
         type: types.CREATE_ADMIN_REQUEST,
@@ -176,6 +197,26 @@ export function AddColor(credentials) {
                     position: toast.POSITION.TOP_RIGHT,
                 });
                 dispatch(addColorFailure(errorMsg));
+            }
+        );
+        return promise;
+    };
+}
+export function UpdateColor(id, credentials) {
+    return (dispatch) => {
+        const promise = apiRequest('PATCH', `v1/colors/${id}`, credentials);
+        dispatch(updateColorRequest());
+        promise.then(
+            function (payload) {
+                const color = payload.data;
+                dispatch(updateColorSuccess(color.data));
+            },
+            function (error) {
+                const errorMsg = error;
+                toast.error('Please try again', {
+                    position: toast.POSITION.TOP_RIGHT,
+                });
+                dispatch(updateColorFailure(errorMsg));
             }
         );
         return promise;

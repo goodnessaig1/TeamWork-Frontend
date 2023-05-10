@@ -1,53 +1,46 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Formik, Form } from 'formik';
 import { Close } from '@material-ui/icons';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import { ProgressBar } from 'react-loader-spinner';
-import { colors } from '../../Utils/Colors';
-import { AddColor } from '../../Auth/Actions/adminActions';
+// import { colors } from '../../Utils/Colors';
+import { UpdateColor } from '../../Auth/Actions/adminActions';
 import { toast } from 'react-toastify';
+import { getColors } from '../../Auth/Actions/articleActions';
 
-const AddColorModal = ({
+const ReplaceColorModal = ({
     requesting,
     setAddColorModal,
-    AddColor,
+    UpdateColor,
+    colors,
     setReplaceColor,
-    setNewColor,
+    newColor,
 }) => {
     const [selectedColor, setSelectedColor] = useState(null);
     const [colorCode, setColorCode] = useState(null);
-    const [nullColor, setNullColor] = useState(false);
     const [selectedColorIndex, setSelectedColorIndex] = useState(0);
-
+    const [colorId, setcolorId] = useState(null);
     const [selectedColorSize, setSelectedColorSize] = useState({
         height: '17px',
         width: '17px',
     });
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getColors());
+    }, []);
 
     const handleNullColor = () => {
         setSelectedColor(null);
         setSelectedColorSize({ height: '17px', width: ' 17px' });
     };
-
-    const handleColorClick = (name, code, index) => {
-        setSelectedColor(name);
-        setColorCode(code);
-        setNewColor({ name, code });
+    const handleColorClick = (color, index) => {
+        setSelectedColor(color.color_name);
+        setColorCode(color.color);
+        setcolorId(color.id);
         setSelectedColorIndex(index);
         setSelectedColorSize({ height: '21px', width: ' 21px' });
     };
 
-    const handleReplaceColor = (colorName, color) => {
-        if (color != null) {
-            setNewColor({ colorName, color });
-            setAddColorModal(false);
-            setReplaceColor(true);
-        }
-        setNullColor(true);
-        setTimeout(() => {
-            setNullColor(false);
-        }, 2000);
-    };
     return (
         <div>
             <div className="overlay">
@@ -57,7 +50,7 @@ const AddColorModal = ({
                             <span></span>
                             <span
                                 className="close_upload"
-                                onClick={() => setAddColorModal(false)}
+                                onClick={() => setReplaceColor(false)}
                             >
                                 <Close className="close_upload_icon" />
                             </span>
@@ -71,15 +64,18 @@ const AddColorModal = ({
                                 color: '',
                             }}
                             onSubmit={(values) => {
-                                AddColor(values).then((response) => {
-                                    const { data } = response;
-                                    if (data.status === 'success') {
-                                        toast.success('Successful', {
-                                            position: toast.POSITION.TOP_RIGHT,
-                                        });
-                                        setAddColorModal(false);
+                                UpdateColor(colorId, values).then(
+                                    (response) => {
+                                        const { data } = response;
+                                        if (data.status === 'success') {
+                                            toast.success('Successful', {
+                                                position:
+                                                    toast.POSITION.TOP_RIGHT,
+                                            });
+                                            setReplaceColor(false);
+                                        }
                                     }
-                                });
+                                );
                             }}
                         >
                             {({ setFieldValue, handleSubmit, values }) => {
@@ -88,7 +84,6 @@ const AddColorModal = ({
                                         <Form onSubmit={handleSubmit}>
                                             <div className="color___container">
                                                 <div className="color_container colors">
-                                                    +
                                                     <div
                                                         onClick={
                                                             handleNullColor
@@ -100,12 +95,12 @@ const AddColorModal = ({
                                                             (color, index) => (
                                                                 <div
                                                                     key={
-                                                                        color.name
+                                                                        color.id
                                                                     }
                                                                     className="color-block"
                                                                     style={{
                                                                         backgroundColor:
-                                                                            color.code,
+                                                                            color.color,
                                                                         height:
                                                                             selectedColorIndex ===
                                                                             index
@@ -119,8 +114,7 @@ const AddColorModal = ({
                                                                     }}
                                                                     onClick={() =>
                                                                         handleColorClick(
-                                                                            color.name,
-                                                                            color.code,
+                                                                            color,
                                                                             index
                                                                         )
                                                                     }
@@ -129,47 +123,49 @@ const AddColorModal = ({
                                                         )}
                                                 </div>
                                             </div>
-                                            <div className="preview_container">
-                                                <div
-                                                    style={{
-                                                        background: colorCode,
-                                                    }}
-                                                    className="preview_color"
-                                                ></div>
-                                                <span
-                                                    className="remove_color"
-                                                    onClick={() =>
-                                                        handleReplaceColor(
-                                                            selectedColor,
-                                                            colorCode
-                                                        )
-                                                    }
-                                                >
-                                                    Tap to replace color
-                                                </span>
-                                                {nullColor && (
-                                                    <span className="null_color_message">
-                                                        Select new color first
-                                                    </span>
-                                                )}
+                                            <div className="replace_preview">
+                                                <div className="preview__container">
+                                                    <div className="preview___container">
+                                                        <span>New</span>
+                                                        <div
+                                                            style={{
+                                                                background:
+                                                                    newColor?.color,
+                                                            }}
+                                                            className="preview__color"
+                                                        ></div>
+                                                    </div>
+                                                    <div className="preview___container">
+                                                        <span>Previous</span>
+                                                        <div
+                                                            style={{
+                                                                background:
+                                                                    colorCode
+                                                                        ? colorCode
+                                                                        : 'white',
+                                                            }}
+                                                            className="preview__color"
+                                                        ></div>
+                                                    </div>
+                                                </div>
                                                 {!requesting && (
-                                                    <>
+                                                    <div className="color_btn_container">
                                                         {selectedColor ? (
                                                             <button
                                                                 type="submit"
                                                                 className="color_button"
                                                                 onClick={() => {
                                                                     setFieldValue(
-                                                                        'colorName',
-                                                                        selectedColor
+                                                                        'color',
+                                                                        newColor.color
                                                                     );
                                                                     setFieldValue(
-                                                                        'color',
-                                                                        colorCode
+                                                                        'colorName',
+                                                                        newColor.colorName
                                                                     );
                                                                 }}
                                                             >
-                                                                Add color
+                                                                Replace color
                                                             </button>
                                                         ) : (
                                                             <button
@@ -178,10 +174,10 @@ const AddColorModal = ({
                                                                     !values.colorName
                                                                 }
                                                             >
-                                                                Add color
+                                                                Click color
                                                             </button>
                                                         )}
-                                                    </>
+                                                    </div>
                                                 )}
                                             </div>
                                             {requesting && (
@@ -212,7 +208,8 @@ const mapStateToProps = (state) => {
     return {
         user: state.user.userData,
         requesting: state.admin?.AddColor?.requesting,
+        colors: state.articles.colors,
     };
 };
 
-export default connect(mapStateToProps, { AddColor })(AddColorModal);
+export default connect(mapStateToProps, { UpdateColor })(ReplaceColorModal);
