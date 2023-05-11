@@ -32,6 +32,12 @@
     line-height: 16px;
 }
 
+.userName {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 .post_inputs {
     display: flex;
     flex-direction: column;

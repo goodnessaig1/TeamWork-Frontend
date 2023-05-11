@@ -18,6 +18,7 @@ import Edit from '../Assets/Vectoredit.png';
 import UserProfileModal from './UserProfileModal';
 import UserCoverModal from './UserCoverModal';
 import ChangePhoneNumber from './ChangePhoneNumber';
+import { MdVerified } from 'react-icons/md';
 
 const UserProfile = ({ userDetail }) => {
     const [isCopied, setIsCopied] = useState(false);
@@ -128,21 +129,12 @@ const UserProfile = ({ userDetail }) => {
                                     <div className="profile_mid">
                                         <div>
                                             <div className="profile_user_name">
-                                                {userDetail.firstName.length +
-                                                    userDetail.lastName.length <
-                                                16 ? (
-                                                    <span>{`${userDetail.firstName} ${userDetail.lastName}`}</span>
-                                                ) : (
-                                                    <div>
-                                                        <h5 className="lenthy__user_name">{`${userDetail.firstName.substring(
-                                                            0,
-                                                            8
-                                                        )} ${userDetail.lastName.substring(
-                                                            0,
-                                                            8
-                                                        )}...`}</h5>
-                                                    </div>
-                                                )}
+                                                <span className="profile__user__name">
+                                                    {`${userDetail.firstName} ${userDetail.lastName}`}
+                                                    {userDetail.isAdmin && (
+                                                        <MdVerified className="verified_user" />
+                                                    )}
+                                                </span>
                                             </div>
                                             <div className="joined">
                                                 <span>Joined</span>
@@ -226,7 +218,12 @@ const UserProfile = ({ userDetail }) => {
                             <div className="profile__details">
                                 <div className="prfile__user_name">
                                     {userDetail && (
-                                        <span className="user___name">{`${userDetail?.firstName} ${userDetail?.lastName}`}</span>
+                                        <span className="user___name">
+                                            {`${userDetail?.firstName} ${userDetail?.lastName}`}
+                                            {userDetail.isAdmin && (
+                                                <MdVerified className="verified" />
+                                            )}
+                                        </span>
                                     )}
                                 </div>
                                 <div className="time_joined">

@@ -11,6 +11,7 @@ import { ProfilePicture } from '../../Utils/ProfilePicture';
 import ColorPicker from '../../Utils/ColorPicker';
 import { UpdateArticle } from '../../Auth/Actions/articleActions';
 import { Close } from '@material-ui/icons';
+import { MdVerified } from 'react-icons/md';
 
 const UpdateArticleModal = ({
     user,
@@ -54,7 +55,12 @@ const UpdateArticleModal = ({
                             <div className="user__name">
                                 {user && (
                                     <div className="user_name_top">
-                                        <h4>{`${user?.firstName} ${user?.lastName}`}</h4>
+                                        <h4 className="userName">
+                                            {`${user?.firstName} ${user?.lastName}`}
+                                            {user.isAdmin && (
+                                                <MdVerified className="verified" />
+                                            )}
+                                        </h4>
                                         <span>{user?.jobRole}</span>
                                     </div>
                                 )}

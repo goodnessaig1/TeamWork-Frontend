@@ -5,7 +5,7 @@ import { Formik, Form } from 'formik';
 import { TextInput } from '../../../Utils/FormLib';
 import * as Yup from 'yup';
 import { Link, useHistory } from 'react-router-dom';
-import { Audio } from 'react-loader-spinner';
+import { Audio, BallTriangle } from 'react-loader-spinner';
 import PropTypes from 'prop-types';
 
 //  Auth & Redux
@@ -73,11 +73,15 @@ const Login = ({ LoginUser, requesting }) => {
                                     </button>
                                 )}
                                 {requesting && (
-                                    <Audio
-                                        type="ThreeDots"
+                                    <BallTriangle
+                                        height={40}
+                                        width={40}
+                                        radius={5}
                                         color="rgba(121, 144, 225, 1)"
-                                        height={20}
-                                        width={10}
+                                        ariaLabel="ball-triangle-loading"
+                                        wrapperClass={{}}
+                                        wrapperStyle=""
+                                        visible={true}
                                     />
                                 )}
                             </div>

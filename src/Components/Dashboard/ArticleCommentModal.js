@@ -10,6 +10,7 @@ import {
 import { Comment, RotatingLines } from 'react-loader-spinner';
 import { ProfilePicture } from '../../Utils/ProfilePicture';
 import commentIcon from '../Assets/comment.png';
+import { MdVerified } from 'react-icons/md';
 
 const ArticleCommentModal = ({
     articleData,
@@ -22,7 +23,6 @@ const ArticleCommentModal = ({
 }) => {
     const dispatch = useDispatch();
     const articleId = articleData?.postid;
-
     const handleLikes = (post_id) => {
         dispatch(LikeArticles(post_id));
     };
@@ -55,6 +55,9 @@ const ArticleCommentModal = ({
                                             <div className="post_username_container">
                                                 <span className="post_user_name">
                                                     {articleData?.post_author}
+                                                    {articleData.isadmin && (
+                                                        <MdVerified className="verified" />
+                                                    )}
                                                 </span>
                                                 <div className="post_time">
                                                     <span className="time">
@@ -169,14 +172,13 @@ const ArticleCommentModal = ({
                                                                     className="comment_author_profile_pix"
                                                                 />
                                                                 <div className="comment___container">
-                                                                    <span
-                                                                        style={{
-                                                                            color: 'black',
-                                                                        }}
-                                                                    >
+                                                                    <span className="comment_user_name">
                                                                         {
                                                                             item.post_author
                                                                         }
+                                                                        {item.isadmin && (
+                                                                            <MdVerified className="verified" />
+                                                                        )}
                                                                     </span>
                                                                     <span
                                                                         style={{

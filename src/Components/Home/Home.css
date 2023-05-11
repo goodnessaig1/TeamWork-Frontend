@@ -32,7 +32,14 @@ h5 {
     margin-left: -140px;
 }
 
-.sign_in_button {
+.sign_in_up_btn {
+    display: none;
+}
+
+.home_left > h3 {
+    display: none;
+}
+.connect_img {
     display: none;
 }
 /* MEDIA QUERRIES FOR MEDIUM DEVICES */
@@ -70,44 +77,83 @@ h5 {
     .home_container {
         display: flex;
         overflow: hidden;
-        background-image: url('../Assets/image\ 1home.png');
         flex-direction: column;
         width: 100%;
-        background-blend-mode: luminosity;
-        background-color: rgba(121, 144, 225, 1);
+        background-color: #fff;
+    }
+    .connect__img {
+        width: 100%;
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .connect_img {
+        display: flex;
+        width: 199px;
+        height: 199px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+    .home_left > h3 {
+        font-size: 26px;
+        display: flex;
+        font-weight: 600;
+        color: var(--color-primary);
     }
     .home_left {
         flex: 1;
         margin-left: 0;
         padding: 0;
         position: relative;
-        top: 10rem;
+        top: 6rem;
+        align-items: center;
         flex-direction: column;
         display: flex;
-        align-items: center;
+        margin: 20px;
     }
+
     .home_left > h5 {
         padding: 0;
-        opacity: 70%;
-        background-color: white;
         text-align: center;
+        margin-top: -4px;
+        margin-left: 6px;
+        font-size: 14px;
+        font-weight: 400;
+        width: 86%;
     }
-    .sign_in_button {
+    .sign_in_up_btn {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+        margin-top: 50px;
+        width: 100%;
+    }
+    .sign_up_button {
         text-decoration: none;
-        top: 5.5rem;
-        background-color: #fff;
-        color: var(--color-primary);
-        width: 92px;
-        border: solid 3px rgb(65, 65, 230);
-        font-size: 17px;
-        height: 36px;
-        opacity: 95%;
-        border-radius: 20px;
+        color: #fff;
+        background-color: var(--color-primary);
+        font-size: 16px;
+        height: 50px;
+        width: 100%;
+        border-radius: 25px;
         display: flex;
         justify-content: center;
         align-items: center;
-        text-align: center;
-        position: relative;
+    }
+    .sign_in_button {
+        text-decoration: none;
+        color: var(--color-primary);
+        background-color: #fff;
+        border: 2px var(--color-primary) solid;
+        font-size: 16px;
+        height: 50px;
+        width: 100%;
+        border-radius: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .home_right {

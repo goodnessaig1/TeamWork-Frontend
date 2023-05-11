@@ -132,14 +132,23 @@
 .user_name_hr {
     display: none;
 }
-.lenthy__user_name {
-    font-size: 29px;
+.profile__user__name {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 25px;
+}
+
+.verified_user {
+    font-size: 20px !important;
+    margin-left: 1px;
+    color: var(--color-primary);
 }
 
 .joined {
     display: flex;
     flex-direction: row;
-    font-size: 21px;
+    font-size: 19px;
     gap: 0.4rem;
     color: rgba(151, 154, 150, 1);
     position: relative;
@@ -580,6 +589,9 @@
         align-items: center;
     }
     .user___name {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
         font-size: 16px;
         font-weight: 500;
     }
@@ -651,9 +663,9 @@
         font-size: 11px;
     }
     .password__input {
-        padding-top: 1px;
-        font-size: 18px;
-        margin-left: 6px;
+        margin-top: 2px;
+        font-size: 16px;
+        width: 170px;
     }
     .password_container > button {
         width: 240px;

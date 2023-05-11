@@ -1,238 +1,249 @@
 import * as types from '../Actions/types';
 
 const initialState = {
-    RegisterUser: {
+    getUsers: {
         requesting: false,
         error: null,
         success: false,
     },
-    LoginUser: {
+    AddCategory: {
         requesting: false,
         error: null,
         success: false,
     },
-    getUserDetails: {
+    AddColor: {
         requesting: false,
         error: null,
         success: false,
     },
-    ChangeUserPassword: {
+    UpdateColor: {
         requesting: false,
         error: null,
         success: false,
     },
-    ChangeUserNumber: {
+    DeleteUser: {
         requesting: false,
         error: null,
         success: false,
     },
-    UploadProfilePhoto: {
+    CreateAdmin: {
         requesting: false,
         error: null,
         success: false,
     },
-    UploadCoverPhoto: {
+    DisableAdmin: {
         requesting: false,
         error: null,
         success: false,
     },
-    UploadCoverPhoto: {
-        requesting: false,
-        error: null,
-        success: false,
-    },
-    LogoutUser: {},
+    users: [],
 };
-
+let updatedUsers;
+let userId;
+let index;
 export default function (state = initialState, action) {
     switch (action.type) {
-        //      REGISTER USER
-        case types.REGISTER_USER_REQUEST:
+        //            GET ALL USERS
+        case types.GET_USERS_REQUEST:
             return Object.assign({}, state, {
-                RegisterUser: {
+                getUsers: {
                     requesting: true,
                     error: null,
                     success: false,
                 },
             });
-
-        case types.REGISTER_USER_SUCCESS:
+        case types.GET_USERS_SUCCESS:
             return Object.assign({}, state, {
-                RegisterUser: {
+                getUsers: {
                     requesting: false,
                     error: null,
                     success: true,
                 },
-                user: action.payload,
+                users: action.payload,
             });
-
-        case types.REGISTER_USER_FAILURE:
+        case types.GET_USERS_FAILURE:
             return Object.assign({}, state, {
-                RegisterUser: {
+                getUsers: {
                     requesting: false,
                     error: action.payload,
                     success: false,
                 },
             });
 
-        //            LOGIN USER
-        case types.LOGIN_USER_REQUEST:
+        case types.ADD_CATEGORY_REQUEST:
             return Object.assign({}, state, {
-                LoginUser: {
+                AddCategory: {
                     requesting: true,
                     error: null,
-                    success: false,
+                    success: true,
                 },
             });
-        case types.LOGIN_USER_SUCCESS:
+
+        case types.ADD_CATEGORY_SUCCESS:
             return Object.assign({}, state, {
-                LoginUser: {
+                AddCategory: {
                     requesting: false,
                     error: null,
                     success: true,
                 },
-                user: action.payload,
+                categories: action.payload,
             });
-        case types.LOGIN_USER_FAILURE:
+
+        case types.ADD_CATEGORY_FAILURE:
             return Object.assign({}, state, {
-                LoginUser: {
+                AddCategory: {
                     requesting: false,
                     error: action.payload,
-                    success: false,
+                    success: true,
                 },
             });
 
-        //            GET USER DETAILS
-        case types.GET_USER_DETAILS_REQUEST:
+        case types.ADD_COLOR_REQUEST:
             return Object.assign({}, state, {
-                getUserDetails: {
+                AddColor: {
                     requesting: true,
                     error: null,
-                    success: false,
+                    success: true,
                 },
             });
-        case types.GET_USER_DETAILS_SUCCESS:
+
+        case types.ADD_COLOR_SUCCESS:
             return Object.assign({}, state, {
-                getUserDetails: {
+                AddColor: {
                     requesting: false,
                     error: null,
                     success: true,
                 },
-                userData: action.payload,
+                colors: action.payload,
             });
-        case types.GET_USER_DETAILS_FAILURE:
+
+        case types.ADD_COLOR_FAILURE:
             return Object.assign({}, state, {
-                getUserDetails: {
+                AddColor: {
                     requesting: false,
                     error: action.payload,
-                    success: false,
+                    success: true,
                 },
             });
 
-        //            GET USER PASSWORD
-        case types.CHANGE_PASSWORD_REQUEST:
+        case types.UPDATE_COLOR_REQUEST:
             return Object.assign({}, state, {
-                ChangeUserPassword: {
+                UpdateColor: {
                     requesting: true,
                     error: null,
-                    success: false,
+                    success: true,
                 },
             });
-        case types.CHANGE_PASSWORD_SUCCESS:
+
+        case types.UPDATE_COLOR_SUCCESS:
             return Object.assign({}, state, {
-                ChangeUserPassword: {
+                UpdateColor: {
+                    requesting: false,
+                    error: null,
+                    success: true,
+                },
+                colors: action.payload,
+            });
+
+        case types.UPDATE_COLOR_FAILURE:
+            return Object.assign({}, state, {
+                UpdateColor: {
+                    requesting: false,
+                    error: action.payload,
+                    success: true,
+                },
+            });
+
+        // ==========DELETE USER
+        case types.DELETE_USER_REQUEST:
+            userId = action.payload;
+            index = state.users.findIndex((user) => user.id === userId);
+            if (index !== -1) {
+                updatedUsers = [...state.users];
+                updatedUsers.splice(index, 1);
+                return Object.assign({}, state, {
+                    ...state,
+                    users: updatedUsers,
+                });
+            }
+            return state;
+
+        case types.DELETE_USER_SUCCESS:
+            return Object.assign({}, state, {
+                DeleteUser: {
                     requesting: false,
                     error: null,
                     success: true,
                 },
                 success: action.payload,
             });
-        case types.CHANGE_PASSWORD_FAILURE:
+
+        case types.DELETE_USER_FAILURE:
             return Object.assign({}, state, {
-                ChangeUserPassword: {
+                DeleteUser: {
                     requesting: false,
                     error: action.payload,
-                    success: false,
+                    success: true,
                 },
             });
-        //            GET USER NUMBER
-        case types.CHANGE_NUMBER_REQUEST:
+
+        // ==========MAKE USER AN ADMIN
+        case types.CREATE_ADMIN_REQUEST:
+            userId = action.payload;
+            index = state.users.findIndex((user) => user.id === userId);
+            updatedUsers = [...state.users];
+            updatedUsers[index].is_admin = true;
             return Object.assign({}, state, {
-                ChangeUserNumber: {
-                    requesting: true,
-                    error: null,
-                    success: false,
-                },
+                ...state,
+                users: updatedUsers,
             });
-        case types.CHANGE_NUMBER_SUCCESS:
+
+        case types.CREATE_ADMIN_SUCCESS:
             return Object.assign({}, state, {
-                ChangeUserNumber: {
+                CreateAdmin: {
                     requesting: false,
                     error: null,
                     success: true,
                 },
                 success: action.payload,
             });
-        case types.CHANGE_NUMBER_FAILURE:
+
+        case types.CREATE_ADMIN_FAILURE:
             return Object.assign({}, state, {
-                ChangeUserNumber: {
+                CreateAdmin: {
                     requesting: false,
                     error: action.payload,
-                    success: false,
+                    success: true,
                 },
             });
 
-        //            GET USER PROFILE PICTURE
-        case types.CHANGE_PROFILE_PICTURE_REQUEST:
+        // ========== DISABLE ADMIN
+        case types.DISABLE_ADMIN_REQUEST:
+            userId = action.payload;
+            index = state.users.findIndex((user) => user.id === userId);
+            updatedUsers = [...state.users];
+            updatedUsers[index].is_admin = false;
             return Object.assign({}, state, {
-                UploadProfilePhoto: {
-                    requesting: true,
-                    error: null,
-                    success: false,
-                },
+                ...state,
+                users: updatedUsers,
             });
-        case types.CHANGE_PROFILE_PICTURE_SUCCESS:
+
+        case types.DISABLE_ADMIN_SUCCESS:
             return Object.assign({}, state, {
-                UploadProfilePhoto: {
+                DisableAdmin: {
                     requesting: false,
                     error: null,
                     success: true,
                 },
-                uploadSuccess: action.payload,
-            });
-        case types.CHANGE_PROFILE_PICTURE_FAILURE:
-            return Object.assign({}, state, {
-                UploadProfilePhoto: {
-                    requesting: false,
-                    error: action.payload,
-                    success: false,
-                },
+                success: action.payload,
             });
 
-        //            GET USER COVER PHOTO
-        case types.CHANGE_COVER_PHOTO_REQUEST:
+        case types.DISABLE_ADMIN_FAILURE:
             return Object.assign({}, state, {
-                UploadCoverPhoto: {
-                    requesting: true,
-                    error: null,
-                    success: false,
-                },
-            });
-        case types.CHANGE_COVER_PHOTO_SUCCESS:
-            return Object.assign({}, state, {
-                UploadCoverPhoto: {
-                    requesting: false,
-                    error: null,
-                    success: true,
-                },
-                uploadSuccess: action.payload,
-            });
-        case types.CHANGE_COVER_PHOTO_FAILURE:
-            return Object.assign({}, state, {
-                UploadCoverPhoto: {
+                DisableAdmin: {
                     requesting: false,
                     error: action.payload,
-                    success: false,
+                    success: true,
                 },
             });
 

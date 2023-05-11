@@ -1,0 +1,337 @@
+.manage_users_container {
+    display: flex;
+    display: flex;
+    flex-direction: row;
+    min-height: var(--container-height);
+    padding-top: 26px;
+}
+.manage_side_container {
+    flex: 1.13;
+    margin-right: 5px;
+    padding-right: 5px;
+    display: flex;
+    justify-content: center;
+}
+.manage_users_main {
+    flex: 2.4;
+}
+
+.manage_users {
+    background-color: rgba(255, 255, 255, 1);
+    width: 86.6%;
+    padding-bottom: 50px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.manage_users_top > h3 {
+    color: var(--color-primary);
+    font-size: 22px;
+}
+.manage_users_holder {
+    border: 0.4px solid lightgray;
+    margin: 20px 0 4px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.manage_users_description {
+    display: flex;
+    margin: 5px;
+    margin-top: 11px;
+    flex-direction: row;
+}
+
+.users {
+    margin-top: 11px;
+    font-size: 13px;
+}
+.manage_user_id {
+    flex: 0.13;
+}
+
+.manage_user_posts,
+.manage_user_actions {
+    flex: 0.3;
+    font-size: 15px;
+}
+.manage_user_joined {
+    flex: 0.2;
+    /* font-size: 13px; */
+    margin-left: 15px;
+}
+
+.manage_user_id {
+    margin-left: 10px;
+}
+.manage_user_posts {
+    flex: 0.2;
+}
+.manage_user_email {
+    flex: 0.39;
+}
+.email {
+    font-size: 12px;
+}
+.manage_user_name {
+    position: relative;
+    display: flex;
+    cursor: pointer;
+    flex: 0.56;
+    align-items: center;
+    flex-direction: row;
+    gap: 0.48rem;
+    font-weight: 400;
+}
+.name:hover {
+    text-decoration: 1px var(--color-primary) underline;
+    text-underline-offset: 3px;
+    color: rgb(40, 36, 36);
+}
+
+.manage__user_name_ {
+    display: flex;
+    font-size: 12px;
+    font-weight: 500;
+    flex-direction: row;
+    align-items: center;
+}
+
+.verified {
+    font-size: 15px !important;
+    margin-left: 1px;
+    color: var(--color-primary);
+}
+
+.manage_user_profile {
+    width: 25px;
+    height: 25px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.date {
+    font-size: 10px;
+    margin-top: 4px;
+}
+.manage_user_hr {
+    height: 0.3px;
+    border: none;
+    background-color: lightgray;
+    margin: 10px 0 0 0;
+}
+.manage_user_actions {
+    display: flex;
+    margin-left: 20px;
+    flex-direction: row;
+}
+.actions {
+    gap: 0.4rem;
+    align-items: center;
+}
+
+.delete_icon {
+    font-size: 19px !important;
+    cursor: pointer;
+    color: red;
+}
+.delete_icon:hover {
+    background-color: lightgray;
+}
+
+.actions > div {
+    color: white;
+    cursor: pointer;
+    width: 55px;
+    display: flex;
+    font-size: 9px;
+    white-space: nowrap;
+    align-items: center;
+    justify-content: center;
+    height: 24px;
+    border-radius: 5px;
+    background-color: var(--color-primary);
+}
+
+/* ====  ADMIN MODAL ===== */
+
+.admin_modal_holder {
+    width: 350px;
+    position: fixed;
+    overflow: hidden;
+    height: 350px;
+    overflow-y: hidden !important;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    transition: 2s ease-in-out;
+    border-radius: 8px;
+    box-shadow: 0 1px 5px rgb(0 0 0 / 4%), 0 1px 3px rgb(0 0 0 / 5%);
+}
+
+.remove_color {
+    width: 100%;
+    margin-left: 20px;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.null_color_message {
+    width: 100%;
+    margin-left: 3rem;
+    font-size: 11px;
+    cursor: pointer;
+    position: absolute;
+    color: red;
+    margin-top: 7.7rem;
+}
+
+.add_container {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 15px 10px 15px;
+}
+
+.category_container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.category_label {
+    margin-left: 3px;
+}
+
+.category_input_container {
+    border: 1px dotted gray;
+    width: 320px;
+    height: 40px;
+}
+
+.category_input {
+    margin-left: -7px;
+    position: absolute;
+    width: 305px;
+}
+
+.add_category_name {
+    margin-top: 4rem;
+}
+
+.add_button {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-color: var(--color-primary);
+    height: 35px;
+    border: none;
+    color: #fff;
+    font-size: 20px;
+    border-radius: 7px;
+}
+
+.add_button:hover,
+.actions > div:hover {
+    background-color: rgb(82, 82, 254);
+}
+
+@media screen and (max-width: 1250px) {
+    .manage_users {
+        width: 93%;
+    }
+    .manage_side_container {
+        flex: 0.9;
+    }
+    .manage_user_posts {
+        display: none;
+    }
+    .manage_user_joined {
+        flex: 0.19;
+    }
+    .email {
+        font-size: 11px;
+    }
+}
+
+@media screen and (max-width: 890px) {
+    .name {
+        font-size: 11px;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .manage_side_container {
+        display: none;
+    }
+    .manage_users_main {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .manage_users_description,
+    .manage_user_actions {
+        font-size: 11px;
+    }
+
+    .manage_user_email {
+        display: none;
+    }
+    .admin_modal_holder {
+        width: 285px;
+        height: 285px;
+    }
+    .actions > div {
+        width: 44px;
+        font-size: 8px;
+        height: 22px;
+    }
+    .category_container {
+        margin-top: 10px;
+    }
+    .category_input_container {
+        width: 253px;
+    }
+    .category_input {
+        width: 240px;
+        font-size: 15px;
+        margin-top: 1px;
+        margin-left: 0;
+    }
+
+    .manage_user_name {
+        align-items: flex-start;
+    }
+    .email {
+        display: block;
+        position: absolute;
+        font-size: 8px;
+        color: ligtgray;
+        margin-left: 5.8rem;
+        margin-top: 13px;
+    }
+    .date {
+        font-size: 7px;
+    }
+    .add_container {
+        margin-top: 0;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .email {
+        margin-left: 5rem;
+        font-size: 7px;
+    }
+    .manage__user_name_ {
+        font-size: 8px;
+    }
+}
+
+@media screen and (max-width: 415px) {
+    .email {
+        margin-left: 4.7rem;
+    }
+}

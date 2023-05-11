@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import './Profile.css';
 import { Link } from 'react-router-dom';
 import { ProfilePicture } from '../../Utils/ProfilePicture';
+import { MdVerified } from 'react-icons/md';
 
 const Profile = ({ userDetail }) => {
     return (
@@ -22,15 +23,25 @@ const Profile = ({ userDetail }) => {
                                 {userDetail.firstName.length +
                                     userDetail.lastName.length <
                                 14 ? (
-                                    <h3>{`${userDetail.firstName} ${userDetail.lastName}`}</h3>
+                                    <h3 className="userName">
+                                        {`${userDetail.firstName} ${userDetail.lastName}`}
+                                        {userDetail.isAdmin && (
+                                            <MdVerified className="verified" />
+                                        )}
+                                    </h3>
                                 ) : (
-                                    <h3>{`${userDetail.firstName.substring(
-                                        0,
-                                        10
-                                    )}  . ${userDetail.lastName.substring(
-                                        0,
-                                        1
-                                    )}`}</h3>
+                                    <h3 className="userName">
+                                        {`${userDetail.firstName.substring(
+                                            0,
+                                            10
+                                        )}  . ${userDetail.lastName.substring(
+                                            0,
+                                            1
+                                        )}`}
+                                        {userDetail.isAdmin && (
+                                            <MdVerified className="verified" />
+                                        )}
+                                    </h3>
                                 )}
                             </span>
                         </div>
