@@ -138,6 +138,25 @@ export const changeCoverPhotoFailure = (error) => {
     };
 };
 
+export const getSingleUserRequest = (request) => {
+    return {
+        type: types.GET_SINGLE_USER_REQUEST,
+        payload: request,
+    };
+};
+export const getSingleUserSuccess = (success) => {
+    return {
+        type: types.GET_SINGLE_USER_SUCCESS,
+        payload: success,
+    };
+};
+export const getSingleUserFailure = (error) => {
+    return {
+        type: types.GET_SINGLE_USER_FAILURE,
+        payload: error,
+    };
+};
+
 export function RegisterUser(
     credentials,
     history,
@@ -225,6 +244,25 @@ export function getUserDetails() {
             function (error) {
                 const errorMsg = error;
                 dispatch(getUserDetailsFailure(errorMsg));
+            }
+        );
+        return promise;
+    };
+}
+
+export function getSingleUserDetails(id) {
+    return (dispatch) => {
+        const promise = apiRequest('GET', `auth/v1/${id}`);
+        dispatch(getSingleUserRequest());
+        promise.then(
+            function (payload) {
+                const userData = payload.data;
+                // console.log(userData);
+                dispatch(getSingleUserSuccess(userData?.data));
+            },
+            function (error) {
+                const errorMsg = error;
+                dispatch(getSingleUserFailure(errorMsg));
             }
         );
         return promise;

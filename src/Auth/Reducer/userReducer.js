@@ -16,6 +16,11 @@ const initialState = {
         error: null,
         success: false,
     },
+    getSingleUserDetails: {
+        requesting: false,
+        error: null,
+        success: false,
+    },
     ChangeUserPassword: {
         requesting: false,
         error: null,
@@ -40,6 +45,10 @@ const initialState = {
         requesting: false,
         error: null,
         success: false,
+    },
+    userDetails: {
+        profileDetail: {},
+        userPosts: [],
     },
     LogoutUser: {},
 };
@@ -123,6 +132,36 @@ export default function (state = initialState, action) {
         case types.GET_USER_DETAILS_FAILURE:
             return Object.assign({}, state, {
                 getUserDetails: {
+                    requesting: false,
+                    error: action.payload,
+                    success: false,
+                },
+            });
+
+        //         GET SINGLE USER DETAILS
+        case types.GET_SINGLE_USER_REQUEST:
+            return Object.assign({}, state, {
+                getSingleUserDetails: {
+                    requesting: true,
+                    error: null,
+                    success: false,
+                },
+            });
+        case types.GET_SINGLE_USER_SUCCESS:
+            return Object.assign({}, state, {
+                getSingleUserDetails: {
+                    requesting: false,
+                    error: null,
+                    success: true,
+                },
+                userDetails: {
+                    profileDetails: action.payload.user,
+                    userPosts: action.payload.userPosts,
+                },
+            });
+        case types.GET_SINGLE_USER_FAILURE:
+            return Object.assign({}, state, {
+                getSingleUserDetails: {
                     requesting: false,
                     error: action.payload,
                     success: false,
