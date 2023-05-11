@@ -41,6 +41,7 @@ const Feeds = ({
     setOpen,
 }) => {
     // console.log(userData);
+    // console.log(feeds);
     const dispatch = useDispatch();
     const [updateArticleModal, setUpdateArticleModal] = useState(false);
     const [hasMore, setHasMore] = useState(true);
