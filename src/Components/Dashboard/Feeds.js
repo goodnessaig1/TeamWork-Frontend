@@ -42,7 +42,6 @@ const Feeds = ({
     setOpen,
 }) => {
     // console.log(userData);
-    // console.log(feeds);
     const dispatch = useDispatch();
     const history = useHistory();
     const [updateArticleModal, setUpdateArticleModal] = useState(false);
@@ -144,7 +143,6 @@ const Feeds = ({
         const userName = user.post_author;
         const id = user.user_id;
         history.push(`/dashboard/${userName}/${id}`);
-        console.log(id);
     };
 
     return (

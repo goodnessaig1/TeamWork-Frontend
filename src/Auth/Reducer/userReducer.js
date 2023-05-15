@@ -16,7 +16,17 @@ const initialState = {
         error: null,
         success: false,
     },
+    UpdateUserDetails: {
+        requesting: false,
+        error: null,
+        success: false,
+    },
     getSingleUserDetails: {
+        requesting: false,
+        error: null,
+        success: false,
+    },
+    SearchUser: {
         requesting: false,
         error: null,
         success: false,
@@ -47,12 +57,16 @@ const initialState = {
         success: false,
     },
     userDetails: {
-        profileDetail: {},
+        profileDetails: {},
         userPosts: [],
     },
     LogoutUser: {},
 };
-
+let updatedPost;
+let index;
+let post;
+let gif;
+let article;
 export default function (state = initialState, action) {
     switch (action.type) {
         //      REGISTER USER
@@ -129,9 +143,42 @@ export default function (state = initialState, action) {
                 },
                 userData: action.payload,
             });
+
+        case types.GET_USER_FEEDS_TOTAL:
+            return Object.assign({}, state, {
+                total: action.payload,
+            });
         case types.GET_USER_DETAILS_FAILURE:
             return Object.assign({}, state, {
                 getUserDetails: {
+                    requesting: false,
+                    error: action.payload,
+                    success: false,
+                },
+            });
+
+        //            UPDATE USER DETAILS
+        case types.UPDATE_USER_DETAILS_REQUEST:
+            return Object.assign({}, state, {
+                UpdateUserDetails: {
+                    requesting: true,
+                    error: null,
+                    success: false,
+                },
+            });
+        case types.UPDATE_USER_DETAILS_SUCCESS:
+            return Object.assign({}, state, {
+                UpdateUserDetails: {
+                    requesting: false,
+                    error: null,
+                    success: true,
+                },
+                success: action.payload,
+            });
+
+        case types.UPDATE_USER_DETAILS_FAILURE:
+            return Object.assign({}, state, {
+                UpdateUserDetails: {
                     requesting: false,
                     error: action.payload,
                     success: false,
@@ -159,6 +206,53 @@ export default function (state = initialState, action) {
                     userPosts: action.payload.userPosts,
                 },
             });
+
+        case types.GET_MORE_USER_DATA_SUCCESS:
+            return Object.assign({}, state, {
+                userDetails: {
+                    ...state?.userDetails,
+                    userPosts: state.userDetails.userPosts.concat(
+                        action.payload.userPosts
+                    ),
+                },
+            });
+
+        case types.LIKE_USER_ARTICLE_REQUEST:
+            article = action.payload;
+            index = state.userDetails.userPosts.findIndex(
+                (item) => item.postid === article
+            );
+            updatedPost = [...state?.userDetails?.userPosts];
+            post = updatedPost[index];
+            post.liked = !post.liked;
+            post.number_of_likes = post.liked
+                ? Number(post.number_of_likes) + 1
+                : Number(post.number_of_likes) - 1;
+            return Object.assign({}, state, {
+                userDetails: {
+                    ...state?.userDetails,
+                    userPosts: updatedPost,
+                },
+            });
+
+        case types.LIKE_USER_GIF_REQUEST:
+            gif = action.payload;
+            index = state.userDetails.userPosts.findIndex(
+                (item) => item.postid === gif
+            );
+            updatedPost = [...state?.userDetails?.userPosts];
+            post = updatedPost[index];
+            post.liked = !post.liked;
+            post.number_of_likes = post.liked
+                ? Number(post.number_of_likes) + 1
+                : Number(post.number_of_likes) - 1;
+            return Object.assign({}, state, {
+                userDetails: {
+                    ...state?.userDetails,
+                    userPosts: updatedPost,
+                },
+            });
+
         case types.GET_SINGLE_USER_FAILURE:
             return Object.assign({}, state, {
                 getSingleUserDetails: {
@@ -168,6 +262,47 @@ export default function (state = initialState, action) {
                 },
             });
 
+        case types.USER_GIF_COMMENT_SUCCESS:
+            gif = action.payload.data;
+            index = state.userDetails.userPosts.findIndex(
+                (item) => item.postid === gif.postid
+            );
+            updatedPost = [...state.userDetails.userPosts];
+            updatedPost[index] = gif;
+            return Object.assign({}, state, {
+                userDetails: {
+                    ...state?.userDetails,
+                    userPosts: updatedPost,
+                },
+            });
+
+        case types.USER_ARTICLE_COMMENT_SUCCESS:
+            article = action.payload.data;
+            index = state.userDetails.userPosts.findIndex(
+                (item) => item.postid === article.postid
+            );
+            updatedPost = [...state.userDetails.userPosts];
+            updatedPost[index] = article;
+            return Object.assign({}, state, {
+                userDetails: {
+                    ...state?.userDetails,
+                    userPosts: updatedPost,
+                },
+            });
+
+        case types.UPDATE_USER_ARTICLE_SUCCESS:
+            article = action.payload;
+            index = state.userDetails.userPosts.findIndex(
+                (item) => item.postid === article.postid
+            );
+            updatedPost = [...state.userDetails.userPosts];
+            updatedPost[index] = article;
+            return Object.assign({}, state, {
+                userDetails: {
+                    ...state?.userDetails,
+                    userPosts: updatedPost,
+                },
+            });
         //            GET USER PASSWORD
         case types.CHANGE_PASSWORD_REQUEST:
             return Object.assign({}, state, {
@@ -189,6 +324,32 @@ export default function (state = initialState, action) {
         case types.CHANGE_PASSWORD_FAILURE:
             return Object.assign({}, state, {
                 ChangeUserPassword: {
+                    requesting: false,
+                    error: action.payload,
+                    success: false,
+                },
+            });
+        //            SEARCH USER
+        case types.SEARCH_USERS_REQUEST:
+            return Object.assign({}, state, {
+                SearchUser: {
+                    requesting: true,
+                    error: null,
+                    success: false,
+                },
+            });
+        case types.SEARCH_USERS_SUCCESS:
+            return Object.assign({}, state, {
+                SearchUser: {
+                    requesting: false,
+                    error: null,
+                    success: true,
+                },
+                users: action.payload,
+            });
+        case types.SEARCH_USERS_FAILURE:
+            return Object.assign({}, state, {
+                SearchUser: {
                     requesting: false,
                     error: action.payload,
                     success: false,

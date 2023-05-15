@@ -1,17 +1,210 @@
-.profile_details_container {
+.profile_details__container {
     width: 100%;
-    /* min-height: 100vh; */
-    background-color: #fff;
-    box-shadow: 0 1px 5px rgb(0 0 0 / 4%), 0 1px 3px rgb(0 0 0 / 5%);
     border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .profile_details_holder {
+    box-shadow: 0 1px 5px rgb(0 0 0 / 4%), 0 1px 3px rgb(0 0 0 / 5%);
+    background-color: #fff;
     width: 100%;
-    /* margin: 20px; */
     display: flex;
     gap: 0.4rem;
-    padding: 20px;
-    background-color: blue;
+    border-radius: 8px;
     flex-direction: column;
+}
+.user_details_cover {
+    width: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.user_detail__cover {
+    border-radius: 8px;
+    width: 100%;
+    height: 170px;
+    cursor: pointer;
+    object-fit: cover;
+}
+
+.user_details_profile {
+    display: flex;
+    flex-direction: row;
+    gap: 1.4rem;
+}
+
+.user_profile_holder {
+    width: 88px;
+    cursor: pointer;
+    margin-left: 25px;
+    margin-top: -22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 88px;
+    object-fit: cover;
+    border-radius: 50%;
+    background-color: #fff;
+}
+.user_profile_holder > div {
+    width: 84px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 84px;
+    background-color: var(--color-primary);
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.user_detail_profile_pix {
+    border: 2px white solid;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+
+.profile_detail_name {
+    display: flex;
+    flex-direction: column;
+    line-height: 19px;
+    margin-top: 8px;
+    margin-left: 26px;
+}
+
+.profile__detail__name {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 5px;
+    font-size: 17px;
+    font-weight: 450;
+}
+
+.user_profile_joined {
+    font-size: 12px;
+}
+
+.other_user_details {
+    margin-top: 10px;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 26px;
+}
+.profile_detail__icon {
+    margin-top: 3px;
+    font-size: 18px !important;
+}
+.other_user_details > div {
+    display: flex;
+    flex-direction: row;
+    gap: 0.7rem;
+    align-items: center;
+    color: rgb(87, 84, 84);
+    font-size: 13px;
+}
+
+.profile_detail_hr {
+    margin: 5px 0;
+    height: 0.3px;
+    border: none;
+    width: 50%;
+    background-color: lightgray;
+}
+
+.user_post_container {
+    width: 100%;
+}
+
+.user_posts {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.single_post {
+    background-color: white;
+    box-shadow: 0 1px 5px rgb(0 0 0 / 4%), 0 1px 3px rgb(0 0 0 / 5%);
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin-top: 15px;
+}
+
+.post_top {
+    margin: 13px 10px 12px 0px;
+    display: flex;
+    flex-direction: row;
+}
+
+.pix {
+    width: 55px;
+    height: 55px;
+}
+
+.post_top_container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.post_top_container > div {
+    margin-left: 15px;
+    cursor: pointer;
+    display: flex;
+    line-height: 17px;
+    margin-top: 2px;
+    color: rgba(151, 154, 150, 1);
+    flex-direction: column;
+    font-weight: 600;
+}
+
+.profile_bottom {
+    width: 100%;
+    height: 40px;
+}
+
+.unaveliable {
+    background-color: var(--color-primary);
+    background-blend-mode: darken;
+}
+
+.no_post {
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    display: flex;
+    font-size: 22px;
+    color: gray;
+}
+
+.search_overlay {
+    display: flex;
+    position: fixed;
+    top: 0;
+    justify-content: center;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    z-index: 1;
+}
+
+.user_copy {
+    margin-top: 2.87rem;
+    margin-left: 2.3rem;
+    color: var(--color-primary) !important;
+}
+
+@media screen and (max-width: 600px) {
+    .profile__details {
+        align-items: flex-start;
+    }
+    .single_post {
+        border-radius: 0px;
+    }
 }

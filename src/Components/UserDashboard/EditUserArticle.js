@@ -9,23 +9,22 @@ import { TextInput } from '../../Utils/FormLib';
 import { toast } from 'react-toastify';
 import { ProfilePicture } from '../../Utils/ProfilePicture';
 import ColorPicker from '../../Utils/ColorPicker';
-import { UpdateArticle } from '../../Auth/Actions/articleActions';
+import { UpdateUserArticle } from '../../Auth/Actions/articleActions';
 import { Close } from '@material-ui/icons';
 import { MdVerified } from 'react-icons/md';
 
-const UpdateArticleModal = ({
+const UpdateUserArticleModal = ({
     user,
     setUpdateArticleModal,
     updateArticleModal,
     postToUpdate,
     setPostToUpdate,
-    UpdateArticle,
+    UpdateUserArticle,
     requesting,
 }) => {
     const [selectedColor, setSelectedColor] = useState(postToUpdate);
     const colorId = selectedColor?.id;
     const articleId = postToUpdate.postid;
-
     return (
         <div>
             {updateArticleModal && (
@@ -78,7 +77,7 @@ const UpdateArticleModal = ({
                                 article: Yup.string().required('Required'),
                             })}
                             onSubmit={(values) => {
-                                UpdateArticle(values, articleId).then(
+                                UpdateUserArticle(values, articleId).then(
                                     (response) => {
                                         const { data } = response;
                                         if (data.status === 'success') {
@@ -185,8 +184,10 @@ const mapStateToProps = (state) => {
     return {
         user: state.user?.userData,
         articleData: state.articles?.articleData.articles,
-        requesting: state.articles.UpdateArticle.requesting,
+        requesting: state.articles.UpdateUserArticle.requesting,
     };
 };
 
-export default connect(mapStateToProps, { UpdateArticle })(UpdateArticleModal);
+export default connect(mapStateToProps, { UpdateUserArticle })(
+    UpdateUserArticleModal
+);
