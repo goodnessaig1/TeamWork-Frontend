@@ -16,6 +16,7 @@ import Upload from './Components/Upload/Upload';
 import AdminRoute from './Auth/AdminRoute';
 import CreateAdmin from './Components/Admin/CreateAdmin';
 import ManageUsers from './Components/Admin/ManageUsers';
+import UserDashboard from './Components/UserDashboard/UserDashboard';
 
 const App = () => {
     return (
@@ -37,6 +38,12 @@ const App = () => {
                             exact
                             component={MainPage}
                         />
+                        <AuthRoute
+                            path="/dashboard/:user_name?/:id"
+                            exact
+                            component={UserDashboard}
+                        />
+
                         <AuthRoute path="/upload" exact component={Upload} />
                         <AuthRoute
                             path="/notifications"

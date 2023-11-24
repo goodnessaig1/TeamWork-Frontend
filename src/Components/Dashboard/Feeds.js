@@ -24,6 +24,7 @@ import UpdateArticle from './UpdateArticle';
 import ConfirmModal from './ConfirmModal';
 import LikeButton from './Likes';
 import { MdVerified } from 'react-icons/md';
+import { useHistory } from 'react-router-dom';
 
 const Feeds = ({
     feeds,
@@ -41,8 +42,8 @@ const Feeds = ({
     setOpen,
 }) => {
     // console.log(userData);
-    // console.log(feeds);
     const dispatch = useDispatch();
+    const history = useHistory();
     const [updateArticleModal, setUpdateArticleModal] = useState(false);
     const [hasMore, setHasMore] = useState(true);
     const [user, setUser] = useState(null);
@@ -138,6 +139,11 @@ const Feeds = ({
     const handleActiveModal = () => {
         setActiveDiv(null);
     };
+    const handleNavigate = (user) => {
+        const userName = user.post_author;
+        const id = user.user_id;
+        history.push(`/dashboard/${userName}/${id}`);
+    };
 
     return (
         <div>
@@ -187,14 +193,28 @@ const Feeds = ({
                                             {item?.post.includes('https://') ? (
                                                 <div className="feed__content">
                                                     <div className="feed_top">
-                                                        <ProfilePicture
-                                                            image={
-                                                                item?.profile
+                                                        <div
+                                                            onClick={() =>
+                                                                handleNavigate(
+                                                                    item
+                                                                )
                                                             }
-                                                            className="profile__pix"
-                                                        />
+                                                        >
+                                                            <ProfilePicture
+                                                                image={
+                                                                    item?.profile
+                                                                }
+                                                                className="profile__pix"
+                                                            />
+                                                        </div>
                                                         <div className="feed_top_container">
-                                                            <div>
+                                                            <div
+                                                                onClick={() =>
+                                                                    handleNavigate(
+                                                                        item
+                                                                    )
+                                                                }
+                                                            >
                                                                 <h4 className="post_author">
                                                                     {
                                                                         item?.post_author
@@ -346,14 +366,28 @@ const Feeds = ({
                                             ) : (
                                                 <div className="feed__content">
                                                     <div className="feed_top">
-                                                        <ProfilePicture
-                                                            image={
-                                                                item?.profile
+                                                        <div
+                                                            onClick={() =>
+                                                                handleNavigate(
+                                                                    item
+                                                                )
                                                             }
-                                                            className="profile__pix"
-                                                        />
+                                                        >
+                                                            <ProfilePicture
+                                                                image={
+                                                                    item?.profile
+                                                                }
+                                                                className="profile__pix"
+                                                            />
+                                                        </div>
                                                         <div className="feed_top_container">
-                                                            <div>
+                                                            <div
+                                                                onClick={() =>
+                                                                    handleNavigate(
+                                                                        item
+                                                                    )
+                                                                }
+                                                            >
                                                                 <h4 className="post_author">
                                                                     {
                                                                         item?.post_author

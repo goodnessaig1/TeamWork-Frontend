@@ -62,6 +62,25 @@ export const getUserDetailsFailure = (error) => {
         payload: error,
     };
 };
+export const updateUserDetailsSuccess = (request) => {
+    return {
+        type: types.UPDATE_USER_DETAILS_SUCCESS,
+        payload: request,
+    };
+};
+export const updateUserDetailsRequest = (request) => {
+    return {
+        type: types.UPDATE_USER_DETAILS_REQUEST,
+        payload: request,
+    };
+};
+
+export const updateUserDetailsFailure = (error) => {
+    return {
+        type: types.UPDATE_USER_DETAILS_FAILURE,
+        payload: error,
+    };
+};
 export const changePasswordRequest = (request) => {
     return {
         type: types.CHANGE_PASSWORD_REQUEST,
@@ -134,6 +153,62 @@ export const changeCoverPhotoSuccess = (success) => {
 export const changeCoverPhotoFailure = (error) => {
     return {
         type: types.CHANGE_COVER_PHOTO_FAILURE,
+        payload: error,
+    };
+};
+
+export const getSingleUserRequest = (request) => {
+    return {
+        type: types.GET_SINGLE_USER_REQUEST,
+        payload: request,
+    };
+};
+export const getSingleUserSuccess = (success) => {
+    return {
+        type: types.GET_SINGLE_USER_SUCCESS,
+        payload: success,
+    };
+};
+export const getMoreDataRequest = (request) => {
+    return {
+        type: types.GET_MORE_USER_DATA_REQUEST,
+        payload: request,
+    };
+};
+export const getMoreDataSuccess = (success) => {
+    return {
+        type: types.GET_MORE_USER_DATA_SUCCESS,
+        payload: success,
+    };
+};
+export const getSingleUserFailure = (error) => {
+    return {
+        type: types.GET_SINGLE_USER_FAILURE,
+        payload: error,
+    };
+};
+export const getFeedsTotal = (success) => {
+    return {
+        type: types.GET_USER_FEEDS_TOTAL,
+        payload: success,
+    };
+};
+
+export const searchUserRequest = (request) => {
+    return {
+        type: types.SEARCH_USERS_REQUEST,
+        payload: request,
+    };
+};
+export const searchUserSuccess = (success) => {
+    return {
+        type: types.SEARCH_USERS_SUCCESS,
+        payload: success,
+    };
+};
+export const searchUserFailure = (error) => {
+    return {
+        type: types.SEARCH_USERS_FAILURE,
         payload: error,
     };
 };
@@ -231,6 +306,71 @@ export function getUserDetails() {
     };
 }
 
+export function getSingleUserDetails(id, offSet) {
+    return (dispatch) => {
+        const promise = apiRequest(
+            'GET',
+            `auth/v1/${id}?limit=10&offset=${offSet}`
+        );
+        dispatch(getSingleUserRequest());
+        promise.then(
+            function (payload) {
+                const userData = payload.data;
+                dispatch(getSingleUserSuccess(userData?.data));
+                dispatch(getFeedsTotal(userData.data?.totalPost));
+            },
+            function (error) {
+                const errorMsg = error;
+                dispatch(getSingleUserFailure(errorMsg));
+            }
+        );
+        return promise;
+    };
+}
+
+export function getMoreUserData(id, offSet) {
+    return (dispatch) => {
+        const promise = apiRequest(
+            'GET',
+            `auth/v1/${id}?limit=10&offset=${offSet}`
+        );
+        dispatch(getMoreDataRequest());
+        promise.then(
+            function (payload) {
+                const userData = payload.data;
+                dispatch(getMoreDataSuccess(userData?.data));
+                dispatch(getFeedsTotal(userData.data?.totalPost));
+            },
+            function (error) {
+                const errorMsg = error;
+                dispatch(getSingleUserFailure(errorMsg));
+            }
+        );
+        return promise;
+    };
+}
+
+export function SearchUser(searchString) {
+    return (dispatch) => {
+        const promise = apiRequest(
+            'GET',
+            `auth/v1/search?searchString=${searchString}`
+        );
+        dispatch(searchUserRequest());
+        promise.then(
+            function (payload) {
+                const userData = payload.data;
+                dispatch(searchUserSuccess(userData?.data));
+            },
+            function (error) {
+                const errorMsg = error;
+                dispatch(sea(errorMsg));
+            }
+        );
+        return promise;
+    };
+}
+
 export function ChangeUserPassword(credentials, history) {
     return (dispatch) => {
         const promise = apiRequest(
@@ -258,6 +398,27 @@ export function ChangeUserPassword(credentials, history) {
             },
             function (error) {
                 dispatch(changePasswordFailure(error));
+            }
+        );
+        return promise;
+    };
+}
+export function UpdateUserDetails(credentials, id) {
+    return (dispatch) => {
+        const promise = apiRequest(
+            'PATCH',
+            `auth/v1/update_user/${id}`,
+            credentials
+        );
+        dispatch(updateUserDetailsRequest());
+        promise.then(
+            function (payload) {
+                const { data } = payload;
+                dispatch(updateUserDetailsSuccess(data));
+                dispatch(getUserDetails());
+            },
+            function (error) {
+                dispatch(updateUserDetailsFailure(error));
             }
         );
         return promise;

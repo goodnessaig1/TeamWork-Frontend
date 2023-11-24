@@ -216,7 +216,7 @@ select::-ms-expand {
 @media screen and (max-width: 820px) {
     .upload {
         width: 415px;
-        height: 450px;
+        height: 500px;
     }
     .post_input {
         width: 360px;

@@ -19,6 +19,8 @@ import UserProfileModal from './UserProfileModal';
 import UserCoverModal from './UserCoverModal';
 import ChangePhoneNumber from './ChangePhoneNumber';
 import { MdVerified } from 'react-icons/md';
+import ViewProfile from '../UserDashboard/ViewProfile';
+import UpdateUserDetail from './UpdateUserDetail';
 
 const UserProfile = ({ userDetail }) => {
     const [isCopied, setIsCopied] = useState(false);
@@ -27,6 +29,9 @@ const UserProfile = ({ userDetail }) => {
     const [modal, setModal] = useState(false);
     const [coverModal, setCoverModal] = useState(false);
     const [phoneNumber, setPhoneNumber] = useState(false);
+    const [clickedImage, setClickedImage] = useState(null);
+    const [userToUpdate, setUserToUpdate] = useState(null);
+    const [updateUserDetails, setUpdateUserDetails] = useState(false);
     const divRef = useRef(null);
 
     function copyText() {
@@ -44,6 +49,13 @@ const UserProfile = ({ userDetail }) => {
         setCoverImg(profile);
         setCoverModal(true);
     };
+    const handleViewProfile = (image) => {
+        setClickedImage(image);
+    };
+    const handleUpdateUser = (user) => {
+        setUpdateUserDetails(true);
+        setUserToUpdate(user);
+    };
 
     return (
         <div className="user_profile_container">
@@ -60,6 +72,11 @@ const UserProfile = ({ userDetail }) => {
                                     <div className="user_cover_bg">
                                         <img
                                             src={userDetail.coverPhoto}
+                                            onClick={() =>
+                                                handleViewProfile(
+                                                    userDetail.coverPhoto
+                                                )
+                                            }
                                             alt=""
                                             className="user_cover_photo"
                                         />
@@ -93,6 +110,11 @@ const UserProfile = ({ userDetail }) => {
                                         <img
                                             src={userDetail.profile}
                                             alt=""
+                                            onClick={() =>
+                                                handleViewProfile(
+                                                    userDetail.profile
+                                                )
+                                            }
                                             className="user_profile_photo"
                                         />
                                         <span
@@ -171,6 +193,11 @@ const UserProfile = ({ userDetail }) => {
                                         {userDetail?.coverPhoto && (
                                             <img
                                                 className="image_wave"
+                                                onClick={() =>
+                                                    handleViewProfile(
+                                                        userDetail.coverPhoto
+                                                    )
+                                                }
                                                 src={userDetail?.coverPhoto}
                                                 alt="Your Image"
                                             />
@@ -194,6 +221,11 @@ const UserProfile = ({ userDetail }) => {
                                                 <img
                                                     src={userDetail?.profile}
                                                     alt=""
+                                                    onClick={() =>
+                                                        handleViewProfile(
+                                                            userDetail.profile
+                                                        )
+                                                    }
                                                     className="circle_profie"
                                                 />
                                             ) : (
@@ -319,18 +351,12 @@ const UserProfile = ({ userDetail }) => {
                                     Change password
                                 </Link>
                             </div>
-                            <div className="profile_btn">
-                                <Link
-                                    className="profile_link_btn"
-                                    to="/edit_profile"
-                                >
-                                    Edit Profile{' '}
-                                    <img
-                                        src={Edit}
-                                        alt=""
-                                        className="edit_icon"
-                                    />
-                                </Link>
+                            <div
+                                className="profile_btn"
+                                onClick={() => handleUpdateUser(userDetail)}
+                            >
+                                Edit Profile{' '}
+                                <img src={Edit} alt="" className="edit_icon" />
                             </div>
                         </div>
                     </div>
@@ -356,6 +382,20 @@ const UserProfile = ({ userDetail }) => {
                             phoneNumber={phoneNumber}
                             setPhoneNumber={setPhoneNumber}
                             userDetail={userDetail}
+                        />
+                    )}
+                    {clickedImage && (
+                        <ViewProfile
+                            clickedImage={clickedImage}
+                            setClickedImage={setClickedImage}
+                        />
+                    )}
+                    {updateUserDetails && (
+                        <UpdateUserDetail
+                            updateUserDetails={updateUserDetails}
+                            setUpdateUserDetails={setUpdateUserDetails}
+                            user={userToUpdate}
+                            setUserToUpdate={setUserToUpdate}
                         />
                     )}
                 </div>

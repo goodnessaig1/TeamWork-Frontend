@@ -16,6 +16,11 @@ const initialState = {
         error: null,
         success: false,
     },
+    GetUserGif: {
+        requesting: false,
+        error: null,
+        success: false,
+    },
     PostGifComment: {
         requesting: false,
         error: null,
@@ -110,6 +115,18 @@ export default function (state = initialState, action) {
                     comments: action.payload.comments,
                 },
             });
+        case types.GET_USER_GIF_SUCCESS:
+            return Object.assign({}, state, {
+                GetUserGif: {
+                    requesting: false,
+                    error: false,
+                    success: true,
+                },
+                gifData: {
+                    gifs: action.payload.data,
+                    comments: action.payload.comments,
+                },
+            });
         case types.GET_SINGLE_GIF_FAILURE:
             return Object.assign({}, state, {
                 GetSingleGif: {
@@ -128,6 +145,22 @@ export default function (state = initialState, action) {
                 },
             });
         case types.POST_GIF_COMMENT_SUCCESS:
+            return Object.assign({}, state, {
+                PostGifComment: {
+                    requesting: false,
+                    error: false,
+                    success: true,
+                },
+                gifData: {
+                    ...state,
+                    gifs: action.payload.data,
+                    comments: [
+                        ...state.gifData.comments,
+                        action.payload.comment,
+                    ],
+                },
+            });
+        case types.USER_GIF_COMMENT_SUCCESS:
             return Object.assign({}, state, {
                 PostGifComment: {
                     requesting: false,

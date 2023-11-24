@@ -15,6 +15,7 @@ import Search from '../../Components/Assets/Vectorsearch.png';
 import PropTypes from 'prop-types';
 import SideDrawer from '../Pages/SideDrawer';
 import { getNotifications } from '../../Auth/Actions/notificationActions';
+import UserSearch from '../UserDashboard/SearchUser';
 
 const Header = ({ LogoutUser, userStatus, notifications }) => {
     const history = useHistory();
@@ -46,30 +47,37 @@ const Header = ({ LogoutUser, userStatus, notifications }) => {
                                 className="search_bar_img"
                             />
                             <span>
-                                <input
+                                <UserSearch />
+                                {/* <input
                                     className="search"
                                     type="text"
                                     placeholder="Search...."
-                                />
+                                /> */}
                             </span>
                         </div>
                     ) : null}
                 </div>
 
                 {click && (
-                    <div className="search_input_container">
-                        <div onClick={() => setClick(false)}>
-                            <KeyboardBackspaceRounded />
+                    <>
+                        <div className="search_input_container">
+                            <div onClick={() => setClick(false)}>
+                                <KeyboardBackspaceRounded />
+                            </div>
+                            <div className="search_input">
+                                <UserSearch />
+                                  <img
+                                    src={Search}
+                                    alt=""
+                                    className="search_bar_img"
+                                />
+                            </div>
                         </div>
-                        <div className="search_input">
-                            <input type="text" placeholder="Search" />
-                            <img
-                                src={Search}
-                                alt=""
-                                className="search_bar_img"
-                            />
-                        </div>
-                    </div>
+                        <div
+                            className="search_overlay"
+                            onClick={() => setClick(false)}
+                        ></div>
+                    </>
                 )}
                 <div className="center">
                     <div className="center_container">

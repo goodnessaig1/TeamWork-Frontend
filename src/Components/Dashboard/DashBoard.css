@@ -74,6 +74,7 @@
     border-radius: 15px;
     background-color: white;
     object-fit: cover;
+    cursor: pointer;
 }
 .profile_commnet {
     width: 45px;

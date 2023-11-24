@@ -60,6 +60,13 @@ export const PostArticlesFailure = (error) => {
     };
 };
 
+export const likeUserArticleRequest = (request) => {
+    return {
+        type: types.LIKE_USER_ARTICLE_REQUEST,
+        payload: request,
+    };
+};
+
 export const likeArticlesRequest = (request) => {
     return {
         type: types.LIKE_ARTICLES_REQUEST,
@@ -100,6 +107,13 @@ export const PostArticleCommentRequest = () => {
     };
 };
 
+export const UserArticleCommentSuccess = (success) => {
+    return {
+        type: types.USER_ARTICLE_COMMENT_SUCCESS,
+        payload: success,
+    };
+};
+
 export const PostArticleCommentSuccess = (success) => {
     return {
         type: types.POST_ARTICLE_COMMENT_SUCCESS,
@@ -137,6 +151,25 @@ export const UpdateArticleSuccess = (success) => {
 export const UpdateArticleFailure = (error) => {
     return {
         type: types.UPDATE_ARTICLE_FAILURE,
+        payload: error,
+    };
+};
+export const UpdateUserArticleRequest = () => {
+    return {
+        type: types.UPDATE_USER_ARTICLE_REQUEST,
+    };
+};
+
+export const UpdateUserArticleSuccess = (success) => {
+    return {
+        type: types.UPDATE_USER_ARTICLE_SUCCESS,
+        payload: success,
+    };
+};
+
+export const UpdateUserArticleFailure = (error) => {
+    return {
+        type: types.UPDATE_USER_ARTICLE_FAILURE,
         payload: error,
     };
 };
@@ -238,6 +271,24 @@ export function LikeArticles(id) {
     };
 }
 
+export function LikeUserArticle(id) {
+    return (dispatch) => {
+        const promise = apiRequest('POST', `v1/articles/${id}/like`);
+        dispatch(likeUserArticleRequest(id));
+        promise.then(
+            function (payload) {
+                const likedArticle = payload.data.data;
+                dispatch(likeArticlesSuccess(likedArticle));
+            },
+            function (error) {
+                const errorMsg = error;
+                dispatch(likeArticlesFailure(errorMsg));
+            }
+        );
+        return promise;
+    };
+}
+
 export function GetSingleArticle(id) {
     return (dispatch) => {
         const promise = apiRequest('GET', `v1/articles/${id}`);
@@ -287,6 +338,31 @@ export function PostArticleComment(data, id) {
     };
 }
 
+export function UserArticleComment(data, id) {
+    return (dispatch) => {
+        const promise = apiRequest('POST', `v1/articles/${id}/comment`, data);
+        dispatch(PostArticleCommentRequest());
+        promise.then(
+            function (payload) {
+                const { data } = payload.data;
+                const articleData = data;
+                toast.success(`Successful`, {
+                    position: toast.POSITION.TOP_RIGHT,
+                });
+                dispatch(UserArticleCommentSuccess(articleData));
+            },
+            function (error) {
+                const errorMsg = error;
+                toast.error(`An Error occured ${errorMsg}`, {
+                    position: toast.POSITION.TOP_RIGHT,
+                });
+                dispatch(PostArticleCommentFailure(errorMsg));
+            }
+        );
+        return promise;
+    };
+}
+
 export function UpdateArticle(data, id) {
     return (dispatch) => {
         const promise = apiRequest('PATCH', `v1/articles/${id}`, data);
@@ -303,6 +379,28 @@ export function UpdateArticle(data, id) {
                     position: toast.POSITION.TOP_RIGHT,
                 });
                 dispatch(UpdateArticleFailure(errorMsg));
+            }
+        );
+        return promise;
+    };
+}
+
+export function UpdateUserArticle(data, id) {
+    return (dispatch) => {
+        const promise = apiRequest('PATCH', `v1/articles/${id}`, data);
+        dispatch(UpdateUserArticleRequest());
+        promise.then(
+            function (payload) {
+                const { data } = payload?.data;
+                const UpdatedArticle = data?.data;
+                dispatch(UpdateUserArticleSuccess(UpdatedArticle));
+            },
+            function (error) {
+                const errorMsg = error;
+                toast.error('An error occured, try again later', {
+                    position: toast.POSITION.TOP_RIGHT,
+                });
+                dispatch(UpdateUserArticleFailure(errorMsg));
             }
         );
         return promise;

@@ -31,7 +31,17 @@ const initialState = {
         error: null,
         success: false,
     },
+    UserArticleComment: {
+        requesting: false,
+        error: null,
+        success: false,
+    },
     UpdateArticle: {
+        requesting: false,
+        error: null,
+        success: false,
+    },
+    UpdateUserArticle: {
         requesting: false,
         error: null,
         success: false,
@@ -224,6 +234,22 @@ export default function (state = initialState, action) {
                     ],
                 },
             });
+        case types.USER_ARTICLE_COMMENT_SUCCESS:
+            return Object.assign({}, state, {
+                UserArticleComment: {
+                    requesting: false,
+                    error: false,
+                    success: true,
+                },
+                articleData: {
+                    ...state,
+                    articles: action.payload.data,
+                    comments: [
+                        ...state.articleData.comments,
+                        action.payload.comment,
+                    ],
+                },
+            });
         case types.POST_ARTICLE_COMMENT_FAILURE:
             return Object.assign({}, state, {
                 PostArticleComment: {
@@ -256,6 +282,35 @@ export default function (state = initialState, action) {
         case types.UPDATE_ARTICLE_FAILURE:
             return Object.assign({}, state, {
                 UpdateArticle: {
+                    requesting: false,
+                    error: action.payload,
+                    success: true,
+                },
+            });
+
+        case types.UPDATE_USER_ARTICLE_REQUEST:
+            return Object.assign({}, state, {
+                UpdateUserArticle: {
+                    requesting: true,
+                    error: false,
+                    success: true,
+                },
+            });
+
+        case types.UPDATE_USER_ARTICLE_SUCCESS:
+            return Object.assign({}, state, {
+                UpdateUserArticle: {
+                    requesting: false,
+                    error: false,
+                    success: true,
+                },
+                articleData: {
+                    articles: action.payload,
+                },
+            });
+        case types.UPDATE_USER_ARTICLE_FAILURE:
+            return Object.assign({}, state, {
+                UpdateUserArticle: {
                     requesting: false,
                     error: action.payload,
                     success: true,
